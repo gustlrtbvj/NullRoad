@@ -13,11 +13,14 @@ public class BuildingVO {
 	private String detail_addr;
 	private String bld_reg_date;
 	private String bld_approve;
+	private String bld_name;
+	private String bld_picture1;
+	private String bld_picture2;
 
 	
 	public BuildingVO(int bld_seq, String m_id, int bld_lati, int bld_longi, int bld_p_lots, String bld_owener,
-			String bld_owener_phone, String sigungu, String emdong, String detail_addr, String reg_date,
-			String bld_approve) {
+			String bld_owener_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
+			String bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
 		super();
 		this.bld_seq = bld_seq;
 		this.m_id = m_id;
@@ -29,8 +32,11 @@ public class BuildingVO {
 		this.sigungu = sigungu;
 		this.emdong = emdong;
 		this.detail_addr = detail_addr;
-		this.bld_reg_date = reg_date;
+		this.bld_reg_date = bld_reg_date;
 		this.bld_approve = bld_approve;
+		this.bld_name = bld_name;
+		this.bld_picture1 = bld_picture1;
+		this.bld_picture2 = bld_picture2;
 	}
 
 
@@ -64,13 +70,13 @@ public class BuildingVO {
 	}
 
 
-	public int getBld_long() {
+	public int getBld_longi() {
 		return bld_longi;
 	}
 
 
-	public void setBld_long(int bld_long) {
-		this.bld_longi = bld_long;
+	public void setBld_longi(int bld_longi) {
+		this.bld_longi = bld_longi;
 	}
 
 
@@ -134,13 +140,13 @@ public class BuildingVO {
 	}
 
 
-	public String getReg_date() {
+	public String getBld_reg_date() {
 		return bld_reg_date;
 	}
 
 
-	public void setReg_date(String reg_date) {
-		this.bld_reg_date = reg_date;
+	public void setBld_reg_date(String bld_reg_date) {
+		this.bld_reg_date = bld_reg_date;
 	}
 
 
@@ -152,5 +158,37 @@ public class BuildingVO {
 	public void setBld_approve(String bld_approve) {
 		this.bld_approve = bld_approve;
 	}
+
+
+	public String getBld_name() {
+		return bld_name;
+	}
+
+
+	public void setBld_name(String bld_name) {
+		this.bld_name = bld_name;
+	}
+
+
+	public String getBld_picture1() {
+		return bld_picture1;
+	}
+
+
+	public void setBld_picture1(String bld_picture1) {
+		this.bld_picture1 = bld_picture1;
+	}
+
+
+	public String getBld_picture2() {
+		return bld_picture2;
+	}
+
+
+	public void setBld_picture2(String bld_picture2) {
+		this.bld_picture2 = bld_picture2;
+	}
+	
+
 	
 }

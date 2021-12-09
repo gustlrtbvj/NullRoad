@@ -27,16 +27,20 @@ public class BldRegCon implements Command {
 			String detail_addr = request.getParameter("detail_addr");
 			String bld_reg_date= request.getParameter("bld_reg_date");
 			String bld_approve = request.getParameter("bld_approve");
+			String bld_name = request.getParameter("bld_name");
+			String bld_picture1 = request.getParameter("bld_picture1");
+			String bld_picture2 = request.getParameter("bld_picture2");
 			
 			DAO dao = new DAO();
 			int cnt = dao.BldRegCon(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots,
-					bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve);
+					bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, 
+					bld_approve,bld_name,bld_picture1,bld_picture2);
 
 			if (cnt > 0) {
 				System.out.println("건물등록 성공");
 				
 				request.setAttribute("bvo", new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, 
-						sigungu, emdong, detail_addr, bld_reg_date, bld_approve));
+						sigungu, emdong, detail_addr, bld_reg_date, bld_approve,bld_name,bld_picture1,bld_picture2));
 				// Forward 방식
 				RequestDispatcher rd = request.getRequestDispatcher("#");
 				// 페이지 이동

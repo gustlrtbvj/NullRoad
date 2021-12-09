@@ -16,7 +16,6 @@ public class PrkRegCon implements Command{
 			request.setCharacterEncoding("euc-kr");
 			
 			int prk_seq = Integer.parseInt(request.getParameter("prk_seq"));
-			int prk_area_num = Integer.parseInt(request.getParameter("prk_area_num"));
 			String prk_time = request.getParameter("prk_time");
 			String prk_day = request.getParameter("prk_day");
 			int prk_fee = Integer.parseInt(request.getParameter("prk_fee"));
@@ -27,12 +26,12 @@ public class PrkRegCon implements Command{
 			
 			DAO dao = new DAO();
 			
-			int cnt = dao.PrkRegCon(prk_seq, prk_area_num, prk_time, prk_day, prk_fee,
+			int cnt = dao.PrkRegCon(prk_seq, prk_time, prk_day, prk_fee,
 					prk_status, prk_memo, bld_seq);
 			if(cnt>0) {
 				System.out.println("주차장 등록 성공");
 		
-	         request.setAttribute("pvo", new ParkingVO(prk_seq, prk_area_num, prk_time, prk_day, prk_fee,
+	         request.setAttribute("pvo", new ParkingVO(prk_seq, prk_time, prk_day, prk_fee,
 						prk_status, prk_memo, bld_seq));
 	         // Forward 방식
 	         RequestDispatcher rd = request.getRequestDispatcher("#");

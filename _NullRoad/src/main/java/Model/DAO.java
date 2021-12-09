@@ -127,16 +127,15 @@ public class DAO {
 		return mvo;
 
 	}
-	// ===============================================================================
 
+	// ===============================================================================
 	public int BldRegCon(int bld_seq, String m_id, int bld_lati, int bld_longi, int bld_prk_lots, String bld_owner,
 			String bld_owner_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
-			String bld_approve) {
+			String bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
 
 		try {
 			Conn();
-
-			String sql = "insert into t_building values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into  values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, bld_seq);
@@ -150,11 +149,13 @@ public class DAO {
 			psmt.setString(9, emdong);
 			psmt.setString(10, detail_addr);
 			psmt.setString(11, bld_reg_date);
-			psmt.setString(11, bld_reg_date);
-
-			cnt = psmt.executeUpdate();
+			psmt.setString(12, bld_approve);
+			psmt.setString(13, bld_name);
+			psmt.setString(14, bld_picture1);
+			psmt.setString(15, bld_picture2);
 
 		} catch (Exception e) {
+
 		} finally {
 			close();
 		}
@@ -162,21 +163,20 @@ public class DAO {
 	}
 
 //===============================================================================
-	public int PrkRegCon(int prk_seq, int prk_area_num, String prk_time, String prk_day, int prk_fee, String prk_status,
+	public int PrkRegCon(int prk_seq, String prk_time, String prk_day, int prk_fee, String prk_status,
 			String prk_memo, int bld_seq) {
 		try {
 			Conn();
-			String sql = "insert into t_parking values(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into t_parking values(?, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, prk_seq);
-			psmt.setInt(2, prk_area_num);
-			psmt.setString(3, prk_time);
-			psmt.setString(4, prk_day);
-			psmt.setInt(5, prk_fee);
-			psmt.setString(6, prk_status);
-			psmt.setString(7, prk_memo);
-			psmt.setInt(8, bld_seq);
+			psmt.setString(2, prk_time);
+			psmt.setString(3, prk_day);
+			psmt.setInt(4, prk_fee);
+			psmt.setString(5, prk_status);
+			psmt.setString(6, prk_memo);
+			psmt.setInt(7, bld_seq);
 
 		} catch (Exception e) {
 		} finally {
@@ -237,8 +237,6 @@ public class DAO {
 		}
 		return cnt;
 	}
-	
-	// ===============================================================================
 
 	public int RevMentCon(int rev_ment_seq, int rev_seq, String rev_ment_content, String rev_ment_reg_date,
 			String m_id) {
@@ -261,8 +259,6 @@ public class DAO {
 		return cnt;
 	}
 
-	// ===============================================================================
-	
 	public int CommunityCon(int comm_seq, String comm_subject, String comm_content, String comm_reg_date, int comm_cnt,
 			String m_id) {
 		try {
@@ -286,33 +282,28 @@ public class DAO {
 
 	}
 
-	// ===============================================================================
-	
 	public int CommRepCon(int comm_rep_seq, int comm_seq, String comm_rep_content, String comm_rep_reg_date,
 			String m_id) {
-		
+
 		try {
 			Conn();
 			String sql = "insert into t_community_reply values(?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
-			
-			psmt.setInt(1,comm_rep_seq);
-			psmt.setInt(2,comm_seq);
-			psmt.setString(3,comm_rep_content);
-			psmt.setString(4,comm_rep_reg_date);
-			psmt.setString(5,m_id);
 
-	
+			psmt.setInt(1, comm_rep_seq);
+			psmt.setInt(2, comm_seq);
+			psmt.setString(3, comm_rep_content);
+			psmt.setString(4, comm_rep_reg_date);
+			psmt.setString(5, m_id);
+
 		} catch (Exception e) {
-	
-		}finally {
+
+		} finally {
 			close();
 		}
 		return cnt;
-		}
+	}
 
-	// ===============================================================================
-	
 	public int CustomerCenterCon(int cs_art_seq, String cs_art_subject, String cs_art_content, String cs_art_reg_date,
 			int cs_art_cnt, String m_id) {
 		try {
@@ -336,60 +327,46 @@ public class DAO {
 
 	}
 
-	// ===============================================================================
-	
 	public int CsReplyCon(int cs_rep, int cs_art_seq, String cs_rep_comment, String cs_rep_reg_date, String m_id) {
-	try {
-		Conn();
-		String sql = "insert into t_customer_reply values(?, ?, ?, ?, ?)";
-		psmt = conn.prepareStatement(sql);
-		
-		psmt.setInt(1,cs_rep);
-		psmt.setInt(2,cs_art_seq);
-		psmt.setString(3,cs_rep_comment);
-		psmt.setString(4,cs_rep_reg_date);
-		psmt.setString(5,m_id);
+		try {
+			Conn();
+			String sql = "insert into t_customer_reply values(?, ?, ?, ?, ?)";
+			psmt = conn.prepareStatement(sql);
 
+			psmt.setInt(1, cs_rep);
+			psmt.setInt(2, cs_art_seq);
+			psmt.setString(3, cs_rep_comment);
+			psmt.setString(4, cs_rep_reg_date);
+			psmt.setString(5, m_id);
 
-	
-	} catch (Exception e) {
+		} catch (Exception e) {
 
-	}finally {
-		close();
-	}
-	return cnt;
+		} finally {
+			close();
+		}
+		return cnt;
 
 	}
 
-	// ===============================================================================
-	
 	public int RefundCon(int refd_seq, String m_id, int refd_point, int refd_exqt) {
-	try {
-		Conn();
-		String sql = "insert into  values(?, ?, ?, ?)";
-		psmt = conn.prepareStatement(sql);
-		
-		psmt.setInt(1,refd_seq);
-		psmt.setString(2,m_id);
-		psmt.setInt(3,refd_point);
-		psmt.setInt(4,refd_exqt);
+		try {
+			Conn();
+			String sql = "insert into  values(?, ?, ?, ?)";
+			psmt = conn.prepareStatement(sql);
 
+			psmt.setInt(1, refd_seq);
+			psmt.setString(2, m_id);
+			psmt.setInt(3, refd_point);
+			psmt.setInt(4, refd_exqt);
 
-	} catch (Exception e) {
+		} catch (Exception e) {
 
-	}finally {
-		close();
+		} finally {
+			close();
+		}
+		return cnt;
 	}
-	return cnt;
-	}
-
-	
-
-		
-
 
 	// ===============================================================================
 
 }
-
-
