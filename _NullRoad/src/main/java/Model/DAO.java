@@ -237,6 +237,8 @@ public class DAO {
 		}
 		return cnt;
 	}
+	
+	// ===============================================================================
 
 	public int RevMentCon(int rev_ment_seq, int rev_seq, String rev_ment_content, String rev_ment_reg_date,
 			String m_id) {
@@ -259,6 +261,8 @@ public class DAO {
 		return cnt;
 	}
 
+	// ===============================================================================
+	
 	public int CommunityCon(int comm_seq, String comm_subject, String comm_content, String comm_reg_date, int comm_cnt,
 			String m_id) {
 		try {
@@ -282,6 +286,8 @@ public class DAO {
 
 	}
 
+	// ===============================================================================
+	
 	public int CommRepCon(int comm_rep_seq, int comm_seq, String comm_rep_content, String comm_rep_reg_date,
 			String m_id) {
 		
@@ -305,6 +311,8 @@ public class DAO {
 		return cnt;
 		}
 
+	// ===============================================================================
+	
 	public int CustomerCenterCon(int cs_art_seq, String cs_art_subject, String cs_art_content, String cs_art_reg_date,
 			int cs_art_cnt, String m_id) {
 		try {
@@ -328,6 +336,8 @@ public class DAO {
 
 	}
 
+	// ===============================================================================
+	
 	public int CsReplyCon(int cs_rep, int cs_art_seq, String cs_rep_comment, String cs_rep_reg_date, String m_id) {
 	try {
 		Conn();
@@ -351,6 +361,8 @@ public class DAO {
 
 	}
 
+	// ===============================================================================
+	
 	public int RefundCon(int refd_seq, String m_id, int refd_point, int refd_exqt) {
 	try {
 		Conn();
@@ -362,10 +374,7 @@ public class DAO {
 		psmt.setInt(3,refd_point);
 		psmt.setInt(4,refd_exqt);
 
-		
-	
-	
-	
+
 	} catch (Exception e) {
 
 	}finally {
