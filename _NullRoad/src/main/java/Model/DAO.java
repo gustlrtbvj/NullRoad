@@ -29,7 +29,7 @@ public class DAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String url = "jdbc:oracle:thin:@172.30.1.16:1521:xe";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String dbid = "hr";
 			String dbpw = "hr";
 			conn = DriverManager.getConnection(url, dbid, dbpw);
@@ -129,7 +129,7 @@ public class DAO {
 	}
 
 	// ===============================================================================
-	public int BldRegCon(int bld_seq, String m_id, int bld_lati, int bld_longi, int bld_prk_lots, String bld_owner,
+	public int BldRegCon(int bld_seq, String m_id, double bld_lati, double bld_longi, int bld_prk_lots, String bld_owner,
 			String bld_owner_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
 			String bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
 
@@ -140,8 +140,8 @@ public class DAO {
 
 			psmt.setInt(1, bld_seq);
 			psmt.setString(2, m_id);
-			psmt.setInt(3, bld_lati);
-			psmt.setInt(4, bld_longi);
+			psmt.setDouble(3, bld_lati);
+			psmt.setDouble(4, bld_longi);
 			psmt.setInt(5, bld_prk_lots);
 			psmt.setString(6, bld_owner);
 			psmt.setString(7, bld_owner_phone);

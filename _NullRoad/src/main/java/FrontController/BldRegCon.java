@@ -17,8 +17,8 @@ public class BldRegCon implements Command {
 
 			int bld_seq = Integer.parseInt(request.getParameter("bld_seq"));
 			String m_id= request.getParameter("m_id");
-			int bld_lati = Integer.parseInt(request.getParameter("bld_lati"));
-			int bld_longi = Integer.parseInt(request.getParameter("bld_longi"));
+			double  bld_lati = Double.parseDouble(request.getParameter("bld_lati"));
+			double bld_longi = Double.parseDouble(request.getParameter("bld_longi"));
 			int bld_prk_lots= Integer.parseInt(request.getParameter("bld_prk_lots"));
 			String bld_owner = request.getParameter("bld_owner");
 			String bld_owner_phone = request.getParameter("bld_owner_phone");
