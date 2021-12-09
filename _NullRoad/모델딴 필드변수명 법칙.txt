@@ -1,0 +1,15 @@
+Member-> m
+Buliding -> bld
+Article -> art
+Register -> reg
+Community -> comm
+Reply -> rep
+Parking->prk
+check -> chk
+Subject -> subj
+Customer -> cs
+Files -> f
+Reivew -> rev
+Number->num
+Reservation -> Res
+Comment -> ment

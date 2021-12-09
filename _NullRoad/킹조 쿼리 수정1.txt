@@ -1,0 +1,841 @@
+﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- t_member Table Create SQL
+CREATE TABLE t_member
+(
+    m_id          VARCHAR2(30)     NOT NULL, 
+    m_pw          VARCHAR2(30)     NOT NULL, 
+    m_name        VARCHAR2(30)     NOT NULL, 
+    m_jumin       VARCHAR2(14)     NOT NULL, 
+    m_phone       VARCHAR2(30)     NOT NULL, 
+    m_car_num     VARCHAR2(30)     NOT NULL, 
+    m_point       NUMBER(12, 0)    NOT NULL, 
+    m_type        VARCHAR2(1)      NOT NULL, 
+    m_account     VARCHAR2(20)     NOT NULL, 
+    m_joindate    DATE             DEFAULT SYSDATE NOT NULL, 
+    admin_yn      VARCHAR2(1)      DEFAULT 'N' NOT NULL, 
+     PRIMARY KEY (m_id)
+)
+/
+
+COMMENT ON TABLE t_member IS '회원 관리'
+/
+
+COMMENT ON COLUMN t_member.m_id IS '회원 아이디'
+/
+
+COMMENT ON COLUMN t_member.m_pw IS '회원 패스워드'
+/
+
+COMMENT ON COLUMN t_member.m_name IS '회원 이름'
+/
+
+COMMENT ON COLUMN t_member.m_jumin IS '회원 주민번호'
+/
+
+COMMENT ON COLUMN t_member.m_phone IS '회원 연락처'
+/
+
+COMMENT ON COLUMN t_member.m_car_num IS '회원 차량번호'
+/
+
+COMMENT ON COLUMN t_member.m_point IS '회원 보유자금'
+/
+
+COMMENT ON COLUMN t_member.m_type IS '회원 구분'
+/
+
+COMMENT ON COLUMN t_member.m_account IS '회원 계좌번호'
+/
+
+COMMENT ON COLUMN t_member.m_joindate IS '회원 가입일자'
+/
+
+COMMENT ON COLUMN t_member.admin_yn IS '관리자 여부'
+/
+
+
+-- t_building Table Create SQL
+CREATE TABLE t_building
+(
+    bld_seq            NUMBER(12, 0)     NOT NULL, 
+    m_id               VARCHAR2(30)      NOT NULL, 
+    bld_lati           NUMBER(17, 14)    NOT NULL, 
+    bld_longi          NUMBER(17, 14)    NOT NULL, 
+    bld_prk_lots       NUMBER(12, 0)     NOT NULL, 
+    bld_owner          VARCHAR2(30)      NOT NULL, 
+    bld_owner_phone    VARCHAR2(30)      NOT NULL, 
+    sigungu            VARCHAR2(20)      NOT NULL, 
+    emdong             VARCHAR2(20)      NOT NULL, 
+    detail_addr        VARCHAR2(20)      NOT NULL, 
+    bld_reg_date       DATE              NOT NULL, 
+    bld_approve        VARCHAR2(1)       NOT NULL, 
+     PRIMARY KEY (bld_seq)
+)
+/
+
+CREATE SEQUENCE t_building_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_building_AI_TRG
+BEFORE INSERT ON t_building 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_building_SEQ.NEXTVAL
+    INTO :NEW.bld_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_building_AI_TRG;
+/
+
+--DROP SEQUENCE t_building_SEQ;
+/
+
+COMMENT ON TABLE t_building IS '주차 건물 정보'
+/
+
+COMMENT ON COLUMN t_building.bld_seq IS '건물 순번'
+/
+
+COMMENT ON COLUMN t_building.m_id IS '등록자 아이디'
+/
+
+COMMENT ON COLUMN t_building.bld_lati IS '건물 위도'
+/
+
+COMMENT ON COLUMN t_building.bld_longi IS '건물 경도'
+/
+
+COMMENT ON COLUMN t_building.bld_prk_lots IS '건물 주차면수'
+/
+
+COMMENT ON COLUMN t_building.bld_owner IS '건물 주인명'
+/
+
+COMMENT ON COLUMN t_building.bld_owner_phone IS '건물주 연락처'
+/
+
+COMMENT ON COLUMN t_building.sigungu IS '시군구'
+/
+
+COMMENT ON COLUMN t_building.emdong IS '읍면동'
+/
+
+COMMENT ON COLUMN t_building.detail_addr IS '상세주소'
+/
+
+COMMENT ON COLUMN t_building.bld_reg_date IS '등록 일자'
+/
+
+ALTER TABLE t_building
+    ADD CONSTRAINT FK_t_building_m_id_t_member_m_ FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+
+-- t_parking Table Create SQL
+CREATE TABLE t_parking
+(
+    prk_seq         NUMBER(12, 0)    NOT NULL, 
+    prk_area_num    NUMBER(12, 0)    NOT NULL, 
+    prk_time        VARCHAR2(30)     NOT NULL, 
+    prk_day         VARCHAR2(20)     NOT NULL, 
+    prk_fee         NUMBER(12, 0)    NOT NULL, 
+    prk_status      VARCHAR2(1)      NOT NULL, 
+    prk_memo        VARCHAR2(150)    NULL, 
+    bld_seq         NUMBER(12, 0)    NOT NULL, 
+     PRIMARY KEY (prk_seq)
+)
+/
+
+CREATE SEQUENCE t_parking_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_parking_AI_TRG
+BEFORE INSERT ON t_parking 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_parking_SEQ.NEXTVAL
+    INTO :NEW.prk_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_parking_AI_TRG;
+/
+
+--DROP SEQUENCE t_parking_SEQ;
+/
+
+COMMENT ON TABLE t_parking IS '주차장 정보'
+/
+
+COMMENT ON COLUMN t_parking.prk_seq IS '주차장 순번'
+/
+
+COMMENT ON COLUMN t_parking.prk_area_num IS '주차 구획 번호'
+/
+
+COMMENT ON COLUMN t_parking.prk_time IS '주차 가능 시간'
+/
+
+COMMENT ON COLUMN t_parking.prk_day IS '주차 가능 요일'
+/
+
+COMMENT ON COLUMN t_parking.prk_fee IS '시간당 요금'
+/
+
+COMMENT ON COLUMN t_parking.prk_status IS '주차 상태'
+/
+
+COMMENT ON COLUMN t_parking.prk_memo IS '주차 메모'
+/
+
+COMMENT ON COLUMN t_parking.bld_seq IS '건물 순번'
+/
+
+ALTER TABLE t_parking
+    ADD CONSTRAINT FK_t_parking_bld_seq_t_buildin FOREIGN KEY (bld_seq)
+        REFERENCES t_building (bld_seq)
+/
+
+
+-- t_reservation Table Create SQL
+CREATE TABLE t_reservation
+(
+    res_seq         NUMBER(12, 0)    NOT NULL, 
+    prk_seq         NUMBER(12, 0)    NOT NULL, 
+    res_time        DATE             NOT NULL, 
+    chk_in_time     DATE             NULL, 
+    chk_out_time    DATE             NULL, 
+    res_status      NUMBER(1)        DEFAULT 0 NOT NULL, 
+    res_reg_date    DATE             DEFAULT SYSDATE NOT NULL, 
+    user_prk_fee    NUMBER(12, 0)    DEFAULT 0 NOT NULL, 
+    m_id            VARCHAR2(30)     NOT NULL, 
+     PRIMARY KEY (res_seq)
+)
+/
+
+CREATE SEQUENCE t_reservation_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_reservation_AI_TRG
+BEFORE INSERT ON t_reservation 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_reservation_SEQ.NEXTVAL
+    INTO :NEW.res_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_reservation_AI_TRG;
+/
+
+--DROP SEQUENCE t_reservation_SEQ;
+/
+
+COMMENT ON TABLE t_reservation IS '주차 예약'
+/
+
+COMMENT ON COLUMN t_reservation.res_seq IS '주차예약 순번'
+/
+
+COMMENT ON COLUMN t_reservation.prk_seq IS '주차장 순번'
+/
+
+COMMENT ON COLUMN t_reservation.res_time IS '예약 시간'
+/
+
+COMMENT ON COLUMN t_reservation.chk_in_time IS '입차 시간'
+/
+
+COMMENT ON COLUMN t_reservation.chk_out_time IS '출차 시간'
+/
+
+COMMENT ON COLUMN t_reservation.res_status IS '예약 여부'
+/
+
+COMMENT ON COLUMN t_reservation.res_reg_date IS '등록 시간'
+/
+
+COMMENT ON COLUMN t_reservation.user_prk_fee IS '사용 요금'
+/
+
+COMMENT ON COLUMN t_reservation.m_id IS '사용자 아이디'
+/
+
+ALTER TABLE t_reservation
+    ADD CONSTRAINT FK_t_reservation_m_id_t_member FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+ALTER TABLE t_reservation
+    ADD CONSTRAINT FK_t_reservation_prk_seq_t_par FOREIGN KEY (prk_seq)
+        REFERENCES t_parking (prk_seq)
+/
+
+
+-- t_review Table Create SQL
+CREATE TABLE t_review
+(
+    rev_seq         NUMBER(12, 0)     NOT NULL, 
+    rev_subject     VARCHAR2(150)     NOT NULL, 
+    rev_content     VARCHAR2(4000)    NOT NULL, 
+    res_seq         NUMBER(12, 0)     NOT NULL, 
+    m_id            VARCHAR2(30)      NOT NULL, 
+    rev_reg_date    DATE              NOT NULL, 
+    rev_cnt         NUMBER(12, 0)     NULL, 
+     PRIMARY KEY (rev_seq)
+)
+/
+
+CREATE SEQUENCE t_review_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_review_AI_TRG
+BEFORE INSERT ON t_review 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_review_SEQ.NEXTVAL
+    INTO :NEW.rev_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_review_AI_TRG;
+/
+
+--DROP SEQUENCE t_review_SEQ;
+/
+
+COMMENT ON TABLE t_review IS '사용후기 테이블'
+/
+
+COMMENT ON COLUMN t_review.rev_seq IS '사용후기 순번'
+/
+
+COMMENT ON COLUMN t_review.rev_subject IS '사용후기 제목'
+/
+
+COMMENT ON COLUMN t_review.rev_content IS '사용후기 내용'
+/
+
+COMMENT ON COLUMN t_review.res_seq IS '주차예약 순번'
+/
+
+COMMENT ON COLUMN t_review.m_id IS '사용자 아이디'
+/
+
+COMMENT ON COLUMN t_review.rev_reg_date IS '등록 일자'
+/
+
+COMMENT ON COLUMN t_review.rev_cnt IS '조회수'
+/
+
+ALTER TABLE t_review
+    ADD CONSTRAINT FK_t_review_m_id_t_member_m_id FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+ALTER TABLE t_review
+    ADD CONSTRAINT FK_t_review_res_seq_t_reservat FOREIGN KEY (res_seq)
+        REFERENCES t_reservation (res_seq)
+/
+
+
+-- t_community Table Create SQL
+CREATE TABLE t_community
+(
+    comm_seq         NUMBER(12, 0)     NOT NULL, 
+    comm_subject     VARCHAR2(150)     NOT NULL, 
+    comm_content     VARCHAR2(4000)    NOT NULL, 
+    comm_reg_date    DATE              NOT NULL, 
+    comm_cnt         NUMBER(12, 0)     DEFAULT 0 NOT NULL, 
+    m_id             VARCHAR2(30)      NOT NULL, 
+     PRIMARY KEY (comm_seq)
+)
+/
+
+CREATE SEQUENCE t_community_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_community_AI_TRG
+BEFORE INSERT ON t_community 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_community_SEQ.NEXTVAL
+    INTO :NEW.comm_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_community_AI_TRG;
+/
+
+--DROP SEQUENCE t_community_SEQ;
+/
+
+COMMENT ON TABLE t_community IS '자유 게시판'
+/
+
+COMMENT ON COLUMN t_community.comm_seq IS '게시글 순번'
+/
+
+COMMENT ON COLUMN t_community.comm_subject IS '게시글 제목'
+/
+
+COMMENT ON COLUMN t_community.comm_content IS '게시글 내용'
+/
+
+COMMENT ON COLUMN t_community.comm_reg_date IS '게시글 등록일자'
+/
+
+COMMENT ON COLUMN t_community.comm_cnt IS '게시글 조회수'
+/
+
+COMMENT ON COLUMN t_community.m_id IS '등록자 아이디'
+/
+
+ALTER TABLE t_community
+    ADD CONSTRAINT FK_t_community_m_id_t_member_m FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+
+-- t_customer_center Table Create SQL
+CREATE TABLE t_customer_center
+(
+    cs_art_seq         NUMBER(12, 0)     NOT NULL, 
+    cs_art_subject     VARCHAR2(150)     NOT NULL, 
+    cs_art_content     VARCHAR2(4000)    NOT NULL, 
+    cs_art_reg_date    DATE              NOT NULL, 
+    cs_art_cnt         NUMBER(12, 0)     DEFAULT 0 NOT NULL, 
+    m_id               VARCHAR2(30)      NOT NULL, 
+     PRIMARY KEY (cs_art_seq)
+)
+/
+
+CREATE SEQUENCE t_customer_center_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_customer_center_AI_TRG
+BEFORE INSERT ON t_customer_center 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_customer_center_SEQ.NEXTVAL
+    INTO :NEW.cs_art_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_customer_center_AI_TRG;
+/
+
+--DROP SEQUENCE t_customer_center_SEQ;
+/
+
+COMMENT ON TABLE t_customer_center IS '고객 센터 게시판'
+/
+
+COMMENT ON COLUMN t_customer_center.cs_art_seq IS '고객게시글 순번'
+/
+
+COMMENT ON COLUMN t_customer_center.cs_art_subject IS '고객게시글 제목'
+/
+
+COMMENT ON COLUMN t_customer_center.cs_art_content IS '고객게시글 내용'
+/
+
+COMMENT ON COLUMN t_customer_center.cs_art_reg_date IS '고객게시글 등록일자'
+/
+
+COMMENT ON COLUMN t_customer_center.cs_art_cnt IS '고객게시글 조회수'
+/
+
+COMMENT ON COLUMN t_customer_center.m_id IS '등록자 아이디'
+/
+
+ALTER TABLE t_customer_center
+    ADD CONSTRAINT FK_t_customer_center_m_id_t_me FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+
+-- t_community_reply Table Create SQL
+CREATE TABLE t_community_reply
+(
+    comm_rep_seq         NUMBER(12, 0)     NOT NULL, 
+    comm_seq             NUMBER(12, 0)     NOT NULL, 
+    comm_rep_content     VARCHAR2(4000)    NOT NULL, 
+    comm_rep_reg_date    DATE              NOT NULL, 
+    m_id                 VARCHAR2(30)      NOT NULL, 
+     PRIMARY KEY (comm_rep_seq)
+)
+/
+
+CREATE SEQUENCE t_community_reply_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_community_reply_AI_TRG
+BEFORE INSERT ON t_community_reply 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_community_reply_SEQ.NEXTVAL
+    INTO :NEW.comm_rep_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_community_reply_AI_TRG;
+/
+
+--DROP SEQUENCE t_community_reply_SEQ;
+/
+
+COMMENT ON TABLE t_community_reply IS '자유게시판 댓글'
+/
+
+COMMENT ON COLUMN t_community_reply.comm_rep_seq IS '댓글 순번'
+/
+
+COMMENT ON COLUMN t_community_reply.comm_seq IS '게시글 순번'
+/
+
+COMMENT ON COLUMN t_community_reply.comm_rep_content IS '댓글 내용'
+/
+
+COMMENT ON COLUMN t_community_reply.comm_rep_reg_date IS '작성일자'
+/
+
+COMMENT ON COLUMN t_community_reply.m_id IS '작성자 아이디'
+/
+
+ALTER TABLE t_community_reply
+    ADD CONSTRAINT FK_t_community_reply_m_id_t_me FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+ALTER TABLE t_community_reply
+    ADD CONSTRAINT FK_t_community_reply_comm_seq_ FOREIGN KEY (comm_seq)
+        REFERENCES t_community (comm_seq)
+/
+
+
+-- t_cs_reply Table Create SQL
+CREATE TABLE t_cs_reply
+(
+    cs_rep             NUMBER(12, 0)     NOT NULL, 
+    cs_art_seq         NUMBER(12, 0)     NOT NULL, 
+    cs_rep_comment     VARCHAR2(4000)    NOT NULL, 
+    cs_rep_reg_date    DATE              DEFAULT SYSDATE NOT NULL, 
+    m_id               VARCHAR2(30)      NOT NULL, 
+     PRIMARY KEY (cs_rep)
+)
+/
+
+CREATE SEQUENCE t_cs_reply_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_cs_reply_AI_TRG
+BEFORE INSERT ON t_cs_reply 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_cs_reply_SEQ.NEXTVAL
+    INTO :NEW.cs_rep
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_cs_reply_AI_TRG;
+/
+
+--DROP SEQUENCE t_cs_reply_SEQ;
+/
+
+COMMENT ON TABLE t_cs_reply IS '고객 센터 게시판 댓글'
+/
+
+COMMENT ON COLUMN t_cs_reply.cs_rep IS '고객게시판 댓글'
+/
+
+COMMENT ON COLUMN t_cs_reply.cs_art_seq IS '고객게시판 원글'
+/
+
+COMMENT ON COLUMN t_cs_reply.cs_rep_comment IS '고객게시판 댓글내용'
+/
+
+COMMENT ON COLUMN t_cs_reply.cs_rep_reg_date IS '등록 일자'
+/
+
+COMMENT ON COLUMN t_cs_reply.m_id IS '작성자 아이디'
+/
+
+ALTER TABLE t_cs_reply
+    ADD CONSTRAINT FK_t_cs_reply_m_id_t_member_m_ FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+ALTER TABLE t_cs_reply
+    ADD CONSTRAINT FK_t_cs_reply_cs_art_seq_t_cus FOREIGN KEY (cs_art_seq)
+        REFERENCES t_customer_center (cs_art_seq)
+/
+
+
+-- t_rev_comment Table Create SQL
+CREATE TABLE t_rev_comment
+(
+    rev_ment_seq         NUMBER(12, 0)     NOT NULL, 
+    rev_seq              NUMBER(12, 0)     NOT NULL, 
+    rev_ment_content     VARCHAR2(4000)    NOT NULL, 
+    rev_ment_reg_date    DATE              DEFAULT SYSDATE NOT NULL, 
+    m_id                 VARCHAR2(30)      NOT NULL, 
+     PRIMARY KEY (rev_ment_seq)
+)
+/
+
+CREATE SEQUENCE t_rev_comment_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_rev_comment_AI_TRG
+BEFORE INSERT ON t_rev_comment 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_rev_comment_SEQ.NEXTVAL
+    INTO :NEW.rev_ment_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_rev_comment_AI_TRG;
+/
+
+--DROP SEQUENCE t_rev_comment_SEQ;
+/
+
+COMMENT ON TABLE t_rev_comment IS '댓글 관리 테이블'
+/
+
+COMMENT ON COLUMN t_rev_comment.rev_ment_seq IS '댓글 순번'
+/
+
+COMMENT ON COLUMN t_rev_comment.rev_seq IS '원글 순번'
+/
+
+COMMENT ON COLUMN t_rev_comment.rev_ment_content IS '댓글 내용'
+/
+
+COMMENT ON COLUMN t_rev_comment.rev_ment_reg_date IS '등록 일자'
+/
+
+COMMENT ON COLUMN t_rev_comment.m_id IS '등록자 아이디'
+/
+
+ALTER TABLE t_rev_comment
+    ADD CONSTRAINT FK_t_rev_comment_m_id_t_member FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+ALTER TABLE t_rev_comment
+    ADD CONSTRAINT FK_t_rev_comment_rev_seq_t_rev FOREIGN KEY (rev_seq)
+        REFERENCES t_review (rev_seq)
+/
+
+
+-- t_files Table Create SQL
+CREATE TABLE t_files
+(
+    f_seq           NUMBER(12, 0)    NOT NULL, 
+    comm_seq        NUMBER(12, 0)    NULL, 
+    rev_ment_seq    NUMBER(12, 0)    NULL, 
+    cs_art_seq      NUMBER(12, 0)    NULL, 
+    rev_seq         NUMBER(12, 0)    NULL, 
+    comm_rep_seq    NUMBER(12, 0)    NULL, 
+    cs_rep          NUMBER(12, 0)    NULL, 
+    bld_seq         NUMBER(12, 0)    NULL, 
+    f_1             VARCHAR2(150)    NULL, 
+    f_2             VARCHAR2(150)    NULL, 
+    f_3             VARCHAR2(150)    NULL, 
+    f_4             VARCHAR2(150)    NULL, 
+    f_5             VARCHAR2(150)    NULL, 
+    f_6             VARCHAR2(150)    NULL, 
+    f_7             VARCHAR2(150)    NULL, 
+    f_8             VARCHAR2(150)    NULL, 
+    f_9             VARCHAR2(150)    NULL, 
+    f_10            VARCHAR2(150)    NULL, 
+     PRIMARY KEY (f_seq)
+)
+/
+
+CREATE SEQUENCE t_files_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_files_AI_TRG
+BEFORE INSERT ON t_files 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_files_SEQ.NEXTVAL
+    INTO :NEW.f_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_files_AI_TRG;
+/
+
+--DROP SEQUENCE t_files_SEQ;
+/
+
+COMMENT ON TABLE t_files IS '파일 관리 테이블'
+/
+
+COMMENT ON COLUMN t_files.f_seq IS '파일 순번'
+/
+
+COMMENT ON COLUMN t_files.comm_seq IS '게시글 순번'
+/
+
+COMMENT ON COLUMN t_files.rev_ment_seq IS '댓글 순번'
+/
+
+COMMENT ON COLUMN t_files.cs_art_seq IS '고객게시글 순번'
+/
+
+COMMENT ON COLUMN t_files.rev_seq IS '사용후기 순번'
+/
+
+COMMENT ON COLUMN t_files.comm_rep_seq IS '댓글 순번'
+/
+
+COMMENT ON COLUMN t_files.cs_rep IS '고객게시판 댓글'
+/
+
+COMMENT ON COLUMN t_files.bld_seq IS '건물 순번'
+/
+
+COMMENT ON COLUMN t_files.f_1 IS '첨부파일1'
+/
+
+COMMENT ON COLUMN t_files.f_2 IS '첨부파일2'
+/
+
+COMMENT ON COLUMN t_files.f_3 IS '첨부파일3'
+/
+
+COMMENT ON COLUMN t_files.f_4 IS '첨부파일4'
+/
+
+COMMENT ON COLUMN t_files.f_5 IS '첨부파일5'
+/
+
+COMMENT ON COLUMN t_files.f_6 IS '첨부파일6'
+/
+
+COMMENT ON COLUMN t_files.f_7 IS '첨부파일7'
+/
+
+COMMENT ON COLUMN t_files.f_8 IS '첨부파일8'
+/
+
+COMMENT ON COLUMN t_files.f_9 IS '첨부파일9'
+/
+
+COMMENT ON COLUMN t_files.f_10 IS '첨부파일10'
+/
+
+ALTER TABLE t_files
+    ADD CONSTRAINT FK_t_files_comm_seq_t_communit FOREIGN KEY (comm_seq)
+        REFERENCES t_community (comm_seq)
+/
+
+ALTER TABLE t_files
+    ADD CONSTRAINT FK_t_files_rev_ment_seq_t_rev_ FOREIGN KEY (rev_ment_seq)
+        REFERENCES t_rev_comment (rev_ment_seq)
+/
+
+ALTER TABLE t_files
+    ADD CONSTRAINT FK_t_files_bld_seq_t_building_ FOREIGN KEY (bld_seq)
+        REFERENCES t_building (bld_seq)
+/
+
+ALTER TABLE t_files
+    ADD CONSTRAINT FK_t_files_cs_art_seq_t_custom FOREIGN KEY (cs_art_seq)
+        REFERENCES t_customer_center (cs_art_seq)
+/
+
+ALTER TABLE t_files
+    ADD CONSTRAINT FK_t_files_rev_seq_t_review_re FOREIGN KEY (rev_seq)
+        REFERENCES t_review (rev_seq)
+/
+
+ALTER TABLE t_files
+    ADD CONSTRAINT FK_t_files_cs_rep_t_cs_reply_c FOREIGN KEY (cs_rep)
+        REFERENCES t_cs_reply (cs_rep)
+/
+
+ALTER TABLE t_files
+    ADD CONSTRAINT FK_t_files_comm_rep_seq_t_comm FOREIGN KEY (comm_rep_seq)
+        REFERENCES t_community_reply (comm_rep_seq)
+/
+
+
+-- t_refund Table Create SQL
+CREATE TABLE t_refund
+(
+    refd_seq      NUMBER(12.0)    NOT NULL, 
+    m_id          VARCHAR2(30)    NULL, 
+    refd_point    NUMBER(12.0)    NULL, 
+    refd_exqt     NUMBER(1)       NULL, 
+     PRIMARY KEY (refd_seq)
+)
+/
+
+CREATE SEQUENCE t_refund_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_refund_AI_TRG
+BEFORE INSERT ON t_refund 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_refund_SEQ.NEXTVAL
+    INTO :NEW.refd_seq
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_refund_AI_TRG;
+/
+
+--DROP SEQUENCE t_refund_SEQ;
+/
+
+ALTER TABLE t_refund
+    ADD CONSTRAINT FK_t_refund_m_id_t_member_m_id FOREIGN KEY (m_id)
+        REFERENCES t_member (m_id)
+/
+
+
