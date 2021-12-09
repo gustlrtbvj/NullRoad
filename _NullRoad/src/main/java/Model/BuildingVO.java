@@ -36,6 +36,9 @@ public class BuildingVO {
 		this.bld_picture1 = bld_picture1;
 		this.bld_picture2 = bld_picture2;
 	}
+	public BuildingVO() {
+		
+	}
 	public int getBld_seq() {
 		return bld_seq;
 	}

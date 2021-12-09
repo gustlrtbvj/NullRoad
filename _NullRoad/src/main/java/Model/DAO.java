@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DAO {
 
@@ -369,4 +370,66 @@ public class DAO {
 
 	// ===============================================================================
 
+	public ArrayList<BuildingVO> BldSel(){
+		
+		ArrayList<BuildingVO> bldlist = new ArrayList<BuildingVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_building";
+			psmt = conn.prepareStatement(sql);
+
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				int bld_seq = rs.getInt(1);
+				String m_id = rs.getString(2);
+				double bld_lati = rs.getDouble(3);
+				double bld_longi = rs.getDouble(4);
+				int bld_prk_lots = rs.getInt(5);
+				String bld_owner = rs.getString(6);
+				String bld_owner_phone= rs.getString(7);
+				String sigungu = rs.getString(8);
+				String emdong = rs.getString(9);
+				String detail_addr = rs.getString(10);
+				String bld_reg_date = rs.getString(11);
+				String bld_approve = rs.getString(12);
+				String bld_name = rs.getString(13);
+				String bld_picture1 = rs.getString(14);
+				String bld_picture2 = rs.getString(15);
+
+				BuildingVO bldvo = new BuildingVO();
+				
+				bldlist.add(bldvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}finally {
+			//6. 연결을 닫아주기
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(psmt != null) {
+					psmt.close();
+				}
+				if(conn !=null ) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			
+			}
+		
+		}
+		return bldlist;
+	}
+	
+	
+	
+	
 }
