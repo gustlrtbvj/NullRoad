@@ -136,7 +136,7 @@ public class DAO {
 
 		try {
 			Conn();
-			String sql = "insert into  values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into values (t_building_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, bld_seq);
@@ -168,7 +168,7 @@ public class DAO {
 			String prk_memo, int bld_seq) {
 		try {
 			Conn();
-			String sql = "insert into t_parking values(?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into t_parking values(t_parking_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, prk_seq);
@@ -193,7 +193,7 @@ public class DAO {
 
 		try {
 			Conn();
-			String sql = "insert into t_reservation values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into t_reservation values(t_reservation_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, res_seq);
@@ -220,7 +220,7 @@ public class DAO {
 			String rev_reg_date, int rev_cnt,int rev_status) {
 		try {
 			Conn();
-			String sql = "insert into t_review values(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into t_review values(t_review_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, rev_seq);
@@ -244,7 +244,7 @@ public class DAO {
 			String m_id) {
 		try {
 			Conn();
-			String sql = "insert into t_rev_comment values(?, ?, ?, ?, ?)";
+			String sql = "insert into t_rev_comment values(t_rev_comment_seq.nextval, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, rev_seq);
@@ -265,7 +265,7 @@ public class DAO {
 			String m_id,int comm_status) {
 		try {
 			Conn();
-			String sql = "insert into t_parking values(?, ?, ?, ?, ?,?)";
+			String sql = "insert into t_parking values(t_community_seq.nextval, ?, ?, ?, ?,?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, comm_seq);
@@ -290,7 +290,7 @@ public class DAO {
 
 		try {
 			Conn();
-			String sql = "insert into t_community_reply values(?, ?, ?, ?, ?)";
+			String sql = "insert into t_community_reply values(t_community_reply_seq.nextval, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, comm_rep_seq);
@@ -311,7 +311,7 @@ public class DAO {
 			int cs_art_cnt, String m_id, int cs_art_status) {
 		try {
 			Conn();
-			String sql = "insert into t_customer_center values(?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into t_customer_center values(t_customer_center_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, cs_art_seq);
@@ -334,7 +334,7 @@ public class DAO {
 	public int CsReplyCon(int cs_rep, int cs_art_seq, String cs_rep_comment, String cs_rep_reg_date, String m_id) {
 		try {
 			Conn();
-			String sql = "insert into t_customer_reply values(?, ?, ?, ?, ?)";
+			String sql = "insert into t_customer_reply values(t_cs_reply_seq.nextval, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, cs_rep);
@@ -355,7 +355,7 @@ public class DAO {
 	public int RefundCon(int refd_seq, String m_id, int refd_point, int refd_exqt) {
 		try {
 			Conn();
-			String sql = "insert into  values(?, ?, ?, ?)";
+			String sql = "insert into  values(t_refund_seq.nextval, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, refd_seq);
