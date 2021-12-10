@@ -400,7 +400,7 @@ public class DAO {
 				String emdong = rs.getString(9);
 				String detail_addr = rs.getString(10);
 				String bld_reg_date = rs.getString(11);
-				String bld_approve = rs.getString(12);
+				int bld_approve = rs.getInt(12);
 				String bld_name = rs.getString(13);
 				String bld_picture1 = rs.getString(14);
 				String bld_picture2 = rs.getString(15);
