@@ -30,7 +30,7 @@ public class DAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String url = "jdbc:oracle:thin:@172.30.1.16:1521:xe";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String dbid = "hr";
 			String dbpw = "hr";
 			conn = DriverManager.getConnection(url, dbid, dbpw);
@@ -132,7 +132,7 @@ public class DAO {
 	// ===============================================================================
 	public int BldRegCon(int bld_seq, String m_id, double bld_lati, double bld_longi, int bld_prk_lots, String bld_owner,
 			String bld_owner_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
-			String bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
+			int bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
 
 		try {
 			Conn();
@@ -150,7 +150,7 @@ public class DAO {
 			psmt.setString(9, emdong);
 			psmt.setString(10, detail_addr);
 			psmt.setString(11, bld_reg_date);
-			psmt.setString(12, bld_approve);
+			psmt.setInt(12, bld_approve);
 			psmt.setString(13, bld_name);
 			psmt.setString(14, bld_picture1);
 			psmt.setString(15, bld_picture2);
@@ -164,7 +164,7 @@ public class DAO {
 	}
 
 //===============================================================================
-	public int PrkRegCon(int prk_seq, String prk_time, String prk_day, int prk_fee, String prk_status,
+	public int PrkRegCon(int prk_seq, String prk_time, String prk_day, int prk_fee, int prk_status,
 			String prk_memo, int bld_seq) {
 		try {
 			Conn();
@@ -175,7 +175,7 @@ public class DAO {
 			psmt.setString(2, prk_time);
 			psmt.setString(3, prk_day);
 			psmt.setInt(4, prk_fee);
-			psmt.setString(5, prk_status);
+			psmt.setInt(5, prk_status);
 			psmt.setString(6, prk_memo);
 			psmt.setInt(7, bld_seq);
 
@@ -217,10 +217,10 @@ public class DAO {
 	// ===============================================================================
 
 	public int ReviewCon(int rev_seq, String rev_subject, String rev_content, int res_seq, String m_id,
-			String rev_reg_date, int rev_cnt) {
+			String rev_reg_date, int rev_cnt,int rev_status) {
 		try {
 			Conn();
-			String sql = "insert into t_review values(?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into t_review values(?, ?, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, rev_seq);
@@ -230,6 +230,7 @@ public class DAO {
 			psmt.setString(5, m_id);
 			psmt.setString(6, rev_reg_date);
 			psmt.setInt(7, rev_cnt);
+			psmt.setInt(8, rev_status);
 
 		} catch (Exception e) {
 
@@ -261,10 +262,10 @@ public class DAO {
 	}
 
 	public int CommunityCon(int comm_seq, String comm_subject, String comm_content, String comm_reg_date, int comm_cnt,
-			String m_id) {
+			String m_id,int comm_status) {
 		try {
 			Conn();
-			String sql = "insert into t_parking values(?, ?, ?, ?, ?)";
+			String sql = "insert into t_parking values(?, ?, ?, ?, ?,?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, comm_seq);
@@ -273,6 +274,7 @@ public class DAO {
 			psmt.setString(4, comm_reg_date);
 			psmt.setInt(5, comm_cnt);
 			psmt.setString(6, m_id);
+			psmt.setInt(7,comm_status);
 
 		} catch (Exception e) {
 
@@ -306,10 +308,10 @@ public class DAO {
 	}
 
 	public int CustomerCenterCon(int cs_art_seq, String cs_art_subject, String cs_art_content, String cs_art_reg_date,
-			int cs_art_cnt, String m_id) {
+			int cs_art_cnt, String m_id, int cs_art_status) {
 		try {
 			Conn();
-			String sql = "insert into t_customer_center values(?, ?, ?, ?, ?, ?)";
+			String sql = "insert into t_customer_center values(?, ?, ?, ?, ?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, cs_art_seq);
@@ -318,7 +320,8 @@ public class DAO {
 			psmt.setString(4, cs_art_reg_date);
 			psmt.setInt(5, cs_art_cnt);
 			psmt.setString(6, m_id);
-
+			psmt.setInt(7, cs_art_status);
+			
 		} catch (Exception e) {
 
 		} finally {

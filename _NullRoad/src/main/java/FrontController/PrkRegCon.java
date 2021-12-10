@@ -19,7 +19,7 @@ public class PrkRegCon implements Command{
 			String prk_time = request.getParameter("prk_time");
 			String prk_day = request.getParameter("prk_day");
 			int prk_fee = Integer.parseInt(request.getParameter("prk_fee"));
-			String prk_status = request.getParameter("prk_status");
+			int prk_status = Integer.parseInt(request.getParameter("prk_status"));
 			String prk_memo = request.getParameter("prk_memo");
 			int bld_seq = Integer.parseInt(request.getParameter("bld_seq"));
 			

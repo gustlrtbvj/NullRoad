@@ -8,8 +8,9 @@ public class ReviewVO {
 	private String m_id;
 	private String rev_reg_date;
 	private int rev_cnt;
+	private int rev_status;
 	public ReviewVO(int rev_seq, String rev_subject, String rev_content, int res_seq, String m_id, String rev_reg_date,
-			int rev_cnt) {
+			int rev_cnt, int rev_status) {
 		super();
 		this.rev_seq = rev_seq;
 		this.rev_subject = rev_subject;
@@ -18,6 +19,7 @@ public class ReviewVO {
 		this.m_id = m_id;
 		this.rev_reg_date = rev_reg_date;
 		this.rev_cnt = rev_cnt;
+		this.rev_status = rev_status;
 	}
 	public int getRev_seq() {
 		return rev_seq;
@@ -55,13 +57,17 @@ public class ReviewVO {
 	public void setRev_reg_date(String rev_reg_date) {
 		this.rev_reg_date = rev_reg_date;
 	}
-	public int getCnt() {
+	public int getRev_cnt() {
 		return rev_cnt;
 	}
-	public void setCnt(int cnt) {
-		this.rev_cnt = cnt;
+	public void setRev_cnt(int rev_cnt) {
+		this.rev_cnt = rev_cnt;
 	}
-
-	
+	public int getRev_status() {
+		return rev_status;
+	}
+	public void setRev_status(int rev_status) {
+		this.rev_status = rev_status;
+	}
 	
 }

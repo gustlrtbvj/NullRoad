@@ -22,15 +22,16 @@ public class ReviewCon implements Command{
 			String m_id = request.getParameter("m_id");
 			String rev_reg_date= request.getParameter("rev_reg_date");
 			int rev_cnt = Integer.parseInt(request.getParameter("rev_cnt"));
+			int rev_status = Integer.parseInt(request.getParameter("rev_status"));
 			
 			DAO dao = new DAO();
 			
-			int cnt = dao.ReviewCon(rev_seq, rev_subject, rev_content, res_seq,m_id,rev_reg_date,rev_cnt);
+			int cnt = dao.ReviewCon(rev_seq, rev_subject, rev_content, res_seq,m_id,rev_reg_date,rev_cnt,rev_status);
 			
 			
 			if (cnt > 0) {
 				System.out.println("리뷰작성 성공");
-				request.setAttribute("revvo", new ReviewVO(rev_seq, rev_subject, rev_content, res_seq, m_id, rev_reg_date, rev_cnt));
+				request.setAttribute("revvo", new ReviewVO(rev_seq, rev_subject, rev_content, res_seq, m_id, rev_reg_date, rev_cnt,rev_status));
 				// Forward 방식
 				RequestDispatcher rd = request.getRequestDispatcher("#");
 				// 페이지 이동

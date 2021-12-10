@@ -20,16 +20,17 @@ public class CustomerCenterCon implements Command {
 			String cs_art_reg_date = request.getParameter("cs_art_reg_date");
 			int cs_art_cnt = Integer.parseInt(request.getParameter("cs_art_cnt"));
 			String m_id = request.getParameter("m_id");
-
+			int cs_art_status = Integer.parseInt(request.getParameter("cs_art_status"));
+			
 			DAO dao = new DAO();
 
 			int cnt = dao.CustomerCenterCon(cs_art_seq, cs_art_subject, cs_art_content, cs_art_reg_date, cs_art_cnt,
-					m_id);
+					m_id,cs_art_status);
 
 			if (cnt > 0) {
 				System.out.println("게시글 작성 성공");
 				request.setAttribute("vo", new CustomerCenterVO(cs_art_seq, cs_art_subject, cs_art_content,
-						cs_art_reg_date, cs_art_cnt, m_id));
+						cs_art_reg_date, cs_art_cnt, m_id,cs_art_status));
 				// Forward 방식
 				RequestDispatcher rd = request.getRequestDispatcher("#");
 				// 페이지 이동

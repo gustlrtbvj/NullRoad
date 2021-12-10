@@ -21,15 +21,16 @@ public class CommunityCon implements Command{
 			String comm_reg_date= request.getParameter("comm_reg_date");
 			int comm_cnt= Integer.parseInt(request.getParameter("comm_cnt"));
 			String m_id= request.getParameter("m_id");
+			int comm_status= Integer.parseInt(request.getParameter("comm_status"));
 			
 			DAO dao = new DAO();
 			
-			int cnt = dao.CommunityCon(comm_seq,comm_subject,comm_content,comm_reg_date,comm_cnt,m_id);
+			int cnt = dao.CommunityCon(comm_seq,comm_subject,comm_content,comm_reg_date,comm_cnt,m_id,comm_status);
 			
 			if(cnt>0) {
 				System.out.println("게시글 작성 성공");
 		
-	         request.setAttribute("commvo", new CommunityVO(comm_seq, comm_subject, comm_content, comm_reg_date, comm_cnt,m_id));
+	         request.setAttribute("commvo", new CommunityVO(comm_seq, comm_subject, comm_content, comm_reg_date, comm_cnt,m_id,comm_status));
 						
 	         // Forward 방식
 	         RequestDispatcher rd = request.getRequestDispatcher("#");

@@ -26,7 +26,7 @@ public class BldRegCon implements Command {
 			String emdong = request.getParameter("emdong");
 			String detail_addr = request.getParameter("detail_addr");
 			String bld_reg_date= request.getParameter("bld_reg_date");
-			String bld_approve = request.getParameter("bld_approve");
+			int bld_approve = Integer.parseInt(request.getParameter("bld_approve"));
 			String bld_name = request.getParameter("bld_name");
 			String bld_picture1 = request.getParameter("bld_picture1");
 			String bld_picture2 = request.getParameter("bld_picture2");

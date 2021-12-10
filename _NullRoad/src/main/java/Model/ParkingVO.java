@@ -5,10 +5,10 @@ public class ParkingVO {
 	private String prk_time;
 	private String prk_day;
 	private int prk_fee;
-	private String prk_status;
+	private int prk_status;
 	private String prk_memo;
 	private int bld_seq;
-	public ParkingVO(int prk_seq, String prk_time, String prk_day, int prk_fee, String prk_status, String prk_memo,
+	public ParkingVO(int prk_seq, String prk_time, String prk_day, int prk_fee, int prk_status, String prk_memo,
 			int bld_seq) {
 		super();
 		this.prk_seq = prk_seq;
@@ -43,10 +43,10 @@ public class ParkingVO {
 	public void setPrk_fee(int prk_fee) {
 		this.prk_fee = prk_fee;
 	}
-	public String getPrk_status() {
+	public int getPrk_status() {
 		return prk_status;
 	}
-	public void setPrk_status(String prk_status) {
+	public void setPrk_status(int prk_status) {
 		this.prk_status = prk_status;
 	}
 	public String getPrk_memo() {

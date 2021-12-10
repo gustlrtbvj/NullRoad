@@ -8,18 +8,18 @@ public class CustomerCenterVO {
 	private String cs_art_reg_date;
 	private int cs_art_cnt;
 	private String m_id;
-
+	private int cs_art_status;
 	public CustomerCenterVO(int cs_art_seq, String cs_art_subj, String cs_art_content, String cs_art_reg_date,
-			int cs_art_cnt, String m_id) {
-
+			int cs_art_cnt, String m_id, int cs_art_status) {
+		super();
 		this.cs_art_seq = cs_art_seq;
 		this.cs_art_subj = cs_art_subj;
 		this.cs_art_content = cs_art_content;
 		this.cs_art_reg_date = cs_art_reg_date;
 		this.cs_art_cnt = cs_art_cnt;
 		this.m_id = m_id;
+		this.cs_art_status = cs_art_status;
 	}
-
 	public int getCs_art_seq() {
 		return cs_art_seq;
 	}
@@ -56,7 +56,12 @@ public class CustomerCenterVO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
-
+	public int getCs_art_status() {
+		return cs_art_status;
+	}
+	public void setCs_art_status(int cs_art_status) {
+		this.cs_art_status = cs_art_status;
+	}
 
 	
 }

@@ -12,13 +12,13 @@ public class BuildingVO {
 	private String emdong;
 	private String detail_addr;
 	private String bld_reg_date;
-	private String bld_approve;
+	private int bld_approve;
 	private String bld_name;
 	private String bld_picture1;
 	private String bld_picture2;
 	public BuildingVO(int bld_seq, String m_id, double bld_lati, double bld_longi, int bld_p_lots, String bld_owener,
 			String bld_owener_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
-			String bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
+			int bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
 		super();
 		this.bld_seq = bld_seq;
 		this.m_id = m_id;
@@ -105,10 +105,10 @@ public class BuildingVO {
 	public void setBld_reg_date(String bld_reg_date) {
 		this.bld_reg_date = bld_reg_date;
 	}
-	public String getBld_approve() {
+	public int getBld_approve() {
 		return bld_approve;
 	}
-	public void setBld_approve(String bld_approve) {
+	public void setBld_approve(int bld_approve) {
 		this.bld_approve = bld_approve;
 	}
 	public String getBld_name() {
