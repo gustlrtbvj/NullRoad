@@ -1,0 +1,72 @@
+/**마이페이지*********************************************************************************************************************/
+.clear-fix{*zoom:1;}
+.clear-fix:after{clear: both; display: block; content:'';}
+
+.bgfff{background:#fff;}
+.pd1510{padding:15px 10px;}
+.pdl2{padding-left:2px;}
+.pdl20{padding-left:20px;}
+.pdb4{padding-bottom:4px;}
+.fwb{font-weight:bold;}
+.of_h{overflow:hidden;}
+.color00af56{color:#00af56!important;}
+.color877b6c{color:#877b6c!important;}
+.color7b5dfd{color:#7b5dfd!important;}
+.color7030a0{color:#7b5dfd!important;}
+.color00b050{color:#00a250!important;}
+.bdt44c483{border-top:2px solid #44c483;}
+.bdb877b6c{border-bottom:1px solid #877b6c;}
+
+#myp_section_wrap .more_btn{width:6px;}
+
+
+/* 닉네임,미납금 */
+#myp_section_wrap{background:#f0f0f0; padding:0px 20px 20px; overflow:hidden;}
+#myp_section_wrap .section01{margin-top:25px; }
+#myp_section_wrap .section01 .user_wrap{position:relative; border:1px solid #dcdcdc; padding:17px 10px; min-height:58px;}
+#myp_section_wrap .section01 .user_wrap .user_more_btn{position:absolute; top:40px; right:10px;}
+#myp_section_wrap .section01 .user_wrap .user_info{padding-left:5px;}
+#myp_section_wrap .section01 .user_wrap .user_info .user_name{font-size:15px; font-weight:bold; color:#7e3bc3; padding-bottom:3px; text-align:center;}
+#myp_section_wrap .section01 .user_wrap .user_info .user_class{font-size:12px; line-height:15px;text-align: center;}
+#myp_section_wrap .section01 .user_wrap .user_info .user_mail{font-size:12px; line-height:15px;text-align: center;}
+#myp_section_wrap .section01 .user_unpaid{border:1px solid #dcdcdc; margin-top:8px; font-weight:bold; font-size:14px; color:#3c3c3c;}
+#myp_section_wrap .section01 .user_unpaid .right{float:right; padding-top:6px;}
+
+
+
+/* 포인트,이용내역,쿠폰,친구추천 */
+#myp_section_wrap .section02{background:#fff; margin-top:8px; border-top:1px solid #dcdcdc; border-left:1px solid #dcdcdc; border-right:1px solid #dcdcdc;}
+#myp_section_wrap .section02 .top_wrap{width:100%; border-bottom:1px solid #dcdcdc; overflow:hidden;}
+#myp_section_wrap .section02 .top_wrap .left,
+#myp_section_wrap .section02 .bottom_wrap .left{width:50%; padding:3.4% 4.1%; float:left; border-right:1px solid #dcdcdc; webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box;}
+#myp_section_wrap .section02 .top_wrap .left .title_icon,
+#myp_section_wrap .section02 .bottom_wrap .left .title_icon{float:right; text-align:right;}
+#myp_section_wrap .section02 .top_wrap .left .title_icon img,
+#myp_section_wrap .section02 .bottom_wrap .left .title_icon img{width:30px;}
+#myp_section_wrap .section02 .top_wrap .left .content,
+#myp_section_wrap .section02 .bottom_wrap .left .content{clear:both; text-align:right; padding-top:12px; font-size:16px; color:#7b5dfd;}
+#myp_section_wrap .section02 .top_wrap .right{width:50%; padding:3.4% 4.1%; float:left;webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box;}
+#myp_section_wrap .section02 .top_wrap .right .title_icon{height:25px;}
+#myp_section_wrap .section02 .top_wrap .right .title_icon span{color:#9b9b9b;}
+#myp_section_wrap .section02 .top_wrap .right .title_icon img{width:30px; float:right;}
+#myp_section_wrap .section02 .top_wrap .right .content{text-align:right; padding-top:12px; font-size:16px; color:#7b5dfd;}
+#myp_section_wrap .section02 .bottom_wrap{width:100%; border-bottom:1px solid #dcdcdc; overflow:hidden}
+#myp_section_wrap .section02 .bottom_wrap .left .content span{float:left;}
+#myp_section_wrap .section02 .bottom_wrap .left .content span img{width:20px;}
+#myp_section_wrap .section02 .bottom_wrap .right{width:50%; padding:3.4% 4.1%; float:left;-webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box;}
+#myp_section_wrap .section02 .bottom_wrap .right .title_icon{height:25px;}
+#myp_section_wrap .section02 .bottom_wrap .right .title_icon span{color:#9b9b9b;}
+#myp_section_wrap .section02 .bottom_wrap .right .title_icon img{width:30px; float:right;}
+#myp_section_wrap .section02 .bottom_wrap .right .content{text-align:right; padding-top:12px; font-size:16px; color:#7b5dfd;}
+
+/* 마이페이지  개인정보,면허정보,회원카드*/
+#myp_section_wrap .section03{overflow:hidden; margin-top:8px; border-top:1px solid #dcdcdc; border-bottom:1px solid #dcdcdc; border-left:1px solid #dcdcdc; margin-bottom:7px;}
+#myp_section_wrap .section03 div{float:left; width:50%; text-align:center; color:#3c3c3c; padding:16px 0px; font-size:15px; font-weight:bold; background:#fff;border-right: 1px solid #dcdcdc; webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box;}
+#myp_section_wrap .section03 span{display:block; color:#877b6c; font-size:15px; font-weight:bold;}
+
+#myp_section_wrap .seciton04{background:#f0f0f0; padding:0px 20px 20px; overflow:hidden;}
+
+
+
+@import url(font-awesome.min.css);
+@import "https://fonts.googleapis.com/css?family=Montserrat:700|Open+Sans:300,400|Pacifico";
