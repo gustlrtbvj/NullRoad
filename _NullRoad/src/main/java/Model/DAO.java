@@ -405,7 +405,7 @@ public class DAO {
 				String bld_picture1 = rs.getString(14);
 				String bld_picture2 = rs.getString(15);
 
-				BuildingVO bldvo = new BuildingVO();
+				BuildingVO bldvo = new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve, bld_name, bld_picture1, bld_picture2);
 				
 				bldlist.add(bldvo);
 			}
@@ -433,6 +433,57 @@ public class DAO {
 	}
 	
 	
+	public ArrayList<ParkingVO> PrkSel(){
+		
+		ArrayList<ParkingVO> prklist = new ArrayList<ParkingVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_parking";
+			psmt = conn.prepareStatement(sql);
+
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				int prk_seq = rs.getInt(1);
+				String prk_time = rs.getString(2);
+				String prk_day = rs.getString(3);
+				int prk_fee = rs.getInt(4);
+				int prk_status = rs.getInt(5);
+				String prk_memo = rs.getString(6);
+				int bld_seq= rs.getInt(7);
+				
+
+				ParkingVO prkvo = new ParkingVO(bld_seq, prk_memo, prk_memo, bld_seq, bld_seq, prk_memo, bld_seq);
+				
+				prklist.add(prkvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}finally {
+			//6. 연결을 닫아주기
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(psmt != null) {
+					psmt.close();
+				}
+				if(conn !=null ) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			
+			}
+		
+		}
+		return prklist;
+	}
 	
 	
 }
