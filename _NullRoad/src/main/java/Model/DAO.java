@@ -458,7 +458,7 @@ public class DAO {
 				int bld_seq= rs.getInt(7);
 				
 
-				ParkingVO prkvo = new ParkingVO(bld_seq, prk_memo, prk_memo, bld_seq, bld_seq, prk_memo, bld_seq);
+				ParkingVO prkvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
 				
 				prklist.add(prkvo);
 			}
