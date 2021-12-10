@@ -405,7 +405,7 @@ public class DAO {
 				String bld_picture1 = rs.getString(14);
 				String bld_picture2 = rs.getString(15);
 
-				BuildingVO bldvo = new BuildingVO();
+				BuildingVO bldvo = new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve, bld_name, bld_picture1, bld_picture2);
 				
 				bldlist.add(bldvo);
 			}
@@ -433,6 +433,110 @@ public class DAO {
 	}
 	
 	
+	public ArrayList<ParkingVO> PrkSel(){
+		
+		ArrayList<ParkingVO> prklist = new ArrayList<ParkingVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_parking";
+			psmt = conn.prepareStatement(sql);
+
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				int prk_seq = rs.getInt(1);
+				String prk_time = rs.getString(2);
+				String prk_day = rs.getString(3);
+				int prk_fee = rs.getInt(4);
+				int prk_status = rs.getInt(5);
+				String prk_memo = rs.getString(6);
+				int bld_seq= rs.getInt(7);
+				
+
+				ParkingVO prkvo = new ParkingVO(bld_seq, prk_memo, prk_memo, bld_seq, bld_seq, prk_memo, bld_seq);
+				
+				prklist.add(prkvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}finally {
+			//6. 연결을 닫아주기
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(psmt != null) {
+					psmt.close();
+				}
+				if(conn !=null ) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			
+			}
+		
+		}
+		return prklist;
+	}
 	
+	public ArrayList<ReservationVO> ResSel(){
+		
+		ArrayList<ReservationVO> reslist = new ArrayList<ReservationVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_reservation";
+			psmt = conn.prepareStatement(sql);
+
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				int res_seq = rs.getInt(1);
+				int prk_seq = rs.getInt(2);
+				String res_time = rs.getString(3);
+				String chk_in_time = rs.getString(4);
+				String chk_out_time = rs.getString(5);
+				int res_status = rs.getInt(6);
+				String res_reg_date= rs.getString(7);
+				int user_prk_fee= rs.getInt(8);
+				String m_id= rs.getString(9);
+				
+
+				ReservationVO resvo = new ReservationVO(res_seq, prk_seq, res_time, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id);
+				
+				reslist.add(resvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}finally {
+			//6. 연결을 닫아주기
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(psmt != null) {
+					psmt.close();
+				}
+				if(conn !=null ) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			
+			}
+		
+		}
+		return reslist;
+	}
 	
 }
