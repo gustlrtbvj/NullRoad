@@ -388,7 +388,7 @@ public class DAO {
 			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
 			rs = psmt.executeQuery();
 
-			if (rs.next() == true) {
+			while(rs.next() == true) {
 				int bld_seq = rs.getInt(1);
 				String m_id = rs.getString(2);
 				double bld_lati = rs.getDouble(3);
@@ -405,7 +405,7 @@ public class DAO {
 				String bld_picture1 = rs.getString(14);
 				String bld_picture2 = rs.getString(15);
 
-				BuildingVO bldvo = new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve, bld_name, bld_picture1, bld_picture2);
+				BuildingVO bldvo = new BuildingVO();
 				
 				bldlist.add(bldvo);
 			}
@@ -432,35 +432,35 @@ public class DAO {
 		return bldlist;
 	}
 	
-	
-	public ArrayList<ParkingVO> PrkSel(){
+	public ArrayList<CommunityVO> CommSel(){
 		
-		ArrayList<ParkingVO> prklist = new ArrayList<ParkingVO>();
+		System.out.println("arr");
+		ArrayList<CommunityVO> Commlist = new ArrayList<CommunityVO>();
 
 		try {
+			System.out.println("여긴 살았냐?");
 			Conn();
-			String sql = "select * from t_parking";
+			String sql = "select * from t_community order by comm_seq";
 			psmt = conn.prepareStatement(sql);
-
-
 			// 5.
 			// select -> executeQuery() --> return ResultSet
 			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+
 			rs = psmt.executeQuery();
-
-			if (rs.next() == true) {
-				int prk_seq = rs.getInt(1);
-				String prk_time = rs.getString(2);
-				String prk_day = rs.getString(3);
-				int prk_fee = rs.getInt(4);
-				int prk_status = rs.getInt(5);
-				String prk_memo = rs.getString(6);
-				int bld_seq= rs.getInt(7);
+			System.out.println("나는 rs입니다." + rs);
+			while(rs.next() == true) {
 				
-
-				ParkingVO prkvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
-				
-				prklist.add(prkvo);
+				int comm_seq = rs.getInt(1);
+				String comm_subject = rs.getString(2);
+				String comm_content = rs.getString(3);
+				String comm_reg_date = rs.getString(4);
+				int comm_cnt = rs.getInt(5);
+				String m_id = rs.getString(6);
+				int comm_status= rs.getInt(7);
+				System.out.println("rs");
+				CommunityVO cvo = new CommunityVO(comm_seq, comm_subject, comm_subject, comm_reg_date, comm_cnt, m_id, comm_status);
+				System.out.println(cvo);
+				Commlist.add(cvo);
 			}
 		} catch (Exception e) {
 
@@ -482,61 +482,9 @@ public class DAO {
 			}
 		
 		}
-		return prklist;
+		
+		return Commlist;
 	}
 	
-	public ArrayList<ReservationVO> ResSel(){
-		
-		ArrayList<ReservationVO> reslist = new ArrayList<ReservationVO>();
-
-		try {
-			Conn();
-			String sql = "select * from t_reservation";
-			psmt = conn.prepareStatement(sql);
-
-
-			// 5.
-			// select -> executeQuery() --> return ResultSet
-			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
-			rs = psmt.executeQuery();
-
-			if (rs.next() == true) {
-				int res_seq = rs.getInt(1);
-				int prk_seq = rs.getInt(2);
-				String res_time = rs.getString(3);
-				String chk_in_time = rs.getString(4);
-				String chk_out_time = rs.getString(5);
-				int res_status = rs.getInt(6);
-				String res_reg_date= rs.getString(7);
-				int user_prk_fee= rs.getInt(8);
-				String m_id= rs.getString(9);
-				
-
-				ReservationVO resvo = new ReservationVO(res_seq, prk_seq, res_time, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id);
-				
-				reslist.add(resvo);
-			}
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}finally {
-			//6. 연결을 닫아주기
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(psmt != null) {
-					psmt.close();
-				}
-				if(conn !=null ) {
-					conn.close();
-				}
-			} catch (Exception e2) {
-			
-			}
-		
-		}
-		return reslist;
-	}
 	
 }
