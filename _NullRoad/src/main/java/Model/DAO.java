@@ -55,7 +55,7 @@ public class DAO {
 	}
 
 	public int Join(String m_id, String m_pw, String m_name, String m_jumin, String m_phone, String m_car_num,
-			int m_point, String m_type, String m_account, String m_joindate, String admin_yn) {
+			int m_point, int m_type, String m_account, String m_joindate, int admin_yn) {
 		try {
 			Conn();
 
@@ -70,10 +70,10 @@ public class DAO {
 			psmt.setString(5, m_phone);
 			psmt.setString(6, m_car_num);
 			psmt.setInt(7, m_point);
-			psmt.setString(8, m_type);
+			psmt.setInt(8, m_type);
 			psmt.setString(9, m_account);
 			psmt.setString(10, m_joindate);
-			psmt.setString(11, admin_yn);
+			psmt.setInt(11, admin_yn);
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -112,10 +112,10 @@ public class DAO {
 				String m_phone = rs.getString(5);
 				String m_car_num = rs.getString(6);
 				int m_point = rs.getInt(7);
-				String m_type = rs.getString(8);
+				int m_type = rs.getInt(8);
 				String m_account = rs.getString(9);
 				String m_joindate = rs.getString(10);
-				String admin_yn = rs.getString(11);
+				int admin_yn = rs.getInt(11);
 
 				mvo = new MemberVO(m_id, m_pw, m_name, m_jumin, m_phone, m_car_num, m_point, m_type, m_account,
 						m_joindate, admin_yn);
@@ -188,7 +188,7 @@ public class DAO {
 
 	// ===============================================================================
 
-	public int ResCon(int res_seq, int prk_seq, String res_time, String chk_in_time, String chk_out_time,
+	public int ResCon(int res_seq, int prk_seq, String chk_in_time, String chk_out_time,
 			int res_status, String res_reg_date, int user_prk_fee, String m_id) {
 
 		try {
@@ -198,7 +198,6 @@ public class DAO {
 
 			psmt.setInt(1, res_seq);
 			psmt.setInt(2, prk_seq);
-			psmt.setString(3, res_time);
 			psmt.setString(4, chk_in_time);
 			psmt.setString(5, chk_out_time);
 			psmt.setInt(6, res_status);

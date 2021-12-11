@@ -12,12 +12,11 @@ public class ReservationVO {
 	private String m_id;
 	
 	
-	public ReservationVO(int res_seq, int prk_seq, String res_time, String chk_in_time, String chk_out_time,
+	public ReservationVO(int res_seq, int prk_seq, String chk_in_time, String chk_out_time,
 			int rev_status, String reg_date, int user_prk_fee, String m_id) {
 		
 		this.res_seq = res_seq;
 		this.prk_seq = prk_seq;
-		this.res_time = res_time;
 		this.chk_in_time = chk_in_time;
 		this.chk_out_time = chk_out_time;
 		this.res_status = rev_status;
@@ -44,16 +43,6 @@ public class ReservationVO {
 
 	public void setPrk_seq(int prk_seq) {
 		this.prk_seq = prk_seq;
-	}
-
-
-	public String getRes_time() {
-		return res_time;
-	}
-
-
-	public void setRes_time(String res_time) {
-		this.res_time = res_time;
 	}
 
 

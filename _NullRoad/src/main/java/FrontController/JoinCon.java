@@ -23,10 +23,10 @@ public class JoinCon implements Command {
 			String m_phone = request.getParameter("m_phone");
 			String m_car_num = request.getParameter("m_car_num");
 			int m_point = Integer.parseInt(request.getParameter("m_point"));
-			String m_type = request.getParameter("m_type");
+			int m_type = Integer.parseInt(request.getParameter("m_type"));
 			String m_account = request.getParameter("m_account");
 			String m_joindate = request.getParameter("m_joindate");
-			String admin_yn = request.getParameter("admin_yn");
+			int admin_yn = Integer.parseInt(request.getParameter("admin_yn"));
 			
 			DAO dao = new DAO();
 			
