@@ -43,7 +43,7 @@ public class LoginCon implements Command{
 		
 		//객체에서는 페이지를 이동할 때, try/catch 써줘야한다. 
 		try {
-			response.sendRedirect("#");
+			response.sendRedirect("main2.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

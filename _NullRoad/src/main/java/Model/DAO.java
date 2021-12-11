@@ -54,12 +54,14 @@ public class DAO {
 		}
 	}
 
-	public int Join(String m_id, String m_pw, String m_name, String m_jumin, String m_phone, String m_car_num,
-			int m_point, int m_type, String m_account, String m_joindate, int admin_yn) {
+	public int Join
+	(String m_id, String m_pw, String m_name, String m_jumin, String m_phone, String m_car_num, 
+			String m_account) {
+		// 메소드의 매개변수는 name에서 가져오는 값
 		try {
 			Conn();
-
-			String sql = "insert into t_member values(?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ? )";
+			// 쿼리문은 sql로 넣어줘야하는 모든값
+			String sql = "insert into t_member values(?, ?, ?, ?, ?, ?, 0, 0, ?, sysdate, 0)";
 			psmt = conn.prepareStatement(sql);
 
 			// 4. 바인드 변수 채우기
@@ -69,11 +71,8 @@ public class DAO {
 			psmt.setString(4, m_jumin);
 			psmt.setString(5, m_phone);
 			psmt.setString(6, m_car_num);
-			psmt.setInt(7, m_point);
-			psmt.setInt(8, m_type);
-			psmt.setString(9, m_account);
-			psmt.setString(10, m_joindate);
-			psmt.setInt(11, admin_yn);
+			psmt.setString(7, m_account);
+
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -484,6 +483,7 @@ public class DAO {
 		
 		return Commlist;
 	}
+
 	
 	
 }
