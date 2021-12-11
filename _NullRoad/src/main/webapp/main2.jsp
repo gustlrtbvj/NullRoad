@@ -31,8 +31,6 @@
 <%
 	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 
-
-
 %>
 	<!-- Page Preloder -->
 	<div id="preloder">

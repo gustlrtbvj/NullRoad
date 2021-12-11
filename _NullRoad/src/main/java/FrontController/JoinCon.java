@@ -34,7 +34,7 @@ public class JoinCon implements Command {
 				System.out.println("회원가입 성공");
 				
 				//받아오는 (입력하는) 값에 맞는새 로운 멤버vo 오버로딩해서 생성 
-	         request.setAttribute("vo", dao.Login(m_id,m_pw));
+	         request.setAttribute("mvo", dao.Login(m_id,m_pw));
 	         // Forward 방식
 	         RequestDispatcher rd = request.getRequestDispatcher("main2.jsp");
 	        
