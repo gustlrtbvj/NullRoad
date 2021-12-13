@@ -8,10 +8,10 @@ public class CommunityRepVO {
 	private String comm_rep_reg_date;
 	private String m_id;
 
-	public CommunityRepVO(int comm_rep_seq, int art_seq, String comm_rep_content, String reg_date, String m_id) {
+	public CommunityRepVO(int comm_rep_seq, int comm_seq, String comm_rep_content, String reg_date, String m_id) {
 		super();
 		this.comm_rep_seq = comm_rep_seq;
-		this.comm_seq = art_seq;
+		this.comm_seq = comm_seq;
 		this.comm_rep_content = comm_rep_content;
 		this.comm_rep_reg_date = reg_date;
 		this.m_id = m_id;
@@ -25,8 +25,8 @@ public class CommunityRepVO {
 	public int getArt_seq() {
 		return comm_seq;
 	}
-	public void setArt_seq(int art_seq) {
-		this.comm_seq = art_seq;
+	public void setArt_seq(int comm_seq) {
+		this.comm_seq = comm_seq;
 	}
 	public String getComm_rep_content() {
 		return comm_rep_content;
