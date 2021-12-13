@@ -1646,6 +1646,9 @@ ol {
 /* Large Mobile :480px. */
 
 @media only screen and (max-width: 767px) {
+	.mobile{
+	display:none;
+	}
 	.header-section {
 		padding: 30px 0;
 		background: #fff;
@@ -1915,7 +1918,6 @@ ol {
 
 
 
-/*body 초기화*/
 
 
 
