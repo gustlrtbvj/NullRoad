@@ -129,30 +129,30 @@ public class DAO {
 	}
 
 	// ===============================================================================
-	public int BldRegCon(int bld_seq, String m_id, double bld_lati, double bld_longi, int bld_prk_lots, String bld_owner,
+	public int BldRegCon(String m_id, double bld_lati, double bld_longi, int bld_prk_lots, String bld_owner,
 			String bld_owner_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
 			int bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
 
 		try {
 			Conn();
-			String sql = "insert into values (t_building_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?, ?, ?)";
+			String sql = "INSERT INTO t_building (m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, "
+					+ "detail_addr, bld_reg_date, bld_approve, bld_name, bld_picture1, bld_picture2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?);";
 			psmt = conn.prepareStatement(sql);
 
-			psmt.setInt(1, bld_seq);
-			psmt.setString(2, m_id);
-			psmt.setDouble(3, bld_lati);
-			psmt.setDouble(4, bld_longi);
-			psmt.setInt(5, bld_prk_lots);
-			psmt.setString(6, bld_owner);
-			psmt.setString(7, bld_owner_phone);
-			psmt.setString(8, sigungu);
-			psmt.setString(9, emdong);
-			psmt.setString(10, detail_addr);
-			psmt.setString(11, bld_reg_date);
-			psmt.setInt(12, bld_approve);
-			psmt.setString(13, bld_name);
-			psmt.setString(14, bld_picture1);
-			psmt.setString(15, bld_picture2);
+			psmt.setString(1, m_id);
+			psmt.setDouble(2, bld_lati);
+			psmt.setDouble(3, bld_longi);
+			psmt.setInt(4, bld_prk_lots);
+			psmt.setString(5, bld_owner);
+			psmt.setString(6, bld_owner_phone);
+			psmt.setString(7, sigungu);
+			psmt.setString(8, emdong);
+			psmt.setString(9, detail_addr);
+			psmt.setString(10, bld_reg_date);
+			psmt.setInt(11, bld_approve);
+			psmt.setString(12, bld_name);
+			psmt.setString(13, bld_picture1);
+			psmt.setString(14, bld_picture2);
 
 		} catch (Exception e) {
 
@@ -163,20 +163,19 @@ public class DAO {
 	}
 
 //===============================================================================
-	public int PrkRegCon(int prk_seq, String prk_time, String prk_day, int prk_fee, int prk_status,
+	public int PrkRegCon(String prk_time, String prk_day, int prk_fee, int prk_status,
 			String prk_memo, int bld_seq) {
 		try {
 			Conn();
-			String sql = "insert into t_parking values(t_parking_seq.nextval, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO t_parking (prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq) VALUES (?, ?, 1000, 0, ?, ?);";
 			psmt = conn.prepareStatement(sql);
 
-			psmt.setInt(1, prk_seq);
-			psmt.setString(2, prk_time);
-			psmt.setString(3, prk_day);
-			psmt.setInt(4, prk_fee);
-			psmt.setInt(5, prk_status);
-			psmt.setString(6, prk_memo);
-			psmt.setInt(7, bld_seq);
+			psmt.setString(1, prk_time);
+			psmt.setString(2, prk_day);
+			psmt.setInt(3, prk_fee);
+			psmt.setInt(4, prk_status);
+			psmt.setString(5, prk_memo);
+			psmt.setInt(6, bld_seq);
 
 		} catch (Exception e) {
 		} finally {
@@ -187,22 +186,21 @@ public class DAO {
 
 	// ===============================================================================
 
-	public int ResCon(int res_seq, int prk_seq, String chk_in_time, String chk_out_time,
+	public int ResCon(int prk_seq, String chk_in_time, String chk_out_time,
 			int res_status, String res_reg_date, int user_prk_fee, String m_id) {
 
 		try {
 			Conn();
-			String sql = "insert into t_reservation values(t_reservation_seq.nextval, sysdate, sysdate, sysdate, ?, ?, sysdate, ?, ?)";
+			String sql = "INSERT INTO t_reservation (prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id) VALUES (?, sysdate, sysdate, 0, sysdate, ?, ?);";
 			psmt = conn.prepareStatement(sql);
 
-			psmt.setInt(1, res_seq);
-			psmt.setInt(2, prk_seq);
-			psmt.setString(4, chk_in_time);
-			psmt.setString(5, chk_out_time);
-			psmt.setInt(6, res_status);
-			psmt.setString(7, res_reg_date);
-			psmt.setInt(8, user_prk_fee);
-			psmt.setString(9, m_id);
+			psmt.setInt(1, prk_seq);
+			psmt.setString(2, chk_in_time);
+			psmt.setString(3, chk_out_time);
+			psmt.setInt(4, res_status);
+			psmt.setString(5, res_reg_date);
+			psmt.setInt(6, user_prk_fee);
+			psmt.setString(7, m_id);
 
 		} catch (Exception e) {
 		} finally {

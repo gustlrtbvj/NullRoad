@@ -19,6 +19,7 @@ public class ParkingVO {
 		this.prk_memo = prk_memo;
 		this.bld_seq = bld_seq;
 	}
+
 	public int getPrk_seq() {
 		return prk_seq;
 	}
@@ -62,5 +63,14 @@ public class ParkingVO {
 		this.bld_seq = bld_seq;
 	}
 
+	public ParkingVO(String prk_time, String prk_day, int prk_fee, int prk_status, String prk_memo, int bld_seq) {
+		super();
+		this.prk_time = prk_time;
+		this.prk_day = prk_day;
+		this.prk_fee = prk_fee;
+		this.prk_status = prk_status;
+		this.prk_memo = prk_memo;
+		this.bld_seq = bld_seq;
+	}
 	
 }

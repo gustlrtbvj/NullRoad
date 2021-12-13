@@ -14,8 +14,7 @@ public class ResCon implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("euc-kr");
-			
-			int res_seq= Integer.parseInt(request.getParameter("res_seq"));
+
 			int prk_seq= Integer.parseInt(request.getParameter("prk_seq"));
 			String chk_in_time = request.getParameter("chk_in_time");
 			String chk_out_time = request.getParameter("chk_out_time");
@@ -27,12 +26,12 @@ public class ResCon implements Command{
 			DAO dao = new DAO();
 			
 
-			int cnt = dao.ResCon(res_seq, prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date,
+			int cnt = dao.ResCon(prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date,
 					user_prk_fee, m_id);
 			
 			if (cnt > 0) {
 				System.out.println("예약 성공");
-				request.setAttribute("resvo", new ReservationVO(res_seq, prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date,
+				request.setAttribute("resvo", new ReservationVO(prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date,
 						user_prk_fee, m_id));
 				// Forward 방식
 				RequestDispatcher rd = request.getRequestDispatcher("#");

@@ -39,6 +39,7 @@ public class BuildingVO {
 	public BuildingVO() {
 		
 	}
+
 	public int getBld_seq() {
 		return bld_seq;
 	}
@@ -130,7 +131,26 @@ public class BuildingVO {
 		this.bld_picture2 = bld_picture2;
 	}
 
-	
+
+	public BuildingVO(String m_id, double bld_lati, double bld_longi, int bld_p_lots, String bld_owener,
+			String bld_owener_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
+			int bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
+		super();
+		this.m_id = m_id;
+		this.bld_lati = bld_lati;
+		this.bld_longi = bld_longi;
+		this.bld_p_lots = bld_p_lots;
+		this.bld_owener = bld_owener;
+		this.bld_owener_phone = bld_owener_phone;
+		this.sigungu = sigungu;
+		this.emdong = emdong;
+		this.detail_addr = detail_addr;
+		this.bld_reg_date = bld_reg_date;
+		this.bld_approve = bld_approve;
+		this.bld_name = bld_name;
+		this.bld_picture1 = bld_picture1;
+		this.bld_picture2 = bld_picture2;
+	}
 
 	
 

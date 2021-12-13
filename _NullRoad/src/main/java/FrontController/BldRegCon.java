@@ -15,7 +15,6 @@ public class BldRegCon implements Command {
 		try {
 			request.setCharacterEncoding("euc-kr");
 
-			int bld_seq = Integer.parseInt(request.getParameter("bld_seq"));
 			String m_id= request.getParameter("m_id");
 			double  bld_lati = Double.parseDouble(request.getParameter("bld_lati"));
 			double bld_longi = Double.parseDouble(request.getParameter("bld_longi"));
@@ -32,14 +31,14 @@ public class BldRegCon implements Command {
 			String bld_picture2 = request.getParameter("bld_picture2");
 			
 			DAO dao = new DAO();
-			int cnt = dao.BldRegCon(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots,
+			int cnt = dao.BldRegCon(m_id, bld_lati, bld_longi, bld_prk_lots,
 					bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, 
 					bld_approve,bld_name,bld_picture1,bld_picture2);
 
 			if (cnt > 0) {
 				System.out.println("건물등록 성공");
 				
-				request.setAttribute("bvo", new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, 
+				request.setAttribute("bvo", new BuildingVO(m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, 
 						sigungu, emdong, detail_addr, bld_reg_date, bld_approve,bld_name,bld_picture1,bld_picture2));
 				// Forward 방식
 				RequestDispatcher rd = request.getRequestDispatcher("#");

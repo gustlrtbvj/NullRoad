@@ -3,7 +3,6 @@ package Model;
 public class ReservationVO {
 	private int res_seq;
 	private int prk_seq;
-	private String res_time;
 	private String chk_in_time;
 	private String chk_out_time;
 	private int res_status;
@@ -24,6 +23,7 @@ public class ReservationVO {
 		this.user_prk_fee = user_prk_fee;
 		this.m_id = m_id;
 	}
+
 
 
 	public int getRes_seq() {
@@ -104,6 +104,22 @@ public class ReservationVO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
+
+
+
+	public ReservationVO(int prk_seq, String chk_in_time, String chk_out_time, int res_status, String res_reg_date,
+			int user_prk_fee, String m_id) {
+		super();
+		this.prk_seq = prk_seq;
+		this.chk_in_time = chk_in_time;
+		this.chk_out_time = chk_out_time;
+		this.res_status = res_status;
+		this.res_reg_date = res_reg_date;
+		this.user_prk_fee = user_prk_fee;
+		this.m_id = m_id;
+	}
+
+
 
 	
 }
