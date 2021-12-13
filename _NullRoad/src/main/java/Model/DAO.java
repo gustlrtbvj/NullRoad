@@ -153,7 +153,9 @@ public class DAO {
 			psmt.setString(12, bld_name);
 			psmt.setString(13, bld_picture1);
 			psmt.setString(14, bld_picture2);
-
+			
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
@@ -177,6 +179,8 @@ public class DAO {
 			psmt.setString(5, prk_memo);
 			psmt.setInt(6, bld_seq);
 
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 		} finally {
 			close();
@@ -202,6 +206,8 @@ public class DAO {
 			psmt.setInt(6, user_prk_fee);
 			psmt.setString(7, m_id);
 
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 		} finally {
 			close();
@@ -228,6 +234,8 @@ public class DAO {
 			psmt.setInt(7, rev_cnt);
 			psmt.setInt(8, rev_status);
 
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
@@ -249,6 +257,8 @@ public class DAO {
 			psmt.setString(4, rev_ment_reg_date);
 			psmt.setString(5, m_id);
 
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
@@ -272,6 +282,8 @@ public class DAO {
 			psmt.setString(6, m_id);
 			psmt.setInt(7,comm_status);
 
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
@@ -294,7 +306,9 @@ public class DAO {
 			psmt.setString(3, comm_rep_content);
 			psmt.setString(4, comm_rep_reg_date);
 			psmt.setString(5, m_id);
-
+			
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
@@ -318,6 +332,8 @@ public class DAO {
 			psmt.setString(6, m_id);
 			psmt.setInt(7, cs_art_status);
 			
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
@@ -339,6 +355,8 @@ public class DAO {
 			psmt.setString(4, cs_rep_reg_date);
 			psmt.setString(5, m_id);
 
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
@@ -359,6 +377,8 @@ public class DAO {
 			psmt.setInt(3, refd_point);
 			psmt.setInt(4, refd_exqt);
 
+			cnt = psmt.executeUpdate();
+			
 		} catch (Exception e) {
 
 		} finally {
