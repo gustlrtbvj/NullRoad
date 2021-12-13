@@ -482,6 +482,168 @@ public class DAO {
 		return Commlist;
 	}
 
+public ArrayList<BuildingVO> BldHidOn(){
+		
+		ArrayList<BuildingVO> bldlist = new ArrayList<BuildingVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_building where bld_seq in (select distinct bld_seq from t_parking where prk_status = 0) and bld_approve = 1";
+			psmt = conn.prepareStatement(sql);
+
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				int bld_seq = rs.getInt(1);
+				String m_id = rs.getString(2);
+				double bld_lati = rs.getDouble(3);
+				double bld_longi = rs.getDouble(4);
+				int bld_prk_lots = rs.getInt(5);
+				String bld_owner = rs.getString(6);
+				String bld_owner_phone= rs.getString(7);
+				String sigungu = rs.getString(8);
+				String emdong = rs.getString(9);
+				String detail_addr = rs.getString(10);
+				String bld_reg_date = rs.getString(11);
+				int bld_approve = rs.getInt(12);
+				String bld_name = rs.getString(13);
+				String bld_picture1 = rs.getString(14);
+				String bld_picture2 = rs.getString(15);
+
+				BuildingVO bldvo = new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve, bld_name, bld_picture1, bld_picture2);
+				
+				bldlist.add(bldvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}finally {
+			//6. 연결을 닫아주기
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(psmt != null) {
+					psmt.close();
+				}
+				if(conn !=null ) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			
+			}
+		
+		}
+		return bldlist;
+	}
 	
+	public ArrayList<ParkingVO> PrkSel(){
+		
+		ArrayList<ParkingVO> prklist = new ArrayList<ParkingVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_parking";
+			psmt = conn.prepareStatement(sql);
+
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				int prk_seq = rs.getInt(1);
+				String prk_time = rs.getString(2);
+				String prk_day = rs.getString(3);
+				int prk_fee = rs.getInt(4);
+				int prk_status = rs.getInt(5);
+				String prk_memo = rs.getString(6);
+				int bld_seq= rs.getInt(7);
+				
+
+				ParkingVO prkvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
+				
+				prklist.add(prkvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}finally {
+			//6. 연결을 닫아주기
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(psmt != null) {
+					psmt.close();
+				}
+				if(conn !=null ) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			
+			}
+		
+		}
+		return prklist;
+	}
+	
+	public ArrayList<ReservationVO> ResSel(){
+		
+		ArrayList<ReservationVO> reslist = new ArrayList<ReservationVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_reservation";
+			psmt = conn.prepareStatement(sql);
+
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				int res_seq = rs.getInt(1);
+				int prk_seq = rs.getInt(2);
+				String chk_in_time = rs.getString(3);
+				String chk_out_time = rs.getString(4);
+				int res_status = rs.getInt(5);
+				String res_reg_date= rs.getString(6);
+				int user_prk_fee= rs.getInt(7);
+				String m_id= rs.getString(8);
+				
+
+				ReservationVO resvo = new ReservationVO(res_seq, prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id);
+				
+				reslist.add(resvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}finally {
+			//6. 연결을 닫아주기
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(psmt != null) {
+					psmt.close();
+				}
+				if(conn !=null ) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+			
+			}
+		
+		}
+		return reslist;
+	}
 	
 }
