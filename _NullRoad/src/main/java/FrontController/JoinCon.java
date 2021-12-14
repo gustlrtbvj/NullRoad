@@ -3,6 +3,7 @@ package FrontController;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Model.DAO;
 import Model.MemberVO;
@@ -32,19 +33,16 @@ public class JoinCon implements Command {
 			
 			if(cnt>0) {
 				System.out.println("회원가입 성공");
-				
+				HttpSession session = request.getSession();
 				//받아오는 (입력하는) 값에 맞는새 로운 멤버vo 오버로딩해서 생성 
-	         request.setAttribute("mvo", dao.Login(m_id,m_pw));
-	         // Forward 방식
-	         RequestDispatcher rd = request.getRequestDispatcher("main2.jsp");
-	        
-	         // 페이지 이동
-	         rd.forward(request, response);
+				session.setAttribute("mvo", dao.Login(m_id,m_pw));
+
+				
 			}else{
 		         System.out.println("회원가입 실패");
-		         response.sendRedirect("main2.jsp");
+		        
 			}
-		      
+			 response.sendRedirect("main2.jsp"); 
 		} catch (Exception e) {
 		}
 		

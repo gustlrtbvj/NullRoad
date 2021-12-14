@@ -129,31 +129,28 @@ public class DAO {
 	}
 
 	// ===============================================================================
-	public int BldRegCon(String m_id, double bld_lati, double bld_longi, int bld_prk_lots, String bld_owner,
-			String bld_owner_phone, String sigungu, String emdong, String detail_addr, String bld_reg_date,
-			int bld_approve, String bld_name, String bld_picture1, String bld_picture2) {
+	public int BldRegCon(String m_id, int bld_prk_lots, String bld_owner,	String bld_owner_phone, String sigungu, 
+			String emdong, String detail_addr, String bld_name, String bld_picture1, String bld_picture2) {
 
 		try {
 			Conn();
-			String sql = "INSERT INTO t_building (m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, "
-					+ "detail_addr, bld_reg_date, bld_approve, bld_name, bld_picture1, bld_picture2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?);";
+			String sql = "INSERT INTO t_building (m_id, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_name, bld_picture1, bld_picture2) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, sysdate, ?, null, null)";
 			psmt = conn.prepareStatement(sql);
 
+
 			psmt.setString(1, m_id);
-			psmt.setDouble(2, bld_lati);
-			psmt.setDouble(3, bld_longi);
-			psmt.setInt(4, bld_prk_lots);
-			psmt.setString(5, bld_owner);
-			psmt.setString(6, bld_owner_phone);
-			psmt.setString(7, sigungu);
-			psmt.setString(8, emdong);
-			psmt.setString(9, detail_addr);
-			psmt.setString(10, bld_reg_date);
-			psmt.setInt(11, bld_approve);
-			psmt.setString(12, bld_name);
-			psmt.setString(13, bld_picture1);
-			psmt.setString(14, bld_picture2);
-			
+			psmt.setInt(2, bld_prk_lots);
+			psmt.setString(3, bld_owner);
+			psmt.setString(4, bld_owner_phone);
+			psmt.setString(5, sigungu);
+			psmt.setString(6, emdong);
+			psmt.setString(7, detail_addr);
+			psmt.setString(8, bld_name);
+			psmt.setString(9, bld_picture1);
+			psmt.setString(10, bld_picture2);
+
+
 			cnt = psmt.executeUpdate();
 			
 		} catch (Exception e) {
