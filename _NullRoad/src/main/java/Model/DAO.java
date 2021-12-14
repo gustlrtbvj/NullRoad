@@ -785,4 +785,199 @@ public class DAO {
 
 		return cnt;
 	}
+	
+	// ===============================================================================
+
+	public ReservationVO IdResSelect(String m_id) {
+		try {
+			Conn();
+			String sql = "select * from t_reservation where m_id = ? and res_status = 0";
+			psmt = conn.prepareStatement(sql);
+			// 4. 바인드 변수 채우기
+			psmt.setString(1, m_id);
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				int res_seq = rs.getInt(1);
+				int prk_seq = rs.getInt(2);
+				String chk_in_time = rs.getString(3);
+				String chk_out_time = rs.getString(4);
+				int res_status = rs.getInt(5);
+				String res_reg_date = rs.getString(6);
+				int user_prk_fee = rs.getInt(7);
+				String member_id = rs.getString(8);
+
+				resvo = new ReservationVO(res_seq, prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date,
+						user_prk_fee, member_id);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			close();
+		}
+		return resvo;
+
+	}
+
+	// ===============================================================================
+	public ParkingVO ParkSelect(String lot) {
+		try {
+			Conn();
+			String sql = "select * from t_parking where prk_seq = ?";
+			psmt = conn.prepareStatement(sql);
+			// 4. 바인드 변수 채우기
+			psmt.setString(1, lot);
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				int prk_seq = rs.getInt(1);
+				String prk_time = rs.getString(2);
+				String prk_day = rs.getString(3);
+				int prk_fee = rs.getInt(4);
+				int prk_status = rs.getInt(5);
+				String prk_memo = rs.getString(6);
+				int bld_seq = rs.getInt(7);
+
+				pvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			close();
+		}
+		return pvo;
+
+	}
+
+	// ===============================================================================
+
+	public int PayResCon(int prk_seq, int user_prk_fee, String m_id) {
+
+		try {
+			Conn();
+			String sql1 = "INSERT INTO t_reservation (prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id) VALUES (?, sysdate, sysdate, 0, sysdate, ?, ?)";
+			psmt = conn.prepareStatement(sql1);
+			psmt.setInt(1, prk_seq);
+			psmt.setInt(2, user_prk_fee);
+			psmt.setString(3, m_id);
+			int insert = psmt.executeUpdate();
+			if (insert > 0) {
+				System.out.println("영수증 생성 성공");
+
+				String sql2 = "UPDATE t_parking set prk_status = 1 where prk_seq = ? ";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setInt(1, prk_seq);
+				cnt = psmt.executeUpdate();
+				if (cnt > 0) {
+					System.out.println("주차장 사용완료");
+				} else {
+					System.out.println("주차장 사용실패");
+				}
+
+			} else {
+				System.out.println("영수증 생성 실패");
+
+			}
+
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return cnt;
+
+	}
+
+	// ===============================================================================
+
+	public int PaySetGold(String m_id, int money) {
+
+		try {
+			Conn();
+
+			String sql0 = "select m_point from t_member where m_id = ? ";
+			psmt = conn.prepareStatement(sql0);
+			psmt.setString(1, m_id);
+			rs = psmt.executeQuery();
+			if (rs.next() == true) {
+				int m_point = rs.getInt(1);
+				System.out.println("기본금액 : " + m_point);
+				
+				String sql1 = "UPDATE t_member set m_point = ? where m_id = ? ";
+				psmt = conn.prepareStatement(sql1);
+				int con = m_point + money;
+				psmt.setInt(1, con);
+				psmt.setString(2, m_id);
+				cnt = psmt.executeUpdate();
+				if (cnt > 0) {
+					System.out.println("변화금액 : " + con);
+				}
+			}
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return cnt;
+
+	}
+
+	// ===============================================================================
+
+	public int PayResSet(int res_seq, int prk_seq, int money) {
+
+		try {
+			Conn();
+			String sql1 = "UPDATE t_parking set prk_status = 0 where prk_seq = ? ";
+			psmt = conn.prepareStatement(sql1);
+			psmt.setInt(1, prk_seq);
+			cnt = psmt.executeUpdate();
+			if (cnt > 0) {
+				System.out.println("주차장 결제완료");
+				String sql2 = "UPDATE t_reservation set res_status = 1 , chk_out_time = sysdate , user_prk_fee = ? where res_seq = ?";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setInt(1, money);
+				psmt.setInt(2, res_seq);
+				cnt = psmt.executeUpdate();
+				if (cnt > 0) {
+					System.out.println("영수증 결제완료");
+				} else {
+					System.out.println("영수증 결제실패");
+				}
+			} else {
+				System.out.println("주차장 결제실패");
+			}
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return cnt;
+
+	}
+	
+	// ===============================================================================
+
+	public String Sysdate() {
+		String time = null;
+		try {
+			Conn();
+			String sql = "select sysdate from SYS.dual";
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if (rs.next() == true) {
+				time = rs.getString(1);
+			}
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return time;
+
+	}
 }
