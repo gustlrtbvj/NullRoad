@@ -662,5 +662,42 @@ public ArrayList<BuildingVO> BldHidOn(){
 		}
 		return reslist;
 	}
+
+	public int BldRegUpdCon(String m_id, int bld_seq, int bld_prk_lots, String bld_owner, String bld_owner_phone, String sigungu,
+			String emdong, String detail_addr, String bld_name, String bld_picture1, String bld_picture2) {
+
+		try {
+			Conn();
+			String sql = "UPDATE t_building set bld_prk_lots ='?', bld_owner ='?', bld_owner_phone ='?',sigungu ='?', emdong='?', "
+					+ "detail_addr='?', bld_reg_date='?', bld_name='?', bld_picture1='?', bld_picture2='?' where bld_seq=? and m_id=?";
+			
+			psmt = conn.prepareStatement(sql);
+
+
+			psmt.setInt(1, bld_prk_lots);
+			psmt.setString(2, bld_owner);
+			psmt.setString(3, bld_owner_phone);
+			psmt.setString(4, sigungu);
+			psmt.setString(5, emdong);
+			psmt.setString(6, detail_addr);
+			psmt.setString(7, bld_name);
+			psmt.setString(8, bld_picture1);
+			psmt.setString(9, bld_picture2);
+			psmt.setInt(10, bld_seq);
+			psmt.setString(11, m_id);
+			
+
+
+			cnt = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+
+		} finally {
+			close();
+		}
+		
+		
+	return 0;
+	}
 	
 }

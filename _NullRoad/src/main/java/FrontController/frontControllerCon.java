@@ -59,6 +59,8 @@ public class frontControllerCon extends HttpServlet {
 			exe = new CsReplyCon();
 		} else if (command.equals("/Refund.do")) {
 			exe = new RefundCon();
+		} else if (command.equals("/BldRegUpd.do")) {
+			exe = new BldRegUpdCon();
 		}
 
 		exe.execute(request, response);
