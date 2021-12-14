@@ -18,7 +18,63 @@
 	<link rel="stylesheet" href="css/themify-icons.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
+<style>
+.button {
+    display: flex;
+    justify-content: center;
+	color:#7e3bc3;
+}
+label {
+    cursor: pointer;
+    font-size: 1em;
+}
 
+
+#chooseFile {
+    visibility: hidden;
+}
+
+.container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.login100-form-btn {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+  height: 50px;
+  border-radius: 5px;
+  background: #7e3bc3;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background: #484748;
+}
+
+</style>
 
 </head>
 <body>
@@ -72,21 +128,21 @@
 	<!-- Header section end -->
 
 
-<!-- Page info section -->
-<div class = "mobile">
-<section class="page-info-section">
-	<div class="container">
-	</div>
-</section>
-</div>
-<!-- Page info end -->
-<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+
+	<!-- Page info section -->
+	<div class = "mobile">
+		<section class="page-info-section">
+			<div class="container">
+			</div>
+		</section>
+		</div>
+		<!-- Page info end -->
 
 
 	
 
 
-
+	<p>&nbsp;</p>
 	<!-- Contact section -->
 	<section class="contact-page spad">
 		<div class="container">
@@ -98,56 +154,85 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="First Name*:">
+									<input class="check-form" type="text" placeholder="주차면수">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="Last Name*:">
+									<input class="check-form" type="text" placeholder="소유주">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="Email Adress*:">
+									<input class="check-form" type="text" placeholder="연락처">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="Phone Number*:">
+									<input class="check-form" type="text" placeholder="건물명">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<input type="text" id="sample6_address" placeholder="지번주소*"><br>
+										<span><i class="ti-check"></i></span>
+									</div>
+								</div>
+								<div class="col-md-6" >
+									<div class="form-group" >
+										</div>
+									</div>
+
+								<div class="col-md-6" >
+									<div class="form-group" >
+										<input type="text" name="sample6_detailAddress" placeholder="상세주소"/>
+										<span><i class="ti-check"></i></span>
+									</div>
+								</div>
+								<div class="col-md-6" >
+									<div class="form-group" >
+										</div>
+									</div>
+
 							<div class="col-md-12">
 								<div class="form-group">
-									<textarea placeholder="Tell us about your question!"></textarea>
+									
+									<div class="container">
+										<div class="image-upload" id="image-upload">
+								
+											<form method="post" enctype="multipart/form-data">
+												<div class="button">
+													<label for="chooseFile">
+														👉 주차장 이미지 등록 👈
+													</label>
+												</div>
+												<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+											</form>
+								
+											<div class="fileContainer">
+												<div class="fileInput">
+													<p style="color:#20509e">FILE NAME: </p>
+													<p id="fileName"></p>
+												</div>
+											</div>
+										</div>
 								</div>
-								<h5 class="mb-3">Way to Contacts<span>*</span>:</h5>
-								<div class="contact-type">
-									<label class="ct-label">Phone
-										<input type="radio" name="radio">
-										 <span class="checkmark"></span>
-									</label>
-									<label class="ct-label">Email
-										<input type="radio" name="radio">
-										 <span class="checkmark"></span>
-									</label>
-									<label class="ct-label">Other
-										<input type="radio" name="radio">
-										 <span class="checkmark"></span>
-									</label>
-								</div>
-
-								<button class="site-btn sb-gradients mt-4">Submit form</button>
+								
+								<div class="col-md-12">
+									<div class="container-login100-form-btn">
+										<a id="alertStart" class="login100-form-btn">
+											<b style="color: #fff;">공유신청</b>
+										</a>
+									</div>
 							</div>
 						</div>
 					</form>
 				</div>
-				<div class="col-lg-5 mt-5 mt-lg-0">
-					<div class="map" id="map-canvas"></div>
-				</div>
+
 			</div>
 		</div>
 	</section>
@@ -179,15 +264,70 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
+
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
+    <script src= "js/alert4.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
+	<!--====== adress ======-->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		window.onload = function(){
+    	document.getElementById("sample6_address").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        new daum.Postcode({
+				oncomplete: function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var addr = ''; // 주소 변수
 
-	<!-- load for map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0YyDTa0qqOjIerob2VTIwo_XVMhrruxo"></script>
-	<script src="js/map.js"></script>
+	
+					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+					addr = data.jibunAddress;
+
+	
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+
+					document.getElementById("sample6_address").value = addr;
+					// 커서를 상세주소 필드로 이동한다.
+					document.querySelector("input[name=sample6_detailAddress]").focus(); //상세입력 포커싱
+				}
+			}).open();
+		});
+	}
+	</script>
+	<script>
+		function loadFile(input) {
+    var file = input.files[0];	//선택된 파일 가져오기
+
+    //미리 만들어 놓은 div에 text(파일 이름) 추가
+    var name = document.getElementById('fileName');
+    name.textContent = file.name;
+
+  	//새로운 이미지 div 추가
+    var newImage = document.createElement("img");
+    newImage.setAttribute("class", 'img');
+
+    //이미지 source 가져오기
+    newImage.src = URL.createObjectURL(file);   
+
+    newImage.style.width = "70%";
+    newImage.style.height = "70%";
+    newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지를 숨긴다
+    newImage.style.objectFit = "contain";
+
+    //이미지를 image-show div에 추가
+    var container = document.getElementById('image-show');
+    container.appendChild(newImage);
+};
+	</script>
+
+	
 
 </body>
 </html>
