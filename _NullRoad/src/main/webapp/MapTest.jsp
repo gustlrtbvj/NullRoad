@@ -9,9 +9,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>nroad 주차장 찾기</title>
-    <style>
+<meta charset="UTF-8">
+<meta name="description" content="Cryptocurrency Landing Page Template">
+<meta name="keywords" content="cryptocurrency, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicon -->
+<link href="img/favicon.ico" rel="shortcut icon" />
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato"
+	rel="stylesheet">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="css/themify-icons.css" />
+<link rel="stylesheet" href="css/owl.carousel.css" />
+<link rel="stylesheet" href="css/style.css" />
+<style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
@@ -87,6 +102,71 @@
 </style>
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section clearfix">
+		<div class="container-fluid">
+			<a href="main.html" class="site-logo"
+				style="font-family: ImcreSoojin; font-size: 40px;"> nroad </a>
+			<div class="responsive-bar" style="margin-top: 10px;">
+				<i class="fa fa-bars"></i>
+			</div>
+			<a href="" class="user" style="margin-top: 10px;"><i
+				class="fa fa-user"></i></a> <a href="login.html" class="site-btn">로그인</a>
+			<nav class="main-menu">
+
+				<ul class="menu-list">
+					<div class="dropdown">
+						<button class="dropbtn">
+							<b>About us&nbsp;</b>
+						</button>
+						<div class="dropdown-content">
+							<a href="about.html">개발의도</a> <a href="gide.html">사용방법</a>
+
+						</div>
+					</div>
+					<div class="dropdown">
+						<button class="dropbtn">
+							<b>Community&nbsp;</b>
+						</button>
+						<div class="dropdown-content">
+							<a href="#">리뷰게시판</a> <a href="board.html">자유게시판</a>
+
+						</div>
+					</div>
+					<div class="dropdown">
+						<button class="dropbtn">
+							<b>Service</b>
+						</button>
+						<div class="dropdown-content">
+							<a href="contact.html">공유하기</a> <a href="one.html">1:1문의</a> <a
+								href="#">Q&A</a> <a href="mypage.html">마이페이지</a>
+						</div>
+					</div>
+
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Page info section -->
+	<div class = "mobile">
+	<section class="page-info-section">
+		<div class="container">
+		</div>
+	</section>
+	</div>
+	<!-- Page info end -->
+
+   
+	<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+	
     <div class="map_wrap">
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
         <p>
@@ -121,7 +201,7 @@
     var markers = [];
     var marker=[];
     <%
-    	  DAO dao = new DAO();
+    	DAO dao = new DAO();
 		// 나중에 고쳐서 쓸것
 		//ArrayList<BuildingVO> positions = new ArrayList<BuildingVO>();
 		ArrayList<BuildingVO> bldlist=dao.BldSel();
@@ -149,14 +229,14 @@
 	    '            <span class="title"><%=bldhidon.get(i).getSigungu()%> <%=bldhidon.get(i).getEmdong()%> <%=bldhidon.get(i).getDetail_addr()%></span>' +
 	    '        </li>' +
 	    '        <li>' +
-	    
+	    				
 	    '            <span class="title">가격</span>' +
 	    
 
 	    '        </li>' +
 	    '        <li>' +
 	    
-	    '            <span class="title">예약</span>' +
+	    '            <button id="ressel" onclick = "clickFunction(<%=bldhidon.get(i).getBld_seq()%>)">예약</button>' +
 	    
 	    
 	    '        </li>' +
@@ -198,6 +278,7 @@
             kakao.maps.event.addListener(marker[i], 'click', function() {
             return function() {
              overlay[i].setMap(map);
+             
             
          };
         }(overlay));
@@ -214,6 +295,10 @@
         
         
     }
+    function selectRes(i){
+    	bldhidon[i]
+    }
+    
     // 장소 검색 객체를 생성합니다
     var ps = new kakao.maps.services.Places();  
     
@@ -431,6 +516,30 @@
     // 지도에 추가된 지도타입정보를 가지고 있을 변수입니다
 var currentTypeId;
 
+    // 예약버튼 눌렀을때 정보 전송
+	
+var test=0;
+	function clickFunction(data){
+    		
+    	
+			//1. 보내줄 데이터 정리하기
+			<%-- <% 
+			System.out.print("들어오닝");
+
+			HttpSession session2 = request.getSession();
+			session2.setAttribute("bldhidon", bldhidon.get(data));
+			%> --%>
+			
+			console.log("test"+data);
+			test=data;
+			
+
+			//2. 이동
+			location.href = "booking.jsp?data="+data;
+			sessionStorage.setItem("bldhidon", test);
+		
+	}
+    
 
 // 버튼이 클릭되면 호출되는 함수입니다
 function setOverlayMapTypeId(maptype) {
@@ -456,6 +565,32 @@ function setOverlayMapTypeId(maptype) {
     currentTypeId = changeMaptype;        
 }
     </script>
-    
+    <!-- Footer section -->
+	<footer class="footer-section">
+		<div class="container">
+			<div class="row spad">
+
+
+				<div class="footer-bottom">
+					<div class="row">
+
+						<div class="col-lg-8 text-center text-lg-right">
+							<ul class="footer-nav">
+								<li><a href=""></a></li>
+								<li><a href="">King Jo</a></li>
+								<li><a href="">60, Songam-ro, Nam-gu, Gwangju, Republic
+										of Korea</a></li>
+								<li><a href="">bszt123@naver.com</a></li>
+								<li><a href="">010-3083-0491</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+	</footer>
+    <!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
     </body>    
 </html>

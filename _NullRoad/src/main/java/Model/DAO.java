@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DAO {
 
@@ -54,8 +55,7 @@ public class DAO {
 		}
 	}
 
-	public int Join
-	(String m_id, String m_pw, String m_name, String m_jumin, String m_phone, String m_car_num, 
+	public int Join(String m_id, String m_pw, String m_name, String m_jumin, String m_phone, String m_car_num,
 			String m_account) {
 		// 메소드의 매개변수는 name에서 가져오는 값
 		try {
@@ -72,7 +72,6 @@ public class DAO {
 			psmt.setString(5, m_phone);
 			psmt.setString(6, m_car_num);
 			psmt.setString(7, m_account);
-
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -129,7 +128,7 @@ public class DAO {
 	}
 
 	// ===============================================================================
-	public int BldRegCon(String m_id, int bld_prk_lots, String bld_owner,	String bld_owner_phone, String sigungu, 
+	public int BldRegCon(String m_id, int bld_prk_lots, String bld_owner, String bld_owner_phone, String sigungu,
 			String emdong, String detail_addr, String bld_name, String bld_picture1, String bld_picture2) {
 
 		try {
@@ -137,7 +136,6 @@ public class DAO {
 			String sql = "INSERT INTO t_building (m_id, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_name, bld_picture1, bld_picture2) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, sysdate, ?, null, null)";
 			psmt = conn.prepareStatement(sql);
-
 
 			psmt.setString(1, m_id);
 			psmt.setInt(2, bld_prk_lots);
@@ -150,9 +148,8 @@ public class DAO {
 			psmt.setString(9, bld_picture1);
 			psmt.setString(10, bld_picture2);
 
-
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -162,8 +159,7 @@ public class DAO {
 	}
 
 //===============================================================================
-	public int PrkRegCon(String prk_time, String prk_day, int prk_fee, int prk_status,
-			String prk_memo, int bld_seq) {
+	public int PrkRegCon(String prk_time, String prk_day, int prk_fee, int prk_status, String prk_memo, int bld_seq) {
 		try {
 			Conn();
 			String sql = "INSERT INTO t_parking (prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq) VALUES (?, ?, 1000, 0, ?, ?);";
@@ -177,7 +173,7 @@ public class DAO {
 			psmt.setInt(6, bld_seq);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 		} finally {
 			close();
@@ -187,8 +183,8 @@ public class DAO {
 
 	// ===============================================================================
 
-	public int ResCon(int prk_seq, String chk_in_time, String chk_out_time,
-			int res_status, String res_reg_date, int user_prk_fee, String m_id) {
+	public int ResCon(int prk_seq, String chk_in_time, String chk_out_time, int res_status, String res_reg_date,
+			int user_prk_fee, String m_id) {
 
 		try {
 			Conn();
@@ -204,7 +200,7 @@ public class DAO {
 			psmt.setString(7, m_id);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 		} finally {
 			close();
@@ -216,7 +212,7 @@ public class DAO {
 	// ===============================================================================
 
 	public int ReviewCon(int rev_seq, String rev_subject, String rev_content, int res_seq, String m_id,
-			String rev_reg_date, int rev_cnt,int rev_status) {
+			String rev_reg_date, int rev_cnt, int rev_status) {
 		try {
 			Conn();
 			String sql = "insert into t_review values(t_review_seq.nextval, ?, ?, ?, ?, ?, sysdate, ?, ?)";
@@ -232,7 +228,7 @@ public class DAO {
 			psmt.setInt(8, rev_status);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -255,7 +251,7 @@ public class DAO {
 			psmt.setString(5, m_id);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -265,7 +261,7 @@ public class DAO {
 	}
 
 	public int CommunityCon(int comm_seq, String comm_subject, String comm_content, String comm_reg_date, int comm_cnt,
-			String m_id,int comm_status) {
+			String m_id, int comm_status) {
 		try {
 			Conn();
 			String sql = "insert into t_community values(t_community_seq.nextval, ?, ?, sysdate, ?, ?, ?)";
@@ -277,10 +273,10 @@ public class DAO {
 			psmt.setString(4, comm_reg_date);
 			psmt.setInt(5, comm_cnt);
 			psmt.setString(6, m_id);
-			psmt.setInt(7,comm_status);
+			psmt.setInt(7, comm_status);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -303,9 +299,9 @@ public class DAO {
 			psmt.setString(3, comm_rep_content);
 			psmt.setString(4, comm_rep_reg_date);
 			psmt.setString(5, m_id);
-			
+
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -328,9 +324,9 @@ public class DAO {
 			psmt.setInt(5, cs_art_cnt);
 			psmt.setString(6, m_id);
 			psmt.setInt(7, cs_art_status);
-			
+
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -353,7 +349,7 @@ public class DAO {
 			psmt.setString(5, m_id);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -375,7 +371,7 @@ public class DAO {
 			psmt.setInt(4, refd_exqt);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -386,8 +382,8 @@ public class DAO {
 
 	// ===============================================================================
 
-	public ArrayList<BuildingVO> BldSel(){
-		
+	public ArrayList<BuildingVO> BldSel() {
+
 		ArrayList<BuildingVO> bldlist = new ArrayList<BuildingVO>();
 
 		try {
@@ -395,20 +391,19 @@ public class DAO {
 			String sql = "select * from t_building";
 			psmt = conn.prepareStatement(sql);
 
-
 			// 5.
 			// select -> executeQuery() --> return ResultSet
 			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
 			rs = psmt.executeQuery();
 
-			while(rs.next() == true) {
+			while (rs.next() == true) {
 				int bld_seq = rs.getInt(1);
 				String m_id = rs.getString(2);
 				double bld_lati = rs.getDouble(3);
 				double bld_longi = rs.getDouble(4);
 				int bld_prk_lots = rs.getInt(5);
 				String bld_owner = rs.getString(6);
-				String bld_owner_phone= rs.getString(7);
+				String bld_owner_phone = rs.getString(7);
 				String sigungu = rs.getString(8);
 				String emdong = rs.getString(9);
 				String detail_addr = rs.getString(10);
@@ -419,34 +414,95 @@ public class DAO {
 				String bld_picture2 = rs.getString(15);
 
 				BuildingVO bldvo = new BuildingVO();
-				
+
 				bldlist.add(bldvo);
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		}finally {
-			//6. 연결을 닫아주기
+		} finally {
+			// 6. 연결을 닫아주기
 			try {
-				if(rs != null) {
+				if (rs != null) {
 					rs.close();
 				}
-				if(psmt != null) {
+				if (psmt != null) {
 					psmt.close();
 				}
-				if(conn !=null ) {
+				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e2) {
-			
+
 			}
-		
+
 		}
 		return bldlist;
 	}
-	
-	public ArrayList<CommunityVO> CommSel(){
-		
+
+	public ArrayList<BuildingVO> BldSelOne(int bld_num) {
+
+		ArrayList<BuildingVO> bldlist = new ArrayList<BuildingVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_building where bld_seq=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, bld_num);
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				int bld_seq = rs.getInt(1);
+				String m_id = rs.getString(2);
+				double bld_lati = rs.getDouble(3);
+				double bld_longi = rs.getDouble(4);
+				int bld_prk_lots = rs.getInt(5);
+				String bld_owner = rs.getString(6);
+				String bld_owner_phone = rs.getString(7);
+				String sigungu = rs.getString(8);
+				String emdong = rs.getString(9);
+				String detail_addr = rs.getString(10);
+				String bld_reg_date = rs.getString(11);
+				int bld_approve = rs.getInt(12);
+				String bld_name = rs.getString(13);
+				String bld_picture1 = rs.getString(14);
+				String bld_picture2 = rs.getString(15);
+
+				BuildingVO bldvo = new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner,
+						bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve, bld_name,
+						bld_picture1, bld_picture2);
+
+				bldlist.add(bldvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+		return bldlist;
+	}
+
+	public ArrayList<CommunityVO> CommSel() {
+
 		System.out.println("arr");
 		ArrayList<CommunityVO> Commlist = new ArrayList<CommunityVO>();
 
@@ -461,53 +517,53 @@ public class DAO {
 
 			rs = psmt.executeQuery();
 			System.out.println("나는 rs입니다." + rs);
-			while(rs.next() == true) {
-				
+			while (rs.next() == true) {
+
 				int comm_seq = rs.getInt(1);
 				String comm_subject = rs.getString(2);
 				String comm_content = rs.getString(3);
 				String comm_reg_date = rs.getString(4);
 				int comm_cnt = rs.getInt(5);
 				String m_id = rs.getString(6);
-				int comm_status= rs.getInt(7);
+				int comm_status = rs.getInt(7);
 				System.out.println("rs");
-				CommunityVO cvo = new CommunityVO(comm_seq, comm_subject, comm_subject, comm_reg_date, comm_cnt, m_id, comm_status);
+				CommunityVO cvo = new CommunityVO(comm_seq, comm_subject, comm_subject, comm_reg_date, comm_cnt, m_id,
+						comm_status);
 				System.out.println(cvo);
 				Commlist.add(cvo);
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		}finally {
-			//6. 연결을 닫아주기
+		} finally {
+			// 6. 연결을 닫아주기
 			try {
-				if(rs != null) {
+				if (rs != null) {
 					rs.close();
 				}
-				if(psmt != null) {
+				if (psmt != null) {
 					psmt.close();
 				}
-				if(conn !=null ) {
+				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e2) {
-			
+
 			}
-		
+
 		}
-		
+
 		return Commlist;
 	}
 
-public ArrayList<BuildingVO> BldHidOn(){
-		
+	public ArrayList<BuildingVO> BldHidOn() {
+
 		ArrayList<BuildingVO> bldlist = new ArrayList<BuildingVO>();
 
 		try {
 			Conn();
 			String sql = "select * from t_building where bld_seq in (select distinct bld_seq from t_parking where prk_status = 0) and bld_approve = 1";
 			psmt = conn.prepareStatement(sql);
-
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -521,7 +577,7 @@ public ArrayList<BuildingVO> BldHidOn(){
 				double bld_longi = rs.getDouble(4);
 				int bld_prk_lots = rs.getInt(5);
 				String bld_owner = rs.getString(6);
-				String bld_owner_phone= rs.getString(7);
+				String bld_owner_phone = rs.getString(7);
 				String sigungu = rs.getString(8);
 				String emdong = rs.getString(9);
 				String detail_addr = rs.getString(10);
@@ -531,42 +587,43 @@ public ArrayList<BuildingVO> BldHidOn(){
 				String bld_picture1 = rs.getString(14);
 				String bld_picture2 = rs.getString(15);
 
-				BuildingVO bldvo = new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve, bld_name, bld_picture1, bld_picture2);
-				
+				BuildingVO bldvo = new BuildingVO(bld_seq, m_id, bld_lati, bld_longi, bld_prk_lots, bld_owner,
+						bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_approve, bld_name,
+						bld_picture1, bld_picture2);
+
 				bldlist.add(bldvo);
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		}finally {
-			//6. 연결을 닫아주기
+		} finally {
+			// 6. 연결을 닫아주기
 			try {
-				if(rs != null) {
+				if (rs != null) {
 					rs.close();
 				}
-				if(psmt != null) {
+				if (psmt != null) {
 					psmt.close();
 				}
-				if(conn !=null ) {
+				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e2) {
-			
+
 			}
-		
+
 		}
 		return bldlist;
 	}
-	
-	public ArrayList<ParkingVO> PrkSel(){
-		
+
+	public ArrayList<ParkingVO> PrkSel() {
+
 		ArrayList<ParkingVO> prklist = new ArrayList<ParkingVO>();
 
 		try {
 			Conn();
 			String sql = "select * from t_parking";
 			psmt = conn.prepareStatement(sql);
-
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -580,45 +637,43 @@ public ArrayList<BuildingVO> BldHidOn(){
 				int prk_fee = rs.getInt(4);
 				int prk_status = rs.getInt(5);
 				String prk_memo = rs.getString(6);
-				int bld_seq= rs.getInt(7);
-				
+				int bld_seq = rs.getInt(7);
 
 				ParkingVO prkvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
-				
+
 				prklist.add(prkvo);
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		}finally {
-			//6. 연결을 닫아주기
+		} finally {
+			// 6. 연결을 닫아주기
 			try {
-				if(rs != null) {
+				if (rs != null) {
 					rs.close();
 				}
-				if(psmt != null) {
+				if (psmt != null) {
 					psmt.close();
 				}
-				if(conn !=null ) {
+				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e2) {
-			
+
 			}
-		
+
 		}
 		return prklist;
 	}
-	
-	public ArrayList<ReservationVO> ResSel(){
-		
+
+	public ArrayList<ReservationVO> ResSel() {
+
 		ArrayList<ReservationVO> reslist = new ArrayList<ReservationVO>();
 
 		try {
 			Conn();
 			String sql = "select * from t_reservation";
 			psmt = conn.prepareStatement(sql);
-
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -631,48 +686,82 @@ public ArrayList<BuildingVO> BldHidOn(){
 				String chk_in_time = rs.getString(3);
 				String chk_out_time = rs.getString(4);
 				int res_status = rs.getInt(5);
-				String res_reg_date= rs.getString(6);
-				int user_prk_fee= rs.getInt(7);
-				String m_id= rs.getString(8);
-				
+				String res_reg_date = rs.getString(6);
+				int user_prk_fee = rs.getInt(7);
+				String m_id = rs.getString(8);
 
-				ReservationVO resvo = new ReservationVO(res_seq, prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id);
-				
+				ReservationVO resvo = new ReservationVO(res_seq, prk_seq, chk_in_time, chk_out_time, res_status,
+						res_reg_date, user_prk_fee, m_id);
+
 				reslist.add(resvo);
 			}
 		} catch (Exception e) {
 
 			e.printStackTrace();
-		}finally {
-			//6. 연결을 닫아주기
+		} finally {
+			// 6. 연결을 닫아주기
 			try {
-				if(rs != null) {
+				if (rs != null) {
 					rs.close();
 				}
-				if(psmt != null) {
+				if (psmt != null) {
 					psmt.close();
 				}
-				if(conn !=null ) {
+				if (conn != null) {
 					conn.close();
 				}
 			} catch (Exception e2) {
-			
+
 			}
-		
+
 		}
 		return reslist;
 	}
 
-	public int BldRegUpdCon(String m_id, int bld_seq, int bld_prk_lots, String bld_owner, String bld_owner_phone, String sigungu,
-			String emdong, String detail_addr, String bld_name, String bld_picture1, String bld_picture2) {
+	public int ResPrkUpdate(int prk_status, int prk_seq) {
+
+		try {
+
+			Conn();
+
+			String sql = "update t_parking set prk_status = 0 where prk_seq=?";
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, prk_status);
+			psmt.setInt(2, prk_seq);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			// 6. 연결의 닫아주기
+			try {
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		return cnt;
+	}
+
+	public int BldRegUpdCon(String m_id, int bld_seq, int bld_prk_lots, String bld_owner, String bld_owner_phone,
+			String sigungu, String emdong, String detail_addr, String bld_name, String bld_picture1,
+			String bld_picture2) {
 
 		try {
 			Conn();
 			String sql = "UPDATE t_building set bld_prk_lots ='?', bld_owner ='?', bld_owner_phone ='?',sigungu ='?', emdong='?', "
 					+ "detail_addr='?', bld_reg_date='?', bld_name='?', bld_picture1='?', bld_picture2='?' where bld_seq=? and m_id=?";
-			
-			psmt = conn.prepareStatement(sql);
 
+			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, bld_prk_lots);
 			psmt.setString(2, bld_owner);
@@ -685,19 +774,15 @@ public ArrayList<BuildingVO> BldHidOn(){
 			psmt.setString(9, bld_picture2);
 			psmt.setInt(10, bld_seq);
 			psmt.setString(11, m_id);
-			
-
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 
 		} finally {
 			close();
 		}
-		
-		
-	return 0;
+
+		return cnt;
 	}
-	
 }
