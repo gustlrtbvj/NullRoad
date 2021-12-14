@@ -172,16 +172,13 @@
 
 
 	<!-- Page info section -->
-	<section class="page-info-section">
-		<div class="container">
-			<h2></h2>
-			<div class="site-beradcamb">
-				<a href=""></a>
-				
-			</div>
+	<div class = "mobile">
+		<section class="page-info-section">
+		  <div class="container">
+		  </div>
+		</section>
 		</div>
-	</section>
-	<!-- Page info end -->
+		<!-- Page info end -->
 
 
 	<!-- About section -->
