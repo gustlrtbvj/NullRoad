@@ -1569,6 +1569,7 @@ ol {
 ---------------------*/
 
 @media (min-width: 1200px) {
+	
 	.container {
 		max-width: 1170px;
 	}
@@ -1758,7 +1759,7 @@ ol {
 
 @media only screen and (max-width: 767px) {
 	.board-form{
-		margin: 0 0px;
+		margin: 0 0 0 0px;
 	}
 	.col-md-12{
 		width: 100%;
@@ -1909,7 +1910,7 @@ ol {
 
 @media only screen and (max-width: 479px) {
 	.board-form{
-		margin: 0 0px;
+		margin: 0 0 0 0px;
 	}
 	.review-text {
 		padding: 0 45px;
