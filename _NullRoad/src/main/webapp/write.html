@@ -19,12 +19,16 @@
         <link rel="stylesheet" href="css/owl.carousel.css"/>
         <link rel="stylesheet" href="css/style3.css"/>
         <link rel="stylesheet" href="css/common.css"/>
+
     <style>
-        .footer-nav li a {
+
+
+  .footer-nav li a {
 	color: #75849a;
 	font-size: 14px;
 	margin-left: 20px;
 }
+ 
 .container-login100-form-btn {
   width: 100%;
   display: -webkit-box;
@@ -64,6 +68,7 @@
 .login100-form-btn:hover {
   background: #484748;
 }
+
 
 
     </style>
@@ -131,36 +136,27 @@
         <!-- Page info end -->
     
  
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <div class="section">
+
+
             <!-- 1:1 문의 -->
-            <div class="section-box first">
+
+          
 
     
-    
+            <p>&nbsp;</p><p>&nbsp;</p>
+            <p>&nbsp;</p><p>&nbsp;</p>
+            <p>&nbsp;</p><p>&nbsp;</p>
+
                 <table class="board-form">
-                  <caption>1:1 문의 입력</caption>
-                  <colgroup>
+                  <!-- <colgroup>
                     <col style="width:16%;">
                     <col style="width:84%;">
-                  </colgroup>
+                  </colgroup> -->
                   <tbody>
+                    
                     <tr>
-                      <th scope="row"><label for="qnaType">게시판선택</label></th>
-                      <td>
-                        <select style="width:184px;" name="h-qnaType" id="qnaType">
-
-                          <option value="oXTZ14vP4A7iA+dtYSy1mg==">자유게시판</option>
-           
-                          <option value="06CtGRc/iWnD/mHWn2u7xw==">리뷰게시판</option>
-
-
-
-                      
-                        </select>
-                      </td>
+                      <th scope="row"><label for="content">제목</label></th>
+                      <td><input type="text" name="title2" style="width:100%;"></td>
                     </tr>
      
     
@@ -168,7 +164,7 @@
                     <tr>
                       <th scope="row"><label for="content">내용</label></th>
                       <td>
-                        <textarea id="content" name="content" rows="10" cols="90" style="width:748px;height:286px;"></textarea>
+                        <textarea id="content" name="content" rows="10" cols="90" style="width:100%;height:100%;"></textarea>
                       </td>
                     </tr>
                     <tr>
@@ -180,8 +176,6 @@
   
                               <input type="file" name="imgPath1" id="imgPath1">
                               <div class="file-item hide">
-
-
                               </div>
                             </div>
                           </div>
@@ -204,7 +198,8 @@
                 </div>
 
 
-            </div>
+    
+     
             <!-- //1:1 문의 -->
 
     
@@ -246,7 +241,7 @@
                 title: '게시글이 등록되었습니다',
                 closeOnClickOutside : false
             }).then(function(){
-                location.href="board.html"
+                location.href="boardreal.html"
                 
             });
             });
