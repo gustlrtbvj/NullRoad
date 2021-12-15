@@ -118,11 +118,6 @@
 </head>
 <body>
 
-<%
-	String emdong= "송하동";
-	DAO dao = new DAO();
-	ArrayList<ChartFeeVO> cfvo = dao.chartData(emdong);
-%>
 
     <!-- Page Preloder -->
 <div id="preloder">
@@ -601,9 +596,24 @@
     });
     </script>
     <script type="text/javascript">
-    
+    <%
+	DAO dao = new DAO();
+	ArrayList<ChartFeeVO> cfvo = dao.chartData();
+	%>
+	let emdong = "송하동";
+	let static_data = <%=cfvo%>
+	callFunction(emdong);
+	
+    $(function callFunction(let emdong) {
     let SQL = ["총수익","평균수익","이용 수","공유 수","행사 정보","날짜"];
-    $(function callFunction() {
+    
+    for (let statics : static_data){
+    	console.log(statics[0]);
+    	console.log(statics[1]);
+    	console.log(statics[2]);
+    	console.log(statics[3]);
+    	console.log(statics[4]);
+    	}
 		var tr_length = $('#data_table tr').length;
 		var td_length = $('#data_table td').length;
 		var tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
