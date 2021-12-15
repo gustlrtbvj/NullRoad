@@ -125,6 +125,8 @@
 							<div class="user_class" style="font-size:18px;">사용시간 : </div>
 							<p>&nbsp;</p>
 							<div class="user_mail" style="font-size:18px;">결제 요금 : </div>
+							<p>&nbsp;</p>
+							<div class="user_mail" style="font-size:18px;">잔여 포인트 : </div>
 						</div>
 						
 					</div>
