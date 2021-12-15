@@ -150,7 +150,7 @@
 						<div class="dropdown-content">
 						  <a href="contact.html">공유하기</a>
 						  <a href="one.html">1:1문의</a>
-						  <a href="qNA.html">Q&A</a>
+						  <a href="#">Q&A</a>
 						  <a href="mypage.html">마이페이지</a>
 						</div>
 					  </div>
@@ -183,18 +183,18 @@
     
     <div id="chartBody" style="width:100% ;height:45%">
         
-
+        <div class="mychart mychartsection2"> 
+            <div class="col-md-12">
+                <canvas id="myChartone" style="width:100vw ; height:30vh"></canvas>
+            </div>
+        </div>
+        
         <div class="mychart on mychartsection1">
             <div class="col-md-12">
                 <canvas id="myChartone1" style="width:100vw ; height:30vh"></canvas>
             </div>
         </div>
 
-        <div class="mychart mychartsection2"> 
-            <div class="col-md-12">
-                <canvas id="myChartone" style="width:100vw ; height:30vh"></canvas>
-            </div>
-        </div>
         <div class="chartTab">
                            
             <div>    
@@ -478,14 +478,14 @@
         function(){
             $(".mychartsection1").removeClass("on");
             $(".mychartsection2").removeClass("on");
-            $(".mychartsection2").addClass("on");
+            $(".mychartsection1").addClass("on");
         }
     );
     $(".chartTab a:nth-child(2)").click(
         function(){
             $(".mychartsection1").removeClass("on");
             $(".mychartsection2").removeClass("on");
-            $(".mychartsection1").addClass("on");
+            $(".mychartsection2").addClass("on");
         }
     );
     

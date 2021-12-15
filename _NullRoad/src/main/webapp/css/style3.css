@@ -106,27 +106,6 @@ table .time:before {content:'';position:absolute;top:50%;left:0;width:1px;height
 .tbltr-linenone > td{border-bottom : none !important;}
 .tbltr-linenone > td{padding: 19px 20px 0 0 !important;}
 
-/*페이징*/
-.paginate {text-align:center}
-.paginate a, .paginate strong {display:inline-block;width:30px;height:30px;margin:0 1px;line-height:27px;vertical-align:top;color:#767676}
-.paginate > a {margin:0 3px 0 2px;background:url(/asset/v2/images/common/sp_greencar.png?v=191128) no-repeat}
-.paginate > .first {background-position:0 -29px}
-.paginate > .prev {background-position:-35px -29px}
-.paginate > .next {background-position:-70px -29px}
-.paginate > .last {background-position:-105px -29px}
-.paginate > .first:hover {background-position:0 -64px}
-.paginate > .prev:hover {background-position:-35px -64px}
-.paginate > .next:hover {background-position:-70px -64px}
-.paginate > .last:hover {background-position:-105px -64px}
-.paginate .num {padding:0 15px 0 14px}
-.paginate .num a {margin:0 1px}
-.paginate .num a:hover {text-decoration:underline}
-.paginate .num .s-active {color:#3c3c3c;text-decoration:underline}
-.u-attention + .paginate {margin-top:40px}
-.paginate-wrap {position:relative;height:44px;margin-top:40px}
-.paginate-wrap .u-btn {position:absolute;top:0;right:20px}
-.paginate-wrap .paginate {padding-top:7px}
-
 
 
 /* =================================
@@ -1778,8 +1757,15 @@ ol {
 /* Large Mobile :480px. */
 
 @media only screen and (max-width: 767px) {
+	.col-md-12{
+		width: 100%;
+	}
+	.col-md-8{
+		width: 100%;
+	}
 	.mobile{
-	display:none;}
+		display: none;
+	}
 	.header-section {
 		padding: 30px 0;
 		background: #fff;
@@ -1962,53 +1948,88 @@ ol {
 		padding-left: 0;
 	}
 }
-/* Footer */
+/*---------------------
+	Footer Section
+-----------------------*/
 
-#footer {
-	padding: 100px 0px 90px;
-	background: 000000;
-	text-align: left;
-	color: #7e3bc3;
+.footer-widget span {
+	color: #acb9cc;
 }
 
-	#footer h2 {
-		color: #561499;
-	}
+.footer-widget p {
+	margin-bottom: 20px;
+}
 
-	#footer .icon {
-		color: #c8c8c8;
-	}
+.footer-widget .widget-title {
+	margin-bottom: 30px;
+	font-size: 20px;
+}
 
-	#footer a {
-		color: #7e3bc3;
-		text-decoration: none;
-	}
+.footer-widget ul {
+	list-style: none;
+}
 
+.footer-widget ul a {
+	font-size: 16px;
+	color: #75849a;
+	display: block;
+	margin-bottom: 12px;
+}
 
+.footer-widget ul li:last-child a {
+	margin-bottom: 0;
+}
 
-	#footer .copyright {
-		display: inline-block;
-		color: #7e3bc3;
-		font-size: 0.75em;
-		margin: 0 0 2em 0;
-		padding: 0;
-		text-align: left;
-		border-top: 1px solid rgba(255, 255, 255, 0.25);
-		padding: 2em 10em;
-	}
+.social a {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	color: #fff;
+	display: inline-block;
+	margin-right: 10px;
+	text-align: center;
+	padding-top: 7px;
+	font-size: 18px;
+}
 
-	.number {
-		width: 150px;
-		height: 150px;
-		margin: 0 auto;
-		background-color: #7e3bc3;
-		font-size : 100px;
-		list-style: none;
-		text-align: center;
-		margin-top: 50px;
-		color:#fff;
-		border-radius : 50%;
-	}
+.social a:last-child {
+	margin-right: 0;
+}
+
+.social .facebook {
+	background: #4b6cd0;
+}
+
+.social .google {
+	background: #f03b3b;
+}
+
+.social .instagram {
+	background: #bb8950;
+}
+
+.social .twitter {
+	background: #49a7f3;
+}
+
+.footer-bottom {
+	border-top: 1px solid #ebebeb;
+	padding: 30px 0;
+}
+
+.footer-nav {
+	list-style: none;
+}
+
+.footer-nav li {
+	display: inline-block;
+}
+
+.footer-nav li a {
+	color: #75849a;
+	font-size: 14px;
+	margin-left: 20px;
+}
 
 
 
