@@ -472,7 +472,7 @@
         kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
          var content = '<div class="info">' + 
             '<div class="title">' + name +'<br>'+ 
-            '<a href="#fuck">통계 보러가기</a>'   
+            '<a href="#fuck" onclick="callFunction()">통계 보러가기</a>'   +
             '</div>'
             ;
                
@@ -603,7 +603,7 @@
     <script type="text/javascript">
     
     let SQL = ["총수익","평균수익","이용 수","공유 수","행사 정보","날짜"];
-    $(function() {
+    $(function callFunction() {
 		var tr_length = $('#data_table tr').length;
 		var td_length = $('#data_table td').length;
 		var tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
