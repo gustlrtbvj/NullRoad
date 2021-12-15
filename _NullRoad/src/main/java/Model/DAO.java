@@ -980,7 +980,7 @@ public class DAO {
 		return time;
 
 	}
-public ArrayList<ChartFeeVO> chartData(String emdong) {
+public ArrayList<ChartFeeVO> chartData() {
 		
 		try {
 			Conn();
@@ -991,11 +991,11 @@ public ArrayList<ChartFeeVO> chartData(String emdong) {
 			"from t_reservation r , t_parking p"+
 			"where r.prk_seq = p.prk_seq"+
 			") s, t_building b"+
-			"where s.bld_seq = b.bld_seq and b.emdong = ? "+
+			"where s.bld_seq = b.bld_seq"+
 			"group by b.emdong, TO_CHAR(s.chk_out_time, 'YY-MM-DD')";
 			
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1,emdong);
+			
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet

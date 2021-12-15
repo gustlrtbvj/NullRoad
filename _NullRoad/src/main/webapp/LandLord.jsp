@@ -119,7 +119,6 @@
 <body>
 
 <%
-
 	String emdong= "송하동";
 	DAO dao = new DAO();
 	ArrayList<ChartFeeVO> cfvo = dao.chartData(emdong);
@@ -228,58 +227,74 @@
 </div>
 <br><br>   
     <div style="margin:10px"; id = "table";>
-        <table class="content-table">
+        <table class="content-table" id="data_table">
             <thead>
                 <tr>
-                    <th>송하동</th>
                     <th>총 수익</th>
                     <th>평균수익</th>
                     <th>이용 수</th>
                     <th>공유 수</th>
+                    <th>행사 정보</th>
                     <th>날짜</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
-                    <td>1</td>
-                    <td>234</td>
-                    <td>12</td>
-                    <td>1</td>
-                    <td>21.11.12</td>
-                </tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+               <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
                 <tr>
-                    <td></td>
-                    <td>1</td>
-                    <td>234</td>
-                    <td>12</td>
-                    <td>1</td>
-                    <td>21.11.12</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>1</td>
-                    <td>234</td>
-                    <td>12</td>
-                    <td>1</td>
-                    <td>21.11.12</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>1</td>
-                    <td>234</td>
-                    <td>12</td>
-                    <td>1</td>
-                    <td>21.11.12</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>1</td>
-                    <td>234</td>
-                    <td>12</td>
-                    <td>1</td>
-                    <td>21.11.12</td>
-                </tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+             <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+          <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -584,6 +599,20 @@
             }
         }
     });
+    </script>
+    <script type="text/javascript">
+    
+    let SQL = ["총수익","평균수익","이용 수","공유 수","행사 정보","날짜"];
+    $(function() {
+		var tr_length = $('#data_table tr').length;
+		var td_length = $('#data_table td').length;
+		var tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
+			for (var i = 0; i < tr_length; i++) {
+    			for (var j = 0; j < td_length; j++) {
+        			$("#data_table tr:eq("+i+") td:eq("+j+")").html(SQL[j]);
+	    		}
+			}
+		});
     </script>
 
 </body>

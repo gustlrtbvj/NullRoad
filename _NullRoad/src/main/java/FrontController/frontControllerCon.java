@@ -49,6 +49,10 @@ public class frontControllerCon extends HttpServlet {
 			exe = new ReviewCon();
 		} else if (command.equals("/RevMent.do")) {
 			exe = new RevMentCon();
+		} else if (command.equals("/Community.do")) {
+			exe = new CommunityCon();
+		} else if (command.equals("/CommRep.do")) {
+			exe = new CommRepCon();
 		} else if (command.equals("/CustomerCenter.do")) {
 			exe = new CustomerCenterCon();
 		} else if (command.equals("/CsReply.do")) {
@@ -57,18 +61,12 @@ public class frontControllerCon extends HttpServlet {
 			exe = new RefundCon();
 		} else if (command.equals("/BldRegUpd.do")) {
 			exe = new BldRegUpdCon();
-		} else if (command.equals("/PayLogin.do")) {
+		}else if (command.equals("/PayLogin.do")) {
 			exe = new PayLoginCon();
-		} else if (command.equals("/PayUseService.do")) {
+		}else if (command.equals("/PayUseService.do")) {
 			exe = new PayUseService();
-		} else if (command.equals("/PaymentService.do")) {
+		}else if (command.equals("/PaymentService.do")) {
 			exe = new PaymentService();
-		} else if (command.equals("/SelectBoard.do")) {
-			exe = new SelectBoardCon();
-		} else if (command.equals("/CommRepCon.do")) {
-			exe = new CommRepCon();
-		} else if (command.equals("/Delete.do")) {
-			exe = new DeleteBoardCon();
 		}
 
 		exe.execute(request, response);
