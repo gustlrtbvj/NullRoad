@@ -19,10 +19,28 @@ public class CommunityVO {
 		this.m_id = m_id;
 		this.comm_status = comm_status;
 	}
+	public CommunityVO(String comm_subj, String comm_content,
+			String m_id) {
+		super();
+		this.comm_subj = comm_subj;
+		this.comm_content = comm_content;
+		this.m_id = m_id;
+
+	}
+	public CommunityVO(int comm_seq, String comm_content) {
+		super();
+		this.comm_seq = comm_seq;
+		this.comm_content = comm_content;
+
+	}
+	public CommunityVO(int comm_seq) {
+		super();
+		this.comm_seq = comm_seq;
+	}
 	public int getComm_seq() {
 		return comm_seq;
 	}
-	public void setComm_seq(int comm_seq) {
+	public void setComm_seq(int comm_seq) {	
 		this.comm_seq = comm_seq;
 	}
 	public String getComm_subj() {

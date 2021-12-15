@@ -4,6 +4,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Model.BoardDAO;
 import Model.CommunityRepVO;
 import Model.CommunityVO;
 import Model.DAO;
@@ -13,31 +14,42 @@ public class CommRepCon implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			request.setCharacterEncoding("euc-kr");
+			request.setCharacterEncoding("EUC-KR");
+			System.out.println("실행?");
 			
 			
-			int comm_rep_seq= Integer.parseInt(request.getParameter("comm_rep_seq"));
-			int comm_seq= Integer.parseInt(request.getParameter("comm_seq"));
-			String comm_rep_content= request.getParameter("comm_rep_content");
-			String comm_rep_reg_date= request.getParameter("comm_rep_reg_date");
-			String m_id= request.getParameter("m_id");
+			String savePath = request.getServletContext().getRealPath("img");
 			
-			DAO dao = new DAO();
+			//2. 최대파일 크기(단위 : byte) : 5MB
+			int maxSize = 5*1024*1024;
 			
-			int cnt = dao.CommRepCon(comm_rep_seq,comm_seq,comm_rep_content,comm_rep_reg_date,m_id); 
+			//3. 인코딩 타입
+			String encoding = "EUC-KR";
 			
+			//4. request를 대신 해서 받아온 데이터를 정제해줄 MultipartRequest 객체
+			// 파라미터 수집
+			// MultipartRequest 객체로부터 파라미터 수집
+			int comm_seq = Integer.parseInt(request.getParameter("num"));
+			String comm_rep_content = request.getParameter("message");
+			
+			System.out.println(comm_seq);
+			
+			System.out.println(comm_rep_content);
+			BoardDAO dao = new BoardDAO();
+			
+			int cnt = dao.CommRepCon(comm_seq, comm_rep_content); 
+			System.out.println(cnt);
 			if(cnt>0) {
 				System.out.println("댓글 작성 성공");
 		
-	         request.setAttribute("commrepvo", new CommunityRepVO(comm_rep_seq, comm_seq, comm_rep_content, comm_rep_reg_date, m_id));
+	         request.setAttribute("bvo", new CommunityVO(comm_seq));
 						
 	         // Forward 방식
-	         RequestDispatcher rd = request.getRequestDispatcher("#");
+	         RequestDispatcher rd = request.getRequestDispatcher("SelectBoard.do?comm_seq="+comm_seq);
 	         // 페이지 이동
 	         rd.forward(request, response);
 			}else{
 		         System.out.println("댓글 작성 실패");
-		         response.sendRedirect("main.jsp");
 			}
 			
 			
@@ -46,5 +58,7 @@ public class CommRepCon implements Command{
 		}
 		
 	}
+		
+	}
 
-}
+

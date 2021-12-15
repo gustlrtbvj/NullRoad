@@ -1,4 +1,5 @@
 
+<%@page import="Model.BoardDAO"%>
 <%@page import="Model.MemberVO"%>
 <%@page import="Model.CommunityVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -35,7 +36,7 @@
 	if (session.getAttribute("cvo") != null) {
 		cvo = (CommunityVO) session.getAttribute("cvo");
 	}
-	DAO dao = new DAO();
+	BoardDAO dao = new BoardDAO();
 	ArrayList<CommunityVO> arr = dao.CommSel();
 	%>
 	<%

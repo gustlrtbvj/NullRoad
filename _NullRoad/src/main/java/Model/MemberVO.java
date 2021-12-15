@@ -13,6 +13,7 @@ public class MemberVO {
 	private String m_joindate;
 	private int admin_yn;
 
+
 	public MemberVO(String m_id, String m_pw, String m_name, String m_jumin, String m_phone, String m_car_num,
 			int m_point, int m_type, String m_account, String m_joindate, int admin_yn) {
 		super();
