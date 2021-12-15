@@ -24,11 +24,17 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/mypage.css"/>
 <style>
-	.user_wrap{
-		height: 1000px;
-	}
 	.spad{
 		padding-top: 50px;
+	}
+		.user_name{
+	text-align:center;
+	}
+	.widget-title{
+	text-align:center;
+	}
+	#myp_section_wrap .section01 .user_wrap .user_info .user_name {
+	font-size:28px;
 	}
 </style>
 
@@ -100,24 +106,7 @@
 	<section class="about-section spad">
 		<div class="container">
 <!-- Blog section -->
-<section class="blog-page spad">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="row">
 
-			<div class="col-lg-4 col-md-6 sideber pt-5 pt-lg-0">
-			</div>
-		</div>
-		<div class="widget-area" >
-			<h4 class="widget-title">사용완료</h4>
-			<div id="myp_section_wrap" class="clear-fix">
-				<!-- 유저정보,미납금 -->
-				<div class="section01">
-					<div class="user_wrap bgfff">
-
-						<div class="user_info">
-							<div class="user_name">
 							<%
 session = request.getSession();
 ParkingVO pvo = null;
@@ -133,53 +122,46 @@ if (session.getAttribute("mvo")!=null){
 	response.sendRedirect("Pay1LoginCheck.jsp");
 }
 %>
-<h1>사용완료</h1>
-<p>주차장 사용상태 <%=pvo.getPrk_status()%></p>
-<p>주차장 요금 <%=pvo.getPrk_fee()%></p>
 
+	<p>&nbsp;</p><p>&nbsp;</p>
+	<section class="blog-page spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="row">
+
+			<div class="col-lg-4 col-md-6 sideber pt-5 pt-lg-0">
+			</div>
+		</div>
+		<div class="widget-area" >
+			<h4 class="widget-title">사용완료</h4>
+			<div id="myp_section_wrap" class="clear-fix">
+				<div class="section01">
+					<div class="user_wrap bgfff">
+
+						<div class="user_info">
+							<div class="user_name">
+								 주차장 정보 : 
 							</div>
-							<div></div>
-							<div></div>
+							<p>&nbsp;</p>
+							<div class="user_class" style="font-size:18px;">주차장 사용상태 : <%=pvo.getPrk_status()%></div>
+							<p>&nbsp;</p>
+							<div class="user_mail" style="font-size:18px;">주차장 요금 : <%=pvo.getPrk_fee()%></div>
 						</div>
 						
 					</div>
+	
 					
 				</div>
-			
-
-		</div>
-	</div>
-
 </div>
-</section>
-
-	
 </div>
+</div>
+</div>
+</div>
+
 </section>
-
-<!-- Blog section end -->
-
-	<!-- Fact section -->
-	<section class="about-section spad gradient-bg">
-		<div class="container text-white">
-			<div class="row"  data-aos="slide-up" data-aos-duration="2500">
-				<div class="col-lg-6 offset-lg-6 about-text">
-					<br>
-					<h2 style="font-size: 48px;">남는 공간 공유하고 
-						<br>수익을 얻어보세요!</h2>
-
 				
-				</div>
-			</div>
-			<div class="about-img" style="text-align: center;">
-				<ul>
-					<a>예상수익</a><div class="memberCountCon1" style="font-size: 30px;"></div>
-					<a>이용자 수</a><div class="memberCountCon2" style="font-size: 30px;"></div>
-				</ul>
-			</div>
-		</div>
-	</section>
-	<!-- Fact section end -->
+<!-- Blog section end -->
 
 
 

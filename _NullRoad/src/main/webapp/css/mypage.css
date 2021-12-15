@@ -1,4 +1,4 @@
-/**마이페이지*********************************************************************************************************************/
+/**留덉씠�럹�씠吏�*********************************************************************************************************************/
 .clear-fix{*zoom:1;}
 .clear-fix:after{clear: both; display: block; content:'';}
 
@@ -20,7 +20,7 @@
 #myp_section_wrap .more_btn{width:6px;}
 
 
-/* 닉네임,미납금 */
+/* �땳�꽕�엫,誘몃궔湲� */
 #myp_section_wrap{background:#f0f0f0; padding:0px 20px 20px; overflow:hidden;}
 #myp_section_wrap .section01{margin-top:25px; }
 #myp_section_wrap .section01 .user_wrap{position:relative; border:1px solid #dcdcdc; padding:17px 10px; min-height:58px;}
@@ -34,7 +34,7 @@
 
 
 
-/* 포인트,이용내역,쿠폰,친구추천 */
+/* �룷�씤�듃,�씠�슜�궡�뿭,荑좏룿,移쒓뎄異붿쿇 */
 #myp_section_wrap .section02{background:#fff; margin-top:8px; border-top:1px solid #dcdcdc; border-left:1px solid #dcdcdc; border-right:1px solid #dcdcdc;}
 #myp_section_wrap .section02 .top_wrap{width:100%; border-bottom:1px solid #dcdcdc; overflow:hidden;}
 #myp_section_wrap .section02 .top_wrap .left,
@@ -59,12 +59,29 @@
 #myp_section_wrap .section02 .bottom_wrap .right .title_icon img{width:30px; float:right;}
 #myp_section_wrap .section02 .bottom_wrap .right .content{text-align:right; padding-top:12px; font-size:16px; color:#7b5dfd;}
 
-/* 마이페이지  개인정보,면허정보,회원카드*/
+/* 留덉씠�럹�씠吏�  媛쒖씤�젙蹂�,硫댄뿀�젙蹂�,�쉶�썝移대뱶*/
 #myp_section_wrap .section03{overflow:hidden; margin-top:8px; border-top:1px solid #dcdcdc; border-bottom:1px solid #dcdcdc; border-left:1px solid #dcdcdc; margin-bottom:7px;}
 #myp_section_wrap .section03 div{float:left; width:50%; text-align:center; color:#3c3c3c; padding:16px 0px; font-size:15px; font-weight:bold; background:#fff;border-right: 1px solid #dcdcdc; webkit-box-sizing: border-box; box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box;}
 #myp_section_wrap .section03 span{display:block; color:#877b6c; font-size:15px; font-weight:bold;}
 
 #myp_section_wrap .seciton04{background:#f0f0f0; padding:0px 20px 20px; overflow:hidden;}
+
+.using{
+	font-size:1.8rem;
+}
+.login100-form-btn {
+    font-family: Montserrat-Bold;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    text-transform: uppercase;
+    height: 35px;
+    border-radius: 5px;
+    background: #7e3bc3;
+    }
+ #cashBox{
+ 	font-size:15px;
+ 	}
 
 
 

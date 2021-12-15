@@ -37,12 +37,23 @@
     </script>
 	
 <style>
-	.user_wrap{
-		height: 1000px;
+	.spad {
+    padding-top: 50px;
+    }
+	.title_icon{
+	height:0px;
 	}
-	.spad{
-		padding-top: 50px;
+	.user_name{
+	text-align:center;
 	}
+	.widget-title{
+	text-align:center;
+	}
+	#myp_section_wrap .section01 .user_wrap .user_info .user_name {
+	font-size:1.8rem;
+	}
+
+
 </style>
 
 </head>
@@ -113,24 +124,7 @@
 	<section class="about-section spad">
 		<div class="container">
 <!-- Blog section -->
-<section class="blog-page spad">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="row">
 
-			<div class="col-lg-4 col-md-6 sideber pt-5 pt-lg-0">
-			</div>
-		</div>
-		<div class="widget-area" >
-			<h4 class="widget-title">결제하기</h4>
-			<div id="myp_section_wrap" class="clear-fix">
-				<!-- 유저정보,미납금 -->
-				<div class="section01">
-					<div class="user_wrap bgfff">
-
-						<div class="user_info">
-							<div class="user_name">
 <%
 session = request.getSession();
 ParkingVO pvo = null;
@@ -163,24 +157,99 @@ long UseTime = (End.getTime() - Start.getTime())/60000;
 <%
 long price = UseTime*(pvo.getPrk_fee()/60);
 %>
-<h1>사용중인 주차장 : <%=pvo.getPrk_seq() %> </h1>
-<p>주차장 사용상태 : <%=pvo.getPrk_status()%></p>
-<p>주차장 요금 : <%=pvo.getPrk_fee()%></p>
-<p>사용시작 : <%=resvo.getChk_in_time()%></p>
-<p>사용종료 : <%=Systime%></p>
-<p>사용시간(분) : <%=UseTime%></p>
-<p>주차장 사용요금 : <%=price%></p>
-<p>보유자금 : <%=mvo.getM_point() %></p>
 
-<%if (mvo.getM_point()>price) { %>
-<form action="PaymentService.do">
-<input type="text" value="<%=price%>" name="price" style = "display:none">
-<input type="submit" value="결제하기">
-</form>
-<%}%>
+<section class="blog-page spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="row">
 
-	<input id="cashBox" type="text" placeholder="충전할 금액을 입력하세요">
-    <button onclick="requestPay()">충전하기</button>
+			<div class="col-lg-4 col-md-6 sideber pt-5 pt-lg-0">
+			</div>
+		</div>
+		<div class="widget-area" >
+			<h4 class="widget-title">결제하기</h4>
+			<div id="myp_section_wrap" class="clear-fix">
+				<div class="section01">
+					<div class="user_wrap bgfff">
+
+						<div class="user_info">
+							<div class="user_name">
+								 사용중인 주차장 : <%=pvo.getPrk_seq() %> 
+							</div>
+							<p>&nbsp;</p>
+							<div class="user_class" style="font-size:18px;">주차장 사용상태 : <%=pvo.getPrk_status()%></div>
+							<p>&nbsp;</p>
+							<div class="user_mail" style="font-size:18px;">주차장 요금 : <%=pvo.getPrk_fee()%></div>
+						</div>
+						
+					</div>
+					
+				</div>
+
+				<div class="section02">
+					<div class="top_wrap">
+						<div class="left fwb">
+							<div class="title">사용시작 : <%=resvo.getChk_in_time()%></div>
+							<div class="title">사용종료 : <%=Systime%></div>
+							<div class="title_icon"><img src="./img/white.png" alt="포인트"></div>
+							<p>&nbsp;</p>
+						</div>
+						<div class="right fwb" onclick="location.href='/mypage/orderHistory/list.do?tabGubun=HISTORY'">
+							<div class="title">사용시간(분) : <%=UseTime%></div>
+							<div class="title_icon"><img src="./img/white.png" alt="이용내역"></div>
+							<p>&nbsp;</p>
+						</div>
+					</div>
+					<div class="bottom_wrap">
+						<div class="left fwb">
+							<div class="title">사용요금 : <%=price%></div>
+							<div class="title_icon"><img src="./img/white.png" alt="쿠폰"></div>
+							<p>&nbsp;</p>
+						</div>
+						<div class="right fwb" onclick="location.href='/present/push.do'">
+							<div class="title">보유포인트 : <%=mvo.getM_point() %></div>
+							<div class="title_icon"><img src="./img/white.png"></div>
+							
+							
+</div>
+</div>
+<div class="user_wrap bgfff">
+
+						<div class="user_info">
+						  	<p>&nbsp;</p>
+						  	<p>&nbsp;</p>
+							<div class="user_name">
+							<input id="cashBox" type="text" placeholder="충전 금액 입력">　
+   							<button onclick="requestPay()" class="login100-form-btn">충전하기</button>
+ 	
+						<%if (mvo.getM_point()>price) { %>
+						<form action="PaymentService.do">
+						<input type="text" value="<%=price%>" name="price" style = "display:none">
+						<br>
+						<button type="submit" class="login100-form-btn">결제하기</button>
+						</form>
+						<%}%>
+							</div>
+   							<p>&nbsp;</p>
+   							<p>&nbsp;</p>
+
+						</div>
+						
+					</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+
+
+
+
     <script>
       function requestPay() {
     	let cash = Number(document.getElementById("cashBox").value)
@@ -236,49 +305,10 @@ long price = UseTime*(pvo.getPrk_fee()/60);
       }
 
     </script>
-							</div>
-							<div></div>
-							<div></div>
-						</div>
-						
-					</div>
-					
-				</div>
-			
-
-		</div>
-	</div>
-
-</div>
-</section>
-
-	
-</div>
-</section>
-
+		
 <!-- Blog section end -->
 
-	<!-- Fact section -->
-	<section class="about-section spad gradient-bg">
-		<div class="container text-white">
-			<div class="row"  data-aos="slide-up" data-aos-duration="2500">
-				<div class="col-lg-6 offset-lg-6 about-text">
-					<br>
-					<h2 style="font-size: 48px;">남는 공간 공유하고 
-						<br>수익을 얻어보세요!</h2>
 
-				
-				</div>
-			</div>
-			<div class="about-img" style="text-align: center;">
-				<ul>
-					<a>예상수익</a><div class="memberCountCon1" style="font-size: 30px;"></div>
-					<a>이용자 수</a><div class="memberCountCon2" style="font-size: 30px;"></div>
-				</ul>
-			</div>
-		</div>
-	</section>
-	<!-- Fact section end -->
 
 
 

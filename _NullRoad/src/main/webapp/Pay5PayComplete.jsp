@@ -25,11 +25,18 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/mypage.css"/>
 <style>
-	.user_wrap{
-		height: 1000px;
-	}
+
 	.spad{
 		padding-top: 50px;
+	}
+		.user_name{
+	text-align:center;
+	}
+	.widget-title{
+	text-align:center;
+	}
+	#myp_section_wrap .section01 .user_wrap .user_info .user_name {
+	font-size:1.8rem;
 	}
 </style>
 
@@ -94,14 +101,8 @@
 	</section>
 	</div>
 	<!-- Page info end -->
-
-
-	<!-- About section -->
-	<p>&nbsp;</p>
-	<section class="about-section spad">
-		<div class="container">
-<!-- Blog section -->
-<section class="blog-page spad">
+	<p>&nbsp;</p><p>&nbsp;</p>
+	<section class="blog-page spad">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
@@ -113,12 +114,35 @@
 		<div class="widget-area" >
 			<h4 class="widget-title">결제완료</h4>
 			<div id="myp_section_wrap" class="clear-fix">
-				<!-- 유저정보,미납금 -->
 				<div class="section01">
 					<div class="user_wrap bgfff">
 
 						<div class="user_info">
 							<div class="user_name">
+								 주차장 정보 : 
+							</div>
+							<p>&nbsp;</p>
+							<div class="user_class" style="font-size:18px;">사용시간 : </div>
+							<p>&nbsp;</p>
+							<div class="user_mail" style="font-size:18px;">결제 요금 : </div>
+						</div>
+						
+					</div>
+	
+					
+				</div>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+				
+
+
 <%
 session = request.getSession();
 ParkingVO pvo = null;
@@ -140,26 +164,6 @@ if (session.getAttribute("mvo")!=null){
 	response.sendRedirect("Pay1LoginCheck.jsp");
 }
 %>
-							</div>
-							<div></div>
-							<div></div>
-						</div>
-						
-					</div>
-					
-				</div>
-			
-
-		</div>
-	</div>
-
-</div>
-</section>
-
-	
-</div>
-</section>
-
 <!-- Blog section end -->
 
 	<!-- Fact section -->
