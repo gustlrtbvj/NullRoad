@@ -20,13 +20,18 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Lato"
 	rel="stylesheet">
-
-<!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/themify-icons.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/styleboard.css">
+<link rel="stylesheet" href="css/resetboard.css">
 <link rel="stylesheet" href="css/owl.carousel.css" />
-<link rel="stylesheet" href="css/style3.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/width.css">
+<script src="https://url.kr/g5/js/html5.js"></script>
+<style>
+b {
+	font-weight: bolder;
+}
+</style>
 
 </head>
 
@@ -38,6 +43,7 @@
 	}
 	BoardDAO dao = new BoardDAO();
 	ArrayList<CommunityVO> arr = dao.CommSel();
+	ArrayList<CommunityVO> Barr = dao.CommSelBest();
 	%>
 	<%
 	MemberVO vo = null;
@@ -157,107 +163,185 @@
 		</div>
 	</section>
 	<!-- Page info end -->
+	<div id="bo_list" style="width: 95%">
+		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
+		<div id="bo_btn_top">
+			<div id="bo_list_total"></div>
 
-	<br>
-	<br>
-	<br>
-	<table class="board-list" style="margin: auto">
-		<colgroup>
-			<col style="width: 10%;">
-			<col style="width: 60%;">
-			<col style="width: 10%;">
-			<col style="width: 10%;">
-			<col style="width: 10%;">
+		</div>
+		<!-- } 게시판 페이지 정보 및 버튼 끝 -->
+		<div class="bo_reslist_hd">
+			<ul>
+				<li>
+					<div class="s-number">번호</div>
+					<div class="s-subject">제목</div>
+					<div class="s-right">
+						<div class="s-day">날짜</div>
+						<div class="s-view">조회</div>
+						<div class="s-user">글쓴이</div>
+					</div>
+				</li>
+			</ul>
+		</div>
 
-		</colgroup>
-		<thead>
-			<tr>
-				<th scope="col" style="text-align: left;">번호</th>
-				<th scope="col" style="text-align: left;">제목</th>
-				<th scope="col" style="text-align: center;">아이디</th>
-				<th scope="col" style="text-align: center;">등록일</th>
-				<th scope="col" style="text-align: center;">조회수</th>
 
-			</tr>
-		</thead>
+
 		<%
-		ArrayList<CommunityVO> boards = dao.CommSel();
+		for (int i = 0; i < 3; i++) {
+		%>
+		<div class="bo_reslist">
+			<ul>
+
+				<li>
+					<%
+					String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
+					%>
+					<div class="s-number">
+						<span class="ico-notice">인기글</span>
+					</div>
+
+					<div class="s-subject" style="padding-left: 0px">
+						<div class="bo_tit">
+							<a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=Barr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+						</div>
+					</div>
+					<div class="s-right">
+						<div class="s-user">
+							<span class="sv_member"><a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=Barr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+						</div>
+						<div class="s-view">
+							<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=result%></a>
+						</div>
+						<div class="s-day">
+							</i><a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=Barr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
+						</div>
+					</div>
+				</li>
+
+				<%
+				}
+				%>
+			
+		</div>
+
+
+
+			<%
+			ArrayList<CommunityVO> boards = dao.CommSel();
+			%>
+			
+				<%
+				if (arr.size() >= (pageno) * 5) {
+				%> <%
+ for (int i = 0; i < 5; i++) {
+ %>
+  <div class="bo_reslist">
+  <li>
+  <%
+ String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
+ %>
+				<div class="s-number">
+					<a class="main_a"
+						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a>
+				</div>
+
+				<div class="s-subject" style="padding-left: 0px">
+					<div class="bo_tit">
+						<a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+					</div>
+				</div>
+
+				<div class="s-right">
+					<div class="s-user">
+						<span class="sv_member"><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+					</div>
+
+					<div class="s-view">
+						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a>
+					</div>
+					<div class="s-day">
+						</i><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
+					</div>
+				</div>
+				</li>
+		
+		
+		<%
+		}
+		%>
+</div>
+</div>
+
+
+
+		<%
+		} else if (arr.size() < (pageno) * 5) {
+		%>
+		<div class="bo_reslist">
+			<li>
+				<%
+				for (int i = 0; i < 5 - ((pageno) * 5 - arr.size()); i++) {
+				%> <%
+ String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
+ %>
+				<div class="s-number">
+					<a class="main_a"
+						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a>
+				</div>
+				<div class="s-subject" style="padding-left: 0px">
+					<div class="bo_tit">
+						<a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+					</div>
+				</div>
+				<div class="s-right">
+					<div class="s-user">
+						<span class="sv_member"><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+					</div>
+					<div class="s-view">
+						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a>
+					</div>
+					<div class="s-day">
+						</i><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
+					</div>
+				</div> <%
+ }
+ %>
+			</li>
+		</div>
+		<%
+		}
 		%>
 
 
 
-		<colgroup>
-			<col style="width: 10%;">
-			<col style="width: 60%;">
-			<col style="width: 10%;">
-			<col style="width: 10%;">
-			<col style="width: 10%;">
-		</colgroup>
-		<thead>
 
-			<%
-			
-			if (arr.size() >= (pageno) * 5) {
-			%>
-			<%
-			for (int i = 0; i < 5; i++) {
-			%>
-			<tr class="main_tr" style="height: 35px">
-				<%
-				String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
-				%>
-				<td class="main_td" style="width: 100px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a></td>
-				<td class="main_td" style="width: 1200px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a></td>
-				<td class="main_td" style="width: 300px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></td>
-				<td class="main_td" style="width: 100px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a></td>
-				<td class="main_td" style="width: 200px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a></td>
-			</tr>
-			<%
-			}
-			%>
-			<%
-			} else if (arr.size() < (pageno) * 5) {
-			%>
-			<%
-			for (int i = 0; i < 5 - ((pageno) * 5 - arr.size()); i++) {
-			%>
-			<tr class="main_tr">
-				<%
-				String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
-				%>
-				<td class="main_td" style="width: 100px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a></td>
-				<td class="main_td" style="width: 1200px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a></td>
-				<td class="main_td" style="width: 300px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></td>
-				<td class="main_td" style="width: 100px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a></td>
-				<td class="main_td" style="width: 200px"><a class="main_a"
-					href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a></td>
-			</tr>
-			<%
-			}
-			%>
-			<%
-			}
-			%>
-		
-	</table>
+	</div>
 
-	<a href="Freeboard.jsp?pageno=<%=prev_pageno%>">≪ 이전</a>
+        <div class="bo_fx">
+                <ul class="btn_bo_user">
+            <li><a href="writeFreeboard.jsp" class="btn_b03 btn"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li>        </ul>	
+            </div>
+            
+
+ <div class="paginate" style="text-align:center; letter-spacing:10px;">
 	<%
 	for (int i = page_sno; i <= page_eno; i++) {
 	%>
 	<a href="Freeboard.jsp?pageno=<%=i%>"> <%
  if (pageno == i) {
- %> <span
-		id="cho" align="center"><%=i%></span> <%
+ %> <strong class="s-active" title="현재위치"><%=i%></strong> <%
  } else {
  %> <%=i%> <%
  }
@@ -265,20 +349,17 @@
 	</a>
 	<%
 	if (i < page_eno) {
-	%>  <%
+	%>
+	<%
 	}
 	%>
 	<%
 	}
 	%>
-	<a href="Freeboard.jsp?pageno=<%=next_pageno%>">다음 ≫</a>
 
+	<a href="Freeboard.jsp?pageno=<%=next_pageno%>">></a>
+</div>
 
-	<tr style="text-align: right;">
-		<button>
-			<a href="writeFreeboard.jsp">글쓰기 
-		</button>
-	</tr>
 
 	<!-- Footer section -->
 	<footer class="footer-section">
@@ -315,5 +396,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

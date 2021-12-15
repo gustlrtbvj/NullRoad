@@ -375,7 +375,7 @@ public class BoardDAO {
 
 		try {
 			Conn();
-			String sql = "select * from t_community where comm_status =0 order by comm_seq";
+			String sql = "select * from t_community where comm_status =0 order by comm_seq desc";
 			psmt = conn.prepareStatement(sql);
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -642,6 +642,56 @@ public class BoardDAO {
 		}
 		System.out.println(cnt);
 		return cnt;
+	}
+	
+	public ArrayList<CommunityVO> CommSelBest() {
+
+		ArrayList<CommunityVO> Commlist = new ArrayList<CommunityVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_community where comm_status =0 order by comm_cnt desc";
+			psmt = conn.prepareStatement(sql);
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				int comm_seq = rs.getInt(1);
+				String comm_subject = rs.getString(2);
+				String comm_content = rs.getString(3);
+				String comm_reg_date = rs.getString(4);
+				int comm_cnt = rs.getInt(5);
+				String m_id = rs.getString(6);
+				int comm_status = rs.getInt(7);
+
+				CommunityVO cvo = new CommunityVO(comm_seq, comm_subject, comm_subject, comm_reg_date, comm_cnt, m_id,
+						comm_status);
+				System.out.println(cvo);
+				Commlist.add(cvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return Commlist;
 	}
 	
 	

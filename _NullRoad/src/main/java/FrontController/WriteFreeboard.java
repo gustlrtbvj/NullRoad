@@ -46,8 +46,8 @@ public class WriteFreeboard extends HttpServlet {
 								
 		// 파라미터 수집
 		// MultipartRequest 객체로부터 파라미터 수집
-		String comm_subj = multi.getParameter("title");
-		String comm_content = multi.getParameter("content");
+		String comm_subj = multi.getParameter("title2");
+		String comm_content = multi.getParameter("content2");
 		String m_id = multi.getParameter("writer");
 		System.out.println(comm_subj);
 		// 파일 이름을 가져올때는
