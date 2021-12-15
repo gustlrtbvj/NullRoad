@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DAO {
 
@@ -25,6 +24,7 @@ public class DAO {
 	ReservationVO resvo = null;
 	RevCommentVO revcvo = null;
 	ReviewVO revvo = null;
+	ArrayList<ChartFeeVO> chvo = null;
 
 	// ===============================================================================
 	public void Conn() {
@@ -979,5 +979,46 @@ public class DAO {
 		}
 		return time;
 
+	}
+public ArrayList<ChartFeeVO> chartData(String emdong) {
+		
+		try {
+			Conn();
+			String sql = "select b.emdong , sum(s.user_prk_fee) , TO_CHAR(s.chk_out_time, 'YY-MM-DD')" +
+			"from"+
+			"(" +
+			"select r.prk_seq, r.user_prk_fee, r.chk_out_time , p.bld_seq"+
+			"from t_reservation r , t_parking p"+
+			"where r.prk_seq = p.prk_seq"+
+			") s, t_building b"+
+			"where s.bld_seq = b.bld_seq and b.emdong = ? "+
+			"group by b.emdong, TO_CHAR(s.chk_out_time, 'YY-MM-DD')";
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,emdong);
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			
+			while(rs.next() == true) {
+				String r_emdong = rs.getString(1);
+				int user_prk_fee  = rs.getInt(2);
+				String chk_out_time = rs.getString(3);
+				
+				ChartFeeVO vo = new ChartFeeVO(r_emdong,user_prk_fee,chk_out_time);
+				chvo.add(vo);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return chvo;
+		
+		
+		
+		
 	}
 }
