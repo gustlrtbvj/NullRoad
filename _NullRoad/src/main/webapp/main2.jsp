@@ -119,8 +119,9 @@
 			<div class="row"  data-aos="slide-up" data-aos-duration="2500">
 				<div class="col-lg-6 offset-lg-6 about-text">
 					<h2>원하는 곳 어디서나</h2>
-					<h5>Bitcoin is an innovative payment network and a new kind of money.</h5>
-					<p class = "mv moveit">Bitcoin is one of the most important inventions in all of human history. For the first time ever, anyone can send or receive any amount of money with anyone else, anywhere on the planet, conveniently and without restriction. It’s the dawn of a better, more free world.</p>
+					<h5>Nullroad는 언제든 어디서든 사용 가능한 편리한 주차공간 공유 앱입니다.</h5>
+					<p class = "mv moveit">그냥 그렇다고 씹새들야ㅏ</p>
+					<p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p>
 				
 				</div>
 			</div>
@@ -138,8 +139,9 @@
 			<div class="row"  data-aos="slide-up" data-aos-duration="2500">
 				<div class="col-lg-6 offset-lg-6 about-text">
 					<h2>필요한 시간만큼</h2>
-					<h5>Bitcoin is an innovative payment network and a new kind of money.</h5>
-					<p class = "mv moveit">Bitcoin is one of the most important inventions in all of human history. For the first time ever, anyone can send or receive any amount of money with anyone else, anywhere on the planet, conveniently and without restriction. It’s the dawn of a better, more free world.</p>
+					<h5>당신이 주차하고 싶은 장소에 원하는 시간만큼 주차하세요.</h5>
+					<p class = "mv moveit">ㅇㅋ?</p>
+					<p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p>
 				
 				</div>
 			</div>
@@ -157,8 +159,9 @@
 			<div class="row"  data-aos="slide-up" data-aos-duration="2500">
 				<div class="col-lg-6 offset-lg-6 about-text">
 					<h2>누구나 이용 가능한</h2>
-					<h5>Bitcoin is an innovative payment network and a new kind of money.</h5>
-					<p class = "mv moveit">Bitcoin is one of the most important inventions in all of human history. For the first time ever, anyone can send or receive any amount of money with anyone else, anywhere on the planet, conveniently and without restriction. It’s the dawn of a better, more free world.</p>
+					<h5>누구나 이용 가능하다고? 그런 새끼들이 로그인을 하게 해놓냐? 미친새끼들</h5>
+					<p class = "mv moveit">뭐라고 쓰지? 소개칸 존나많네 </p>
+					<p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p>
 				
 				</div>
 			</div>
@@ -176,8 +179,9 @@
 			<div class="row"  data-aos="slide-up" data-aos-duration="2500">
 				<div class="col-lg-6 offset-lg-6 about-text">
 					<h2>쉽고 편리한 주차</h2>
-					<h5>Bitcoin is an innovative payment network and a new kind of money.</h5>
-					<p class = "mv moveit">Bitcoin is one of the most important inventions in all of human history. For the first time ever, anyone can send or receive any amount of money with anyone else, anywhere on the planet, conveniently and without restriction. It’s the dawn of a better, more free world.</p>
+					<h5>쉽지도 않고 편리하지도 않음 ㅅㄱ</h5>
+					<p class = "mv moveit">맛대맛 고???? </p>
+					<p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p><p>&nbsp;<p>
 				
 				</div>
 			</div>
