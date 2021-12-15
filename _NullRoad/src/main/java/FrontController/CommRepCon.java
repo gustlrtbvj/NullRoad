@@ -18,14 +18,8 @@ public class CommRepCon implements Command{
 			System.out.println("실행?");
 			
 			
-			String savePath = request.getServletContext().getRealPath("img");
-			
-			//2. 최대파일 크기(단위 : byte) : 5MB
-			int maxSize = 5*1024*1024;
-			
+			//2. 최대파일 크기(단위 : byte) : 5MB			
 			//3. 인코딩 타입
-			String encoding = "EUC-KR";
-			
 			//4. request를 대신 해서 받아온 데이터를 정제해줄 MultipartRequest 객체
 			// 파라미터 수집
 			// MultipartRequest 객체로부터 파라미터 수집

@@ -282,6 +282,7 @@ public class BoardDAO {
 	public int CommRepCon(int comm_seq, String comm_rep_content) {
 
 		try {
+			System.out.println("µÅ?");
 			Conn();
 			String sql = "insert into t_community_reply (comm_seq, comm_rep_content, comm_rep_reg_date, m_id) VALUES (?, ?, sysdate, 'm_id 4')";
 			psmt = conn.prepareStatement(sql);

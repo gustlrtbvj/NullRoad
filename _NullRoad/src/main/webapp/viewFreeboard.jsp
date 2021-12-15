@@ -266,8 +266,7 @@ ul {
 			<form action = "CommRepCon.do?comm_seq=<%=bvo.getComm_seq()%>">
 				<textarea name="message" rows="5" cols="110" type ="text">
             </textarea>
-            <p value="<%=bvo.getComm_seq()%>" name="num"></p>
-            
+            	<input value="<%=bvo.getComm_seq()%>" name="num">
 				<div class="container-login100-form-btn">
 
 					<button id="alertStart" class="login100-form-btn">
