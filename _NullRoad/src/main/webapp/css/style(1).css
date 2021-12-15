@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+/* 일반 { */
+.default_bn img {box-sizing: border-box;}
+.default_bn ul {margin:0px; padding: 0px;}
+.default_bn_border {border:1px solid rgba(0,0,0,0.2);}
+/* } */
+
+/* 슬라이드 { */
+.slide_bn {width: 100% !important; height: 100% !important;}
+.slide_bn img {box-sizing: border-box;}
+.slide_bn_border {border:1px solid rgba(0,0,0,0.2);}
+
+.swiper-slide-slide_bn {
+    display: -webkit-inherit !important;
+    display: -ms-inherit !important;
+    display: -webkit-inherit !important;
+    display: inherit !important;
+        
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    -webkit-justify-content: center !important;
+    justify-content: center !important;
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    -webkit-align-items: center !important;
+    align-items: center !important;
+}
+
+.mb-0 {margin-bottom: 0px !important;}
+/* } */
+
+/* 랜덤 { */
+.random_bn img {box-sizing: border-box;}
+.random_bn ul {margin:0px; padding: 0px;}
+.random_bn_border {border:1px solid rgba(0,0,0,0.2);}
+/* } */
+
+/* 개별 { */
+.each_bn img {box-sizing: border-box;}
+.each_bn_border {border:1px solid rgba(0,0,0,0.2);}
+/* } */
+
+
