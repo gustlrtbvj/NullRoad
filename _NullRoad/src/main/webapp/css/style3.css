@@ -1757,6 +1757,9 @@ ol {
 /* Large Mobile :480px. */
 
 @media only screen and (max-width: 767px) {
+	.board-form{
+		margin: 0 0px;
+	}
 	.col-md-12{
 		width: 100%;
 	}
@@ -1905,6 +1908,9 @@ ol {
 /* small Mobile :320px. */
 
 @media only screen and (max-width: 479px) {
+	.board-form{
+		margin: 0 0px;
+	}
 	.review-text {
 		padding: 0 45px;
 	}
