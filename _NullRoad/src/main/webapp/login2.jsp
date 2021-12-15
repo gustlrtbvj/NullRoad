@@ -67,7 +67,7 @@
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="join.html">
+						<a class="txt2" href="Join2.jsp">
 							회원가입
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
