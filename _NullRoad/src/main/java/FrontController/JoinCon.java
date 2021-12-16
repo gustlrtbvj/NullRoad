@@ -42,7 +42,7 @@ public class JoinCon implements Command {
 		         System.out.println("회원가입 실패");
 		        
 			}
-			 response.sendRedirect("main2.jsp"); 
+			 response.sendRedirect("main.jsp"); 
 		} catch (Exception e) {
 		}
 		

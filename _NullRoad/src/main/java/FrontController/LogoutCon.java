@@ -25,7 +25,7 @@ public class LogoutCon implements Command{
 		session.invalidate();
 		
 		//3. 페이지 이동
-		response.sendRedirect("main2.jsp");
+		response.sendRedirect("main.jsp");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
