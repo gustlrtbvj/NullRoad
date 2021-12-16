@@ -195,7 +195,15 @@ b {
 				</li>
 			</ul>
 		</div>
-
+	<%
+MemberVO mvo = null;
+if (session.getAttribute("mvo")!=null){
+	mvo = (MemberVO)session.getAttribute("mvo");
+	session.setAttribute("mvo", mvo);
+}else{
+	response.sendRedirect("Pay1LoginCheck.jsp");
+}
+%>
 
 
 		<%
