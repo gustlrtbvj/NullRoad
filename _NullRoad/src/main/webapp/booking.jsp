@@ -1,3 +1,4 @@
+<%@page import="Model.MemberVO"%>
 <%@page import="Model.DAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.BuildingVO"%>
@@ -117,7 +118,7 @@
 	int bld_seq1 =Integer.parseInt(request.getParameter("data"));
 	System.out.println("test파라미터"+bld_seq1);
 	ArrayList<BuildingVO> bld_list = dao.BldSelOne(bld_seq1);
-	
+	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 	//System.out.println("성공?>>"+bld_list.get(0).getBld_name());
 	
 	%>
@@ -129,20 +130,21 @@
 		<!-- Header section -->
 		<header class="header-section clearfix">
 			<div class="container-fluid">
-				<a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
+				<a href="main.jsp" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
 					nroad
 				</a>
 				<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-				<a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-				<a href="login.html" class="site-btn">로그인</a>
+				<a href="login.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+				<a href="login.jsp" class="site-btn">로그인</a>
+				
 				<nav class="main-menu">
 					
 					<ul class="menu-list">
 						<div class="dropdown">
 							<button class="dropbtn"><b>About us&nbsp;</b></button>
 							<div class="dropdown-content">
-							  <a href="about.html">개발의도</a>
-							  <a href="gide.html">사용방법</a>
+							  <a href="about.jsp">개발의도</a>
+							  <a href="gide.jsp">사용방법</a>
 	
 							</div>
 						  </div>
@@ -150,17 +152,17 @@
 							<button class="dropbtn"><b>Community&nbsp;</b></button>
 							<div class="dropdown-content">
 							  <a href="#">리뷰게시판</a>
-							  <a href="board.html">자유게시판</a>
+							  <a href="board.jsp">자유게시판</a>
 	
 							</div>
 						  </div>
 						<div class="dropdown">
 							<button class="dropbtn"><b>Service</b></button>
 							<div class="dropdown-content">
-                              <a href="contact.html">공유하기</a>
-                              <a href="one.html">1:1문의</a>
-							  <a href="qNa.html">Q&A</a>
-							  <a href="mypage.html">마이페이지</a>
+                              <a href="contact.jsp">공유하기</a>
+                              <a href="one.jsp">1:1문의</a>
+							  <a href="qNa.jsp">Q&A</a>
+							  <a href="mypage.jsp">마이페이지</a>
 							</div>
 						  </div>
 	
