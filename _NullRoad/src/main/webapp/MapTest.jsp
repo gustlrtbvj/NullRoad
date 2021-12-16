@@ -144,7 +144,6 @@ img {
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
 .overlaybox {position:relative;width:360px;height:350px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png') no-repeat;padding:15px 10px;}
-        .overlaybox div, ul {overflow:hidden;margin:0;padding:0;}
         .overlaybox li {list-style: none;}
         .overlaybox .boxtitle {color:#fff;font-size:16px;font-weight:bold;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png') no-repeat right 120px center;margin-bottom:8px;}
         .overlaybox .first {position:relative;width:247px;height:136px;margin-bottom:8px;}
