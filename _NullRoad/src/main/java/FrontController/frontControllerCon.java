@@ -73,7 +73,9 @@ public class frontControllerCon extends HttpServlet {
 			exe = new CommRepCon();
 		} else if (command.equals("/Delete.do")) {
 			exe = new DeleteBoardCon();
-		} 
+		} else if (command.equals("/Logout.do")) {
+			exe = new LogoutCon();
+		}
 		exe.execute(request, response);
 	}
 
