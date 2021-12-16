@@ -14,7 +14,8 @@ public class LoginCon implements Command{
 		//1. 파라미터 수집
 		String m_id=request.getParameter("m_id");
 		String m_pw=request.getParameter("m_pw");
-	
+		String page=request.getParameter("page");
+		
 		//DAO 객체 생성
 		DAO dao= new DAO();
 		MemberVO mvo = dao.Login(m_id, m_pw);
@@ -43,7 +44,7 @@ public class LoginCon implements Command{
 		
 		//객체에서는 페이지를 이동할 때, try/catch 써줘야한다. 
 		try {
-			response.sendRedirect("main2.jsp");
+			response.sendRedirect(page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
