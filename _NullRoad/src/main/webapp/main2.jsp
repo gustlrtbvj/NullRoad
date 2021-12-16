@@ -43,12 +43,11 @@
 			<a href="main.html" class="site-logo" style="font-family : ImcreSoojin; font-size:40px;">
 				nroad
 			</a>
-			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+
 			<%if(mvo==null){ %>
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-			<a href="login2.jsp" class="site-btn">로그인</a>
+			<a href="login2.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Login.do" class="site-btn">로그인</a>
 			<%}else{ %> 
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
 			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
