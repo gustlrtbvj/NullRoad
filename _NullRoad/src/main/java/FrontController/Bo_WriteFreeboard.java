@@ -20,7 +20,7 @@ import Model.DAO;
 /**
  * Servlet implementation class WriteFreeboard
  */
-@WebServlet("/WriteFreeboard")
+@WebServlet("/Bo_WriteFreeboard")
 public class Bo_WriteFreeboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -58,6 +58,7 @@ public class Bo_WriteFreeboard extends HttpServlet {
 		//DAO 메서드 사용해서 web_board 테이블에 저장
 		BoardDAO dao=new BoardDAO();
 		int cnt = dao.CommunityCon(comm_subj, comm_content, m_id);
+		
 		
 		System.out.println(cnt);
 		if(cnt>0) {

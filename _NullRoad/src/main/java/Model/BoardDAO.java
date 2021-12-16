@@ -259,6 +259,9 @@ public class BoardDAO {
 	}
 
 	public int CommunityCon(String comm_subject, String comm_content, String m_id) {
+		System.out.println(comm_subject);
+		System.out.println(comm_content);
+		System.out.println(m_id);
 		try {
 			Conn();
 			String sql = "INSERT INTO t_community (comm_subject, comm_content, comm_reg_date, comm_cnt, m_id, comm_status) VALUES (?, ?, sysdate, 0, ?, 0)";

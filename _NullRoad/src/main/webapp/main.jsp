@@ -70,7 +70,7 @@
 						<button class="dropbtn"><b>Community&nbsp;</b></button>
 						<div class="dropdown-content">
 						  <a href="#">리뷰게시판</a>
-						  <a href="board.html">자유게시판</a>
+						  <a href="Bo_Freeboard.jsp">자유게시판</a>
 
 						</div>
 					  </div>

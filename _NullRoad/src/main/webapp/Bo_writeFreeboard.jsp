@@ -80,6 +80,26 @@
 </head>
 
 <body>
+
+	<%
+	MemberVO mvo = null;
+
+	if (session.getAttribute("mvo") != null) {
+		mvo = (MemberVO) session.getAttribute("mvo");
+	} else {
+	%>
+	\
+	<script type="text/javascript">
+		if (confirm("로그인이 필요한 서비스입니다.")) {
+			window.location.href = "./login.jsp?page=Bo_Freeboard.jsp"
+		} else {
+			window.location.href = "./main.jsp"
+		}
+	</script>
+	<%
+	}
+	%>
+
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -148,7 +168,7 @@
             <p>&nbsp;</p><p>&nbsp;</p>
             <p>&nbsp;</p><p>&nbsp;</p>
 
-				<form action="WriteFreeboard" method="post"
+				<form action="Bo_WriteFreeboard" method="post"
 		enctype="multipart/form-data">		
                 <table class="board-form">
                   <!-- <colgroup>
@@ -167,7 +187,8 @@
                     <tr>
                       <th scope="row"><label for="content">내용</label></th>
                       <td>
-                        <textarea id="content" name="content" rows="10" cols="90" style="width:100%;height:100%;"></textarea>
+                        <textarea id="content" name="content2" rows="10" cols="90" style="width:100%;height:100%;"></textarea>
+                        <input type="text" name="writer" style="display:none" value="<%=mvo.getM_id()%>">
                       </td>
                     </tr>
                     <tr>
@@ -196,7 +217,7 @@
     
                 <div class="btn-wrap" style="text-align: right;">
                     <div class="container-login100-form-btn">
-                        <a id="alertStart" class="login100-form-btn" style="color:#fff">확인</a>
+                        <input  type="submit" id="alertStart" class="login100-form-btn" style="color:#fff" value="확인">
                     </div>
                 </div>
 </form>
@@ -243,7 +264,7 @@
 					title : '게시글이 등록되었습니다',
 					closeOnClickOutside : false
 				}).then(function() {
-					location.href = "Freeboard.jsp"
+					location.href = "Bo_Freeboard.jsp"
 
 				});
 			});
