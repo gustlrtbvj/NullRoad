@@ -31,6 +31,18 @@
 b {
 	font-weight: bolder;
 }
+.ico-notice {
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+    background: #7e3bc3;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    line-height: 23px;
+    color: #fff;
+    text-align: center;
+}
 </style>
 
 </head>
@@ -203,7 +215,7 @@ b {
 					<div class="s-subject" style="padding-left: 0px">
 						<div class="bo_tit">
 							<a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=Barr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">¡¡<%= Barr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
 						</div>
 					</div>
 					<div class="s-right">
@@ -362,28 +374,7 @@ b {
 
 
 	<!-- Footer section -->
-	<footer class="footer-section">
-		<div class="container">
-			<div class="row spad">
 
-
-				<div class="footer-bottom">
-					<div class="row">
-
-						<div class="col-lg-8 text-center text-lg-right">
-							<ul class="footer-nav">
-								<li><a href=""></a></li>
-								<li><a href="">King Jo</a></li>
-								<li><a href="">60, Songam-ro, Nam-gu, Gwangju, Republic
-										of Korea</a></li>
-								<li><a href="">bszt123@naver.com</a></li>
-								<li><a href="">010-3083-0491</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-	</footer>
 
 
 	<!--====== Javascripts & Jquery ======-->
