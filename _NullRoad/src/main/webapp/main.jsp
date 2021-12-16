@@ -51,7 +51,7 @@
 			<%}else{ %> 
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
 			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-			<a href="Logout.do" class="site-btn">·Î±×¾Æ¿ô</a>
+			<a href="Logout.do?page=main.jsp" class="site-btn">·Î±×¾Æ¿ô</a>
 			<%} %>
 
 			
