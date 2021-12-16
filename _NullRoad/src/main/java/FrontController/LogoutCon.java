@@ -10,7 +10,7 @@ public class LogoutCon implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			
-
+		String page=request.getParameter("page");
 		// 로그아웃 기능
 		// vo 가 null인지 아닌지
 		// vo --> Session 영역 저장
@@ -25,7 +25,7 @@ public class LogoutCon implements Command{
 		session.invalidate();
 		
 		//3. 페이지 이동
-		response.sendRedirect("main.jsp");
+		response.sendRedirect(page);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
