@@ -24,7 +24,7 @@ public class DAO {
 	ReservationVO resvo = null;
 	RevCommentVO revcvo = null;
 	ReviewVO revvo = null;
-	ArrayList<ChartFeeVO> chvo = null;
+	ArrayList<ChartFeeVO> chvo = new ArrayList<ChartFeeVO>();
 	ParkableVO prkablevo=null;
 
 	// ===============================================================================
@@ -985,35 +985,29 @@ public ArrayList<ChartFeeVO> chartData() {
 		
 		try {
 			Conn();
-			String sql = "select b.emdong , sum(s.user_prk_fee) , TO_CHAR(s.chk_out_time, 'YY-MM-DD')" +
-			"from"+
-			"(" +
-			"select r.prk_seq, r.user_prk_fee, r.chk_out_time , p.bld_seq"+
-			"from t_reservation r , t_parking p"+
-			"where r.prk_seq = p.prk_seq"+
-			") s, t_building b"+
-			"where s.bld_seq = b.bld_seq"+
-			"group by b.emdong, TO_CHAR(s.chk_out_time, 'YY-MM-DD')";
+			String sql = "select b.emdong ,sum(s.user_prk_fee),AVG(s.user_prk_fee),count(s.user_prk_fee),TO_CHAR(s.chk_out_time, 'YY-MM-DD') from (select r.prk_seq, r.user_prk_fee, r.chk_out_time , p.bld_seq from t_reservation r , t_parking p where r.prk_seq = p.prk_seq) s, t_building b where s.bld_seq = b.bld_seq and emdong = '송하동' group by b.emdong, TO_CHAR(s.chk_out_time, 'YY-MM-DD') order by TO_CHAR(s.chk_out_time, 'YY-MM-DD') DESC";
 			
 			psmt = conn.prepareStatement(sql);
-			
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
 			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
 			rs = psmt.executeQuery();
+			System.out.println(rs.next());
 			
-			while(rs.next() == true) {
-				String r_emdong = rs.getString(1);
-				int user_prk_fee  = rs.getInt(2);
-				String chk_out_time = rs.getString(3);
-				
-				ChartFeeVO vo = new ChartFeeVO(r_emdong,user_prk_fee,chk_out_time);
+			while(rs.next()) {
+				String emdong = rs.getString(1);
+				int n1  = rs.getInt(2);
+				int n2  = rs.getInt(3);
+				int n3  = rs.getInt(4);
+				String n4 = rs.getString(5);
+
+				ChartFeeVO vo = new ChartFeeVO(emdong, n1, n2, n3, n4);
 				chvo.add(vo);
 			}
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		return chvo;		

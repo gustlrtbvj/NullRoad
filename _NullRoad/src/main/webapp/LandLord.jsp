@@ -325,7 +325,7 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/main.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8445119eec91da7b79b3d483e7f2d21a"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8445119eec91da7b79b3d483e7f2d21a&libraries=services"></script>
 <script>
       var polygons=[];
    $(document).ready(function () {
@@ -600,29 +600,51 @@
 	DAO dao = new DAO();
 	ArrayList<ChartFeeVO> cfvo = dao.chartData();
 	%>
-	let emdong = "송하동";
-	let static_data = <%=cfvo%>
-	callFunction(emdong);
 	
-    $(function callFunction(let emdong) {
-    let SQL = ["총수익","평균수익","이용 수","공유 수","행사 정보","날짜"];
-    
-    for (let statics : static_data){
-    	console.log(statics[0]);
-    	console.log(statics[1]);
-    	console.log(statics[2]);
-    	console.log(statics[3]);
-    	console.log(statics[4]);
-    	}
+	let static_data = {'t_dong':[],'t_fee':[],'t_avg':[],'t_cnt':[],'t_time':[]};
+	let t_time = [];
+	let t_dong = [];
+	let t_fee = [];
+	let t_avg = [];
+	let t_cnt = [];
+
+	
+	<%for(int i = 0; i < cfvo.size(); i++){%>	
+	var t1 = '<%= cfvo.get(i).getT_date()%>';
+	var t2 = '<%= cfvo.get(i).getT_fee() %>';
+	var t3 = '<%= cfvo.get(i).getEmdong() %>';
+	var t4 = '<%= cfvo.get(i).getT_avg() %>';
+	var t5 = '<%= cfvo.get(i).getT_cnt() %>';
+	t_time.push(t1);
+	t_dong.push(t3);
+	t_fee.push(t2);
+	t_avg.push(t4);
+	t_cnt.push(t5);
+	
+	<%}%>
+	let columns = ['t_dong', 't_fee', 't_avg', 't_cnt', 't_time']
+	static_data['t_dong'] = t_dong;
+	static_data['t_fee'] = t_fee;
+	static_data['t_avg'] = t_avg;
+	static_data['t_cnt'] = t_cnt;
+	static_data['t_time'] = t_time;
+	////////////////////////////////////////////
+	
+	
+	//callFunction(emdong);
+	
+    function callFunction() {
 		var tr_length = $('#data_table tr').length;
 		var td_length = $('#data_table td').length;
 		var tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
 			for (var i = 0; i < tr_length; i++) {
-    			for (var j = 0; j < td_length; j++) {
-        			$("#data_table tr:eq("+i+") td:eq("+j+")").html(SQL[j]);
-	    		}
+    			$("#data_table tr:eq("+i+") td:eq(0)").html(static_data['t_fee'][i]);
+    			$("#data_table tr:eq("+i+") td:eq(1)").html(static_data['t_avg'][i]);
+    			$("#data_table tr:eq("+i+") td:eq(2)").html(static_data['t_cnt'][i]);
+    			$("#data_table tr:eq("+i+") td:eq(5)").html(static_data['t_time'][i]);
+ 
 			}
-		});
+		};
     </script>
 
 </body>
