@@ -64,7 +64,7 @@ if (session.getAttribute("mvo")!=null){
 		<!-- Header section -->
 		<header class="header-section clearfix">
 			<div class="container-fluid">
-				<a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
+				<a href="main.jsp" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
 					nroad
 				</a>
 			<%if(mvo==null){ %>
@@ -82,8 +82,8 @@ if (session.getAttribute("mvo")!=null){
 						<div class="dropdown">
 							<button class="dropbtn"><b>About us&nbsp;</b></button>
 							<div class="dropdown-content">
-							  <a href="about.html">개발의도</a>
-							  <a href="gide.html">사용방법</a>
+							  <a href="about.jsp">개발의도</a>
+							  <a href="gide.jsp">사용방법</a>
 							  
 	
 							</div>
@@ -92,17 +92,17 @@ if (session.getAttribute("mvo")!=null){
 							<button class="dropbtn"><b>Community&nbsp;</b></button>
 							<div class="dropdown-content">
 							  <a href="#">리뷰게시판</a>
-							  <a href="board.html">자유게시판</a>
+							  <a href="Bo_Freeboard.jsp">자유게시판</a>
 	
 							</div>
 						  </div>
 						<div class="dropdown">
 							<button class="dropbtn"><b>Service</b></button>
 							<div class="dropdown-content">
-							  <a href="contact.html">공유하기</a>
-							  <a href="one.html">1:1문의</a>
-							  <a href="qNa.html">Q&A</a>
-							  <a href="mypage.html">마이페이지</a>
+							  <a href="contact.jsp">공유하기</a>
+							  <a href="one.jsp">1:1문의</a>
+							  <a href="qNa.jsp">Q&A</a>
+							  <a href="mypage.jsp">마이페이지</a>
 							</div>
 						  </div>
 	

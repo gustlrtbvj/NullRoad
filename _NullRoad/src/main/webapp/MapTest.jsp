@@ -1,3 +1,4 @@
+<%@page import="Model.MemberVO"%>
 <%@page import="Model.ParkableVO"%>
 <%@page import="Model.ReservationVO"%>
 <%@page import="Model.ParkingVO"%>
@@ -180,6 +181,11 @@ img {
 </style>
 </head>
 <body>
+<%
+	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+
+%>	
+	
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -188,14 +194,18 @@ img {
 	<!-- Header section -->
 	<header class="header-section clearfix">
 		<div class="container-fluid">
-			<a href="main.jsp" class="site-logo"
-				style="font-family: ImcreSoojin; font-size: 40px;"> nroad </a>
-			<div class="responsive-bar" style="margin-top: 10px;">
-				<i class="fa fa-bars"></i>
-			</div>
-			<a href="" class="user" style="margin-top: 10px;"><i
-				class="fa fa-user"></i></a> <a href="login.html" class="site-btn">로그인</a>
-
+			<a href="main.jsp" class="site-logo" style="font-family: ImcreSoojin; font-size: 40px;">
+			 nroad
+			</a>
+			<%if(mvo==null){ %>
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars"></i></div>
+			<a href="login.jsp?page=mapTest.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a> 
+			<a href="login.jsp?page=mapTest.jsp" class="site-btn">로그인</a>
+			<%}else{ %> 
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Logout.do?page=mapTest.jsp" class="site-btn">로그아웃</a>
+			<%} %>
 
 			<nav class="main-menu">
 				
@@ -203,8 +213,8 @@ img {
 					<div class="dropdown">
 						<button class="dropbtn"><b>About us&nbsp;</b></button>
 						<div class="dropdown-content">
-						  <a href="about.html">개발의도</a>
-						  <a href="gide.html">사용방법</a>
+						  <a href="about.jsp">개발의도</a>
+						  <a href="gide.jsp">사용방법</a>
 
 						</div>
 					  </div>
@@ -212,17 +222,17 @@ img {
 						<button class="dropbtn"><b>Community&nbsp;</b></button>
 						<div class="dropdown-content">
 						  <a href="#">리뷰게시판</a>
-						  <a href="board.html">자유게시판</a>
+						  <a href="Bo_Freeboard.jsp">자유게시판</a>
 
 						</div>
 					  </div>
 					<div class="dropdown">
 						<button class="dropbtn"><b>Service</b></button>
 						<div class="dropdown-content">
-						  <a href="contact.html">공유하기</a>
-						  <a href="one.html">1:1문의</a>
-						  <a href="qNa.html">Q&A</a>
-						  <a href="mypage.html">마이페이지</a>
+						  <a href="contact.jsp">공유하기</a>
+						  <a href="one.jsp">1:1문의</a>
+						  <a href="qNa.jsp">Q&A</a>
+						  <a href="mypage.jsp">마이페이지</a>
 						</div>
 					  </div>
 
