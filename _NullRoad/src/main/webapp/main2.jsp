@@ -44,7 +44,7 @@
 				nroad
 			</a>
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
 			<%if(mvo==null){ %>
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
 			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
