@@ -52,7 +52,7 @@ public class frontControllerCon extends HttpServlet {
 		} else if (command.equals("/Community.do")) {
 			exe = new CommunityCon();
 		} else if (command.equals("/CommRep.do")) {
-			exe = new CommRepCon();
+			exe = new Bo_CommRepCon();
 		} else if (command.equals("/CustomerCenter.do")) {
 			exe = new CustomerCenterCon();
 		} else if (command.equals("/CsReply.do")) {
@@ -68,9 +68,9 @@ public class frontControllerCon extends HttpServlet {
 		}else if (command.equals("/PaymentService.do")) {
 			exe = new PaymentService();
 		} else if (command.equals("/SelectBoard.do")) {
-			exe = new SelectBoardCon();
+			exe = new Bo_SelectBoardCon();
 		} else if (command.equals("/CommRepCon.do")) {
-			exe = new CommRepCon();
+			exe = new Bo_CommRepCon();
 		} else if (command.equals("/Delete.do")) {
 			exe = new DeleteBoardCon();
 		} else if (command.equals("/Logout.do")) {

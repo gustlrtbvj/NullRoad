@@ -285,7 +285,7 @@ ul {
 				<p>&nbsp;</p>
 				<div class="btn-wrap" style="text-align: center;">
 					<a class="u-btn btn-default"
-						href="Freeboard.jsp">목록</a>
+						href="Bo_Freeboard.jsp">목록</a>
 				</div>
 			</div>
 		</div>

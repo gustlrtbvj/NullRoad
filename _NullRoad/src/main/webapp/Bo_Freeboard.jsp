@@ -57,11 +57,25 @@ b {
 	ArrayList<CommunityVO> arr = dao.CommSel();
 	ArrayList<CommunityVO> Barr = dao.CommSelBest();
 	%>
-	<%
-	MemberVO vo = null;
-	String userID = null;
-	%>
+	
+<% 
+MemberVO mvo = null;
 
+if (session.getAttribute("mvo")!=null){
+	mvo = (MemberVO)session.getAttribute("mvo");
+}else{%>
+\
+<script type="text/javascript">
+if(confirm("로그인이 필요한 서비스입니다.")) {
+    window.location.href = "./login.jsp?page=Bo_Freeboard.jsp"
+}else{
+	window.location.href = "./main.jsp"
+}
+</script>
+<%
+
+}
+%>
 
 	<%!public Integer toInt(String x) {
 		int a = 0;
@@ -340,7 +354,7 @@ b {
 
         <div class="bo_fx">
                 <ul class="btn_bo_user">
-            <li><a href="writeFreeboard.jsp" class="btn_b03 btn"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li>        </ul>	
+            <li><a href="Bo_writeFreeboard.jsp" class="btn_b03 btn"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li>        </ul>	
             </div>
             
 
@@ -348,7 +362,7 @@ b {
 	<%
 	for (int i = page_sno; i <= page_eno; i++) {
 	%>
-	<a href="Freeboard.jsp?pageno=<%=i%>"> <%
+	<a href="Bo_Freeboard.jsp?pageno=<%=i%>"> <%
  if (pageno == i) {
  %> <strong class="s-active" title="현재위치"><%=i%></strong> <%
  } else {
@@ -366,7 +380,7 @@ b {
 	}
 	%>
 
-	<a href="Freeboard.jsp?pageno=<%=next_pageno%>">></a>
+	<a href="Bo_Freeboard.jsp?pageno=<%=next_pageno%>">></a>
 </div>
 
 

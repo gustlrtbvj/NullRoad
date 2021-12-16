@@ -9,7 +9,7 @@ import Model.CommunityRepVO;
 import Model.CommunityVO;
 import Model.DAO;
 
-public class CommRepCon implements Command{
+public class Bo_CommRepCon implements Command{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -25,13 +25,14 @@ public class CommRepCon implements Command{
 			// MultipartRequest 객체로부터 파라미터 수집
 			int comm_seq = Integer.parseInt(request.getParameter("num"));
 			String comm_rep_content = request.getParameter("message");
+			String m_id = request.getParameter("m_id");
 			
 			System.out.println(comm_seq);
 			
 			System.out.println(comm_rep_content);
 			BoardDAO dao = new BoardDAO();
 			
-			int cnt = dao.CommRepCon(comm_seq, comm_rep_content); 
+			int cnt = dao.CommRepCon(comm_seq, comm_rep_content, m_id); 
 			System.out.println(cnt);
 			if(cnt>0) {
 				System.out.println("댓글 작성 성공");

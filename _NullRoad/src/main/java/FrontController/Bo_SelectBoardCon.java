@@ -8,7 +8,7 @@ import Model.BoardDAO;
 import Model.CommunityVO;
 import Model.DAO;
 
-public class SelectBoardCon implements Command {
+public class Bo_SelectBoardCon implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -26,7 +26,7 @@ public class SelectBoardCon implements Command {
 			request.setAttribute("bvo", bvo);
 
 			// 5. Forward 방식으로 viewBoard.jsp로 이동
-			RequestDispatcher rd = request.getRequestDispatcher("viewFreeboard.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Bo_viewFreeboard.jsp");
 			rd.forward(request, response);
 
 		} catch (Exception e) {

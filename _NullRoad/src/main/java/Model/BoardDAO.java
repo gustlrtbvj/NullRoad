@@ -279,7 +279,7 @@ public class BoardDAO {
 	
 	
 
-	public int CommRepCon(int comm_seq, String comm_rep_content) {
+	public int CommRepCon(int comm_seq, String comm_rep_content, String m_id) {
 
 		try {
 			System.out.println("µÅ?");
@@ -289,7 +289,7 @@ public class BoardDAO {
 
 			psmt.setInt(1, comm_seq);
 			psmt.setString(2, comm_rep_content);
-			
+			psmt.setString(3,  m_id);			
 			cnt = psmt.executeUpdate();
 			
 			System.out.println(cnt);

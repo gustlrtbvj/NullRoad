@@ -21,7 +21,7 @@ import Model.DAO;
  * Servlet implementation class WriteFreeboard
  */
 @WebServlet("/UpdateFreeboard")
-public class UpdateFreeboard extends HttpServlet {
+public class Bo_UpdateFreeboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,7 +69,7 @@ public class UpdateFreeboard extends HttpServlet {
 			request.setAttribute("bvo",new CommunityVO(comm_seq, comm_content));
 			
 			// request영역에 데이터를 저장해서 이동하려면 >> forward
-			RequestDispatcher rd = request.getRequestDispatcher("viewFreeboard.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Bo_viewFreeboard.jsp");
 			rd.forward(request, response);
 			
 		}else {
