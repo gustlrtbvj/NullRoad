@@ -40,6 +40,22 @@
 
 </head>
 <body>
+							<%
+session = request.getSession();
+ParkingVO pvo = null;
+if (session.getAttribute("pvo")!=null){
+	pvo = (ParkingVO)session.getAttribute("pvo");
+	session.setAttribute("pvo", pvo);
+}
+MemberVO mvo = null;
+if (session.getAttribute("mvo")!=null){
+	mvo = (MemberVO)session.getAttribute("mvo");
+	session.setAttribute("mvo", mvo);
+}else{
+	response.sendRedirect("Pay1LoginCheck.jsp");
+}
+%>
+
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -51,9 +67,15 @@
 				<a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
 					nroad
 				</a>
-				<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-				<a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-				<a href="login.html" class="site-btn">로그인</a>
+			<%if(mvo==null){ %>
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="login.jsp?page=main.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="login.jsp?page=main.jsp" class="site-btn">로그인</a>
+			<%}else{ %> 
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Logout.do" class="site-btn">로그아웃</a>
+			<%} %>
 				<nav class="main-menu">
 					
 					<ul class="menu-list">
@@ -107,21 +129,6 @@
 		<div class="container">
 <!-- Blog section -->
 
-							<%
-session = request.getSession();
-ParkingVO pvo = null;
-if (session.getAttribute("pvo")!=null){
-	pvo = (ParkingVO)session.getAttribute("pvo");
-	session.setAttribute("pvo", pvo);
-}
-MemberVO mvo = null;
-if (session.getAttribute("mvo")!=null){
-	mvo = (MemberVO)session.getAttribute("mvo");
-	session.setAttribute("mvo", mvo);
-}else{
-	response.sendRedirect("Pay1LoginCheck.jsp");
-}
-%>
 
 	<p>&nbsp;</p><p>&nbsp;</p>
 	<section class="blog-page spad">

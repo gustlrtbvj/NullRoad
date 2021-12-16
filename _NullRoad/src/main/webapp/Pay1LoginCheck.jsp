@@ -27,20 +27,20 @@
 </head>
 <body>
 <%
-HttpSession sess = request.getSession();
+session = request.getSession();
 String lot = null;
-if (sess.getAttribute("lot")!=null){
-	lot = (String)sess.getAttribute("lot");
-	sess.setAttribute("lot", lot);
+if (session.getAttribute("lot")!=null){
+	lot = (String)session.getAttribute("lot");
+	session.setAttribute("lot", lot);
 }
 else{
 	lot = request.getParameter("lot");
-	sess.setAttribute("lot", lot);
+	session.setAttribute("lot", lot);
 }
 MemberVO mvo = null;
-if (sess.getAttribute("mvo")!=null){
-	mvo = (MemberVO)sess.getAttribute("mvo");
-	sess.setAttribute("mvo", mvo);
+if (session.getAttribute("mvo")!=null){
+	mvo = (MemberVO)session.getAttribute("mvo");
+	session.setAttribute("mvo", mvo);
 }else{%>
 <script type="text/javascript">
 alert("로그인을 해주시길 바랍니다.")

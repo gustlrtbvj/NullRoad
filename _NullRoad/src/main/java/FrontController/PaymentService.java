@@ -16,6 +16,8 @@ public class PaymentService implements Command {
 		// 1. 파라미터 수집
 		try {
 			int price=Integer.parseInt(request.getParameter("price"));
+			String time = request.getParameter("time");
+			String gold = request.getParameter("gold");
 			
 			HttpSession session = request.getSession();
 			ParkingVO pvo = null;
@@ -45,7 +47,7 @@ public class PaymentService implements Command {
 				int cnt = dao.PayResSet(resvo.getRes_seq(),resvo.getPrk_seq(),price);
 				if (cnt > 0) {
 					System.out.println("결제 성공");
-					response.sendRedirect("Pay5PayComplete.jsp");
+					response.sendRedirect("Pay5PayComplete.jsp?price="+price+"&time="+time+"&gold="+gold);
 				} else {
 					System.out.println("결제 실패");
 					response.sendRedirect("Pay4Receipt.jsp");

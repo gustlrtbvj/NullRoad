@@ -58,6 +58,38 @@
 
 </head>
 <body>
+<%
+session = request.getSession();
+ParkingVO pvo = null;
+if (session.getAttribute("pvo")!=null){
+	pvo = (ParkingVO)session.getAttribute("pvo");
+	session.setAttribute("pvo", pvo);
+}
+ReservationVO resvo = null;
+if (session.getAttribute("resvo")!=null){
+	resvo = (ReservationVO)session.getAttribute("resvo");
+	session.setAttribute("resvo", resvo);
+}
+
+//DB에서 로그인 받아오기
+DAO dao = new DAO();
+MemberVO mvo = null;
+MemberVO mvo_temp = null;
+if (session.getAttribute("mvo")!=null){
+	mvo_temp = (MemberVO)session.getAttribute("mvo");
+	mvo = dao.Login(mvo_temp.getM_id(), mvo_temp.getM_pw());
+}else{
+	response.sendRedirect("Pay1LoginCheck.jsp");
+}
+String Systime = dao.Sysdate();
+SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+Date Start = format.parse(resvo.getChk_in_time());
+Date End = format.parse(Systime);
+long UseTime = (End.getTime() - Start.getTime())/60000;
+%>
+<%
+long price = UseTime*(pvo.getPrk_fee()/60);
+%>
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -69,9 +101,15 @@
 				<a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
 					nroad
 				</a>
-				<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-				<a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-				<a href="login.html" class="site-btn">로그인</a>
+				<%if(mvo==null){ %>
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="login.jsp?page=main.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="login.jsp?page=main.jsp" class="site-btn">로그인</a>
+			<%}else{ %> 
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Logout.do" class="site-btn">로그아웃</a>
+			<%} %>
 				<nav class="main-menu">
 					
 					<ul class="menu-list">
@@ -125,38 +163,7 @@
 		<div class="container">
 <!-- Blog section -->
 
-<%
-session = request.getSession();
-ParkingVO pvo = null;
-if (session.getAttribute("pvo")!=null){
-	pvo = (ParkingVO)session.getAttribute("pvo");
-	session.setAttribute("pvo", pvo);
-}
-ReservationVO resvo = null;
-if (session.getAttribute("resvo")!=null){
-	resvo = (ReservationVO)session.getAttribute("resvo");
-	session.setAttribute("resvo", resvo);
-}
 
-//DB에서 로그인 받아오기
-DAO dao = new DAO();
-MemberVO mvo = null;
-MemberVO mvo_temp = null;
-if (session.getAttribute("mvo")!=null){
-	mvo_temp = (MemberVO)session.getAttribute("mvo");
-	mvo = dao.Login(mvo_temp.getM_id(), mvo_temp.getM_pw());
-}else{
-	response.sendRedirect("Pay1LoginCheck.jsp");
-}
-String Systime = dao.Sysdate();
-SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-Date Start = format.parse(resvo.getChk_in_time());
-Date End = format.parse(Systime);
-long UseTime = (End.getTime() - Start.getTime())/60000;
-%>
-<%
-long price = UseTime*(pvo.getPrk_fee()/60);
-%>
 
 <section class="blog-page spad">
 	<div class="container">
@@ -195,7 +202,7 @@ long price = UseTime*(pvo.getPrk_fee()/60);
 							<div class="title_icon"><img src="./img/white.png" alt="포인트"></div>
 							<p>&nbsp;</p>
 						</div>
-						<div class="right fwb" onclick="location.href='/mypage/orderHistory/list.do?tabGubun=HISTORY'">
+						<div class="right fwb">
 							<div class="title">사용시간(분) : <%=UseTime%></div>
 							<div class="title_icon"><img src="./img/white.png" alt="이용내역"></div>
 							<p>&nbsp;</p>
@@ -224,10 +231,12 @@ long price = UseTime*(pvo.getPrk_fee()/60);
    							<button onclick="requestPay()" class="login100-form-btn">충전하기</button>
  	
 						<%if (mvo.getM_point()>price) { %>
-						<form action="PaymentService.do">
-						<input type="text" value="<%=price%>" name="price" style = "display:none">
 						<br>
-						<button type="submit" class="login100-form-btn">결제하기</button>
+						<form action="PaymentService.do" method="post">
+						<input type="text" value="<%=price%>" name="price" style = "display:none">
+						<input type="text" value="<%=UseTime%>" name="time" style = "display:none">
+						<input type="text" value="<%=mvo.getM_point()-price%>" name="gold" style = "display:none">
+						<input type="submit" class="login100-form-btn" value="결제하기">
 						</form>
 						<%}%>
 							</div>
