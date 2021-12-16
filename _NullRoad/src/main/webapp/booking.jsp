@@ -180,7 +180,7 @@
 		</div>
 		<!-- Page info end -->
 
-
+<p>&nbsp;</p><p>&nbsp;</p>
 	<!-- About section -->
 	<section class="about-section spad">
 		<div class="container">

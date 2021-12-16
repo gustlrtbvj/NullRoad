@@ -1,4 +1,4 @@
-/* index ������ �۾� 2021/05/03-------------------------------- 
+/* index 占쏙옙占쏙옙占쏙옙 占쌜억옙 2021/05/03-------------------------------- 
 
 Primary style
 
@@ -21,7 +21,7 @@ body {
 }
 
 a {
-  color: #7e3bc3;
+  color: #561499;
   text-decoration: none;
 }
 
@@ -65,7 +65,7 @@ header::before {
 }
 @media only screen and (min-width: 1024px) {
   header {
-    height: 55px;/* PC ��� �޴��κ� ��� ����*/
+    height: 55px;/* PC 占쏙옙占� 占쌨댐옙占싸븝옙 占쏙옙占� 占쏙옙占쏙옙*/
   }
   header.nav-is-visible {
     -webkit-transform: translateX(0);
@@ -82,7 +82,7 @@ header::before {
 .cd-logo {
   display: inline-block;
   height: 100%;
-  margin-left: 0px;/* ����� �ΰ� �¿� ��ġ */
+  margin-left: 0px;/* 占쏙옙占쏙옙占� 占싸곤옙 占승울옙 占쏙옙치 */
   /* remove jump on iOS devices - when we fire the navigation */
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
@@ -95,7 +95,7 @@ header::before {
 .cd-logo img {
   display: block;
   max-width: 100%;
-  margin-top: -5px;/* ����� �ΰ� ���� ��ġ */
+  margin-top: -5px;/* 占쏙옙占쏙옙占� 占싸곤옙 占쏙옙占쏙옙 占쏙옙치 */
 }
 @media only screen and (min-width: 1024px) {
   .cd-logo {
@@ -104,7 +104,7 @@ header::before {
     margin-left: 5%;
   }
   .cd-logo img {
-    margin-top: -2px;/* PC �ΰ� ��ġ */
+    margin-top: -2px;/* PC 占싸곤옙 占쏙옙치 */
   }
 }
 
@@ -200,7 +200,7 @@ header::before {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   visibility: hidden;
-  background: #3C4043;/*����� �޴� ����*/
+  background: #3C4043;/*占쏙옙占쏙옙占� 占쌨댐옙 占쏙옙占쏙옙*/
   -webkit-transition: visibility 0s 0.3s;
   -moz-transition: visibility 0s 0.3s;
   transition: visibility 0s 0.3s;
@@ -209,8 +209,8 @@ header::before {
   display: block;
   font-size: 1.8rem;
   padding: .9em 2em .9em 1em;
-  border-bottom: 1px solid #A2A2A2;/*����� �޴��� �޴� ���� �� ����*/
-  color: #ffffff;/*����� �޴� ����*/
+  border-bottom: 1px solid #A2A2A2;/*占쏙옙占쏙옙占� 占쌨댐옙占쏙옙 占쌨댐옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙*/
+  color: #ffffff;/*占쏙옙占쏙옙占� 占쌨댐옙 占쏙옙占쏙옙*/
   -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
   -moz-transition: -moz-transform 0.3s, opacity 0.3s;
   transition: transform 0.3s, opacity 0.3s;
@@ -312,7 +312,7 @@ header::before {
     visibility: visible;
     width: 100%;
     height: 80px;
-    line-height: 55px;/* pc���� �޴� ���� ��ġ ����*/
+    line-height: 55px;/* pc占쏙옙占쏙옙 占쌨댐옙 占쏙옙占쏙옙 占쏙옙치 占쏙옙占쏙옙*/
     /* padding left = logo size + logo left position*/
     padding: 0 5% 0 calc(5% + 124px);
     background: transparent;
