@@ -25,6 +25,9 @@
 <!--===============================================================================================-->
 </head>
 <body>
+<%String mainpage = request.getParameter("page");
+System.out.println(mainpage);
+%>
 	
 	<div class="limiter">
 		<div class="container-login100">
@@ -53,7 +56,7 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					
+					<input type="text" name="page" value=<%=mainpage%> style="display:none">
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							<b>·Î±×ÀÎ</b>

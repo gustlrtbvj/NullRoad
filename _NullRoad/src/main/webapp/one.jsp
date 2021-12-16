@@ -1,0 +1,261 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>1:1문의</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/contact.css">
+
+	
+    <style>
+
+        
+		img {
+		  max-width: 100%;
+		}
+		
+		
+		  .jb-a {
+			  
+			width: 400px;
+			margin: 0px auto;
+			position: relative
+			
+		  }
+		  .jb-c {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			display: none;
+		  }
+		  .jb-a:hover .jb-c {
+			display: block;
+		  }
+		  .jb-c {
+			position: absolute;
+			 top: 0px;
+			left: 0px;
+			opacity: 0;
+			transition: opacity 0.5s linear;
+	}
+		.jb-a:hover .jb-c {
+			 opacity: 1;
+	}
+	.container-login100-form-btn {
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-top: 20px;
+  }
+  
+  .login100-form-btn {
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #000000;
+	text-transform: uppercase;
+	height: 50px;
+	border-radius: 5px;
+	background: #fff;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+  
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+  }
+  
+  .login100-form-btn:hover {
+	background: #484748;
+  }
+  
+		</style>
+
+	</head>
+	<body>
+
+		<!-- Header section -->
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
+    
+		<!-- Header section -->
+        <header class="header-section clearfix">
+            <div class="container-fluid">
+                <a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
+                    nroad
+                </a>
+                <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+                <a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+                <a href="login.html" class="site-btn">로그인</a>
+                <nav class="main-menu">
+                    
+                    <ul class="menu-list">
+                        <div class="dropdown">
+                            <button class="dropbtn"><b>About us&nbsp;</b></button>
+                            <div class="dropdown-content">
+                              <a href="about.html">개발의도</a>
+                              <a href="gide.html">사용방법</a>
+    
+                            </div>
+                          </div>
+                        <div class="dropdown">
+                            <button class="dropbtn"><b>Community&nbsp;</b></button>
+                            <div class="dropdown-content">
+                              <a href="#">리뷰게시판</a>
+                              <a href="boardreal.html">자유게시판</a>
+    
+                            </div>
+                          </div>
+                        <div class="dropdown">
+                            <button class="dropbtn"><b>Service</b></button>
+                            <div class="dropdown-content">
+                              <a href="contact.html">공유하기</a>
+                              <a href="one.html">1:1문의</a>
+                              <a href="qNa.html">Q&A</a>
+                              <a href="mypage.html">마이페이지</a>
+                            </div>
+                          </div>
+    
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- Header section end -->
+
+    
+    
+	<!-- Page info section -->
+	<div class = "mobile">
+		<section class="page-info-section">
+		  <div class="container">
+		  </div>
+		</section>
+		</div>
+		<!-- Page info end -->
+
+<p>&nbsp;</p>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-10">
+					<div class="wrapper">
+						<div class="row no-gutters">
+							<div class="col-md-6">
+								<div class="contact-wrap w-100 p-lg-5 p-4">
+									<h3 class="mb-4">1:1 문의하기</h3>
+				      		<div id="form-message-success" class="mb-4">
+				            Your message was sent, thank you!
+				      		</div>
+									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control" name="name" id="name" placeholder="이름">
+												</div>
+											</div>
+											<div class="col-md-12"> 
+												<div class="form-group">
+													<input type="email" class="form-control" name="email" id="email" placeholder="이메일">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="text" class="form-control" name="subject" id="subject" placeholder="제목">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="내용"></textarea>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="container-login100-form-btn">
+													<button id="alertStart"class="login100-form-btn">
+														<b>전송하기</b>
+													</button>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="col-md-6 d-flex align-items-stretch">
+								<div class="info-wrap w-100 p-lg-5 p-4 img">
+									<h3>Contact us</h3>
+									<p class="mb-4">&nbsp;</p>
+				        	<div class="dbox w-100 d-flex align-items-start">
+				        		<div class="icon d-flex align-items-center justify-content-center">
+				        			<span class="fa fa-map-marker"></span>
+				        		</div>
+				        		<div class="text pl-3">
+					            <p><span>Address:</span>60, Songam-ro, Nam-gu, Gwangju, Republic of Korea</p>
+					          </div>
+				          </div>
+				        	<div class="dbox w-100 d-flex align-items-center">
+				        		<div class="icon d-flex align-items-center justify-content-center">
+				        			<span class="fa fa-phone"></span>
+				        		</div>
+				        		<div class="text pl-3">
+					            <p><span>Phone:</span> <a href="tel://1234567920">010-3083-0491</a></p>
+					          </div>
+				          </div>
+				        	<div class="dbox w-100 d-flex align-items-center">
+				        		<div class="icon d-flex align-items-center justify-content-center">
+				        			<span class="fa fa-paper-plane"></span>
+				        		</div>
+				        		<div class="text pl-3">
+					            <p><span>Email:</span> <a href="mailto:info@yoursite.com">bszt123@naver.com</a></p>
+					          </div>
+				          </div>
+	
+			          </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/main3.js"></script>
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/Qmain.js"></script>
+  <script src="js/alert2.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+	</body>
+</html>
+
