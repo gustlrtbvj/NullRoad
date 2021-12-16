@@ -1,3 +1,4 @@
+<%@page import="Model.ParkableVO"%>
 <%@page import="Model.ReservationVO"%>
 <%@page import="Model.ParkingVO"%>
 <%@page import="Model.DAO"%>
@@ -9,29 +10,106 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="description" content="Cryptocurrency Landing Page Template">
-<meta name="keywords" content="cryptocurrency, unica, creative, html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Favicon -->
-<link href="img/favicon.ico" rel="shortcut icon" />
+	<title>메인</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Cryptocurrency Landing Page Template">
+	<meta name="keywords" content="cryptocurrency, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon"/>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
-<!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/themify-icons.css" />
-<link rel="stylesheet" href="css/owl.carousel.css" />
-<link rel="stylesheet" href="css/style.css" />
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/themify-icons.css"/>
+	<link rel="stylesheet" href="css/animate.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+
+
 <style>
+img {
+        max-width: 100%;
+      }
+        .spad{
+            padding-top:50px;
+        }
+      
+        .jb-a {
+            
+          width: 400px;
+          margin: 0px auto;
+          position: relative
+          
+        }
+        .jb-c {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          display: none;
+        }
+        .jb-a:hover .jb-c {
+          display: block;
+        }
+        .jb-c {
+          position: absolute;
+           top: 0px;
+          left: 0px;
+          opacity: 0;
+          transition: opacity 0.5s linear;
+  }
+      .jb-a:hover .jb-c {
+           opacity: 1;
+  }
+  .container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.login100-form-btn {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+  height: 50px;
+  border-radius: 5px;
+  background: #7e3bc3;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background: #484748;
+}
+
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
-.bg_white {background:#fff;}
+.bg_white {background:#fff; display:none;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
 #menu_wrap .option p {margin:10px 0;}  
@@ -110,43 +188,43 @@
 	<!-- Header section -->
 	<header class="header-section clearfix">
 		<div class="container-fluid">
-			<a href="main.html" class="site-logo"
+			<a href="main.jsp" class="site-logo"
 				style="font-family: ImcreSoojin; font-size: 40px;"> nroad </a>
 			<div class="responsive-bar" style="margin-top: 10px;">
 				<i class="fa fa-bars"></i>
 			</div>
-			<a href="login.html" class="user" style="margin-top: 10px;"><i
+			<a href="" class="user" style="margin-top: 10px;"><i
 				class="fa fa-user"></i></a> <a href="login.html" class="site-btn">로그인</a>
-			<nav class="main-menu">
 
+
+			<nav class="main-menu">
+				
 				<ul class="menu-list">
 					<div class="dropdown">
-						<button class="dropbtn">
-							<b>About us&nbsp;</b>
-						</button>
+						<button class="dropbtn"><b>About us&nbsp;</b></button>
 						<div class="dropdown-content">
-							<a href="about.html">개발의도</a> <a href="gide.html">사용방법</a>
+						  <a href="about.html">개발의도</a>
+						  <a href="gide.html">사용방법</a>
 
 						</div>
-					</div>
+					  </div>
 					<div class="dropdown">
-						<button class="dropbtn">
-							<b>Community&nbsp;</b>
-						</button>
+						<button class="dropbtn"><b>Community&nbsp;</b></button>
 						<div class="dropdown-content">
-							<a href="#">리뷰게시판</a> <a href="board.html">자유게시판</a>
+						  <a href="#">리뷰게시판</a>
+						  <a href="board.html">자유게시판</a>
 
 						</div>
-					</div>
+					  </div>
 					<div class="dropdown">
-						<button class="dropbtn">
-							<b>Service</b>
-						</button>
+						<button class="dropbtn"><b>Service</b></button>
 						<div class="dropdown-content">
-							<a href="contact.html">공유하기</a> <a href="one.html">1:1문의</a> <a
-								href="#">Q&A</a> <a href="mypage.html">마이페이지</a>
+						  <a href="contact.html">공유하기</a>
+						  <a href="one.html">1:1문의</a>
+						  <a href="qNa.html">Q&A</a>
+						  <a href="mypage.html">마이페이지</a>
 						</div>
-					</div>
+					  </div>
 
 				</ul>
 			</nav>
@@ -171,8 +249,9 @@
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
         <p>
             <button onclick="setOverlayMapTypeId('traffic')">교통정보 보기</button> 
-            <button onclick="myKakaoNavi1()">내비</button>
-            
+            <button id="navi" href="#" onclick="myKakaoNavi1()">내비</button>
+            <button onclick="onDisplay()">검색창 보이기</button>
+            <button onclick="offDisplay()">검색창 숨기기</button>
             </p>
         <div id="menu_wrap" class="bg_white">
             <div class="option">
@@ -208,6 +287,7 @@
 		ArrayList<ParkingVO> prklist=dao.PrkSel();
 		ArrayList<ReservationVO> reslist=dao.ResSel();
 		ArrayList<BuildingVO> bldhidon=dao.BldHidOn();
+		ArrayList<ParkableVO> prkablelist=dao.Prkable();
 		//임시 데이터
 		
     %>
@@ -216,13 +296,13 @@
     
     
     //내용 집어 넣기
-    <%for(int i = 0; i < dao.BldHidOn().size(); i++){%>
+    <%for(int i = 0; i < bldhidon.size(); i++){%>
 	    var content = '<div class="overlaybox">' +
 	    '    <div class="boxtitle"><%=bldhidon.get(i).getBld_name()%></div>' +
 	            '            <div class="close" onclick="closeOverlay(<%=i %>)" title="닫기"></div>' +
 	    '    <div class="first" style="background:url(./img/<%=bldhidon.get(i).getBld_picture1()%>)">' +
 	    
-	    '        <div class="movietitle text">주차가능수</div>' +
+	    '        <div class="movietitle text">사용가능한 주차장수 <%for(int j=0; j<prkablelist.size();j++){if(bldhidon.get(i).getBld_seq()==prkablelist.get(j).getBld_seq()){%><%=prkablelist.get(j).getBld_prkable()%><%}}%></div>' +
 	    '    </div>' +
 	    '    <ul>' +
 	    '        <li>' +
@@ -564,6 +644,13 @@ function setOverlayMapTypeId(maptype) {
     // 지도에 추가된 타입정보를 갱신합니다
     currentTypeId = changeMaptype;        
 }
+	function onDisplay() {
+		$('.bg_white').show();
+	}
+	function offDisplay() {
+		$('.bg_white').hide();
+		removeMarker();
+	}
     </script>
     <!-- Footer section -->
 	<footer class="footer-section">

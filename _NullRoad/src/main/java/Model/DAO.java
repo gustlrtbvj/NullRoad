@@ -25,6 +25,7 @@ public class DAO {
 	RevCommentVO revcvo = null;
 	ReviewVO revvo = null;
 	ArrayList<ChartFeeVO> chvo = null;
+	ParkableVO prkablevo=null;
 
 	// ===============================================================================
 	public void Conn() {
@@ -1015,10 +1016,66 @@ public ArrayList<ChartFeeVO> chartData() {
 			// TODO: handle exception
 		}
 		
-		return chvo;
-		
-		
-		
-		
+		return chvo;		
 	}
+
+public ParkingVO PrkFeeSelect(int bld_num) {
+	try {
+		Conn();
+		String sql = "select prk_fee from t_parking where bld_seq=?";
+		psmt = conn.prepareStatement(sql);
+		// 4. 바인드 변수 채우기
+		psmt.setInt(1, bld_num);
+
+		// 5.
+		// select -> executeQuery() --> return ResultSet
+		// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+		rs = psmt.executeQuery();
+
+		if (rs.next() == true) {
+			int prk_seq = rs.getInt(1);
+			String prk_time = rs.getString(2);
+			String prk_day = rs.getString(3);
+			int prk_fee = rs.getInt(4);
+			int prk_status = rs.getInt(5);
+			String prk_memo = rs.getString(6);
+			int bld_seq = rs.getInt(7);
+
+			pvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
+		}
+	} catch (Exception e) {
+
+	} finally {
+		close();
+	}
+	return pvo;
+
+}
+
+public ArrayList<ParkableVO> Prkable() {
+	ArrayList<ParkableVO> prkableList = new ArrayList<ParkableVO>();
+	try {
+		Conn();
+		String sql = "select b.bld_seq ,count(*) from t_building b , t_parking p where b.bld_seq = p.bld_seq and p.prk_status = 0 group by b.bld_seq";
+						
+		psmt = conn.prepareStatement(sql);
+		
+		rs = psmt.executeQuery();
+		
+		while(rs.next() == true) {
+			int bld_seq = rs.getInt(1);
+			int bld_prkable = rs.getInt(2);
+			ParkableVO prkablevo = new ParkableVO(bld_seq, bld_prkable);
+			prkableList.add(prkablevo);
+		
+		}System.out.println("주차장가능수 성공");
+	} catch (Exception e) {
+		System.out.println("오류생김");
+	} finally {
+		close();
+	}
+	return prkableList;
+	
+}
+
 }
