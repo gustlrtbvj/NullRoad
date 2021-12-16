@@ -115,65 +115,62 @@ b {
 	</div>
 
 	<!-- Header section -->
+<header class="header-section clearfix">
+        <div class="container-fluid">
+            <a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
+                nroad
+            </a>
+            <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+            <a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+            <a href="login.html" class="site-btn">로그인</a>
+            <nav class="main-menu">
+                
+                <ul class="menu-list">
+                    <div class="dropdown">
+                        <button class="dropbtn"><b>About us&nbsp;</b></button>
+                        <div class="dropdown-content">
+                          <a href="about.html">개발의도</a>
+                          <a href="gide.html">사용방법</a>
 
-	<header class="header-section clearfix">
-		<div class="container-fluid">
-			<a href="main.html" class="site-logo"
-				style="font-family: ImcreSoojin; font-size: 40px;"> nroad </a>
-			<div class="responsive-bar" style="margin-top: 10px;">
-				<i class="fa fa-bars"></i>
-			</div>
-			<a href="" class="user" style="margin-top: 10px;"><i
-				class="fa fa-user"></i></a> <a href="login.html" class="site-btn">로그인</a>
-			<nav class="main-menu">
+                        </div>
+                      </div>
+                    <div class="dropdown">
+                        <button class="dropbtn"><b>Community&nbsp;</b></button>
+                        <div class="dropdown-content">
+                          <a href="#">리뷰게시판</a>
+                          <a href="boardrealreal.html">자유게시판</a>
 
-				<ul class="menu-list">
-					<div class="dropdown">
-						<button class="dropbtn">
-							<b>About us&nbsp;</b>
-						</button>
-						<div class="dropdown-content">
-							<a href="about.html">개발의도</a> <a href="gide.html">사용방법</a>
+                        </div>
+                      </div>
+                    <div class="dropdown">
+                        <button class="dropbtn"><b>Service</b></button>
+                        <div class="dropdown-content">
+                          <a href="contact.html">공유하기</a>
+                          <a href="one.html">1:1문의</a>
+                          <a href="qNa.html">Q&A</a>
+                          <a href="mypage.html">마이페이지</a>
+                        </div>
+                      </div>
 
-						</div>
-					</div>
-					<div class="dropdown">
-						<button class="dropbtn">
-							<b>Community&nbsp;</b>
-						</button>
-						<div class="dropdown-content">
-							<a href="#">리뷰게시판</a> <a href="board.html">자유게시판</a>
-
-						</div>
-					</div>
-					<div class="dropdown">
-						<button class="dropbtn">
-							<b>Service</b>
-						</button>
-						<div class="dropdown-content">
-							<a href="contact.html">공유하기</a> <a href="#">1:1문의</a> <a href="#">Q&A</a>
-							<a href="mypage.html">마이페이지</a>
-						</div>
-					</div>
-
-				</ul>
-			</nav>
-		</div>
-	</header>
+                </ul>
+            </nav>
+        </div>
+    </header>
 	<!-- Header section end -->
 
 
 
 	<!-- Page info section -->
-	<section class="page-info-section">
-		<div class="container">
-			<h2></h2>
-			<div class="site-beradcamb">
-				<a href=""></a>
+<div class = "mobile">
+    <section class="page-info-section">
+        <div class="container">
+        </div>
+    </section>
+    </div>
+    <!-- Page info end -->
 
-			</div>
-		</div>
-	</section>
+<p>&nbsp;</p>
+<main class="cd-main-content">
 	<!-- Page info end -->
 	<div id="bo_list" style="width: 95%">
 		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
@@ -195,15 +192,7 @@ b {
 				</li>
 			</ul>
 		</div>
-	<%
-MemberVO mvo = null;
-if (session.getAttribute("mvo")!=null){
-	mvo = (MemberVO)session.getAttribute("mvo");
-	session.setAttribute("mvo", mvo);
-}else{
-	response.sendRedirect("Pay1LoginCheck.jsp");
-}
-%>
+
 
 
 		<%
@@ -219,7 +208,7 @@ if (session.getAttribute("mvo")!=null){
 					<div class="s-number">
 						<span class="ico-notice">인기글</span>
 					</div>
-
+					
 					<div class="s-subject" style="padding-left: 0px">
 						<div class="bo_tit">
 							<a class="main_a"
@@ -229,7 +218,7 @@ if (session.getAttribute("mvo")!=null){
 					<div class="s-right">
 						<div class="s-user">
 							<span class="sv_member"><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=Barr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">　　<%=Barr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 						</div>
 						<div class="s-view">
 							<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
@@ -272,14 +261,14 @@ if (session.getAttribute("mvo")!=null){
 				<div class="s-subject" style="padding-left: 0px">
 					<div class="bo_tit">
 						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">　<%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
 					</div>
 				</div>
 
 				<div class="s-right">
 					<div class="s-user">
 						<span class="sv_member"><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">　　<%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 					</div>
 
 					<div class="s-view">
