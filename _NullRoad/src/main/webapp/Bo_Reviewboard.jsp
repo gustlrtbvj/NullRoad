@@ -68,7 +68,7 @@ if (session.getAttribute("mvo")!=null){
 
 <script type="text/javascript">
 if(confirm("로그인이 필요한 서비스입니다.")) {
-    window.location.href = "./login.jsp?page=Bo_Freeboard.jsp"
+    window.location.href = "./login.jsp?page=Bo_Reviewboard.jsp"
 }else{
 	window.location.href = "./main.jsp"
 }
@@ -229,23 +229,23 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 					<div class="s-subject" style="padding-left: 0px">
 						<div class="bo_tit">
 							<a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>">　<%= Barr.get(i).getRev_subject()%></a>
+								href="SelectRBoard.do?rev_seq=<%=Barr.get(i).getRev_seq()%>">　<%= Barr.get(i).getRev_subject()%></a>
 								<%System.out.print("게시판 기능"+Barr.get(i).getRev_seq()); %>
 						</div>
 					</div>
 					<div class="s-right">
 						<div class="s-user">
 							<span class="sv_member"><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>">　　<%=Barr.get(i).getM_id()%></a></span>
+								href="SelectRBoard.do?rev_seq=<%=Barr.get(i).getRev_seq()%>">　　<%=Barr.get(i).getM_id()%></a></span>
 						</div>
 						<div class="s-view">
 							<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>"><%=result%></a>
+								href="SelectRBoard.do?rev_seq=<%=Barr.get(i).getRev_seq()%>"><%=result%></a>
 						</div>
 						<div class="s-day">
 						
 							</i><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>"><%=Barr.get(i).getRev_cnt()%></a>
+								href="SelectRBoard.do?rev_seq=<%=Barr.get(i).getRev_seq()%>"><%=Barr.get(i).getRev_cnt()%></a>
 						</div>
 					</div>
 				</li>
@@ -274,29 +274,29 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
  %>
 				<div class="s-number">
 					<a class="main_a"
-						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_seq()%></a>
+						href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_seq()%></a>
 				</div>
 
 				<div class="s-subject" style="padding-left: 0px">
 					<div class="bo_tit">
 						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>">　<%=arr.get(i + (pageno - 1) * 5).getRev_subject()%></a>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>">　<%=arr.get(i + (pageno - 1) * 5).getRev_subject()%></a>
 					</div>
 				</div>
 
 				<div class="s-right">
 					<div class="s-user">
 						<span class="sv_member"><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>">　　<%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>">　　<%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 					</div>
 
 					<div class="s-view">
 						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=result%></a>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=result%></a>
 					</div>
 					<div class="s-day">
 						</i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_cnt()%></a>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_cnt()%></a>
 					</div>
 				</div>
 				</li>
@@ -323,26 +323,26 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
  %>
 				<div class="s-number">
 					<a class="main_a"
-						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_seq()%></a>
+						href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_seq()%></a>
 				</div>
 				<div class="s-subject" style="padding-left: 0px">
 					<div class="bo_tit">
 						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_subject()%></a>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_subject()%></a>
 					</div>
 				</div>
 				<div class="s-right">
 					<div class="s-user">
 						<span class="sv_member"><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 					</div>
 					<div class="s-view">
 						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=result%></a>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=result%></a>
 					</div>
 					<div class="s-day">
 						</i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_cnt()%></a>
+							href="SelectRBoard.do?rev_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_cnt()%></a>
 					</div>
 				</div> <%
  }

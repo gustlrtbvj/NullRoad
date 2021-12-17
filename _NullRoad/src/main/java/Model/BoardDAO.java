@@ -629,6 +629,75 @@ public class BoardDAO {
 		return bvo;
 	}
 
+	public ReviewVO SelectROne(int rev_seq) {
+		ReviewVO bvo = null;
+		// try문
+		// JDBC 코드는 문법이 맞더라도, 실행중에 발생하는 오류(런타임 오류) 처리 필요
+		try {
+			// JDBC
+			// 1. 동적로딩
+			System.out.println("conn확인" + rev_seq);
+			Conn();
+			// 3. sql문 준비
+			String sql = "select * from t_review where rev_seq =?";
+			psmt = conn.prepareStatement(sql);
+
+			// 4. 바인드 변수 채우기(물음표 없다. -> 바인드변수 노필요)
+			psmt.setInt(1, rev_seq);
+
+			// 5. 실행
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			System.out.print("DAO" + rev_seq);
+			// 로그인 때는, rs에 딱 1행만
+			// 모든 회원정보를 가져옴 > 몇번 반복해야할지 모름
+			if (rs.next() == true) {
+
+				// 글번호, 작성자, 제목, 파일이름, 내용, 날짜
+				int brev_seq = rs.getInt(1);
+				String rev_subject = rs.getString(2);
+				String rev_content = rs.getString(3);
+				int res_seq = rs.getInt(4);
+				String m_id = rs.getString(5);
+				String rev_reg_date = rs.getString(6);
+				int rev_cnt = rs.getInt(7);
+				int rev_status = rs.getInt(8);
+				// 한보따리로 묶는다.
+				bvo = new ReviewVO(brev_seq, rev_subject, rev_content, res_seq, m_id, rev_reg_date, rev_cnt
+						,rev_status);
+				String sql2 = "update t_review set rev_cnt = rev_cnt +1  where rev_seq=?";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setInt(1, rev_seq);
+				int tt = psmt.executeUpdate();
+
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return bvo;
+	}
 
 
 	public int DeleteCommunityCon(int comm_seq) {

@@ -77,7 +77,10 @@ public class frontControllerCon extends HttpServlet {
 			exe = new LogoutCon();
 		} else if (command.equals("/PayReserveService.do")) {
 		    exe = new PayReserveService();
+		} else if (command.equals("/SelectRBoard.do")) {
+		    exe = new Bo_SelectRBoardCon();
 		}
+		
 		exe.execute(request, response);
 	}
 
