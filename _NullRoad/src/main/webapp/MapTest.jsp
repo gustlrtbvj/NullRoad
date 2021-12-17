@@ -64,45 +64,8 @@ img {
       .jb-a:hover .jb-c {
            opacity: 1;
   }
-  .container-login100-form-btn {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 20px;
-}
 
-.login100-form-btn {
-  font-family: Montserrat-Bold;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #fff;
-  text-transform: uppercase;
-  height: 50px;
-  border-radius: 5px;
-  background: #7e3bc3;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 25px;
 
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
-}
-
-.login100-form-btn:hover {
-  background: #484748;
-}
 
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
@@ -175,6 +138,78 @@ img {
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
     .close {position: absolute;top: 17px;right: 124px;color: rgb(238, 31, 31);width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+      .container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 20px;
+}
+#ressel {
+  margin-top:20px;
+  margin-left:70px;
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+  height: 40px;
+  border-radius: 5px;
+  background: #7e3bc3;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#ressel:hover {
+  background: #484748;
+}
+
+.login100-form-btn {
+  font-family: Montserrat-Bold;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #fff;
+  text-transform: uppercase;
+  height: 40px;
+  border-radius: 5px;
+  background: #7e3bc3;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background: #484748;
+}
+li.sj{
+background:none;}
+    
 </style>
 </head>
 <body>
@@ -246,11 +281,13 @@ img {
     <div class="map_wrap">
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
         <p>
-            <button onclick="setOverlayMapTypeId('traffic')">교통정보 보기</button> 
-            <button id="navi" href="#" onclick="myKakaoNavi1()">내비</button>
-            <button onclick="onDisplay()">검색창 보이기</button>
-            <button onclick="offDisplay()">검색창 숨기기</button>
+        <div class="container-login100-form-btn">
+            <button onclick="setOverlayMapTypeId('traffic')" class="login100-form-btn">교통정보 보기</button> &nbsp;
+            <button id="navi" href="#" onclick="myKakaoNavi1()" class="login100-form-btn">내비</button>&nbsp;
+            <button onclick="onDisplay()" class="login100-form-btn">검색창 보이기</button>&nbsp;
+            <button onclick="offDisplay()" class="login100-form-btn">검색창 숨기기</button>
             </p>
+        </div>
         <div id="menu_wrap" class="bg_white">
             <div class="option">
                 <div>
@@ -312,10 +349,10 @@ img {
 	    
 
 	    '        </li>' +
-	    '        <li>' +
-	    
+	    '        <li class = "sj">' +
+	    			
 	    '            <button id="ressel" onclick = "clickFunction(<%=bldhidon.get(i).getBld_seq()%>)">예약</button>' +
-	    
+    			
 	    
 	    '        </li>' +
 	    
@@ -647,6 +684,7 @@ function setOverlayMapTypeId(maptype) {
 	}
     </script>
     <!-- Footer section -->
+    <p>&nbsp;</p><p>&nbsp;</p>
 	<footer class="footer-section">
 		<div class="container">
 			<div class="row spad">
