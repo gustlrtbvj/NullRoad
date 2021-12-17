@@ -1075,6 +1075,24 @@ public class DAO {
 		return time;
 
 	}
+	
+	public String Sysdate_C() {
+		String time = null;
+		try {
+			Conn();
+			String sql = "select to_char(sysdate,'yyyy-mm-dd') from SYS.dual";
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if (rs.next() == true) {
+				time = rs.getString(1);
+			}
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return time;
+
+	}
 public ArrayList<ChartFeeVO> chartData() {
 		
 		try {
