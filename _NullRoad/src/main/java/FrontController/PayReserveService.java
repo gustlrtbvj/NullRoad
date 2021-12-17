@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import Model.BuildingVO;
 import Model.DAO;
 import Model.MemberVO;
+import Model.ParkingVO;
 
 public class PayReserveService implements Command{
 
@@ -15,7 +16,6 @@ public class PayReserveService implements Command{
 		
 		try {
 		String page=request.getParameter("page");
-		int bld_seq=Integer.parseInt(request.getParameter("bld_seq"));
 		HttpSession session = request.getSession();
 		MemberVO mvo = null;
 		if (session.getAttribute("mvo")!=null){
@@ -32,17 +32,22 @@ public class PayReserveService implements Command{
 			response.sendRedirect(page);
 		}
 		
+		System.out.println("예약을 시도한다.");
 		DAO dao= new DAO();
-		int cnt = dao.PayReserSelect(bldvo.getBld_seq(),mvo.getM_id());
-		if (cnt >0) {
-			response.sendRedirect("Pay6ReserveComplete.jsp");
-		}else {
+		String park = dao.PayReserSelect(bldvo.getBld_seq(),mvo.getM_id());
+		ParkingVO pvo =  dao.ParkSelect(park);
+		
+		if (pvo == null) {
 			response.sendRedirect(page);
+		}else {
+			session.setAttribute("pvo", pvo);
+			response.sendRedirect("Pay6ReserveComplete.jsp");
 		}
 		//객체에서는 페이지를 이동할 때, try/catch 써줘야한다. 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 	

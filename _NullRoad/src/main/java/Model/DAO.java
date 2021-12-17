@@ -965,96 +965,95 @@ public class DAO {
 	}
 	// ===============================================================================
 
-	public int PayReserSelect(int bld_seq, String m_id) {
-
-		try {
-			Conn();
-			String sql1 = "select prk_seq, prk_fee from T_PARKING where bld_seq = ? and prk_status=0";
-			psmt = conn.prepareStatement(sql1);
-			psmt.setInt(1, bld_seq);
-			rs = psmt.executeQuery();
-			if (rs.next() == true) {
-				System.out.println("주차장 찾기 완료");
-				int prk_seq = rs.getInt(1);
-				int prk_fee = rs.getInt(2);
-				
-				String sql2 = "INSERT INTO t_reservation (prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id) VALUES (?, sysdate, sysdate, 2, sysdate, ?, ?)";
-				psmt = conn.prepareStatement(sql2);
-				psmt.setInt(1, prk_seq);
-				psmt.setInt(2, prk_fee);
-				psmt.setString(3, m_id);
-				int insert = psmt.executeUpdate();
-				if (insert > 0) {
-					System.out.println("예약 영수증 생성 성공");
-					String sql3 = "UPDATE t_parking set prk_status = 2 where prk_seq = ? ";
-					psmt = conn.prepareStatement(sql3);
+		public String PayReserSelect(int bld_seq, String m_id) {
+			String str=null;
+			try {
+				Conn();
+				String sql1 = "select prk_seq, prk_fee from T_PARKING where bld_seq = ? and prk_status = 0";
+				psmt = conn.prepareStatement(sql1);
+				psmt.setInt(1, bld_seq);
+				rs = psmt.executeQuery();
+				while (rs.next() == true) {
+					System.out.println("주차장 찾기 완료");
+					int prk_seq = rs.getInt(1);
+					int prk_fee = rs.getInt(2);
+					
+					String sql2 = "INSERT INTO t_reservation (prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id) VALUES (?, sysdate, sysdate, 2, sysdate, ?, ?)";
+					psmt = conn.prepareStatement(sql2);
 					psmt.setInt(1, prk_seq);
-					cnt = psmt.executeUpdate();
-					if (cnt > 0) {
-						System.out.println("주차장 예약완료");
+					psmt.setInt(2, prk_fee);
+					psmt.setString(3, m_id);
+					int insert = psmt.executeUpdate();
+					if (insert > 0) {
+						System.out.println("예약 영수증 생성 성공");
+						String sql3 = "UPDATE t_parking set prk_status = 2 where prk_seq = ? ";
+						psmt = conn.prepareStatement(sql3);
+						psmt.setInt(1, prk_seq);
+						cnt = psmt.executeUpdate();
+						if (cnt > 0) {
+							System.out.println("주차장 예약완료");
+							str = String.valueOf(prk_seq);
+						} else {
+							System.out.println("주차장 예약실패");
+						}
+
 					} else {
-						System.out.println("주차장 예약실패");
+						System.out.println("예약 영수증 생성 실패");
+
 					}
-
-				} else {
-					System.out.println("예약 영수증 생성 실패");
-
 				}
-			} else {
-				System.out.println("주차장 찾기 실패");
+			} catch (Exception e) {
+			} finally {
+				close();
 			}
-		} catch (Exception e) {
-		} finally {
-			close();
+			return str;
+
 		}
-		return cnt;
+		// ===============================================================================
 
-	}
-	// ===============================================================================
+		public int PayReserCheck(int bld_seq, String m_id) {
 
-	public int PayReserCheck(int bld_seq, String m_id) {
+			try {
+				Conn();
+				String sql1 = "select prk_seq from T_PARKING where prk_status = 2";
+				psmt = conn.prepareStatement(sql1);
+				rs = psmt.executeQuery();
+				while (rs.next() == true) {
+					int prk_seq = rs.getInt(1);
+					System.out.println("예약된 주차장 찾기 완료"+prk_seq);
+					String sql2 = "select res_seq, chk_in_time from T_RESERVATION where res_status = 2 and prk_seq = ? ";
+					psmt = conn.prepareStatement(sql2);
+					ResultSet rss = psmt.executeQuery();
+					while (rss.next() == true) {
+						int res_seq = rs.getInt(1);
+						String chk_in_time = rs.getString(2);
+						String Systime = Sysdate();
+						SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+						Date Start = format.parse(chk_in_time);
+						Date End = format.parse(Systime);
+						long UseTime = (End.getTime() - Start.getTime())/60000;
+						System.out.println("예약 영수증 찾기 성공" + UseTime + "분");
+						if (UseTime>=30) {
+						String sql3 = "UPDATE t_parking set prk_status = 3 , chk_out_time = sysdate where prk_seq = ? ";
+						psmt = conn.prepareStatement(sql3);
+						psmt.setInt(1, res_seq);
+						cnt = psmt.executeUpdate();
+						if (cnt > 0) {
+							System.out.println("주차장 예약30분 초과");
+						} else {
+							System.out.println("주차장 예약 취소 실패");
+						}
+						}
 
-		try {
-			Conn();
-			String sql1 = "select prk_seq from T_PARKING where prk_status = 2";
-			psmt = conn.prepareStatement(sql1);
-			rs = psmt.executeQuery();
-			while (rs.next() == true) {
-				int prk_seq = rs.getInt(1);
-				System.out.println("예약된 주차장 찾기 완료"+prk_seq);
-				String sql2 = "select res_seq, chk_in_time from T_RESERVATION where res_status = 2 and prk_seq = ? ";
-				psmt = conn.prepareStatement(sql2);
-				ResultSet rss = psmt.executeQuery();
-				while (rss.next() == true) {
-					int res_seq = rs.getInt(1);
-					String chk_in_time = rs.getString(2);
-					String Systime = Sysdate();
-					SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-					Date Start = format.parse(chk_in_time);
-					Date End = format.parse(Systime);
-					long UseTime = (End.getTime() - Start.getTime())/60000;
-					System.out.println("예약 영수증 찾기 성공" + UseTime + "분");
-					if (UseTime>=30) {
-					String sql3 = "UPDATE t_parking set prk_status = 3 , chk_out_time = sysdate where prk_seq = ? ";
-					psmt = conn.prepareStatement(sql3);
-					psmt.setInt(1, res_seq);
-					cnt = psmt.executeUpdate();
-					if (cnt > 0) {
-						System.out.println("주차장 예약30분 초과");
-					} else {
-						System.out.println("주차장 예약 취소 실패");
 					}
-					}
-
 				}
+			} catch (Exception e) {
+			} finally {
+				close();
 			}
-		} catch (Exception e) {
-		} finally {
-			close();
-		}
-		return cnt;
+			return cnt;
 
-	}
+		}
 	
 	// ===============================================================================
 

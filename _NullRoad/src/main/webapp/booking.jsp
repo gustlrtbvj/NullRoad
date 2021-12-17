@@ -106,19 +106,31 @@
 <body>
 
 	<% 
-
-	
 	DAO dao = new DAO();
 	session = request.getSession();
-	
-	int bld_seq1 =Integer.parseInt(request.getParameter("data"));
-	System.out.println("test파라미터"+bld_seq1);
-	ArrayList<BuildingVO> bld_list = dao.BldSelOne(bld_seq1);
+	int bld_seq =0;
+	ArrayList<BuildingVO> bld_list =null;
+	String str = request.getParameter("data");
+	if(str==null){
+		bld_seq = 23 ;
+		%>
+		<script type="text/javascript">
+		alert("주차장 선택이 되지 않았습니다.");
+		</script>
+		<%
+	}else{
+		bld_seq = Integer.parseInt(request.getParameter("data"));
+	}
+	bld_list = dao.BldSelOne(bld_seq);
 	BuildingVO bldvo = bld_list.get(0);
 	session.setAttribute("bldvo", bldvo);
-	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
-	//System.out.println("성공?>>"+bld_list.get(0).getBld_name());
-	
+	MemberVO mvo = null;
+	if (session.getAttribute("mvo")!=null){
+		mvo = (MemberVO)session.getAttribute("mvo");
+		session.setAttribute("mvo", mvo);
+	}else{
+		response.sendRedirect("login.jsp?page=booking.jsp");
+	}
 	%>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -195,14 +207,14 @@
                     <br>
 					<h2>예약하기</h2>
 					<h5>Usable : A1, A2, A4, A5</h5>
-					<p> 시간당 <%=dao.PrkFeeSelect(bld_seq1) %>원<br>
+					<p> 시간당 <%=dao.PrkFeeSelect(bldvo.getBld_seq()) %>원<br>
                         주소 : <%=bldvo.getSigungu()%> <%=bldvo.getEmdong()%> <%=bldvo.getDetail_addr() %><br>
                         건물명 : <%=bldvo.getBld_name() %>
                         <br><br><br>
 					</p>
 					<div class="container-login100-form-btn">
 					<form action=""><!-- 예약서비스  -->
-						<input type="text" name ="bld_seq" value="<%=bld_seq1%>" style="display:none">
+						<input type="text" name ="bld_seq" value="<%=bldvo.getBld_seq()%>" style="display:none">
 						<input type="submit" id="alertStart"class="login100-form-btn" value="예약하기">
 					</form>
 					</div>
