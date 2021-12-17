@@ -29,7 +29,6 @@
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
 
 
 <style>
@@ -183,8 +182,7 @@ img {
 <%
 	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 
-%>	
-	
+%>
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -193,19 +191,21 @@ img {
 	<!-- Header section -->
 	<header class="header-section clearfix">
 		<div class="container-fluid">
-			<a href="main.jsp" class="site-logo" style="font-family: ImcreSoojin; font-size: 40px;">
-			 nroad
+			<a href="main.jsp" class="site-logo" style="font-family : ImcreSoojin; font-size:40px;">
+				nroad
 			</a>
+
 			<%if(mvo==null){ %>
-			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars"></i></div>
-			<a href="login.jsp?page=mapTest.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a> 
-			<a href="login.jsp?page=mapTest.jsp" class="site-btn">로그인</a>
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="login.jsp?page=MapTest.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="login.jsp?page=MapTest.jsp" class="site-btn">로그인</a>
 			<%}else{ %> 
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-			<a href="Logout.do?page=mapTest.jsp" class="site-btn">로그아웃</a>
+			<a href="Logout.do?page=MapTest.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Logout.do?page=MapTest.jsp" class="site-btn">로그아웃</a>
 			<%} %>
 
+			
 			<nav class="main-menu">
 				
 				<ul class="menu-list">
@@ -230,7 +230,7 @@ img {
 						<div class="dropdown-content">
 						  <a href="contact.jsp">공유하기</a>
 						  <a href="one.jsp">1:1문의</a>
-						  <a href="qNa.jsp">Q&A</a>
+						  <a href="#">Q&A</a>
 						  <a href="mypage.jsp">마이페이지</a>
 						</div>
 					  </div>
@@ -329,12 +329,7 @@ img {
 	    
 	    
 	    '        </li>' +
-	    '        <li>' +
 	    
-	    '            <span class="title">안녕, 헤이즐</span>' +
-	    
-	    
-	    '        </li>' +
 	    '    </ul>' +
 	    '</div>';
     	
@@ -373,6 +368,7 @@ img {
         }(overlay));
                 
         overlay[i].setMap(null);
+        
     };
         function openOverlay(overlay) {
         overlay.setMap(map);     
@@ -593,7 +589,7 @@ img {
             el.removeChild (el.lastChild);
         }
     }
-    Kakao.init('11ee5630664d8eb60e7ce22fbf86ca31');
+    //Kakao.init('6f10bde5d4f1ce8537df658a268a51e2');
     function myKakaoNavi1() {
         Kakao.Navi.start({
             name:"목적지명",
@@ -609,10 +605,23 @@ var currentTypeId;
 	
 var test=0;
 	function clickFunction(data){
+    		
+    	
+			//1. 보내줄 데이터 정리하기
+			<%-- <% 
+			System.out.print("들어오닝");
+
+			HttpSession session2 = request.getSession();
+			session2.setAttribute("bldhidon", bldhidon.get(data));
+			%> --%>
 			
+			console.log("test"+data);
+			test=data;
+			
+
 			//2. 이동
 			location.href = "booking.jsp?data="+data;
-			sessionStorage.setItem("bldhidon", data);
+			sessionStorage.setItem("bldhidon", test);
 		
 	}
     
@@ -675,5 +684,9 @@ function setOverlayMapTypeId(maptype) {
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
+	
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
     </body>    
 </html>

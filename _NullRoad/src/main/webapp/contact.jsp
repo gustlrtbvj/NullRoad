@@ -102,7 +102,7 @@ label {
 			<a href="login.jsp?page=contact.jsp" class="site-btn">로그인</a>
 			<%}else{ %> 
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Logout.do?page=contact.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
 			<a href="Logout.do?page=contact.jsp" class="site-btn">로그아웃</a>
 			<%} %>
 				
