@@ -232,6 +232,7 @@ ul {
 	</section>
 	<!-- Page info end -->
 	<%
+	String [] files1 = null;
 	Date date = new Date();
 	BoardDAO dao = new BoardDAO();
 	ArrayList<CommunityVO> boards = dao.CommSel();
@@ -242,7 +243,9 @@ ul {
 	FilesVO files =null;
 	if (dao.FilesSel(b) != null) {
 		files = dao.FilesSel(b);
+		files1 = files.getF_1().split("/");
 	}
+
 	%>
 
  
@@ -272,14 +275,17 @@ ul {
 						<%=bvo.getM_id()%></p>
 						
 						
-						
-						<% if(files != null) {
-						%>
-						<img src="./img/<%=files.getF_1()%>"><br><br>
-						<% } %>
+						<% if (files1 !=null) {%>
+					<%  for (int i=0; i<files1.length; i++) { %>
+					<% if (files1[i]!=null) { %>
+					<img src="img/<%= files1[i]%>">
+					<br>
+					<% } %>
+					<% 	} %>
+						<% }%>
 						
 					 <%=bvo.getComm_content()%></p>
-
+						
 				</div>
 
 				<p>&nbsp;</p>
@@ -367,7 +373,22 @@ ul {
 
 
 	<!--====== Javascripts & Jquery ======-->
+<script>
+		$().ready(function() {
+			$("#alertStart").click(function() {
+				Swal.fire({
+					icon : 'success',
+					confirmButtonColor : '#7e3bc3',
+					title : '댓글이 등록되었습니다',
+					closeOnClickOutside : false
+				}).then(function() {
+					location.href = "Bo_Freeboard.jsp"
 
+				});
+			});
+		});
+	</script>
+	
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>

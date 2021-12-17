@@ -216,17 +216,13 @@ public class BoardDAO {
 			String rev_reg_date, int rev_cnt, int rev_status) {
 		try {
 			Conn();
-			String sql = "insert into t_review values(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO t_review(rev_subject, rev_content,res_seq,m_id rev_reg_date, rev_cnt, rev_status) VALUES (?, ?, sysdate, 0, ?, 0)";
 			psmt = conn.prepareStatement(sql);
 
-			psmt.setInt(1, rev_seq);
-			psmt.setString(2, rev_subject);
-			psmt.setString(3, rev_content);
-			psmt.setInt(4, res_seq);
-			psmt.setString(5, m_id);
-			psmt.setString(6, rev_reg_date);
-			psmt.setInt(7, rev_cnt);
-			psmt.setInt(8, rev_status);
+
+			psmt.setString(1, rev_subject);
+			psmt.setString(2, rev_content);
+			psmt.setString(3, m_id);
 
 		} catch (Exception e) {
 
@@ -235,7 +231,108 @@ public class BoardDAO {
 		}
 		return cnt;
 	}
+	
+	public ArrayList<ReviewVO> RevSel() {
 
+		ArrayList<ReviewVO> Revlist = new ArrayList<ReviewVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_review order by rev_seq desc";
+			psmt = conn.prepareStatement(sql);
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				int rev_seq = rs.getInt(1);
+				String rev_subject = rs.getString(2);
+				String rev_content = rs.getString(3);
+				int res_seq = rs.getInt(4);
+				String m_id = rs.getString(5);
+				String rev_reg_date = rs.getString(6);
+				int rev_cnt = rs.getInt(7);
+				int rev_status = rs.getInt(8);
+
+				ReviewVO cvo = new ReviewVO(rev_seq, rev_subject, rev_content, res_seq, m_id, rev_reg_date, rev_cnt
+						,rev_status);
+				Revlist.add(cvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return Revlist;
+	}
+	
+	public ArrayList<ReviewVO> RevSelBest() {
+
+		ArrayList<ReviewVO> Revlist = new ArrayList<ReviewVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_review where rev_status =0 order by rev_cnt desc";
+			psmt = conn.prepareStatement(sql);
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				int rev_seq = rs.getInt(1);
+				String rev_subject = rs.getString(2);
+				String rev_content = rs.getString(3);
+				int res_seq = rs.getInt(4);
+				String m_id = rs.getString(5);
+				String rev_reg_date = rs.getString(6);
+				int rev_cnt = rs.getInt(7);
+				int rev_status = rs.getInt(8);
+
+				ReviewVO cvo = new ReviewVO(rev_seq, rev_subject, rev_content, res_seq, m_id, rev_reg_date, rev_cnt
+						,rev_status);
+				System.out.print(cvo);
+				Revlist.add(cvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return Revlist;
+	}
+	
 	public int RevMentCon(int rev_ment_seq, int rev_seq, String rev_ment_content, String rev_ment_reg_date,
 			String m_id) {
 		try {
@@ -421,7 +518,7 @@ public class BoardDAO {
 
 		try {
 			Conn();
-			String sql = "select * from t_community_reply where comm_seq = ?";
+			String sql = "select * from t_community_reply where comm_seq = ? order by comm_rep_seq";
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, comm_seq);
 			// 5.

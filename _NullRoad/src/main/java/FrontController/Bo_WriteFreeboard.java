@@ -52,12 +52,19 @@ public class Bo_WriteFreeboard extends HttpServlet {
 		String comm_content = multi.getParameter("content2");
 		String m_id = multi.getParameter("writer");
 		String filename1 = null;
+		String filename2 = null;
+		String filename3 = null;
+		String filename4 = null;
 		   try {
 		      filename1 = URLEncoder.encode(multi.getFilesystemName("imgPath1"), "euc-kr");
+		      filename2 = URLEncoder.encode(multi.getFilesystemName("imgPath2"), "euc-kr");
+		      filename3 = URLEncoder.encode(multi.getFilesystemName("imgPath3"), "euc-kr");
+		      filename4 = URLEncoder.encode(multi.getFilesystemName("imgPath4"), "euc-kr");
 		   } catch (Exception e) {
 		   }
 		   
 
+		   
 		System.out.println("이미지?"+filename1);
 		System.out.println("제목?"+comm_subj);
 		// 파일 이름을 가져올때는
@@ -67,13 +74,22 @@ public class Bo_WriteFreeboard extends HttpServlet {
 		
 		//DAO 메서드 사용해서 web_board 테이블에 저장
 		BoardDAO dao=new BoardDAO();
+		if (filename2==null) {
+			String fileSum = filename1;
+		} else if (filename3==null) {
+			String fileSum= filename1+"/"+filename2;
+		} else if (filename4==null) {
+			String fileSum= filename1+"/"+filename2+"/"+filename3;
+		}
+		String fileSum= filename1+"/"+filename2+"/"+filename3+"/"+filename4;
 		int cnt = dao.CommunityCon(comm_subj, comm_content, m_id);
 		
-		int cnt2 = dao.FilesCon(filename1);
+		int cnt2 = dao.FilesCon(fileSum);
 
 		
 		
 		System.out.println(cnt);
+		System.out.println(cnt2);
 		if(cnt>0) {
 			System.out.println("게시글 작성 성공!");
 			

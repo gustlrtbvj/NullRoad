@@ -192,13 +192,13 @@
                       </td>
                     </tr>
                     <tr>
-                      <th scope="row"><label>첨부파일</label></th>
+                      <th scope="row"><label>첨부파일2</label></th>
                       <td class="file-upload">
                         <div id="photoUpload">
                           <div class="file-wrap">
                             <div class="one-file">
   
-                              <input type="file" name="imgPath1" id="imgPath1">
+                              <input type="file" name="imgPath1" id="imgPath1" onclick="addfile()">
                               <div class="file-item hide">
                               </div>
                             </div>
@@ -212,6 +212,67 @@
                         </p>
                       </td>
                     </tr>
+                    <th scope="row"><label>첨부파일2</label></th>
+                      <td class="file-upload">
+                        <div id="photoUpload">
+                          <div class="file-wrap">
+                            <div class="one-file">
+  
+                              <input type="file" name="imgPath2" id="imgPath2" onclick="addfile()">
+                              <div class="file-item hide">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <p class="guide">
+                          - 이미지 파일만 첨부할수 있습니다.(확장자 : jpg, jpeg, gif, png, bmp)<br>
+                          - 파일 크기가 10MB 이하인 경우만 업로드 가능합니다.<br>
+
+                        </p>
+                      </td>
+                    </tr>
+                    <th scope="row"><label>첨부파일3</label></th>
+                      <td class="file-upload">
+                        <div id="photoUpload">
+                          <div class="file-wrap">
+                            <div class="one-file">
+  
+                              <input type="file" name="imgPath3" id="imgPath13" onclick="addfile()">
+                              <div class="file-item hide">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <p class="guide">
+                          - 이미지 파일만 첨부할수 있습니다.(확장자 : jpg, jpeg, gif, png, bmp)<br>
+                          - 파일 크기가 10MB 이하인 경우만 업로드 가능합니다.<br>
+
+                        </p>
+                      </td>
+                    </tr>
+                    <th scope="row"><label>첨부파일4</label></th>
+                      <td class="file-upload">
+                        <div id="photoUpload">
+                          <div class="file-wrap">
+                            <div class="one-file">
+  
+                              <input type="file" name="imgPath4" id="imgPath4" onclick="addfile()">
+                              <div class="file-item hide">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <p class="guide">
+                          - 이미지 파일만 첨부할수 있습니다.(확장자 : jpg, jpeg, gif, png, bmp)<br>
+                          - 파일 크기가 10MB 이하인 경우만 업로드 가능합니다.<br>
+
+                        </p>
+                      </td>
+                    </tr>
+                    
                   </tbody>
                 </table>
     
@@ -269,6 +330,8 @@
 				});
 			});
 		});
+	</script>
+
 	</script>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

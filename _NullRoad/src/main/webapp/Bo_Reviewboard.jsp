@@ -1,4 +1,5 @@
 
+<%@page import="Model.ReviewVO"%>
 <%@page import="Model.BoardDAO"%>
 <%@page import="Model.MemberVO"%>
 <%@page import="Model.CommunityVO"%>
@@ -49,13 +50,13 @@ b {
 
 <body>
 	<%
-	CommunityVO cvo = null;
+	ReviewVO cvo = null;
 	if (session.getAttribute("cvo") != null) {
-		cvo = (CommunityVO) session.getAttribute("cvo");
+		cvo = (ReviewVO) session.getAttribute("cvo");
 	}
 	BoardDAO dao = new BoardDAO();
-	ArrayList<CommunityVO> arr = dao.CommSel();
-	ArrayList<CommunityVO> Barr = dao.CommSelBest();
+	ArrayList<ReviewVO> arr = dao.RevSel();
+	ArrayList<ReviewVO> Barr = dao.RevSelBest();
 	%>
 	
 <% 
@@ -188,7 +189,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 
 <main class="cd-main-content">
 	<!-- Page info end -->
-	<h3 style="text-align:center; letter-spacing: 5px; font-weight: 700;">자유게시판</h3>
+	<h3 style="text-align:center; letter-spacing: 5px; font-weight: 700;">리뷰게시판</h3>
 	<div id="bo_list" style="width: 95%">
 		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
 		<div id="bo_btn_top">
@@ -219,7 +220,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 			<ul>
 				<li>
 					<%
-					String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
+					String result = arr.get(i + (pageno - 1) * 5).getRev_reg_date().substring(5, 11);
 					%>
 					<div class="s-number">
 						<span class="ico-notice">인기글</span>
@@ -228,23 +229,23 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 					<div class="s-subject" style="padding-left: 0px">
 						<div class="bo_tit">
 							<a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">　<%= Barr.get(i).getComm_subj()%></a>
-								<%System.out.print("게시판 기능"+Barr.get(i).getComm_seq()); %>
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>">　<%= Barr.get(i).getRev_subject()%></a>
+								<%System.out.print("게시판 기능"+Barr.get(i).getRev_seq()); %>
 						</div>
 					</div>
 					<div class="s-right">
 						<div class="s-user">
 							<span class="sv_member"><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">　　<%=Barr.get(i).getM_id()%></a></span>
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>">　　<%=Barr.get(i).getM_id()%></a></span>
 						</div>
 						<div class="s-view">
 							<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=result%></a>
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>"><%=result%></a>
 						</div>
 						<div class="s-day">
 						
 							</i><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=Barr.get(i).getComm_cnt()%></a>
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getRev_seq()%>"><%=Barr.get(i).getRev_cnt()%></a>
 						</div>
 					</div>
 				</li>
@@ -258,7 +259,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 
 
 			<%
-			ArrayList<CommunityVO> boards = dao.CommSel();
+			ArrayList<ReviewVO> boards = dao.RevSel();
 			%>
 			
 				<%
@@ -269,33 +270,33 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
   <div class="bo_reslist">
   <li>
   <%
- String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
+ String result = arr.get(i + (pageno - 1) * 5).getRev_reg_date().substring(5, 11);
  %>
 				<div class="s-number">
 					<a class="main_a"
-						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a>
+						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_seq()%></a>
 				</div>
 
 				<div class="s-subject" style="padding-left: 0px">
 					<div class="bo_tit">
 						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">　<%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>">　<%=arr.get(i + (pageno - 1) * 5).getRev_subject()%></a>
 					</div>
 				</div>
 
 				<div class="s-right">
 					<div class="s-user">
 						<span class="sv_member"><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">　　<%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>">　　<%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 					</div>
 
 					<div class="s-view">
 						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=result%></a>
 					</div>
 					<div class="s-day">
 						</i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_cnt()%></a>
 					</div>
 				</div>
 				</li>
@@ -318,30 +319,30 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 				<%
 				for (int i = 0; i < 5 - ((pageno) * 5 - arr.size()); i++) {
 				%> <%
- String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
+ String result = arr.get(i + (pageno - 1) * 5).getRev_reg_date().substring(5, 11);
  %>
 				<div class="s-number">
 					<a class="main_a"
-						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a>
+						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_seq()%></a>
 				</div>
 				<div class="s-subject" style="padding-left: 0px">
 					<div class="bo_tit">
 						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_subject()%></a>
 					</div>
 				</div>
 				<div class="s-right">
 					<div class="s-user">
 						<span class="sv_member"><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 					</div>
 					<div class="s-view">
 						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=result%></a>
 					</div>
 					<div class="s-day">
 						</i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getRev_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getRev_cnt()%></a>
 					</div>
 				</div> <%
  }
