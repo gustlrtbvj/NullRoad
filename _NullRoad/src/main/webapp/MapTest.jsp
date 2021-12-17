@@ -319,7 +319,7 @@ img {
 	    '        </li>' +
 	    '        <li>' +
 	    				
-	    '            <span class="title">가격</span>' +
+	    '            <span class="title">시간당 <%=dao.PrkFeeSelect(bldhidon.get(i).getBld_seq())%> 원</span>' +
 	    
 
 	    '        </li>' +
@@ -609,23 +609,10 @@ var currentTypeId;
 	
 var test=0;
 	function clickFunction(data){
-    		
-    	
-			//1. 보내줄 데이터 정리하기
-			<%-- <% 
-			System.out.print("들어오닝");
-
-			HttpSession session2 = request.getSession();
-			session2.setAttribute("bldhidon", bldhidon.get(data));
-			%> --%>
 			
-			console.log("test"+data);
-			test=data;
-			
-
 			//2. 이동
 			location.href = "booking.jsp?data="+data;
-			sessionStorage.setItem("bldhidon", test);
+			sessionStorage.setItem("bldhidon", data);
 		
 	}
     

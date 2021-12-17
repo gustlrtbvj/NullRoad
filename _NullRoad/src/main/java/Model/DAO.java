@@ -961,6 +961,53 @@ public class DAO {
 		return cnt;
 
 	}
+	// ===============================================================================
+
+	public int PayReserSelect(int bld_seq, String m_id) {
+
+		try {
+			Conn();
+			String sql1 = "select prk_seq, prk_fee from T_PARKING where bld_seq = ? and prk_status=0";
+			psmt = conn.prepareStatement(sql1);
+			psmt.setInt(1, bld_seq);
+			rs = psmt.executeQuery();
+			if (rs.next() == true) {
+				System.out.println("주차장 찾기 완료");
+				int prk_seq = rs.getInt(1);
+				int prk_fee = rs.getInt(2);
+				
+				String sql2 = "INSERT INTO t_reservation (prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id) VALUES (?, sysdate, sysdate, 2, sysdate, ?, ?)";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setInt(1, prk_seq);
+				psmt.setInt(2, prk_fee);
+				psmt.setString(3, m_id);
+				int insert = psmt.executeUpdate();
+				if (insert > 0) {
+					System.out.println("예약 영수증 생성 성공");
+					String sql3 = "UPDATE t_parking set prk_status = 2 where prk_seq = ? ";
+					psmt = conn.prepareStatement(sql3);
+					psmt.setInt(1, prk_seq);
+					cnt = psmt.executeUpdate();
+					if (cnt > 0) {
+						System.out.println("주차장 예약완료");
+					} else {
+						System.out.println("주차장 예약실패");
+					}
+
+				} else {
+					System.out.println("예약 영수증 생성 실패");
+
+				}
+			} else {
+				System.out.println("주차장 찾기 실패");
+			}
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return cnt;
+
+	}
 	
 	// ===============================================================================
 

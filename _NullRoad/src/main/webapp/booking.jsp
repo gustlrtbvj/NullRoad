@@ -106,18 +106,16 @@
 <body>
 
 	<% 
-	//HttpSession session2 = request.getSession();
-	//String bvo = null;
-	
-	//if(session.getAttribute("bldhidon") != null){
-	//	bvo=(String)session.getAttribute("bldhidon");
-	//	System.out.println("testtest");
-	//}
+
 	
 	DAO dao = new DAO();
+	session = request.getSession();
+	
 	int bld_seq1 =Integer.parseInt(request.getParameter("data"));
 	System.out.println("test파라미터"+bld_seq1);
 	ArrayList<BuildingVO> bld_list = dao.BldSelOne(bld_seq1);
+	BuildingVO bldvo = bld_list.get(0);
+	session.setAttribute("bldvo", bldvo);
 	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 	//System.out.println("성공?>>"+bld_list.get(0).getBld_name());
 	
@@ -197,15 +195,16 @@
                     <br>
 					<h2>예약하기</h2>
 					<h5>Usable : A1, A2, A4, A5</h5>
-					<p> 시간당 요금 0원<br>
-                        주소 : <%=bld_list.get(0).getSigungu()%> <%=bld_list.get(0).getEmdong()%> <%=bld_list.get(0).getDetail_addr() %><br>
-                        건물명 : <%=bld_list.get(0).getBld_name() %>
+					<p> 시간당 <%=dao.PrkFeeSelect(bld_seq1) %>원<br>
+                        주소 : <%=bldvo.getSigungu()%> <%=bldvo.getEmdong()%> <%=bldvo.getDetail_addr() %><br>
+                        건물명 : <%=bldvo.getBld_name() %>
                         <br><br><br>
 					</p>
 					<div class="container-login100-form-btn">
-						<button id="alertStart"class="login100-form-btn">
-							<b>예약완료</b>
-						</button>
+					<form action=""><!-- 예약서비스  -->
+						<input type="text" name ="bld_seq" value="<%=bld_seq1%>" style="display:none">
+						<input type="submit" id="alertStart"class="login100-form-btn" value="예약하기">
+					</form>
 					</div>
 				</div>
 			</div>
@@ -243,6 +242,7 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
+
 
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
