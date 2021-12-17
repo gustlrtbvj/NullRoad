@@ -192,13 +192,13 @@
         
         <div class="mychart mychartsection2"> 
             <div class="col-md-12">
-                <canvas id="myChartone" style="width:100vw ; height:30vh"></canvas>
+                <canvas id="myChartone" style="width:100vw ; height:10vh"></canvas>
             </div>
         </div>
         
         <div class="mychart on mychartsection1">
             <div class="col-md-12">
-                <canvas id="myChartone1" style="width:100vw ; height:30vh"></canvas>
+                <canvas id="myChartone1" style="width:100vw ; height:10vh"></canvas>
             </div>
         </div>
 
@@ -207,11 +207,9 @@
             <div>    
                 <a href="#none"><button class="login100-form-btn" style="margin-right:40px">chart2</button></a>
                 <a href="#none"><button class="login100-form-btn">chart1</button></a>
-                <select name="1" id="1" style="float:right;">
-                    <option selected>동 선택</option>
-                    <option>동명동</option>
-                    <option>양림동</option>
-                    <option>송하동</option>
+                <select name="1" id="select1" style="float:right;">
+                    <option id = "selectdong" selected>동 선택</option>
+                    
                 </select>
             </div>
           
@@ -228,14 +226,12 @@
                     <th>총 수익</th>
                     <th>평균수익</th>
                     <th>이용 수</th>
-                    <th>공유 수</th>
                     <th>행사 정보</th>
                     <th>날짜</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -248,7 +244,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
                 <tr>
                 <td></td>
@@ -256,7 +251,6 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
               <tr>
                 <td></td>
@@ -264,10 +258,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
               <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -280,10 +272,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
             </tr>
           <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -341,7 +331,7 @@
                 type = val.geometry.type;
                 coordinates = val.geometry.coordinates;
                 name = val.properties.EMD_NM;
-
+                $('#selectdong').after('<option>'+name+'</option>')
                 if(type == "MultiPolygon"){
                     console.log(coordinates);
                     //멀티폴리곤 출력
@@ -355,6 +345,12 @@
           })
        });
    });  
+   
+   $('#select1').change(function(){
+	   callFunction($(this).val());
+	   
+	   });
+   
    
        
        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -467,7 +463,7 @@
         kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
          var content = '<div class="info">' + 
             '<div class="title">' + name +'<br>'+ 
-            '<a href="#fuck" onclick="callFunction()">통계 보러가기</a>'   +
+            '<a href="#fuck" onclick="callFunction(\''+name+'\')">통계 보러가기</a>'   +
             '</div>'
             ;
                
@@ -494,107 +490,6 @@
 
 </script>
 
-<script>
-
-    // 차트 탭
-    $(".chartTab a:nth-child(1)").click(
-        function(){
-            $(".mychartsection1").removeClass("on");
-            $(".mychartsection2").removeClass("on");
-            $(".mychartsection1").addClass("on");
-        }
-    );
-    $(".chartTab a:nth-child(2)").click(
-        function(){
-            $(".mychartsection1").removeClass("on");
-            $(".mychartsection2").removeClass("on");
-            $(".mychartsection2").addClass("on");
-        }
-    );
-    
-        // 차트 생성
-    var myChartone = document.getElementById('myChartone').getContext('2d');
-    var myChartone1 = document.getElementById('myChartone1').getContext('2d');
-
-    
-    //이용자수, 수익구조
-    var myChart = new Chart(myChartone, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [122153, 192323, 32323, 52233, 22323, 232323],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            
-            
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    var myChart = new Chart(myChartone1, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [1200, 1900, 300, 500, 200, 300],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-    
-            
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    </script>
     <script type="text/javascript">
     <%
 	DAO dao = new DAO();
@@ -631,21 +526,171 @@
 	////////////////////////////////////////////
 	
 	
-	//callFunction(emdong);
 	
-    function callFunction() {
+	//동을 클릭했을 때 동작하는 기능
+    function callFunction(emdong) {
+    	alert(static_data['t_time'][0]);
+    	
+    	var fee_chart = [];
+    	var date_chart = [];
 		var tr_length = $('#data_table tr').length;
 		var td_length = $('#data_table td').length;
 		var tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
+			$("#data_table tbody>tr td").empty();					
 			for (var i = 0; i < tr_length; i++) {
-    			$("#data_table tr:eq("+i+") td:eq(0)").html(static_data['t_fee'][i]);
-    			$("#data_table tr:eq("+i+") td:eq(1)").html(static_data['t_avg'][i]);
-    			$("#data_table tr:eq("+i+") td:eq(2)").html(static_data['t_cnt'][i]);
-    			$("#data_table tr:eq("+i+") td:eq(5)").html(static_data['t_time'][i]);
- 
+				if(static_data['t_dong'][i] == emdong){
+				$("#data_table tr:eq("+(i+1)+") td:eq(0)").html(static_data['t_fee'][i]);
+				fee_chart.push(static_data['t_fee'][i]);
+    			$("#data_table tr:eq("+(i+1)+") td:eq(1)").html(static_data['t_avg'][i]);
+    			$("#data_table tr:eq("+(i+1)+") td:eq(2)").html(static_data['t_cnt'][i]);
+    			$("#data_table tr:eq("+(i+1)+") td:eq(4)").html(static_data['t_time'][i]);
+    			date_chart.push(static_data['t_time'][i]);
+				}
 			}
+			if(myChart != null){
+			myChart.destroy();
+			}
+			myChart = new Chart(myChartone1, {
+			        type: 'line',
+			        data: {
+			            labels: date_chart,
+			            datasets: [{
+			                label: 'NullRoad시각화',
+			                data: fee_chart,
+			                backgroundColor: [
+			                    'rgba(255, 99, 132, 0.2)',
+			                    'rgba(54, 162, 235, 0.2)',
+			                    'rgba(255, 206, 86, 0.2)',
+			                    'rgba(75, 192, 192, 0.2)',
+			                    'rgba(153, 102, 255, 0.2)',
+			                    'rgba(255, 159, 64, 0.2)'
+			                ],
+			                borderColor: [
+			                    'rgba(255, 99, 132, 1)',
+			                    'rgba(54, 162, 235, 1)',
+			                    'rgba(255, 206, 86, 1)',
+			                    'rgba(75, 192, 192, 1)',
+			                    'rgba(153, 102, 255, 1)',
+			                    'rgba(255, 159, 64, 1)'
+			                ],
+			                borderWidth: 1
+			            }]
+			        },
+			        options: {
+			    
+			            
+			            scales: {
+			                yAxes: [{
+			                    ticks: {
+			                        beginAtZero: true
+			                    }
+			                }]
+			            }
+			        }
+			    });
 		};
+		
+
+	    // 차트 탭
+	    $(".chartTab a:nth-child(1)").click(
+	        function(){
+	            $(".mychartsection1").removeClass("on");
+	            $(".mychartsection2").removeClass("on");
+	            $(".mychartsection1").addClass("on");
+	        }
+	    );
+	    $(".chartTab a:nth-child(2)").click(
+	        function(){
+	            $(".mychartsection1").removeClass("on");
+	            $(".mychartsection2").removeClass("on");
+	            $(".mychartsection2").addClass("on");
+	        }
+	    );
+	    
+	        // 차트 생성
+	    var myChartone = document.getElementById('myChartone').getContext('2d');
+	    var myChartone1 = document.getElementById('myChartone1').getContext('2d');
+
+	    
+	    //이용자수, 수익구조
+	    var myChart = new Chart(myChartone, {
+	        type: 'line',
+	        data: {
+	            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+	            datasets: [{
+	                label: '# of Votes',
+	                data: [122153, 192323, 32323, 52233, 22323, 500],
+	                backgroundColor: [
+	                    'rgba(255, 99, 132, 0.2)',
+	                    'rgba(54, 162, 235, 0.2)',
+	                    'rgba(255, 206, 86, 0.2)',
+	                    'rgba(75, 192, 192, 0.2)',
+	                    'rgba(153, 102, 255, 0.2)',
+	                    'rgba(255, 159, 64, 0.2)'
+	                ],
+	                borderColor: [
+	                    'rgba(255, 99, 132, 1)',
+	                    'rgba(54, 162, 235, 1)',
+	                    'rgba(255, 206, 86, 1)',
+	                    'rgba(75, 192, 192, 1)',
+	                    'rgba(153, 102, 255, 1)',
+	                    'rgba(255, 159, 64, 1)'
+	                ],
+	                borderWidth: 1
+	            }]
+	        },
+	        options: {
+	            
+	            
+	            scales: {
+	                yAxes: [{
+	                    ticks: {
+	                        beginAtZero: true
+	                    }
+	                }]
+	            }
+	        }
+	    });
+	    var myChart = new Chart(myChartone1, {
+	        type: 'line',
+	        data: {
+	            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+	            datasets: [{
+	                label: '# of Votes',
+	                data: [122153, 192323, 32323, 52233, 22323, 500],
+	                backgroundColor: [
+	                    'rgba(255, 99, 132, 0.2)',
+	                    'rgba(54, 162, 235, 0.2)',
+	                    'rgba(255, 206, 86, 0.2)',
+	                    'rgba(75, 192, 192, 0.2)',
+	                    'rgba(153, 102, 255, 0.2)',
+	                    'rgba(255, 159, 64, 0.2)'
+	                ],
+	                borderColor: [
+	                    'rgba(255, 99, 132, 1)',
+	                    'rgba(54, 162, 235, 1)',
+	                    'rgba(255, 206, 86, 1)',
+	                    'rgba(75, 192, 192, 1)',
+	                    'rgba(153, 102, 255, 1)',
+	                    'rgba(255, 159, 64, 1)'
+	                ],
+	                borderWidth: 1
+	            }]
+	        },
+	        options: {
+	    
+	            
+	            scales: {
+	                yAxes: [{
+	                    ticks: {
+	                        beginAtZero: true
+	                    }
+	                }]
+	            }
+	        }
+	    });
     </script>
+    
 
 </body>
 </html>
