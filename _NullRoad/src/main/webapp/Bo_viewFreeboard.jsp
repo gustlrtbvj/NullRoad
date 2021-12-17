@@ -237,8 +237,12 @@ ul {
 	ArrayList<CommunityVO> boards = dao.CommSel();
 	CommunityVO bvo = (CommunityVO) request.getAttribute("bvo");
 	int b = bvo.getComm_seq();
+	System.out.println("음?>>"+b);
 	ArrayList<CommunityRepVO> reply = dao.CommRepSel(b);
-	FilesVO files = dao.FilesSel(b);
+	FilesVO files =null;
+	if (dao.FilesSel(b) != null) {
+		files = dao.FilesSel(b);
+	}
 	%>
 
  
@@ -266,7 +270,14 @@ ul {
 					<p style="text-align: right;">
 						작성자 :
 						<%=bvo.getM_id()%></p>
+						
+						
+						
+						<% if(files != null) {
+						%>
 						<img src="./img/<%=files.getF_1()%>"><br><br>
+						<% } %>
+						
 					 <%=bvo.getComm_content()%></p>
 
 				</div>
@@ -292,8 +303,7 @@ ul {
 				%>
 				<br>
 			<form action = "CommRepCon.do?comm_seq=<%=bvo.getComm_seq()%>">
-				<textarea name="message" rows="5" cols="110" type ="text">
-            </textarea>
+				<textarea name="message" rows="5" cols="110" type ="text"></textarea>
             	<input value="<%=bvo.getComm_seq()%>" name="num" style = "display:none">
             	<input value="<%=mvo.getM_id()%>" name="m_id" style = "display:none">
 				<div class="container-login100-form-btn">

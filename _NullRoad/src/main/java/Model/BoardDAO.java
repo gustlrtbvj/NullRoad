@@ -631,8 +631,6 @@ public class BoardDAO {
 			 
 			if(rs.next()==true) {
 				temp_seq = rs.getInt(1);
-				System.out.println("이미지왜안됨?");
-				
 			}
 			System.out.println(temp_seq);
 			String sql2 = "INSERT INTO t_files (comm_seq, f_1) VALUES (?,?)";
@@ -686,21 +684,11 @@ public class BoardDAO {
 				int cs_rep = rs.getInt(7);	
 				int bld_seq = rs.getInt(8);	
 				String f_1= rs.getString(9);
-				String f_2= rs.getString(10);
-				String f_3= rs.getString(11);
-				String f_4= rs.getString(12);
-				String f_5= rs.getString(13);
-				String f_6= rs.getString(14);
-				String f_7= rs.getString(15);
-				String f_8= rs.getString(16);
-				String f_9= rs.getString(17);
-				String f_10= rs.getString(18);
 
 
 				// 한보따리로 묶는다.
 				fvo = new FilesVO(f_seq, bcomm_seq, rev_ment_seq, cs_art_seq, rev_seq, comm_rep_seq, cs_rep,
-						bld_seq, f_1, f_2, f_3, f_4, f_5,f_6, f_7, f_8,
-						f_9, f_10);
+						bld_seq, f_1);
 
 			}
 

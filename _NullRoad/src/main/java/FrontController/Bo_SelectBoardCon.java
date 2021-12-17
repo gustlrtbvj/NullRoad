@@ -23,6 +23,7 @@ public class Bo_SelectBoardCon implements Command {
 			// 3. DAO의 메서드 사용해서 BoardVO 받아오기
 			System.out.println(comm_seq);
 			CommunityVO bvo = dao.SelectOne(comm_seq);
+			System.out.println("여기여기>>"+bvo);
 
 			request.setAttribute("bvo", bvo);
 

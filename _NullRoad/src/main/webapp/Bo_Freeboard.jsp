@@ -201,7 +201,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 					<div class="s-right">
 						<div class="s-day">조회수</div>
 						<div class="s-view">날짜</div>
-						<div class="s-user">글쓴이</div>
+						<div class="s-user">　글쓴이</div>
 					</div>
 				</li>
 			</ul>

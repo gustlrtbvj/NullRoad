@@ -31,7 +31,7 @@ public class DeleteBoardCon implements Command {
 			}
 
 			// 5. Forward 방식으로 viewBoard.jsp로 이동
-			RequestDispatcher rd = request.getRequestDispatcher("Freeboard.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Bo_Freeboard.jsp");
 			rd.forward(request, response);
 
 		} catch (Exception e) {
