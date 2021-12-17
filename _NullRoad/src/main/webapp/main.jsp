@@ -50,7 +50,7 @@
 			<a href="login.jsp?page=main.jsp" class="site-btn">로그인</a>
 			<%}else{ %> 
 			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Logout.do?page=main.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
 			<a href="Logout.do?page=main.jsp" class="site-btn">로그아웃</a>
 			<%} %>
 
