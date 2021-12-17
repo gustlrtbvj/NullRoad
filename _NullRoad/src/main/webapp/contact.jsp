@@ -105,7 +105,7 @@ label {
 			<a href="Logout.do?page=contact.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
 			<a href="Logout.do?page=contact.jsp" class="site-btn">·Î±×¾Æ¿ô</a>
 			<%} %>
-				
+				<nav class="main-menu">
 				<ul class="menu-list">
 					<div class="dropdown">
 						<button class="dropbtn"><b>About us&nbsp;</b></button>
