@@ -30,7 +30,7 @@ public class BldRegCon implements Command {
 			
 			//3. 인코딩 타입
 			String encoding = "euc-kr";
-			System.out.println("ss");
+			System.out.println("ssss");
 			//4. request를 대신 해서 받아온 데이터를 정제해줄 MultipartRequest 객체
 			MultipartRequest multi = new MultipartRequest(request,
 														savePath,
