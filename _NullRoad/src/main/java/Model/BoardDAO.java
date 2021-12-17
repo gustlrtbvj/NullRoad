@@ -19,7 +19,6 @@ public class BoardDAO {
 
 	MemberVO mvo = null;
 
-
 	RevCommentVO revcvo = null;
 
 	// ===============================================================================
@@ -114,8 +113,8 @@ public class BoardDAO {
 				String m_joindate = rs.getString(10);
 				int admin_yn = rs.getInt(11);
 
-				mvo = new MemberVO(member_id, member_pw, m_name, m_jumin, m_phone, m_car_num, m_point, m_type, m_account,
-						m_joindate, admin_yn);
+				mvo = new MemberVO(member_id, member_pw, m_name, m_jumin, m_phone, m_car_num, m_point, m_type,
+						m_account, m_joindate, admin_yn);
 			}
 		} catch (Exception e) {
 
@@ -270,7 +269,7 @@ public class BoardDAO {
 			psmt.setString(1, comm_subject);
 			psmt.setString(2, comm_content);
 			psmt.setString(3, m_id);
-			
+
 			cnt = psmt.executeUpdate();
 		} catch (Exception e) {
 
@@ -279,8 +278,6 @@ public class BoardDAO {
 		}
 		return cnt;
 	}
-	
-	
 
 	public int CommRepCon(int comm_seq, String comm_rep_content, String m_id) {
 
@@ -292,11 +289,9 @@ public class BoardDAO {
 
 			psmt.setInt(1, comm_seq);
 			psmt.setString(2, comm_rep_content);
-			psmt.setString(3,  m_id);			
+			psmt.setString(3, m_id);
 			cnt = psmt.executeUpdate();
-			
-			System.out.println(cnt);
-			
+
 		} catch (Exception e) {
 
 		} finally {
@@ -371,7 +366,6 @@ public class BoardDAO {
 
 	// ===============================================================================
 
-	
 	public ArrayList<CommunityVO> CommSel() {
 
 		ArrayList<CommunityVO> Commlist = new ArrayList<CommunityVO>();
@@ -395,7 +389,6 @@ public class BoardDAO {
 
 				CommunityVO cvo = new CommunityVO(comm_seq, comm_subject, comm_subject, comm_reg_date, comm_cnt, m_id,
 						comm_status);
-				System.out.println(cvo);
 				Commlist.add(cvo);
 			}
 		} catch (Exception e) {
@@ -421,7 +414,7 @@ public class BoardDAO {
 
 		return Commlist;
 	}
-	
+
 	public ArrayList<CommunityRepVO> CommRepSel(int comm_seq) {
 
 		ArrayList<CommunityRepVO> CommReplist = new ArrayList<CommunityRepVO>();
@@ -442,8 +435,8 @@ public class BoardDAO {
 				String comm_rep_reg_date = rs.getString(4);
 				String m_id = rs.getString(5);
 
-				CommunityRepVO cvo = new CommunityRepVO(comm_rep_seq, tcomm_seq, comm_rep_content, comm_rep_reg_date, m_id);
-				System.out.println(cvo);
+				CommunityRepVO cvo = new CommunityRepVO(comm_rep_seq, tcomm_seq, comm_rep_content, comm_rep_reg_date,
+						m_id);
 				CommReplist.add(cvo);
 			}
 		} catch (Exception e) {
@@ -490,7 +483,6 @@ public class BoardDAO {
 			// select -> executeQuery() --> return ResultSet
 			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
 			rs = psmt.executeQuery();
-			System.out.println(rs);
 			System.out.print("DAO" + comm_seq);
 			// 로그인 때는, rs에 딱 1행만
 			// 모든 회원정보를 가져옴 > 몇번 반복해야할지 모름
@@ -508,13 +500,12 @@ public class BoardDAO {
 				bvo = new CommunityVO(bcomm_seq, comm_subj, comm_content, comm_reg_date, comm_cnt, m_id, comm_status);
 				comm_cnt += 1;
 				String sql2 = "update t_community set comm_cnt = comm_cnt +1  where comm_seq=?";
-				psmt = conn.prepareStatement(sql2); 
+				psmt = conn.prepareStatement(sql2);
 				psmt.setInt(1, comm_seq);
 				int tt = psmt.executeUpdate();
-				System.out.println(tt);
-				
+
+
 			}
-			
 
 		} catch (Exception e) {
 
@@ -541,119 +532,53 @@ public class BoardDAO {
 		return bvo;
 	}
 
-	
 
-	public CommunityVO SelectPre(int comm_seq) {
-		CommunityVO bvo = null;
-		// try문
-		// JDBC 코드는 문법이 맞더라도, 실행중에 발생하는 오류(런타임 오류) 처리 필요
-		try {
-			// JDBC
-			// 1. 동적로딩
-			System.out.println("conn확인" + comm_seq);
-			Conn();
-			// 3. sql문 준비
-			String sql = "select * from t_community where comm_seq =?";
-			psmt = conn.prepareStatement(sql);
 
-			// 4. 바인드 변수 채우기(물음표 없다. -> 바인드변수 노필요)
-			psmt.setInt(1, comm_seq);
-
-			// 5. 실행
-			// select -> executeQuery() --> return ResultSet
-			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
-			rs = psmt.executeQuery();
-			System.out.println(rs);
-			System.out.print("DAO" + comm_seq);
-			// 로그인 때는, rs에 딱 1행만
-			// 모든 회원정보를 가져옴 > 몇번 반복해야할지 모름
-			if (rs.next() == true) {
-
-				// 글번호, 작성자, 제목, 파일이름, 내용, 날짜
-				int bcomm_seq = rs.getInt(1);
-				String comm_subj = rs.getString(2);
-				String comm_content = rs.getString(3);
-				String comm_reg_date = rs.getString(4);
-				int comm_cnt = rs.getInt(5);
-				String m_id = rs.getString(6);
-				int comm_status = rs.getInt(7);
-
-				// 한보따리로 묶는다.
-				bvo = new CommunityVO(bcomm_seq, comm_subj, comm_content, comm_reg_date, comm_cnt, m_id, comm_status);
-
-			}
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-
-		} finally {
-			// 6. 연결을 닫아주기
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (psmt != null) {
-					psmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (Exception e2) {
-
-			}
-
-		}
-
-		return bvo;
-	}	
 	public int DeleteCommunityCon(int comm_seq) {
 		try {
 			Conn();
 			String sql = "UPDATE t_community SET comm_status = 1 WHERE comm_seq=?";
-					
+
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1, comm_seq);
 
-			
 			cnt = psmt.executeUpdate();
 		} catch (Exception e) {
 
 		} finally {
 			close();
 		}
-		System.out.println(cnt);
 		return cnt;
 	}
+
 	public int UpdateCommunityCon(int comm_seq, String comm_content) {
 		try {
 			Conn();
 			String sql = "UPDATE t_community SET comm_content = ? WHERE comm_seq=?";
-					
+
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, comm_content);
 			psmt.setInt(2, comm_seq);
 
-			
 			cnt = psmt.executeUpdate();
 		} catch (Exception e) {
 
 		} finally {
 			close();
 		}
-		System.out.println(cnt);
+
 		return cnt;
 	}
-	
+
 	public ArrayList<CommunityVO> CommSelBest() {
 
 		ArrayList<CommunityVO> Commlist = new ArrayList<CommunityVO>();
 
 		try {
 			Conn();
-			String sql = "select * from t_community where comm_status =0 order by comm_cnt desc";
+			String sql = "select * from t_community where comm_status = 0 order by comm_cnt desc";
 			psmt = conn.prepareStatement(sql);
 			// 5.
 			// select -> executeQuery() --> return ResultSet
@@ -670,7 +595,6 @@ public class BoardDAO {
 
 				CommunityVO cvo = new CommunityVO(comm_seq, comm_subject, comm_subject, comm_reg_date, comm_cnt, m_id,
 						comm_status);
-				System.out.println(cvo);
 				Commlist.add(cvo);
 			}
 		} catch (Exception e) {
@@ -696,6 +620,112 @@ public class BoardDAO {
 
 		return Commlist;
 	}
+	public int FilesCon(String f_1) {
+		try {
+			Conn();
+			String sql = "Select max(comm_seq) from t_community";
+			psmt = conn.prepareStatement(sql);
+
+			 rs = psmt.executeQuery();
+			 int temp_seq=0;
+			 
+			if(rs.next()==true) {
+				temp_seq = rs.getInt(1);
+				System.out.println("이미지왜안됨?");
+				
+			}
+			System.out.println(temp_seq);
+			String sql2 = "INSERT INTO t_files (comm_seq, f_1) VALUES (?,?)";
+			psmt = conn.prepareStatement(sql2);
+			psmt.setInt(1, temp_seq);
+			psmt.setString(2, f_1);
+			
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 	
-	
+	public FilesVO FilesSel(int comm_seq) {
+		FilesVO fvo = null;
+		// try문
+		// JDBC 코드는 문법이 맞더라도, 실행중에 발생하는 오류(런타임 오류) 처리 필요
+		try {
+			// JDBC
+			// 1. 동적로딩
+			System.out.println("conn확인" + comm_seq);
+			Conn();
+			// 3. sql문 준비
+			String sql = "select * from t_files where comm_seq =?";
+			psmt = conn.prepareStatement(sql);
+
+			// 4. 바인드 변수 채우기(물음표 없다. -> 바인드변수 노필요)
+			psmt.setInt(1, comm_seq);
+
+			// 5. 실행
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			System.out.println(rs);
+			System.out.print("DAO" + comm_seq);
+			// 로그인 때는, rs에 딱 1행만
+			// 모든 회원정보를 가져옴 > 몇번 반복해야할지 모름
+			if (rs.next() == true) {
+
+				// 글번호, 작성자, 제목, 파일이름, 내용, 날짜
+				int f_seq = rs.getInt(1);
+				int bcomm_seq = rs.getInt(2);
+				int rev_ment_seq = rs.getInt(3);
+				int cs_art_seq = rs.getInt(4);
+				int rev_seq = rs.getInt(5);
+				int comm_rep_seq = rs.getInt(6);
+				int cs_rep = rs.getInt(7);	
+				int bld_seq = rs.getInt(8);	
+				String f_1= rs.getString(9);
+				String f_2= rs.getString(10);
+				String f_3= rs.getString(11);
+				String f_4= rs.getString(12);
+				String f_5= rs.getString(13);
+				String f_6= rs.getString(14);
+				String f_7= rs.getString(15);
+				String f_8= rs.getString(16);
+				String f_9= rs.getString(17);
+				String f_10= rs.getString(18);
+
+
+				// 한보따리로 묶는다.
+				fvo = new FilesVO(f_seq, bcomm_seq, rev_ment_seq, cs_art_seq, rev_seq, comm_rep_seq, cs_rep,
+						bld_seq, f_1, f_2, f_3, f_4, f_5,f_6, f_7, f_8,
+						f_9, f_10);
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return fvo;
+	}	
 }

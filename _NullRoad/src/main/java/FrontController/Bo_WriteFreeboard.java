@@ -1,6 +1,8 @@
 package FrontController;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -49,7 +51,15 @@ public class Bo_WriteFreeboard extends HttpServlet {
 		String comm_subj = multi.getParameter("title2");
 		String comm_content = multi.getParameter("content2");
 		String m_id = multi.getParameter("writer");
-		System.out.println(comm_subj);
+		String filename1 = null;
+		   try {
+		      filename1 = URLEncoder.encode(multi.getFilesystemName("imgPath1"), "euc-kr");
+		   } catch (Exception e) {
+		   }
+		   
+
+		System.out.println("이미지?"+filename1);
+		System.out.println("제목?"+comm_subj);
 		// 파일 이름을 가져올때는
 		// getFilesystemName("name값")
 		
@@ -58,6 +68,9 @@ public class Bo_WriteFreeboard extends HttpServlet {
 		//DAO 메서드 사용해서 web_board 테이블에 저장
 		BoardDAO dao=new BoardDAO();
 		int cnt = dao.CommunityCon(comm_subj, comm_content, m_id);
+		
+		int cnt2 = dao.FilesCon(filename1);
+
 		
 		
 		System.out.println(cnt);

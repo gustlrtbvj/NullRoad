@@ -31,18 +31,17 @@
 b {
 	font-weight: bolder;
 }
-
 .ico-notice {
-	display: inline-block;
-	width: 60px;
-	height: 24px;
-	background: #7e3bc3;
-	-webkit-border-radius: 2px;
-	-moz-border-radius: 2px;
-	border-radius: 2px;
-	line-height: 23px;
-	color: #fff;
-	text-align: center;
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+    background: #7e3bc3;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    line-height: 23px;
+    color: #fff;
+    text-align: center;
 }
 </style>
 
@@ -58,25 +57,25 @@ b {
 	ArrayList<CommunityVO> arr = dao.CommSel();
 	ArrayList<CommunityVO> Barr = dao.CommSelBest();
 	%>
+	
+<% 
+MemberVO mvo = null;
 
-	<%
-	MemberVO mvo = null;
+if (session.getAttribute("mvo")!=null){
+	mvo = (MemberVO)session.getAttribute("mvo");
+}else{%>
 
-	if (session.getAttribute("mvo") != null) {
-		mvo = (MemberVO) session.getAttribute("mvo");
-	} else {
-	%>
-	\
-	<script type="text/javascript">
-		if (confirm("로그인이 필요한 서비스입니다.")) {
-			window.location.href = "./login.jsp?page=Bo_Freeboard.jsp"
-		} else {
-			window.location.href = "./main.jsp"
-		}
-	</script>
-	<%
-	}
-	%>
+<script type="text/javascript">
+if(confirm("로그인이 필요한 서비스입니다.")) {
+    window.location.href = "./login.jsp?page=Bo_Freeboard.jsp"
+}else{
+	window.location.href = "./main.jsp"
+}
+</script>
+<%
+
+}
+%>
 
 	<%!public Integer toInt(String x) {
 		int a = 0;
@@ -130,187 +129,180 @@ b {
 	</div>
 
 	<!-- Header section -->
-	<header class="header-section clearfix">
-		<div class="container-fluid">
-			<a href="main.html" class="site-logo"
-				style="font-family: ImcreSoojin; font-size: 40px;"> nroad </a>
-			<div class="responsive-bar" style="margin-top: 10px;">
-				<i class="fa fa-bars"></i>
-			</div>
-			<a href="login.html" class="user" style="margin-top: 10px;"><i
-				class="fa fa-user"></i></a> <a href="login.html" class="site-btn">로그인</a>
-			<nav class="main-menu">
+<header class="header-section clearfix">
+        <div class="container-fluid">
+            <a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
+                nroad
+            </a>
+            <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+            <a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+            <a href="login.html" class="site-btn">로그인</a>
+            <nav class="main-menu">
+                
+                <ul class="menu-list">
+                    <div class="dropdown">
+                        <button class="dropbtn"><b>About us&nbsp;</b></button>
+                        <div class="dropdown-content">
+                          <a href="about.html">개발의도</a>
+                          <a href="gide.html">사용방법</a>
 
-				<ul class="menu-list">
-					<div class="dropdown">
-						<button class="dropbtn">
-							<b>About us&nbsp;</b>
-						</button>
-						<div class="dropdown-content">
-							<a href="about.html">개발의도</a> <a href="gide.html">사용방법</a>
+                        </div>
+                      </div>
+                    <div class="dropdown">
+                        <button class="dropbtn"><b>Community&nbsp;</b></button>
+                        <div class="dropdown-content">
+                          <a href="#">리뷰게시판</a>
+                          <a href="boardrealreal.html">자유게시판</a>
 
-						</div>
-					</div>
-					<div class="dropdown">
-						<button class="dropbtn">
-							<b>Community&nbsp;</b>
-						</button>
-						<div class="dropdown-content">
-							<a href="#">리뷰게시판</a> <a href="boardrealreal.html">자유게시판</a>
+                        </div>
+                      </div>
+                    <div class="dropdown">
+                        <button class="dropbtn"><b>Service</b></button>
+                        <div class="dropdown-content">
+                          <a href="contact.html">공유하기</a>
+                          <a href="one.html">1:1문의</a>
+                          <a href="qNa.html">Q&A</a>
+                          <a href="mypage.html">마이페이지</a>
+                        </div>
+                      </div>
 
-						</div>
-					</div>
-					<div class="dropdown">
-						<button class="dropbtn">
-							<b>Service</b>
-						</button>
-						<div class="dropdown-content">
-							<a href="contact.html">공유하기</a> <a href="one.html">1:1문의</a> <a
-								href="qNa.html">Q&A</a> <a href="mypage.html">마이페이지</a>
-						</div>
-					</div>
-
-				</ul>
-			</nav>
-		</div>
-	</header>
+                </ul>
+            </nav>
+        </div>
+    </header>
 	<!-- Header section end -->
 
 
 
 	<!-- Page info section -->
-	<div class="mobile">
-		<section class="page-info-section">
-			<div class="container"></div>
-		</section>
-	</div>
+<div class = "mobile">
+    <section class="page-info-section">
+        <div class="container">
+        </div>
+    </section>
+    </div>
+    <!-- Page info end -->
+
+<p>&nbsp;</p>
+<main class="cd-main-content">
 	<!-- Page info end -->
+	<div id="bo_list" style="width: 95%">
+		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
+		<div id="bo_btn_top">
+			<div id="bo_list_total"></div>
 
-	<p>&nbsp;</p>
-	<main class="cd-main-content">
-		<!-- Page info end -->
-		<div id="bo_list" style="width: 95%">
-			<!-- 게시판 페이지 정보 및 버튼 시작 { -->
-			<div id="bo_btn_top">
-				<div id="bo_list_total"></div>
-
-			</div>
-			<!-- } 게시판 페이지 정보 및 버튼 끝 -->
-			<div class="bo_reslist_hd">
-				<ul>
-					<li>
-						<div class="s-number">번호</div>
-						<div class="s-subject">제목</div>
-						<div class="s-right">
-							<div class="s-day">날짜</div>
-							<div class="s-view">조회</div>
-							<div class="s-user">글쓴이</div>
-						</div>
-					</li>
-				</ul>
-			</div>
+		</div>
+		<!-- } 게시판 페이지 정보 및 버튼 끝 -->
+		<div class="bo_reslist_hd">
+			<ul>
+				<li>
+					<div class="s-number">번호</div>
+					<div class="s-subject">제목</div>
+					<div class="s-right">
+						<div class="s-day">조회수</div>
+						<div class="s-view">날짜</div>
+						<div class="s-user">글쓴이</div>
+					</div>
+				</li>
+			</ul>
+		</div>
 
 
 
-			<%
-			for (int i = 0; i < 3; i++) {
-			%>
-			<div class="bo_reslist">
-				<ul>
-
-					<li>
-						<%
-						String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
-						%>
-						<div class="s-number">
-							<span class="ico-notice">인기글</span>
-						</div>
-
-						<div class="s-subject" style="padding-left: 0px">
-							<div class="bo_tit">
-								<a class="main_a"
-									href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">
-									<%=Barr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
-							</div>
-						</div>
-						<div class="s-right">
-							<div class="s-user">
-								<span class="sv_member"><a class="main_a"
-									href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">
-										<%=Barr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
-							</div>
-							<div class="s-view">
-								<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-									href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=result%></a>
-							</div>
-							<div class="s-day">
-								</i><a class="main_a"
-									href="SelectBoard.do?comm_seq=<%=Barr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=Barr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
-							</div>
-						</div>
-					</li>
-
+		<%
+		for (int i = 0; i < 3; i++) {
+		%>
+		<div class="bo_reslist">
+			<ul>
+				<li>
 					<%
-					}
+					String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
 					%>
-				
-			</div>
+					<div class="s-number">
+						<span class="ico-notice">인기글</span>
+					</div>
+					
+					<div class="s-subject" style="padding-left: 0px">
+						<div class="bo_tit">
+							<a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">　<%= Barr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+								<%System.out.print("게시판 기능"+Barr.get(i).getComm_seq()); %>
+						</div>
+					</div>
+					<div class="s-right">
+						<div class="s-user">
+							<span class="sv_member"><a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>">　　<%=Barr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+						</div>
+						<div class="s-view">
+							<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i).getComm_seq()%>"><%=result%></a>
+						</div>
+						<div class="s-day">
+						
+							</i><a class="main_a"
+								href="SelectBoard.do?comm_seq=<%=Barr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=Barr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
+						</div>
+					</div>
+				</li>
+
+				<%
+				}
+				%>
+			
+		</div>
 
 
 
 			<%
 			ArrayList<CommunityVO> boards = dao.CommSel();
 			%>
-
-			<%
-			if (arr.size() >= (pageno) * 5) {
-			%>
-
-			<%
-			for (int i = 0; i < 5; i++) {
-			%>
-			<div class="bo_reslist">
-				<li>
-					<%
-					String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
-					%>
-					<div class="s-number">
-						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a>
-					</div>
-
-					<div class="s-subject" style="padding-left: 0px">
-						<div class="bo_tit">
-							<a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">
-								<%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
-						</div>
-					</div>
-
-					<div class="s-right">
-						<div class="s-user">
-							<span class="sv_member"><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">
-									<%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
-						</div>
-
-						<div class="s-view">
-							<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a>
-						</div>
-						<div class="s-day">
-							</i><a class="main_a"
-								href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
-						</div>
-					</div>
-				</li>
-
-
+			
 				<%
-				}
-				%>
-			</div>
-		</div>
+				if (arr.size() >= (pageno) * 5) {
+				%> <%
+ for (int i = 0; i < 5; i++) {
+ %>
+  <div class="bo_reslist">
+  <li>
+  <%
+ String result = arr.get(i + (pageno - 1) * 5).getComm_reg_date().substring(5, 11);
+ %>
+				<div class="s-number">
+					<a class="main_a"
+						href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_seq()%></a>
+				</div>
+
+				<div class="s-subject" style="padding-left: 0px">
+					<div class="bo_tit">
+						<a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">　<%=arr.get(i + (pageno - 1) * 5).getComm_subj()%></a>
+					</div>
+				</div>
+
+				<div class="s-right">
+					<div class="s-user">
+						<span class="sv_member"><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>">　　<%=arr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+					</div>
+
+					<div class="s-view">
+						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=result%></a>
+					</div>
+					<div class="s-day">
+						</i><a class="main_a"
+							href="SelectBoard.do?comm_seq=<%=arr.get(i + (pageno - 1) * 5).getComm_seq()%>"><%=arr.get(i + (pageno - 1) * 5).getComm_cnt()%></a>
+					</div>
+				</div>
+				</li>
+		
+		
+		<%
+		}
+		%>
+</div>
+</div>
 
 
 
@@ -319,6 +311,7 @@ b {
 		%>
 		<div class="bo_reslist">
 			<li>
+			
 				<%
 				for (int i = 0; i < 5 - ((pageno) * 5 - arr.size()); i++) {
 				%> <%
@@ -349,69 +342,68 @@ b {
 					</div>
 				</div> <%
  }
- %>
+ %>		</div>
 			</li>
-		</div>
+
 		<%
 		}
 		%>
+</div>
+</div>
 
 
 
+	</div>
 
-		</div>
+        <div class="bo_fx">
+                <ul class="btn_bo_user">
+            <li><a href="Bo_writeFreeboard.jsp" class="btn_b03 btn"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li>        </ul>	
+            </div>
+            
 
-		<div class="bo_fx">
-			<ul class="btn_bo_user">
-				<li><a href="Bo_writeFreeboard.jsp" class="btn_b03 btn"><i
-						class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li>
-			</ul>
-		</div>
-
-
-		<div class="paginate"
-			style="text-align: center; letter-spacing: 10px;">
-			<%
-			for (int i = page_sno; i <= page_eno; i++) {
-			%>
-			<a href="Bo_Freeboard.jsp?pageno=<%=i%>"> <%
+ <div class="paginate" style="text-align:center; letter-spacing:10px;">
+ <a href="Bo_Freeboard.jsp?pageno=<%=prev_pageno%>"> < </a>
+	<%
+	for (int i = page_sno; i <= page_eno; i++) {
+	%>
+	<a href="Bo_Freeboard.jsp?pageno=<%=i%>"> <%
  if (pageno == i) {
  %> <strong class="s-active" title="현재위치"><%=i%></strong> <%
  } else {
  %> <%=i%> <%
  }
  %>
-			</a>
-			<%
-			if (i < page_eno) {
-			%>
-			<%
-			}
-			%>
-			<%
-			}
-			%>
+	</a>
+	<%
+	if (i < page_eno) {
+	%>
+	<%
+	}
+	%>
+	<%
+	}
+	%>
 
-			<a href="Bo_Freeboard.jsp?pageno=<%=next_pageno%>">></a>
-		</div>
-
-
-		<!-- Footer section -->
+	<a href="Bo_Freeboard.jsp?pageno=<%=next_pageno%>">></a>
+</div>
 
 
-
-		<!--====== Javascripts & Jquery ======-->
-
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/alert3.js"></script>
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<!-- Footer section -->
 
 
-		<script src="js/jquery-3.2.1.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/main.js"></script>
+
+	<!--====== Javascripts & Jquery ======-->
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/alert3.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>

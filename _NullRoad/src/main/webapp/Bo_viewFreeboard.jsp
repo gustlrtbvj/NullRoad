@@ -1,4 +1,7 @@
 	
+<%@page import="Model.FilesVO"%>
+<%@page import="java.util.Date"%>
+<%@page import="Model.MemberVO"%>
 <%@page import="Model.BoardDAO"%>
 <%@page import="Model.CommunityRepVO"%>
 <%@page import="Model.CommunityVO"%>
@@ -143,7 +146,24 @@ ul {
 </head>
 <body>
 
+<%
+	MemberVO mvo = null;
 
+	if (session.getAttribute("mvo") != null) {
+		mvo = (MemberVO) session.getAttribute("mvo");
+	} else {
+	%>
+	
+	<script type="text/javascript">
+		if (confirm("로그인이 필요한 서비스입니다.")) {
+			window.location.href = "./login.jsp?page=Bo_Freeboard.jsp"
+		} else {
+			window.location.href = "./main.jsp"
+		}
+	</script>
+	<%
+	}
+	%>
 
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -212,14 +232,18 @@ ul {
 	</section>
 	<!-- Page info end -->
 	<%
+	Date date = new Date();
 	BoardDAO dao = new BoardDAO();
 	ArrayList<CommunityVO> boards = dao.CommSel();
 	CommunityVO bvo = (CommunityVO) request.getAttribute("bvo");
 	int b = bvo.getComm_seq();
 	ArrayList<CommunityRepVO> reply = dao.CommRepSel(b);
-	
-	
+	FilesVO files = dao.FilesSel(b);
 	%>
+
+ 
+
+
 
 	<br>
 	<br>
@@ -232,14 +256,18 @@ ul {
 				<div class="news-contents">
 					<div class="news-headline full">
 						<h3 class="tit"><%=bvo.getComm_subj()%></h3>
+						<% if(bvo.getComm_reg_date()!=null){%> 
 						<span class="date"><%=bvo.getComm_reg_date()%></span>
+						<% } else {%>
+						<span class="date"><%=date.getTime() %></span>
+						<%} %>
 						<p><a href = "updateFreeboard.jsp">수정</a></p> <p><a href="Delete.do?comm_seq=<%= bvo.getComm_seq() %>">삭제</a></p>
 					</div>
 					<p style="text-align: right;">
 						작성자 :
 						<%=bvo.getM_id()%></p>
-
-					<p><%=bvo.getComm_content()%></p>
+						<img src="./img/<%=files.getF_1()%>"><br><br>
+					 <%=bvo.getComm_content()%></p>
 
 				</div>
 
@@ -252,6 +280,7 @@ ul {
 				for (CommunityRepVO rvo : reply) {
 				%>
 				<div>
+					
 					<%=rvo.getComm_rep_content()%><br>
 					<p
 						style="color: #b1b1b1; height: auto; width: 100%; border-bottom: 1px solid #b1b1b1;">
@@ -266,6 +295,7 @@ ul {
 				<textarea name="message" rows="5" cols="110" type ="text">
             </textarea>
             	<input value="<%=bvo.getComm_seq()%>" name="num" style = "display:none">
+            	<input value="<%=mvo.getM_id()%>" name="m_id" style = "display:none">
 				<div class="container-login100-form-btn">
 
 					<button id="alertStart" class="login100-form-btn">
