@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DAO {
 
@@ -1000,6 +1002,51 @@ public class DAO {
 				}
 			} else {
 				System.out.println("주차장 찾기 실패");
+			}
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return cnt;
+
+	}
+	// ===============================================================================
+
+	public int PayReserCheck(int bld_seq, String m_id) {
+
+		try {
+			Conn();
+			String sql1 = "select prk_seq from T_PARKING where prk_status = 2";
+			psmt = conn.prepareStatement(sql1);
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				int prk_seq = rs.getInt(1);
+				System.out.println("예약된 주차장 찾기 완료"+prk_seq);
+				String sql2 = "select res_seq, chk_in_time from T_RESERVATION where res_status = 2 and prk_seq = ? ";
+				psmt = conn.prepareStatement(sql2);
+				ResultSet rss = psmt.executeQuery();
+				while (rss.next() == true) {
+					int res_seq = rs.getInt(1);
+					String chk_in_time = rs.getString(2);
+					String Systime = Sysdate();
+					SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+					Date Start = format.parse(chk_in_time);
+					Date End = format.parse(Systime);
+					long UseTime = (End.getTime() - Start.getTime())/60000;
+					System.out.println("예약 영수증 찾기 성공" + UseTime + "분");
+					if (UseTime>=30) {
+					String sql3 = "UPDATE t_parking set prk_status = 3 , chk_out_time = sysdate where prk_seq = ? ";
+					psmt = conn.prepareStatement(sql3);
+					psmt.setInt(1, res_seq);
+					cnt = psmt.executeUpdate();
+					if (cnt > 0) {
+						System.out.println("주차장 예약30분 초과");
+					} else {
+						System.out.println("주차장 예약 취소 실패");
+					}
+					}
+
+				}
 			}
 		} catch (Exception e) {
 		} finally {
