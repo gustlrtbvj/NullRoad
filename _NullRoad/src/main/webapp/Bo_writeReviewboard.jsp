@@ -168,7 +168,7 @@
             <p>&nbsp;</p><p>&nbsp;</p>
             <p>&nbsp;</p><p>&nbsp;</p>
 
-				<form action="Bo_WriteFreeboard" method="post"
+				<form action="Bo_WriteReviewboard" method="post"
 		enctype="multipart/form-data">		
                 <table class="board-form">
                   <!-- <colgroup>

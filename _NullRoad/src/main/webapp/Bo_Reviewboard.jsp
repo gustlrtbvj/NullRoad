@@ -361,7 +361,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 
         <div class="bo_fx">
                 <ul class="btn_bo_user">
-            <li><a href="Bo_writeFreeboard.jsp" class="btn_b03 btn"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li>        </ul>	
+            <li><a href="Bo_writeReviewboard.jsp" class="btn_b03 btn"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li>        </ul>	
             </div>
             
 

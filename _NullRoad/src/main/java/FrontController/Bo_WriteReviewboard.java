@@ -17,13 +17,14 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import Model.BoardDAO;
 import Model.CommunityVO;
 import Model.DAO;
+import Model.ReviewVO;
 
 
 /**
  * Servlet implementation class WriteFreeboard
  */
-@WebServlet("/Bo_WriteFreeboard")
-public class Bo_WriteFreeboard extends HttpServlet {
+@WebServlet("/Bo_WriteReviewboard")
+public class Bo_WriteReviewboard extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,8 +48,8 @@ public class Bo_WriteFreeboard extends HttpServlet {
 								
 		// 파라미터 수집
 		// MultipartRequest 객체로부터 파라미터 수집
-		String comm_subj = multi.getParameter("title2");
-		String comm_content = multi.getParameter("content2");
+		String rev_subj = multi.getParameter("title2");
+		String rev_content = multi.getParameter("content2");
 		String m_id = multi.getParameter("writer");
 		int giri = Integer.parseInt(multi.getParameter("giri"));
 		ArrayList<String> filename = new ArrayList<>();
@@ -64,7 +65,7 @@ System.out.println("기리리기리기리"+giri);
 			   fileSum+=filename.get(i)+"/";
 		   }
 		System.out.println("이미지?"+filename);
-		System.out.println("제목?"+comm_subj);
+		System.out.println("제목?"+rev_subj);
 		// 파일 이름을 가져올때는
 		// getFilesystemName("name값")
 		
@@ -73,9 +74,9 @@ System.out.println("기리리기리기리"+giri);
 		//DAO 메서드 사용해서 web_board 테이블에 저장
 		BoardDAO dao=new BoardDAO();
 
-		int cnt = dao.CommunityCon(comm_subj, comm_content, m_id);
+		int cnt = dao.ReviewCon(rev_subj, rev_content, m_id);
 		
-		int cnt2 = dao.FilesCon(fileSum);
+		int cnt2 = dao.FilesRCon(fileSum);
 
 		
 		
@@ -88,10 +89,10 @@ System.out.println("기리리기리기리"+giri);
 			// 기존의 BoardVO 생성자는 매개변수로 6가지를 모두 받았음
 			// 지금 담아갈것은 4가지밖에 없음---> 생성자를 하나 더 만들어주면 된다.
 			// 이름은 같은데 매개변수가 다른 --> 오버로딩
-			request.setAttribute("bvo",new CommunityVO(comm_subj, comm_content, m_id));
+			request.setAttribute("bvo",new ReviewVO(rev_subj, rev_content, m_id));
 			
 			// request영역에 데이터를 저장해서 이동하려면 >> forward
-			RequestDispatcher rd = request.getRequestDispatcher("Bo_viewFreeboard.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Bo_viewReviewboard.jsp");
 			rd.forward(request, response);
 			
 		}else {

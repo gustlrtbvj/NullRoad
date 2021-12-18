@@ -243,8 +243,8 @@ ul {
 	System.out.println("음?>>"+b);
 	ArrayList<RevCommentVO> reply = null;
 	FilesVO files =null;
-	if (dao.FilesSel(b) != null) {
-		files = dao.FilesSel(b);
+	if (dao.FilesRSel(b) != null) {
+		files = dao.FilesRSel(b);
 		files1 = files.getF_1().split("/");
 	}
 
@@ -311,7 +311,7 @@ ul {
 				%>
 				<br>
 				--%>
-			<form action = "CommRepCon.do?comm_seq=<%=bvo.getRev_seq()%>">
+			<form action = "CommRepRCon.do?rev_seq=<%=bvo.getRev_seq()%>">
 				<textarea name="message" rows="5" cols="110" type ="text"></textarea>
             	<input value="<%=bvo.getRev_seq()%>" name="num" style = "display:none">
             	<input value="<%=mvo.getM_id()%>" name="m_id" style = "display:none">
@@ -327,14 +327,14 @@ ul {
 
 				<ul class="news-list">
 					<li class="prev"><span class="txt"><a
-							href="SelectBoard.do?comm_seq=<%=bvo.getRev_seq() - 1%>">이전글</a></span>
+							href="SelectRBoard.do?rev_seq=<%=bvo.getRev_seq() - 1%>">이전글</a></span>
 					<li class="prev"><span class="txt"><a
-							href="SelectBoard.do?comm_seq=<%=bvo.getRev_seq() + 1%>">다음글</a></span>
+							href="SelectRBoard.do?rev_seq=<%=bvo.getRev_seq() + 1%>">다음글</a></span>
 				</ul>
 				<p>&nbsp;</p>
 				<div class="btn-wrap" style="text-align: center;">
 					<a class="u-btn btn-default"
-						href="Bo_Freeboard.jsp">목록</a>
+						href="Bo_Reviewboard.jsp">목록</a>
 				</div>
 			</div>
 		</div>

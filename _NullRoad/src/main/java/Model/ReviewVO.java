@@ -21,6 +21,14 @@ public class ReviewVO {
 		this.rev_cnt = rev_cnt;
 		this.rev_status = rev_status;
 	}
+	public ReviewVO(String rev_subject, String rev_content, String m_id) {
+		super();
+
+		this.rev_subject = rev_subject;
+		this.rev_content = rev_content;
+		this.m_id = m_id;
+
+	}
 	public int getRev_seq() {
 		return rev_seq;
 	}

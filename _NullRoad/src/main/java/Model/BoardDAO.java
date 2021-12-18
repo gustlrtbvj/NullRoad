@@ -212,11 +212,10 @@ public class BoardDAO {
 
 	// ===============================================================================
 
-	public int ReviewCon(int rev_seq, String rev_subject, String rev_content, int res_seq, String m_id,
-			String rev_reg_date, int rev_cnt, int rev_status) {
+	public int ReviewCon(String rev_subject, String rev_content, String m_id) {
 		try {
 			Conn();
-			String sql = "INSERT INTO t_review(rev_subject, rev_content,res_seq,m_id rev_reg_date, rev_cnt, rev_status) VALUES (?, ?, sysdate, 0, ?, 0)";
+			String sql = "INSERT INTO t_review(rev_subject, rev_content, res_seq, m_id, rev_reg_date, rev_cnt, rev_status) VALUES (?,?,26,?,sysdate,0,0)";
 			psmt = conn.prepareStatement(sql);
 
 
@@ -224,6 +223,8 @@ public class BoardDAO {
 			psmt.setString(2, rev_content);
 			psmt.setString(3, m_id);
 
+			
+			cnt = psmt.executeUpdate();
 		} catch (Exception e) {
 
 		} finally {
@@ -881,5 +882,100 @@ public class BoardDAO {
 		}
 
 		return fvo;
-	}	
+	}
+	public FilesVO FilesRSel(int rev_seq) {
+		FilesVO fvo = null;
+		// try문
+		// JDBC 코드는 문법이 맞더라도, 실행중에 발생하는 오류(런타임 오류) 처리 필요
+		try {
+			// JDBC
+			// 1. 동적로딩
+			System.out.println("conn확인" + rev_seq);
+			Conn();
+			// 3. sql문 준비
+			String sql = "select * from t_files where rev_seq =?";
+			psmt = conn.prepareStatement(sql);
+
+			// 4. 바인드 변수 채우기(물음표 없다. -> 바인드변수 노필요)
+			psmt.setInt(1, rev_seq);
+
+			// 5. 실행
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			System.out.println(rs);
+			System.out.print("DAO" + rev_seq);
+			// 로그인 때는, rs에 딱 1행만
+			// 모든 회원정보를 가져옴 > 몇번 반복해야할지 모름
+			if (rs.next() == true) {
+
+				// 글번호, 작성자, 제목, 파일이름, 내용, 날짜
+				int f_seq = rs.getInt(1);
+				int bcomm_seq = rs.getInt(2);
+				int rev_ment_seq = rs.getInt(3);
+				int cs_art_seq = rs.getInt(4);
+				int brev_seq = rs.getInt(5);
+				int comm_rep_seq = rs.getInt(6);
+				int cs_rep = rs.getInt(7);	
+				int bld_seq = rs.getInt(8);	
+				String f_1= rs.getString(9);
+
+
+				// 한보따리로 묶는다.
+				fvo = new FilesVO(f_seq, bcomm_seq, rev_ment_seq, cs_art_seq, brev_seq, comm_rep_seq, cs_rep,
+						bld_seq, f_1);
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return fvo;
+	}
+	public int FilesRCon(String f_1) {
+		try {
+			Conn();
+			String sql = "Select max(rev_seq) from t_review";
+			psmt = conn.prepareStatement(sql);
+
+			 rs = psmt.executeQuery();
+			 int temp_seq=0;
+			 
+			if(rs.next()==true) {
+				temp_seq = rs.getInt(1);
+			}
+			System.out.println(temp_seq);
+			String sql2 = "INSERT INTO t_files (rev_seq, f_1) VALUES (?,?)";
+			psmt = conn.prepareStatement(sql2);
+			psmt.setInt(1, temp_seq);
+			psmt.setString(2, f_1);
+			
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 }
