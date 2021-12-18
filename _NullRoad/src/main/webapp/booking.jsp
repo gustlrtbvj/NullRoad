@@ -134,7 +134,7 @@
 	%>
 <%
    String loginYN = "login.jsp?page=";
-   String selflink = "main.jsp";
+   String selflink = "booking.jsp";
    if (mvo!=null){loginYN = "";}
    
 %>

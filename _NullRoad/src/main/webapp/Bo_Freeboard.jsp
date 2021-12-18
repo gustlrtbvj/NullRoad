@@ -134,7 +134,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 
 <%
    String loginYN = "login.jsp?page=";
-   String selflink = "main.jsp";
+   String selflink = "Bo_Freeboard.jsp";
    if (mvo!=null){loginYN = "";}
    
 %>

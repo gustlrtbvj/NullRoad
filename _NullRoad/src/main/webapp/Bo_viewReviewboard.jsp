@@ -170,7 +170,7 @@ ul {
 	%>
 <%
    String loginYN = "login.jsp?page=";
-   String selflink = "main.jsp";
+   String selflink = "Bo_viewFreeboard.jsp";
    if (mvo!=null){loginYN = "";}
    
 %>

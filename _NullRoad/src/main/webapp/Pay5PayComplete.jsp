@@ -70,7 +70,7 @@ String gold = request.getParameter("gold");
 %>
 <%
    String loginYN = "login.jsp?page=";
-   String selflink = "main.jsp";
+   String selflink = "Pay5PayComplete.jsp";
    if (mvo!=null){loginYN = "";}
    
 %>

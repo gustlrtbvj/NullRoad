@@ -36,7 +36,7 @@
 <%
    MemberVO mvo=(MemberVO)session.getAttribute("mvo");
    String loginYN = "login.jsp?page=";
-   String selflink = "main.jsp";
+   String selflink = "updateFreeboard.jsp";
    if (mvo!=null){loginYN = "";}
    
 %>

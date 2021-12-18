@@ -92,7 +92,7 @@ long price = UseTime*(pvo.getPrk_fee()/60);
 %>
 <%
    String loginYN = "login.jsp?page=";
-   String selflink = "main.jsp";
+   String selflink = "Pay4Receipt.jsp";
    if (mvo!=null){loginYN = "";}
    
 %>

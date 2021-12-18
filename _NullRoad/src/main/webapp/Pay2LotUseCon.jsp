@@ -58,7 +58,7 @@ if (session.getAttribute("mvo")!=null){
 %>
 <%
    String loginYN = "login.jsp?page=";
-   String selflink = "main.jsp";
+   String selflink = "Pay2LotUseCon.jsp";
    if (mvo!=null){loginYN = "";}
    
 %>
