@@ -268,6 +268,7 @@ ul {
 			<div class="section-box first">
 				<div class="news-contents">
 					<div class="news-headline full">
+					<p>&nbsp;</p><p>&nbsp;</p>
 						<h3 class="tit"><%=bvo.getComm_subj()%></h3>
 						<% if(bvo.getComm_reg_date()!=null){%> 
 						<span class="date"><%=bvo.getComm_reg_date()%></span>
