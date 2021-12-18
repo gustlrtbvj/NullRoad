@@ -202,24 +202,15 @@
 <div style="width:100% ;">
     
     <div id="chartBody" style="width:100% ;height:45%">
-        
-        <div class="mychart mychartsection2"> 
-            <div class="col-md-12">
-                <canvas id="myChartone" style="width:100vw ; height:10vh"></canvas>
-            </div>
-        </div>
-        
-        <div class="mychart on mychartsection1">
-            <div class="col-md-12">
-                <canvas id="myChartone1" style="width:100vw ; height:10vh"></canvas>
-            </div>
-        </div>
-
-        <div class="chartTab">
-                           
+    
+        <div class="container">
+        <canvas id="lineChart" width:100vw ; height:10vh"></canvas>
+    	</div>	
+    	
+        <div class="chartTab">      
             <div>    
-                <a href="#none"><button class="login100-form-btn" style="margin-right:40px">chart2</button></a>
-                <a href="#none"><button class="login100-form-btn">chart1</button></a>
+                <a href="#none"><button class="login100-form-btn" style="margin-right:40px" onclick="p()">주간 이용자수</button></a>
+                <a href="#none"><button class="login100-form-btn" onclick="fee()">주간 수익</button></a>
                 <select name="1" id="select1" style="float:right;">
                     <option id = "selectdong" selected>동 선택</option>
                     
@@ -231,6 +222,7 @@
         
     </div>
 </div>
+
 <br><br>   
     <div style="margin:10px"; id = "table";>
         <table class="content-table" id="data_table">
@@ -298,6 +290,7 @@
     </div>
 
     </div>
+
 
 
 
@@ -476,7 +469,7 @@
         kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
          var content = '<div class="info">' + 
             '<div class="title">' + name +'<br>'+ 
-            '<a href="#fuck" onclick="callFunction(\''+name+'\')">통계 보러가기</a>'   +
+            '<a href="#" onclick="callFunction(\''+name+'\')">통계 보러가기</a>'   +
             '</div>'
             ;
                
@@ -503,6 +496,57 @@
 
 </script>
 
+
+<script type="text/javascript">
+	let chart_select = 1;
+	let emdong = '송하동';
+    var ctx = document.getElementById('lineChart'); 
+    var config = {
+	type: 'line',
+	data: {
+		labels: [1,2,3,4,5,6,7],
+		datasets: [{
+			label: 'Nullroad 데이터 시각화',
+			backgroundColor: 'rgba(75, 192, 192, 1)',
+			borderColor: 'rgba(75, 192, 192, 1)',
+			data: [
+				Math.floor(Math.random() * 50),
+				Math.floor(Math.random() * 50),
+				Math.floor(Math.random() * 50),
+				Math.floor(Math.random() * 50),
+				Math.floor(Math.random() * 50),
+				Math.floor(Math.random() * 50),
+				Math.floor(Math.random() * 50)
+			],
+		}]
+	},
+	options: {
+		plugins:{
+			
+		legend:{
+			display:false
+		}
+		},
+		
+		title: {
+		
+		},
+		scales: {
+			yAxes: [{
+				scaleLabel: {
+				
+				}
+			}]
+		},
+	}
+};
+ 
+//차트 그리기
+let myChart = new Chart(ctx, config);
+
+    </script>
+    
+    
     <script type="text/javascript">
     <%
 	DAO dao = new DAO();
@@ -536,174 +580,109 @@
 	static_data['t_avg'] = t_avg;
 	static_data['t_cnt'] = t_cnt;
 	static_data['t_time'] = t_time;
-	////////////////////////////////////////////
+	</script>
 	
+	
+	
+	
+	<!-- 최초의 데이터 테이블 생성 -->
+	<script>
+
+	
+	let p_chart = [];
+	let fee_chart = [];
+	let date_chart = [];
+	let tr_length = $('#data_table tr').length;
+	let td_length = $('#data_table td').length;
+	let tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
+		$("#data_table tbody>tr td").empty();					
+		for (let i = 0; i < tr_length-1; i++) {
+			if(static_data['t_dong'][i] == emdong){
+			$("#data_table tr:eq("+(i+1)+") td:eq(0)").html(static_data['t_fee'][i]);
+			fee_chart.push(static_data['t_fee'][i]);
+			$("#data_table tr:eq("+(i+1)+") td:eq(1)").html(static_data['t_avg'][i]);
+			$("#data_table tr:eq("+(i+1)+") td:eq(2)").html(static_data['t_cnt'][i]);
+			p_chart.push(static_data['t_cnt'][i]);
+			$("#data_table tr:eq("+(i+1)+") td:eq(4)").html(static_data['t_time'][i]);
+			date_chart.push(static_data['t_time'][i]);
+			}
+		}
+	</script>
+		
+		
+		
+		
+		
+	<script>
+	    let dataset = config.data.datasets;
+		let data = dataset[0].data;
+		config.data.labels = date_chart.reverse();
+			for(let j=0 ; j < data.length ; j++){
+				data[j] = fee_chart[j];
+			}
+		myChart.update();
 	
 	
 	//동을 클릭했을 때 동작하는 기능
-    function callFunction(emdong) {
-    	alert(static_data['t_time'][0]);
-    	
-    	var fee_chart = [];
-    	var date_chart = [];
-		var tr_length = $('#data_table tr').length;
-		var td_length = $('#data_table td').length;
-		var tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
-			$("#data_table tbody>tr td").empty();					
-			for (var i = 0; i < tr_length; i++) {
-				if(static_data['t_dong'][i] == emdong){
-				$("#data_table tr:eq("+(i+1)+") td:eq(0)").html(static_data['t_fee'][i]);
-				fee_chart.push(static_data['t_fee'][i]);
-    			$("#data_table tr:eq("+(i+1)+") td:eq(1)").html(static_data['t_avg'][i]);
-    			$("#data_table tr:eq("+(i+1)+") td:eq(2)").html(static_data['t_cnt'][i]);
-    			$("#data_table tr:eq("+(i+1)+") td:eq(4)").html(static_data['t_time'][i]);
-    			date_chart.push(static_data['t_time'][i]);
+    function callFunction(emdong_select) {
+    	emdong = emdong_select
+    	let p_chart = [];
+    	let fee_chart = [];
+    	let date_chart = [];
+		let tr_length = $('#data_table tr').length;
+		let td_length = $('#data_table td').length;
+		let tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
+		$("#data_table tbody>tr td").empty();					
+		for (let i = 0; i < tr_length-1; i++) {
+			if(static_data['t_dong'][i] == emdong){
+			$("#data_table tr:eq("+(i+1)+") td:eq(0)").html(static_data['t_fee'][i]);
+			fee_chart.push(static_data['t_fee'][i]);
+    		$("#data_table tr:eq("+(i+1)+") td:eq(1)").html(static_data['t_avg'][i]);
+    		$("#data_table tr:eq("+(i+1)+") td:eq(2)").html(static_data['t_cnt'][i]);
+    		p_chart.push(static_data['t_cnt'][i]);
+    		$("#data_table tr:eq("+(i+1)+") td:eq(4)").html(static_data['t_time'][i]);
+    		date_chart.push(static_data['t_time'][i]);
+			}
+		}
+			if (chart_select == 1){
+		    let dataset = config.data.datasets;
+			let data = dataset[0].data;
+				for(let j=0 ; j < data.length ; j++){
+					data[j] = fee_chart[j];
 				}
+			myChart.update();
 			}
-			if(myChart != null){
-			myChart.destroy();
+			if (chart_select == 2){
+			    let dataset = config.data.datasets;
+				let data = dataset[0].data;
+					for(let j=0 ; j < data.length ; j++){
+						data[j] = p_chart[j];
+					}
+				myChart.update();
 			}
-			myChart = new Chart(myChartone1, {
-			        type: 'line',
-			        data: {
-			            labels: date_chart,
-			            datasets: [{
-			                label: 'NullRoad시각화',
-			                data: fee_chart,
-			                backgroundColor: [
-			                    'rgba(255, 99, 132, 0.2)',
-			                    'rgba(54, 162, 235, 0.2)',
-			                    'rgba(255, 206, 86, 0.2)',
-			                    'rgba(75, 192, 192, 0.2)',
-			                    'rgba(153, 102, 255, 0.2)',
-			                    'rgba(255, 159, 64, 0.2)'
-			                ],
-			                borderColor: [
-			                    'rgba(255, 99, 132, 1)',
-			                    'rgba(54, 162, 235, 1)',
-			                    'rgba(255, 206, 86, 1)',
-			                    'rgba(75, 192, 192, 1)',
-			                    'rgba(153, 102, 255, 1)',
-			                    'rgba(255, 159, 64, 1)'
-			                ],
-			                borderWidth: 1
-			            }]
-			        },
-			        options: {
-			    
-			            
-			            scales: {
-			                yAxes: [{
-			                    ticks: {
-			                        beginAtZero: true
-			                    }
-			                }]
-			            }
-			        }
-			    });
+			if (chart_select == 3){
+			    let dataset = config.data.datasets;
+				let data = dataset[0].data;
+					for(let j=0 ; j < data.length ; j++){
+						data[j] = s_chart[j];
+					}
+				myChart.update();
+			}
 		};
 		
-
-	    // 차트 탭
-	    $(".chartTab a:nth-child(1)").click(
-	        function(){
-	            $(".mychartsection1").removeClass("on");
-	            $(".mychartsection2").removeClass("on");
-	            $(".mychartsection1").addClass("on");
-	        }
-	    );
-	    $(".chartTab a:nth-child(2)").click(
-	        function(){
-	            $(".mychartsection1").removeClass("on");
-	            $(".mychartsection2").removeClass("on");
-	            $(".mychartsection2").addClass("on");
-	        }
-	    );
-	    
-	        // 차트 생성
-	    var myChartone = document.getElementById('myChartone').getContext('2d');
-	    var myChartone1 = document.getElementById('myChartone1').getContext('2d');
-
-	    
-	    //이용자수, 수익구조
-	    var myChart = new Chart(myChartone, {
-	        type: 'line',
-	        data: {
-	            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-	            datasets: [{
-	                label: '# of Votes',
-	                data: [122153, 192323, 32323, 52233, 22323, 500],
-	                backgroundColor: [
-	                    'rgba(255, 99, 132, 0.2)',
-	                    'rgba(54, 162, 235, 0.2)',
-	                    'rgba(255, 206, 86, 0.2)',
-	                    'rgba(75, 192, 192, 0.2)',
-	                    'rgba(153, 102, 255, 0.2)',
-	                    'rgba(255, 159, 64, 0.2)'
-	                ],
-	                borderColor: [
-	                    'rgba(255, 99, 132, 1)',
-	                    'rgba(54, 162, 235, 1)',
-	                    'rgba(255, 206, 86, 1)',
-	                    'rgba(75, 192, 192, 1)',
-	                    'rgba(153, 102, 255, 1)',
-	                    'rgba(255, 159, 64, 1)'
-	                ],
-	                borderWidth: 1
-	            }]
-	        },
-	        options: {
-	            
-	            
-	            scales: {
-	                yAxes: [{
-	                    ticks: {
-	                        beginAtZero: true
-	                    }
-	                }]
-	            }
-	        }
-	    });
-	    var myChart = new Chart(myChartone1, {
-	        type: 'line',
-	        data: {
-	            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-	            datasets: [{
-	                label: '# of Votes',
-	                data: [122153, 192323, 32323, 52233, 22323, 500],
-	                backgroundColor: [
-	                    'rgba(255, 99, 132, 0.2)',
-	                    'rgba(54, 162, 235, 0.2)',
-	                    'rgba(255, 206, 86, 0.2)',
-	                    'rgba(75, 192, 192, 0.2)',
-	                    'rgba(153, 102, 255, 0.2)',
-	                    'rgba(255, 159, 64, 0.2)'
-	                ],
-	                borderColor: [
-	                    'rgba(255, 99, 132, 1)',
-	                    'rgba(54, 162, 235, 1)',
-	                    'rgba(255, 206, 86, 1)',
-	                    'rgba(75, 192, 192, 1)',
-	                    'rgba(153, 102, 255, 1)',
-	                    'rgba(255, 159, 64, 1)'
-	                ],
-	                borderWidth: 1
-	            }]
-	        },
-	        options: {
-	    
-	            
-	            scales: {
-	                yAxes: [{
-	                    ticks: {
-	                        beginAtZero: true
-	                    }
-	                }]
-	            }
-	        }
-	    });
+		function fee(){
+			
+			chart_select = 1;
+			callFunction(emdong)
+		}
+		function p(){
+			
+			chart_select = 2;
+			callFunction(emdong)
+		}
     </script>
     
 
+<input type="button" onclick="hoho()" value="재발">
 </body>
 </html>
