@@ -27,7 +27,7 @@ public class DAO {
 	RevCommentVO revcvo = null;
 	ReviewVO revvo = null;
 	ArrayList<ChartFeeVO> chvo = new ArrayList<ChartFeeVO>();
-	ParkableVO prkablevo=null;
+	ParkableVO prkablevo = null;
 
 	// ===============================================================================
 	public void Conn() {
@@ -133,11 +133,11 @@ public class DAO {
 	// ===============================================================================
 	public int BldRegCon(String m_id, int bld_prk_lots, String bld_owner, String bld_owner_phone, String sigungu,
 			String emdong, String detail_addr, String bld_name, String bld_picture1, String bld_picture2) {
-
+		System.out.println(m_id + bld_prk_lots+ bld_owner+ bld_owner_phone+ sigungu+emdong+ detail_addr+bld_name+ bld_picture1+ bld_picture2);
 		try {
 			Conn();
 			String sql = "INSERT INTO t_building (m_id, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_name, bld_picture1, bld_picture2) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, sysdate, ?, null, null)";
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?,?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, m_id);
@@ -788,7 +788,7 @@ public class DAO {
 
 		return cnt;
 	}
-	
+
 	// ===============================================================================
 
 	public ReservationVO IdResSelect(String m_id) {
@@ -912,7 +912,7 @@ public class DAO {
 			if (rs.next() == true) {
 				int m_point = rs.getInt(1);
 				System.out.println("기본금액 : " + m_point);
-				
+
 				String sql1 = "UPDATE t_member set m_point = ? where m_id = ? ";
 				psmt = conn.prepareStatement(sql1);
 				int con = m_point + money;
@@ -965,106 +965,103 @@ public class DAO {
 	}
 	// ===============================================================================
 
-		public String PayReserSelect(int bld_seq, String m_id) {
-			String str=null;
-			try {
-				Conn();
-				String sql1 = "select prk_seq, prk_fee from T_PARKING where bld_seq = ? and prk_status = 0";
-				psmt = conn.prepareStatement(sql1);
-				psmt.setInt(1, bld_seq);
-				rs = psmt.executeQuery();
-				while (rs.next() == true) {
-					System.out.println("주차장 찾기 완료");
-					int prk_seq = rs.getInt(1);
-					int prk_fee = rs.getInt(2);
-					
-					String sql2 = "INSERT INTO t_reservation (prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id) VALUES (?, sysdate, sysdate, 2, sysdate, ?, ?)";
-					psmt = conn.prepareStatement(sql2);
-					psmt.setInt(1, prk_seq);
-					psmt.setInt(2, prk_fee);
-					psmt.setString(3, m_id);
-					int insert = psmt.executeUpdate();
-					if (insert > 0) {
-						System.out.println("예약 영수증 생성 성공");
-						String sql3 = "UPDATE t_parking set prk_status = 2 where prk_seq = ? ";
-						psmt = conn.prepareStatement(sql3);
-						psmt.setInt(1, prk_seq);
-						cnt = psmt.executeUpdate();
-						if (cnt > 0) {
-							System.out.println("주차장 예약완료");
-							str = String.valueOf(prk_seq);
-						} else {
-							System.out.println("주차장 예약실패");
-						}
+	public String PayReserSelect(int bld_seq, String m_id) {
+		String str = null;
+		try {
+			Conn();
+			String sql1 = "select prk_seq, prk_fee from T_PARKING where bld_seq = ? and prk_status = 0";
+			psmt = conn.prepareStatement(sql1);
+			psmt.setInt(1, bld_seq);
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				System.out.println("주차장 찾기 완료");
+				int prk_seq = rs.getInt(1);
+				int prk_fee = rs.getInt(2);
 
+				String sql2 = "INSERT INTO t_reservation (prk_seq, chk_in_time, chk_out_time, res_status, res_reg_date, user_prk_fee, m_id) VALUES (?, sysdate, sysdate, 2, sysdate, ?, ?)";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setInt(1, prk_seq);
+				psmt.setInt(2, prk_fee);
+				psmt.setString(3, m_id);
+				int insert = psmt.executeUpdate();
+				if (insert > 0) {
+					System.out.println("예약 영수증 생성 성공");
+					String sql3 = "UPDATE t_parking set prk_status = 2 where prk_seq = ? ";
+					psmt = conn.prepareStatement(sql3);
+					psmt.setInt(1, prk_seq);
+					cnt = psmt.executeUpdate();
+					if (cnt > 0) {
+						System.out.println("주차장 예약완료");
+						str = String.valueOf(prk_seq);
 					} else {
-						System.out.println("예약 영수증 생성 실패");
-
+						System.out.println("주차장 예약실패");
 					}
+
+				} else {
+					System.out.println("예약 영수증 생성 실패");
+
 				}
-			} catch (Exception e) {
-			} finally {
-				close();
 			}
-			return str;
-
+		} catch (Exception e) {
+		} finally {
+			close();
 		}
-		// ===============================================================================
+		return str;
 
-		public int PayReserCheck() {
+	}
+	// ===============================================================================
 
-			try {
-				Conn();
-				int check = 0;
-				String sql1 = "select prk_seq from T_PARKING where prk_status = 2";
-				psmt = conn.prepareStatement(sql1);
-				rs = psmt.executeQuery();
-				while (rs.next() == true) {
-					int prk_seq = rs.getInt(1);
-					System.out.println("예약된 주차장 찾기 완료 : "+prk_seq);
-					String sql2 = "select res_seq, chk_in_time from T_RESERVATION where res_status = 2 and prk_seq = ? ";
-					psmt = conn.prepareStatement(sql2);
-					psmt.setInt(1, prk_seq);
-					ResultSet rss = psmt.executeQuery();
-					while (rss.next() == true) {
-						check+=1;
-						int res_seq = rss.getInt(1);
-						String chk_in_time = rss.getString(2);
-						String Systime = Sysdate();
-						SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-						Date Start = format.parse(chk_in_time);
-						Date End = format.parse(Systime);
-						long UseTime = (End.getTime() - Start.getTime())/60000;
-						System.out.println("예약 영수증 찾기 성공 : " + UseTime + " 분");
-						if (UseTime>=30) {
+	public int PayReserCheck() {
+
+		try {
+			Conn();
+			int check = 0;
+			String sql1 = "select prk_seq from T_PARKING where prk_status = 2";
+			psmt = conn.prepareStatement(sql1);
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				int prk_seq = rs.getInt(1);
+				System.out.println("예약된 주차장 찾기 완료 : " + prk_seq);
+				String sql2 = "select res_seq, chk_in_time from T_RESERVATION where res_status = 2 and prk_seq = ? ";
+				psmt = conn.prepareStatement(sql2);
+				psmt.setInt(1, prk_seq);
+				ResultSet rss = psmt.executeQuery();
+				if (rss.next() == true) {
+					check += 1;
+					int res_seq = rss.getInt(1);
+					String chk_in_time = rss.getString(2);
+					String Systime = Sysdate();
+					SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+					Date Start = format.parse(chk_in_time);
+					Date End = format.parse(Systime);
+					int UseTime = (int)(End.getTime() - Start.getTime()) / 60000;
+					System.out.println("예약 영수증 찾기 성공 : " + UseTime + " 분");
+					close();
+					Conn();
+					if (UseTime >= 30) {
 						String sql3 = "UPDATE t_parking set prk_status = 0 where prk_seq = ?";
 						psmt = conn.prepareStatement(sql3);
 						psmt.setInt(1, prk_seq);
 						cnt = psmt.executeUpdate();
-						System.out.println("주차장 상태");
 						String sql4 = "UPDATE T_RESERVATION set res_status = 3 , chk_out_time = sysdate where res_seq = ? ";
 						psmt = conn.prepareStatement(sql4);
 						psmt.setInt(1, res_seq);
 						cnt = psmt.executeUpdate();
-						System.out.println("영수증 상태");
-						
-						}else {
-						System.out.println("예약정보"+res_seq+"은 30분 안넘음");
-						}
-
+						System.out.println("예약취소 : "+res_seq);
 					}
 				}
-				System.out.println("예약된 주차장 수 :" + check);
-				
-			} catch (Exception e) {
-				System.out.println(e);
-			} finally {
-				close();
 			}
-			return cnt;
+			System.out.println("예약된 주차장 수 :" + check);
 
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			close();
 		}
-	
+		return cnt;
+
+	}
+
 	// ===============================================================================
 
 	public String Sysdate() {
@@ -1084,7 +1081,7 @@ public class DAO {
 		return time;
 
 	}
-	
+
 	public String Sysdate_C() {
 		String time = null;
 		try {
@@ -1102,14 +1099,14 @@ public class DAO {
 		return time;
 
 	}
-public ArrayList<ChartFeeVO> chartData() {
-		
+
+	public ArrayList<ChartFeeVO> chartData() {
+
 		try {
 			Conn();
-			
+
 			String sql = "select b.emdong , sum(s.user_prk_fee),AVG(s.user_prk_fee),count(s.user_prk_fee),TO_CHAR(s.chk_out_time, 'YY-MM-DD')from(select r.prk_seq, r.user_prk_fee, r.chk_out_time , p.bld_seq from t_reservation r , t_parking p  where r.prk_seq = p.prk_seq ) s, t_building b  where s.bld_seq = b.bld_seq group by b.emdong, TO_CHAR(s.chk_out_time, 'YY-MM-DD') "
-					+ "order by TO_CHAR(s.chk_out_time, 'YY-MM-DD') "
-					+ "asc";
+					+ "order by TO_CHAR(s.chk_out_time, 'YY-MM-DD') " + "asc";
 			psmt = conn.prepareStatement(sql);
 
 			// 5.
@@ -1117,82 +1114,212 @@ public ArrayList<ChartFeeVO> chartData() {
 			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
 			rs = psmt.executeQuery();
 			System.out.println(rs.next());
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				String emdong = rs.getString(1);
-				int n1  = rs.getInt(2);
-				int n2  = rs.getInt(3);
-				int n3  = rs.getInt(4);
+				int n1 = rs.getInt(2);
+				int n2 = rs.getInt(3);
+				int n3 = rs.getInt(4);
 				String n4 = rs.getString(5);
 
 				ChartFeeVO vo = new ChartFeeVO(emdong, n1, n2, n3, n4);
 				chvo.add(vo);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return chvo;		
+
+		return chvo;
 	}
 
-public ParkingVO PrkFeeSelect(int bld_num) {
-	try {
-		Conn();
-		String sql = "select prk_fee from t_parking where bld_seq=?";
-		psmt = conn.prepareStatement(sql);
-		// 4. 바인드 변수 채우기
-		psmt.setInt(1, bld_num);
+	public ParkingVO PrkFeeSelect(int bld_num) {
+		try {
+			Conn();
+			String sql = "select prk_fee from t_parking where bld_seq=?";
+			psmt = conn.prepareStatement(sql);
+			// 4. 바인드 변수 채우기
+			psmt.setInt(1, bld_num);
 
-		// 5.
-		// select -> executeQuery() --> return ResultSet
-		// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
-		rs = psmt.executeQuery();
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
 
-		if (rs.next() == true) {
-			int prk_seq = rs.getInt(1);
-			String prk_time = rs.getString(2);
-			String prk_day = rs.getString(3);
-			int prk_fee = rs.getInt(4);
-			int prk_status = rs.getInt(5);
-			String prk_memo = rs.getString(6);
-			int bld_seq = rs.getInt(7);
+			if (rs.next() == true) {
+				int prk_seq = rs.getInt(1);
+				String prk_time = rs.getString(2);
+				String prk_day = rs.getString(3);
+				int prk_fee = rs.getInt(4);
+				int prk_status = rs.getInt(5);
+				String prk_memo = rs.getString(6);
+				int bld_seq = rs.getInt(7);
 
-			pvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
+				pvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
+			}
+		} catch (Exception e) {
+
+		} finally {
+			close();
 		}
-	} catch (Exception e) {
+		return pvo;
 
-	} finally {
-		close();
 	}
-	return pvo;
 
-}
+	public ArrayList<ParkableVO> Prkable() {
+		ArrayList<ParkableVO> prkableList = new ArrayList<ParkableVO>();
+		try {
+			Conn();
+			String sql = "select b.bld_seq ,count(*) from t_building b , t_parking p where b.bld_seq = p.bld_seq and p.prk_status = 0 group by b.bld_seq";
 
-public ArrayList<ParkableVO> Prkable() {
-	ArrayList<ParkableVO> prkableList = new ArrayList<ParkableVO>();
-	try {
-		Conn();
-		String sql = "select b.bld_seq ,count(*) from t_building b , t_parking p where b.bld_seq = p.bld_seq and p.prk_status = 0 group by b.bld_seq";
-						
-		psmt = conn.prepareStatement(sql);
-		
-		rs = psmt.executeQuery();
-		
-		while(rs.next() == true) {
-			int bld_seq = rs.getInt(1);
-			int bld_prkable = rs.getInt(2);
-			ParkableVO prkablevo = new ParkableVO(bld_seq, bld_prkable);
-			prkableList.add(prkablevo);
-		
-		}System.out.println("주차장가능수 성공");
-	} catch (Exception e) {
-		System.out.println("오류생김");
-	} finally {
-		close();
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				int bld_seq = rs.getInt(1);
+				int bld_prkable = rs.getInt(2);
+				ParkableVO prkablevo = new ParkableVO(bld_seq, bld_prkable);
+				prkableList.add(prkablevo);
+
+			}
+			System.out.println("주차장가능수 성공");
+		} catch (Exception e) {
+			System.out.println("오류생김");
+		} finally {
+			close();
+		}
+		return prkableList;
+
 	}
-	return prkableList;
-	
-}
 
+	public int RefundEexquteUpdate(int refd_exqt, int refd_seq) {
+		try {
+			Conn();
+
+			String sql = "update t_refund set refd_exqt=? where refd_seq =?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, refd_exqt);
+			psmt.setInt(2, refd_seq);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+		}
+		return cnt;
+	}
+
+	public ArrayList<RefundVO> RefundSel() {
+
+		ArrayList<RefundVO> refundlist = new ArrayList<RefundVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_refund order by refd_seq";
+			psmt = conn.prepareStatement(sql);
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				int refd_seq = rs.getInt(1);
+				String m_id = rs.getString(2);
+				int refd_point = rs.getInt(3);
+				int refd_exqt = rs.getInt(4);
+
+				RefundVO rfdvo = new RefundVO(refd_seq, m_id, refd_point, refd_exqt);
+
+				refundlist.add(rfdvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+		return refundlist;
+	}
+
+	public int CsCenterUpAdmin(int cs_art_status, int cs_art_seq) {
+		try {
+			Conn();
+
+			String sql = "update t_refund set cs_art_status=? where cs_art_seq =?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, cs_art_status);
+			psmt.setInt(2, cs_art_seq);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+		}
+		return cnt;
+	}
+
+	public ArrayList<CustomerCenterVO> CsCenterSel() {
+
+		ArrayList<CustomerCenterVO> cscenterlist = new ArrayList<CustomerCenterVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_custmor_center order by cs_art_seq";
+			psmt = conn.prepareStatement(sql);
+
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+
+			while (rs.next() == true) {
+				int cs_art_seq = rs.getInt(1);
+				String cs_art_subject = rs.getString(2);
+				String cs_art_content = rs.getString(3);
+				String cs_art_reg_date = rs.getString(4);
+				int cs_art_cnt = rs.getInt(5);
+				String m_id = rs.getString(6);
+				int cs_art_art_stauts = rs.getInt(7);
+
+				CustomerCenterVO cscentervo = new CustomerCenterVO(cs_art_seq, cs_art_subject, cs_art_content,
+						cs_art_reg_date, cs_art_cnt, m_id, cs_art_art_stauts);
+
+				cscenterlist.add(cscentervo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+		return cscenterlist;
+	}
 }

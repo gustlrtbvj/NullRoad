@@ -45,6 +45,10 @@ public class RefundVO {
 	public void setRefd_exqt(int refd_exqt) {
 		this.refd_exqt = refd_exqt;
 	}
-	
+	public RefundVO(String m_id, int refd_seq, int refd_exqt) {
+		this.m_id = m_id;
+		this.refd_seq = refd_seq;
+		this.refd_exqt = refd_exqt;
+	}
 	
 }

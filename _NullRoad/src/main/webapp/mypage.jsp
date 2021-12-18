@@ -26,6 +26,7 @@
 <body>
 <%
 	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
+	
 
 %>
 	<!-- Page Preloder -->
@@ -100,10 +101,11 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="row">
-
+	
 			<div class="col-lg-4 col-md-6 sideber pt-5 pt-lg-0">
 			</div>
 		</div>
+		
 		<div class="widget-area" >
 			<h4 class="widget-title">가입정보</h4>
 			<div id="myp_section_wrap" class="clear-fix">

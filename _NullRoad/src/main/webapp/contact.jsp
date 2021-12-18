@@ -82,7 +82,6 @@ label {
 </head>
 <body>
 <%
-
 	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
 %>
 <!-- Page Preloder -->
@@ -162,35 +161,35 @@ label {
 				<div class="col-lg-7">
 					<h2>주차장 공유하기</h2>
 					<br><br>
-					<form class="contact-form">
+					<form class="contact-form" action="BldRegConn" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="주차면수">
+									<input class="check-form" type="text" placeholder="주차면수" name = "bld_prk_lots">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="소유주">
+									<input class="check-form" type="text" placeholder="소유주" name = "bld_owner">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="연락처">
+									<input class="check-form" type="text" placeholder="연락처" name = "bld_owner_phone">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<input class="check-form" type="text" placeholder="건물명">
+									<input class="check-form" type="text" placeholder="건물명" name ="bld_name">
 									<span><i class="ti-check"></i></span>
 								</div>
 							</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<input type="text" id="sample6_address" placeholder="지번주소*"><br>
+										<input type="text" id="sample6_address" placeholder="지번주소*" name = "se"><br>
 										<span><i class="ti-check"></i></span>
 									</div>
 								</div>
@@ -216,14 +215,14 @@ label {
 									<div class="container">
 										<div class="image-upload" id="image-upload">
 								
-											<form method="post" enctype="multipart/form-data">
+											
 												<div class="button">
 													<label for="chooseFile">
 														 주차장 이미지 등록 
 													</label>
 												</div>
 												<input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-											</form>
+											
 								
 											<div class="fileContainer">
 												<div class="fileInput">
@@ -236,8 +235,8 @@ label {
 								
 								<div class="col-md-12">
 									<div class="container-login100-form-btn">
-										<a id="alertStart" class="login100-form-btn">
-											<b style="color: #fff;">공유신청</b>
+										<a id="asd" class="login100-form-btn">
+											<input type="submit" value="공유신청" style="color: #fff;">
 										</a>
 									</div>
 							</div>

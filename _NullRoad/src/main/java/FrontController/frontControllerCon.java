@@ -39,8 +39,6 @@ public class frontControllerCon extends HttpServlet {
 		} else if (command.equals("/Join.do")) {
 			// 회원가입
 			exe = new JoinCon();
-		} else if (command.equals("/RegBld.do")) {
-			exe = new BldRegCon();
 		} else if (command.equals("/PrkReg.do")) {
 			exe = new PrkRegCon();
 		} else if (command.equals("/Res.do")) {
@@ -79,10 +77,15 @@ public class frontControllerCon extends HttpServlet {
 		    exe = new PayReserveService();
 		} else if (command.equals("/SelectRBoard.do")) {
 		    exe = new Bo_SelectRBoardCon();
+
 		} else if (command.equals("/CommRepRCon.do")) {
 			exe = new Bo_CommRepRCon();
-		} 
-		
+		}  else if (command.equals("/RfdExqUptAd.do")) {
+		    exe = new RfdExqUptAdmCon();
+		} else if (command.equals("/CsCntrUptAd.do")) {
+		    exe = new CustomerCenterUpdAdmCon();
+		}
+
 		exe.execute(request, response);
 	}
 
