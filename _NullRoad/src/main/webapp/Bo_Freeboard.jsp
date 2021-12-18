@@ -44,6 +44,13 @@ b {
     color: #fff;
     text-align: center;
 }
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 </style>
 
 </head>
@@ -189,6 +196,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 
 <main class="cd-main-content">
 	<!-- Page info end -->
+	<p>&nbsp;</p>
 	<h3 style="text-align:center; letter-spacing: 5px; font-weight: 700;">자유게시판</h3>
 	<div id="bo_list" style="width: 95%">
 		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
