@@ -39,8 +39,6 @@ public class frontControllerCon extends HttpServlet {
 		} else if (command.equals("/Join.do")) {
 			// 회원가입
 			exe = new JoinCon();
-		} else if (command.equals("/RegBld.do")) {
-			exe = new BldRegCon();
 		} else if (command.equals("/PrkReg.do")) {
 			exe = new PrkRegCon();
 		} else if (command.equals("/Res.do")) {

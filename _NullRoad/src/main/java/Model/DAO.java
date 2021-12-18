@@ -133,11 +133,11 @@ public class DAO {
 	// ===============================================================================
 	public int BldRegCon(String m_id, int bld_prk_lots, String bld_owner, String bld_owner_phone, String sigungu,
 			String emdong, String detail_addr, String bld_name, String bld_picture1, String bld_picture2) {
-
+		System.out.println(m_id + bld_prk_lots+ bld_owner+ bld_owner_phone+ sigungu+emdong+ detail_addr+bld_name+ bld_picture1+ bld_picture2);
 		try {
 			Conn();
 			String sql = "INSERT INTO t_building (m_id, bld_prk_lots, bld_owner, bld_owner_phone, sigungu, emdong, detail_addr, bld_reg_date, bld_name, bld_picture1, bld_picture2) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, sysdate, ?, null, null)";
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, sysdate, ?, ?,?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, m_id);
