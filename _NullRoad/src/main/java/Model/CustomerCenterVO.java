@@ -62,6 +62,12 @@ public class CustomerCenterVO {
 	public void setCs_art_status(int cs_art_status) {
 		this.cs_art_status = cs_art_status;
 	}
+	public CustomerCenterVO(String m_id, int cs_art_seq, int cs_art_status) {
+		super();
+		this.m_id = m_id;
+		this.cs_art_seq = cs_art_seq;
+		this.cs_art_status = cs_art_status;
+	}
 
 	
 }
