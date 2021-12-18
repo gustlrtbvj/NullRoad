@@ -1011,10 +1011,11 @@ public class DAO {
 		}
 		// ===============================================================================
 
-		public int PayReserCheck(int bld_seq, String m_id) {
+		public int PayReserCheck() {
 
 			try {
 				Conn();
+				int check = 0;
 				String sql1 = "select prk_seq from T_PARKING where prk_status = 2";
 				psmt = conn.prepareStatement(sql1);
 				rs = psmt.executeQuery();
@@ -1034,8 +1035,12 @@ public class DAO {
 						long UseTime = (End.getTime() - Start.getTime())/60000;
 						System.out.println("예약 영수증 찾기 성공" + UseTime + "분");
 						if (UseTime>=30) {
-						String sql3 = "UPDATE t_parking set prk_status = 3 , chk_out_time = sysdate where prk_seq = ? ";
+						String sql3 = "UPDATE t_parking set prk_status = 0 , chk_out_time = sysdate where prk_seq = ? ";
 						psmt = conn.prepareStatement(sql3);
+						psmt.setInt(1, prk_seq);
+						cnt = psmt.executeUpdate();
+						String sql4 = "UPDATE T_RESERVATION set res_status = 3 , chk_out_time = sysdate where res_seq = ? ";
+						psmt = conn.prepareStatement(sql4);
 						psmt.setInt(1, res_seq);
 						cnt = psmt.executeUpdate();
 						if (cnt > 0) {
