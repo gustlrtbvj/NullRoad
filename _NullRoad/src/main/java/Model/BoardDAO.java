@@ -334,26 +334,6 @@ public class BoardDAO {
 		return Revlist;
 	}
 	
-	public int RevMentCon(int rev_ment_seq, int rev_seq, String rev_ment_content, String rev_ment_reg_date,
-			String m_id) {
-		try {
-			Conn();
-			String sql = "insert into t_rev_comment values(?, ?, ?, ?, ?)";
-			psmt = conn.prepareStatement(sql);
-
-			psmt.setInt(1, rev_seq);
-			psmt.setInt(2, rev_seq);
-			psmt.setString(3, rev_ment_content);
-			psmt.setString(4, rev_ment_reg_date);
-			psmt.setString(5, m_id);
-
-		} catch (Exception e) {
-
-		} finally {
-			close();
-		}
-		return cnt;
-	}
 
 	public int CommunityCon(String comm_subject, String comm_content, String m_id) {
 		System.out.println(comm_subject);
@@ -397,6 +377,27 @@ public class BoardDAO {
 		}
 		return cnt;
 	}
+	public int RevRepCon(int rev_seq, String rev_ment_content, String m_id) {
+
+		try {
+			System.out.println("돼?");
+			Conn();
+			String sql = "insert into t_rev_comment (rev_seq, rev_ment_content, rev_ment_reg_date, m_id) VALUES (?, ?, sysdate, ?)";
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1, rev_seq);
+			psmt.setString(2, rev_ment_content);
+			psmt.setString(3, m_id);
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+
 
 	public int CustomerCenterCon(int cs_art_seq, String cs_art_subject, String cs_art_content, String cs_art_reg_date,
 			int cs_art_cnt, String m_id, int cs_art_status) {
@@ -560,6 +561,55 @@ public class BoardDAO {
 
 		return CommReplist;
 	}
+	
+	public ArrayList<RevCommentVO> RevRepSel(int rev_seq) {
+
+		ArrayList<RevCommentVO> RevReplist = new ArrayList<RevCommentVO>();
+
+		try {
+			Conn();
+			String sql = "select * from t_community_reply where comm_seq = ? order by comm_rep_seq";
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, rev_seq);
+			// 5.
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			while (rs.next() == true) {
+				int comm_rep_seq = rs.getInt(1);
+				int tcomm_seq = rs.getInt(2);
+				String comm_rep_content = rs.getString(3);
+				String comm_rep_reg_date = rs.getString(4);
+				String m_id = rs.getString(5);
+
+				RevCommentVO cvo = new RevCommentVO(comm_rep_seq, tcomm_seq, comm_rep_content, comm_rep_reg_date,
+						m_id);
+				RevReplist.add(cvo);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return RevReplist;
+	}
+
 
 	public CommunityVO SelectOne(int comm_seq) {
 		CommunityVO bvo = null;

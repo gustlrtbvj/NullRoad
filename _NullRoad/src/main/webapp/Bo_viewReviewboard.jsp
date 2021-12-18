@@ -241,7 +241,7 @@ ul {
 	ReviewVO bvo = (ReviewVO) request.getAttribute("bvo");
 	int b = bvo.getRev_seq();
 	System.out.println("À½?>>"+b);
-	ArrayList<RevCommentVO> reply = null;
+	ArrayList<RevCommentVO> reply =  dao.RevRepSel(b);;
 	FilesVO files =null;
 	if (dao.FilesRSel(b) != null) {
 		files = dao.FilesRSel(b);
@@ -295,22 +295,22 @@ ul {
 					style="height: auto; width: 100%; border-bottom: 1px solid #e2e2e2;"></div>
 				<p>&nbsp;</p>
 
-			<%-- 	<%
-				for (CommunityRepVO rvo : reply) {
+				<%
+				for (RevCommentVO rvo : reply) {
 				%>
 				<div>
 					
-					<%=rvo.getComm_rep_content()%><br>
+					<%=rvo.getRev_ment_content()%><br>
 					<p
 						style="color: #b1b1b1; height: auto; width: 100%; border-bottom: 1px solid #b1b1b1;">
-						<%=rvo.getM_id()%><br><%=rvo.getReg_date()%>
+						<%=rvo.getM_id()%><br><%=rvo.getRev_ment_reg_date()%>
 					</p>
 				</div>
 				<%
 				}
 				%>
 				<br>
-				--%>
+				
 			<form action = "CommRepRCon.do?rev_seq=<%=bvo.getRev_seq()%>">
 				<textarea name="message" rows="5" cols="110" type ="text"></textarea>
             	<input value="<%=bvo.getRev_seq()%>" name="num" style = "display:none">
