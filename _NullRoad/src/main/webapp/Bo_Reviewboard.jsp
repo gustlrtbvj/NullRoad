@@ -138,47 +138,56 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 	</div>
 
 	<!-- Header section -->
-<header class="header-section clearfix">
-        <div class="container-fluid">
-            <a href="main.html" class="site-logo" style="font-family: ImcreSoojin; font-size:40px;">
-                nroad
-            </a>
-            <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-            <a href="login.html" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-            <a href="login.html" class="site-btn">로그인</a>
-            <nav class="main-menu">
-                
-                <ul class="menu-list">
-                    <div class="dropdown">
-                        <button class="dropbtn"><b>About us&nbsp;</b></button>
-                        <div class="dropdown-content">
-                          <a href="about.html">개발의도</a>
-                          <a href="gide.html">사용방법</a>
+	<header class="header-section clearfix">
+		<div class="container-fluid">
+			<a href="main.jsp" class="site-logo" style="font-family : ImcreSoojin; font-size:40px;">
+				nroad
+			</a>
 
-                        </div>
-                      </div>
-                    <div class="dropdown">
-                        <button class="dropbtn"><b>Community&nbsp;</b></button>
-                        <div class="dropdown-content">
-                          <a href="#">리뷰게시판</a>
-                          <a href="boardrealreal.html">자유게시판</a>
+			<%if(mvo==null){ %>
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="login.jsp?page=main.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="login.jsp?page=main.jsp" class="site-btn">로그인</a>
+			<%}else{ %> 
+			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+			<a href="Logout.do?page=main.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+			<a href="Logout.do?page=main.jsp" class="site-btn">로그아웃</a>
+			<%} %>
 
-                        </div>
-                      </div>
-                    <div class="dropdown">
-                        <button class="dropbtn"><b>Service</b></button>
-                        <div class="dropdown-content">
-                          <a href="contact.html">공유하기</a>
-                          <a href="one.html">1:1문의</a>
-                          <a href="qNa.html">Q&A</a>
-                          <a href="mypage.html">마이페이지</a>
-                        </div>
-                      </div>
+			
+			<nav class="main-menu">
+				
+				<ul class="menu-list">
+					<div class="dropdown">
+						<button class="dropbtn"><b>About us&nbsp;</b></button>
+						<div class="dropdown-content">
+						  <a href="about.jsp">개발의도</a>
+						  <a href="gide.jsp">사용방법</a>
 
-                </ul>
-            </nav>
-        </div>
-    </header>
+						</div>
+					  </div>
+					<div class="dropdown">
+						<button class="dropbtn"><b>Community&nbsp;</b></button>
+						<div class="dropdown-content">
+						  <a href="Bo_Reviewboard.jsp">리뷰게시판</a>
+						  <a href="Bo_Freeboard.jsp">자유게시판</a>
+
+						</div>
+					  </div>
+					<div class="dropdown">
+						<button class="dropbtn"><b>Service</b></button>
+						<div class="dropdown-content">
+						  <a href="contact.jsp">공유하기</a>
+						  <a href="one.jsp">1:1문의</a>
+						  <a href="Q_Q&A.jsp">Q&A</a>
+						  <a href="mypage.jsp">마이페이지</a>
+						</div>
+					  </div>
+
+				</ul>
+			</nav>
+		</div>
+	</header>
 	<!-- Header section end -->
 
 

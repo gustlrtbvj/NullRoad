@@ -69,7 +69,7 @@
 					<div class="dropdown">
 						<button class="dropbtn"><b>Community&nbsp;</b></button>
 						<div class="dropdown-content">
-						  <a href="#">리뷰게시판</a>
+						  <a href="Bo_Reviewboard.jsp">리뷰게시판</a>
 						  <a href="Bo_Freeboard.jsp">자유게시판</a>
 
 						</div>
@@ -79,7 +79,7 @@
 						<div class="dropdown-content">
 						  <a href="contact.jsp">공유하기</a>
 						  <a href="one.jsp">1:1문의</a>
-						  <a href="#">Q&A</a>
+						  <a href="Q_Q&A.jsp">Q&A</a>
 						  <a href="mypage.jsp">마이페이지</a>
 						</div>
 					  </div>
@@ -100,7 +100,7 @@
 					<h4>Clear the road, Let's fill up the parking lot !</h4>
 					<form class="hero-subscribe-from">
 						<button type="button" class="site-btn sb-gradients" onclick="location.href='MapTest.jsp';">시작하기</button>
-
+						<button type="button" class="site-btn sb-gradients" onclick="location.href='LandLord.jsp';">공유현황</button>
 					</form>
 				</div>
 				<div class="col-md-6">
