@@ -198,7 +198,7 @@
    <div id="map" style="width:100%;height:800px;"></div>
 </div>
 
-    <a name = "bottom"></a>
+    
 <div style="width:100% ;">
     
     <div id="chartBody" style="width:100% ;height:45%">
@@ -337,7 +337,7 @@
                 type = val.geometry.type;
                 coordinates = val.geometry.coordinates;
                 name = val.properties.EMD_NM;
-                $('#selectdong').after('<option>'+name+'</option>')
+                $('#selectdong').after('<option id='+name+'>'+name+'</option>')
                 if(type == "MultiPolygon"){
                     console.log(coordinates);
                     //멀티폴리곤 출력
@@ -470,8 +470,10 @@
          var content = '<div class="info">' + 
             '<div class="title">' + name +'<br>'+ 
             '<a href="#bottom" onclick="callFunction(\''+name+'\')">통계 보러가기</a>'   +
-            '</div>'
-            ;
+            '</div>';
+            
+            $('option').removeAttr('selected');
+            $('#'+name).attr('selected', '');
                
          
                infowindow.setContent(content); 
