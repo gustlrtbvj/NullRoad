@@ -1,3 +1,4 @@
+<%@page import="Model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -20,42 +21,23 @@
 	}
 </style>
 <body class="form-v10">
+<%	MemberVO mvo = (MemberVO) session.getAttribute("mvo");%>
 	<div class="page-content">
 		<div class="form-v10-content">
-			<form class="form-detail" action="#" method="post" id="myform">
+			<form class="form-detail" action="CorUpd.do" method="post" id="myform">
 				<div class="form-left">
 					<h2>회원 정보 수정</h2>
 					<div class="form-row">
-						<select name="title">
-						    <option class="option" value="title">사용자/공유자</option>
-						    <option class="option" value="businessman">사용자</option>
-						    <option class="option" value="reporter">공유자</option>
-						</select>
-						<span class="select-btn">
-						  	<i class="zmdi zmdi-chevron-down"></i>
-						</span>
+						<input type="text" name="m_pw" class="m_pw" id="m_pw" placeholder="비밀번호" required>
 					</div>
-					<div class="form-group">
-						<div class="form-row form-row-1">
-							<input type="text" name="id" id="id" class="input-text" placeholder="아이디" required>
-						</div>
-						<div class="form-row form-row-2">
-							<input type="password" name="pw" id="pw" class="input-text" placeholder="비밀번호" required>
-						</div>
-					</div>
-
-					<div class="form-row">
-						<input type="text" name="nick" class="nick" id="nick" placeholder="닉네임" required>
-					</div>
-				
 						<div class="form-row">
-							<input type="text" name="tel" class="tel" id="tel" placeholder="연락처" required>
+							<input type="text" name="m_phone" class="m_phone" id="m_phone" placeholder="연락처" required>
 						</div>
 						<div class="form-row">
-							<input type="text" name="car" class="car" id="car" placeholder="차량번호" required>
+							<input type="text" name="m_car_num" class="m_car_num" id="m_car_num" placeholder="차량번호" required>
 						</div>
 						<div class="form-row">
-							<input type="text" name="num" class="num" id="num" placeholder="계좌번호" required>
+							<input type="text" name="m_account" class="m_account" id="m_account" placeholder="계좌번호" required>
 						</div>
 
 					

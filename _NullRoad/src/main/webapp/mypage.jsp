@@ -157,7 +157,7 @@
 					<div class="user_wrap bgfff">
 						<div class="user_info">
 							<div class="user_name">
-								 <a href="cor.html">개인정보<br>수정</a>
+								 <a href="cor.jsp">개인정보<br>수정</a>
 							</div>
 						
 						</div>

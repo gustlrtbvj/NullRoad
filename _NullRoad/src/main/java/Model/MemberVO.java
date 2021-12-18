@@ -131,4 +131,13 @@ public class MemberVO {
 		this.m_account = m_account;
 	}
 
+	public MemberVO(String m_pw, String m_phone, String m_car_num, String m_account, String m_id) {
+
+		this.m_pw = m_pw;
+		this.m_phone = m_phone;
+		this.m_car_num = m_car_num;
+		this.m_account = m_account;
+		this.m_id = m_id;
+	}
+
 }

@@ -27,7 +27,6 @@
 <%
    MemberVO mvo=(MemberVO)session.getAttribute("mvo");
    String loginYN = "login.jsp?page=";
-   String selflink = "Q_Q&A.jsp";
    if (mvo!=null){loginYN = "";}
 %>
    <!-- Page Preloder -->

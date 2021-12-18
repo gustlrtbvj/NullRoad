@@ -1326,4 +1326,28 @@ public class DAO {
 		}
 		return cscenterlist;
 	}
+
+	public int CorUpd(String m_pw, String m_phone, String m_car_number, String m_account, String m_id) {
+		try {
+			Conn();
+
+			String sql = "update t_member set m_pw=?, m_phone=? , m_car_num=?, m_account=? where m_id=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, m_pw);
+			psmt.setString(2, m_phone);
+			psmt.setString(3, m_car_number);
+			psmt.setString(4, m_account);
+			psmt.setString(5, m_id);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return cnt;
+	
+		
+
+	}
 }
