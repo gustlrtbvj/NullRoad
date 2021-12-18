@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>다각형에 이벤트 등록하기2</title>
+    <title>공유 통계/현황</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
@@ -198,7 +198,7 @@
    <div id="map" style="width:100%;height:800px;"></div>
 </div>
 
-    
+    <a name = "bottom"></a>
 <div style="width:100% ;">
     
     <div id="chartBody" style="width:100% ;height:45%">
@@ -364,7 +364,7 @@
           center: new kakao.maps.LatLng(35.1595454, 126.8526012), // 지도의 중심좌표
           level: 8 // 지도의 확대 레벨
        };
-       
+       		
        var map = new kakao.maps.Map(mapContainer, mapOption),
             customOverlay = new kakao.maps.CustomOverlay({}),
             infowindow = new kakao.maps.InfoWindow({removable: false});
@@ -469,7 +469,7 @@
         kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
          var content = '<div class="info">' + 
             '<div class="title">' + name +'<br>'+ 
-            '<a href="#" onclick="callFunction(\''+name+'\')">통계 보러가기</a>'   +
+            '<a href="#bottom" onclick="callFunction(\''+name+'\')">통계 보러가기</a>'   +
             '</div>'
             ;
                
