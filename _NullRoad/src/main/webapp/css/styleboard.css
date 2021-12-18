@@ -224,7 +224,7 @@ html.no-overflowscrolling #autosave_pop {height:auto;max-height:10000px !importa
 
 #bo_v_title {}
 #bo_v_title .bo_v_cate {display:inline-block;line-height:20px;background:#e2eaf6;color:#3a8afd;padding:0 10px;border-radius:3px;}
-#bo_v_title .bo_v_tit {display:block;font-size:2em;margin:5px 0 0;word-break:break-all;font-weight:normal}
+#bo_v_title .bo_v_tit {display:block;font-size:48px;margin:5px 0 0;word-break:break-all;font-weight:normal}
 
 #bo_v_info {margin:0;border-bottom:1px solid #ddd;color:#666}
 #bo_v_info:after {display:block;visibility:hidden;clear:both;content:""} 

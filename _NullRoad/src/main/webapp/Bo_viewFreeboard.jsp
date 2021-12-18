@@ -18,30 +18,31 @@
 <meta name="keywords" content="cryptocurrency, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="shortcut icon" />
+<link href="img/favicon.ico" rel="shortcut icon"/>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
-<!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/themify-icons.css" />
-<link rel="stylesheet" href="css/owl.carousel.css" />
-<link rel="stylesheet" href="css/style3.css" />
+<link rel="stylesheet" href="./css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/styleboard.css">
+<link rel="stylesheet" href="./css/style(1).css">
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/themify-icons.css"/>
+<link rel="stylesheet" href="css/owl.carousel.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+
+<body>
+
 <style>
 .section-box {
-	width: 960px;
+	width: 95%;
 	margin: 0 auto;
 	padding-bottom: 147px;
 }
 
 .news-headline {
-	position: relative;
-	padding: 24px 300px 30px 20px;
-	border-top: 2px solid #3c3c3c;
-	border-bottom: 1px solid #e2e2e2;
+    position: relative;
+    border-top: 2px solid #3c3c3c;
 }
 
 .news-list li {
@@ -142,10 +143,15 @@ ul {
 .login100-form-btn:hover {
 	background: #484748;
 }
+#bo_v_title {
+    font-size: 1.5rem;
+    background: unset !important;
+}
 </style>
 </head>
 <body>
 
+    <!-- Page info end -->
 <%
 	MemberVO mvo = null;
 
@@ -166,9 +172,7 @@ ul {
 	%>
 
 	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
+
 
 	<!-- Header section -->
 
@@ -225,17 +229,13 @@ ul {
 	<!-- Header section end -->
 
 
-
+<div class = "mobile">
+    <section class="page-info-section">
+        <div class="container">
+        </div>
+    </section>
+    </div>
 	<!-- Page info section -->
-	<section class="page-info-section">
-		<div class="container">
-			<h2></h2>
-			<div class="site-beradcamb">
-				<a href=""></a>
-
-			</div>
-		</div>
-	</section>
 	<!-- Page info end -->
 	<%
 	String [] files1 = null;
@@ -398,9 +398,14 @@ ul {
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
-	<script src="js/alert3.js"></script>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src= "js/alert3.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
 
 </body>
 </html>

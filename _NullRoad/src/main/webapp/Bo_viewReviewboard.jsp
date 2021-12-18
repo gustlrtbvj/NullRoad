@@ -20,30 +20,28 @@
 <meta name="keywords" content="cryptocurrency, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
-<link href="img/favicon.ico" rel="shortcut icon" />
+<link href="img/favicon.ico" rel="shortcut icon"/>
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
-<!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/themify-icons.css" />
-<link rel="stylesheet" href="css/owl.carousel.css" />
-<link rel="stylesheet" href="css/style3.css" />
+<link rel="stylesheet" href="./css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/styleboard.css">
+<link rel="stylesheet" href="./css/style(1).css">
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/themify-icons.css"/>
+<link rel="stylesheet" href="css/owl.carousel.css"/>
+<link rel="stylesheet" href="css/style.css"/>
 <style>
 .section-box {
-	width: 960px;
+	width: 95%;
 	margin: 0 auto;
 	padding-bottom: 147px;
 }
 
 .news-headline {
-	position: relative;
-	padding: 24px 300px 30px 20px;
-	border-top: 2px solid #3c3c3c;
-	border-bottom: 1px solid #e2e2e2;
+    position: relative;
+    border-top: 2px solid #3c3c3c;
 }
 
 .news-list li {
@@ -144,6 +142,10 @@ ul {
 .login100-form-btn:hover {
 	background: #484748;
 }
+#bo_v_title {
+    font-size: 1.5rem;
+    background: unset !important;
+}
 </style>
 </head>
 <body>
@@ -168,9 +170,8 @@ ul {
 	%>
 
 	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
+
+    <!-- Page info end -->
 
 	<!-- Header section -->
 
@@ -229,15 +230,22 @@ ul {
 
 
 	<!-- Page info section -->
-	<section class="page-info-section">
-		<div class="container">
+	<div class = "mobile">
+    <section class="page-info-section">
+        <div class="container">
+        </div>
+    </section>
+    </div>
+    
+<!-- 	<section class="page-info-section">
+		<div class="container"> -->
 			<h2></h2>
 			<div class="site-beradcamb">
 				<a href=""></a>
 
 			</div>
-		</div>
-	</section>
+<!-- 		</div>
+	</section> -->
 	<!-- Page info end -->
 	<%
 	String [] files1 = null;
@@ -270,7 +278,12 @@ ul {
 			<div class="section-box first">
 				<div class="news-contents">
 					<div class="news-headline full">
-						<h3 class="tit"><%=bvo.getRev_subject()%></h3>
+					<header>
+			        <h2 id="bo_v_title">
+			            <br>
+			            <span class="bo_v_tit"><%=bvo.getRev_subject()%></span>
+			        </h2>
+				    </header>	
 						<% if(bvo.getRev_reg_date()!=null){%> 
 						<span class="date"><%=bvo.getRev_reg_date()%></span>
 						<% } else {%>
@@ -318,7 +331,7 @@ ul {
 				<br>
 				
 			<form action = "CommRepRCon.do?rev_seq=<%=bvo.getRev_seq()%>">
-				<textarea name="message" rows="5" cols="110" type ="text"></textarea>
+				<textarea name="message" rows="5" type ="text" style="width: 100%"></textarea>
             	<input value="<%=bvo.getRev_seq()%>" name="num" style = "display:none">
             	<input value="<%=mvo.getM_id()%>" name="m_id" style = "display:none">
 				<div class="container-login100-form-btn">
@@ -330,13 +343,27 @@ ul {
 				</div>
 									</form> 
 
-
-				<ul class="news-list">
-					<li class="prev"><span class="txt"><a
+				 <ul class="bo_v_nb">
+                    <li class="prev">
+                        <span class="txt"><a
 							href="SelectRBoard.do?rev_seq=<%=bvo.getRev_seq() - 1%>">이전글</a></span>
-					<li class="prev"><span class="txt"><a
+                        
+                        
+                        <a class="tit" href="#"></a>
+                        <span class="date"></span>
+                        
+                      </li>
+                      <li class="next">
+                        <span class="txt"><a
 							href="SelectRBoard.do?rev_seq=<%=bvo.getRev_seq() + 1%>">다음글</a></span>
-				</ul>
+                        
+                        
+                        <a class="tit" href="#"></a>
+                        <span class="date"></span>
+                        
+                      </li></ul>
+				
+				
 				<p>&nbsp;</p>
 				<div class="btn-wrap" style="text-align: center;">
 					<a class="u-btn btn-default"

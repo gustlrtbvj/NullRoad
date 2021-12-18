@@ -191,7 +191,6 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 	<!-- Header section end -->
 
 
-
 	<!-- Page info section -->
 <div class = "mobile">
     <section class="page-info-section">
@@ -201,7 +200,8 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
     </div>
     <!-- Page info end -->
 
-<p>&nbsp;</p>
+
+<p>&nbsp;</p><p>&nbsp;</p>
 
 <main class="cd-main-content">
 	<!-- Page info end -->
@@ -227,7 +227,6 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 				</li>
 			</ul>
 		</div>
-
 
 
 		<%
