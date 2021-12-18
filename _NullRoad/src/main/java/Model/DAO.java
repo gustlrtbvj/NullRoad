@@ -1205,6 +1205,8 @@ public class DAO {
 			cnt = psmt.executeUpdate();
 
 		} catch (Exception e) {
+		} finally {
+			close();
 		}
 		return cnt;
 	}
@@ -1268,6 +1270,8 @@ public class DAO {
 			cnt = psmt.executeUpdate();
 
 		} catch (Exception e) {
+		} finally {
+			close();
 		}
 		return cnt;
 	}
