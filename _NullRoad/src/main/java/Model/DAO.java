@@ -1026,7 +1026,7 @@ public class DAO {
 				psmt = conn.prepareStatement(sql2);
 				psmt.setInt(1, prk_seq);
 				ResultSet rss = psmt.executeQuery();
-				while (rss.next() == true) {
+				if (rss.next() == true) {
 					check += 1;
 					int res_seq = rss.getInt(1);
 					String chk_in_time = rss.getString(2);
@@ -1034,24 +1034,21 @@ public class DAO {
 					SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 					Date Start = format.parse(chk_in_time);
 					Date End = format.parse(Systime);
-					long UseTime = (End.getTime() - Start.getTime()) / 60000;
+					int UseTime = (int)(End.getTime() - Start.getTime()) / 60000;
 					System.out.println("예약 영수증 찾기 성공 : " + UseTime + " 분");
+					close();
+					Conn();
 					if (UseTime >= 30) {
 						String sql3 = "UPDATE t_parking set prk_status = 0 where prk_seq = ?";
 						psmt = conn.prepareStatement(sql3);
 						psmt.setInt(1, prk_seq);
 						cnt = psmt.executeUpdate();
-						System.out.println("주차장 상태");
 						String sql4 = "UPDATE T_RESERVATION set res_status = 3 , chk_out_time = sysdate where res_seq = ? ";
 						psmt = conn.prepareStatement(sql4);
 						psmt.setInt(1, res_seq);
 						cnt = psmt.executeUpdate();
-						System.out.println("영수증 상태");
-
-					} else {
-						System.out.println("예약정보" + res_seq + "은 30분 안넘음");
+						System.out.println("예약취소 : "+res_seq);
 					}
-
 				}
 			}
 			System.out.println("예약된 주차장 수 :" + check);
