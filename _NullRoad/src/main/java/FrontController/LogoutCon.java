@@ -9,8 +9,7 @@ public class LogoutCon implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			
-		String page=request.getParameter("page");
+
 		// 로그아웃 기능
 		// vo 가 null인지 아닌지
 		// vo --> Session 영역 저장
@@ -23,9 +22,8 @@ public class LogoutCon implements Command{
 		// removeAttribute() --> 1개 삭제
 		// invalidate() --> 세션에 저장된 모든 값 삭제
 		session.invalidate();
-		
 		//3. 페이지 이동
-		response.sendRedirect(page);
+		response.sendRedirect("main.jsp");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
