@@ -1,3 +1,4 @@
+<%@page import="Model.DAO"%>
 <%@page import="Model.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -24,6 +25,7 @@
 	<link rel="stylesheet" href="css/mypage.css"/>
 </head>
 <body>
+<%	DAO dao = new DAO(); %>
 <%
    MemberVO mvo=(MemberVO)session.getAttribute("mvo");
    String loginYN = "login.jsp?page=";
@@ -111,10 +113,10 @@
 
 						<div class="user_info">
 							<div class="user_name">
-								 이승지
+								 <%= mvo.getM_name() %>
 							</div>
-							<div class="user_class">사용자</div>
-							<div class="user_mail">lsj98627</div>
+							<div class="user_class"><%if(mvo.getM_type()==1){%>사용자<%}else{%>공유자<%}%></div>
+							<div class="user_mail"><%=mvo.getM_phone()%></div>
 						</div>
 						
 					</div>
@@ -129,19 +131,19 @@
 						<div class="left fwb" onclick="location.href='/mypage/plist.do'">
 							<div class="title">포인트</div>
 							<div class="title_icon"><img src="./img/pngegg.png" alt="포인트"></div>
-							<div class="content">958P</div>
+							<div class="content"><%=mvo.getM_point()%></div>
 						</div>
 						<div class="right fwb" onclick="location.href='/mypage/orderHistory/list.do?tabGubun=HISTORY'">
 							<div class="title">이용내역</div>
 							<div class="title_icon"><img src="./img/pngegg (1).png" alt="이용내역"></div>
-							<div class="content">1건</div>
+							<div class="content"><%=dao.MyUseCount(mvo.getM_id()) %>건</div>
 						</div>
 					</div>
 					<div class="bottom_wrap">
 						<div class="left fwb" onclick="location.href='/mypage/clist.do'">
 							<div class="title">쿠폰</div>
 							<div class="title_icon"><img src="./img/pngegg (2).png" alt="쿠폰"></div>
-							<div class="content">2장</div>
+							<div class="content">0장</div>
 						</div>
 						<div class="right fwb" onclick="location.href='/present/push.do'">
 							<div class="title">문의내역</div>
@@ -157,7 +159,7 @@
 					<div class="user_wrap bgfff">
 						<div class="user_info">
 							<div class="user_name">
-								 <a href="cor.jsp">개인정보<br>수정</a>
+								 <a href="cor.html">개인정보<br>수정</a>
 							</div>
 						
 						</div>
@@ -174,8 +176,8 @@
 									수익확인
 									</a><div style="DISPLAY: none; color: gray;">
 									<br>
-									공유면수 : <br>
-									수익합계 : 
+									공유면수 : <%= dao.MyLotCount(mvo.getM_id()) %><br>
+									수익합계 : <%= dao.MycashCount(mvo.getM_id()) %>
 									</div></td>
 							</div>
 						

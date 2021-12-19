@@ -1350,4 +1350,62 @@ public class DAO {
 		
 
 	}
+	public int MyUseCount(String m_id) {
+		try {
+			Conn();
+			String sql = "SELECT count(*) FROM t_reservation where m_id = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, m_id);
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}  finally {
+			close();
+		}
+		return cnt;
+	}
+	
+	public int MyLotCount(String m_id) {
+		try {
+			Conn();
+			String sql = "select sum(bld_prk_lots) from t_building where m_id = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, m_id);
+			rs = psmt.executeQuery();
+
+			if (rs.next() == true) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}  finally {
+			close();
+		}
+		return cnt;
+	}
+	
+	public int MycashCount(String m_id) {
+		try {
+			Conn();
+			String sql = "select SUM(s.user_prk_fee)from(select r.prk_seq, r.user_prk_fee, r.chk_out_time , p.bld_seq from t_reservation r , t_parking p where r.prk_seq = p.prk_seq ) s, t_building b where s.bld_seq = b.bld_seq and b.bld_owner = ? ";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, m_id);
+			rs = psmt.executeQuery();
+			if (rs.next() == true) {
+				cnt = rs.getInt(1);
+			}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}  finally {
+			close();
+		}
+		return cnt;
+	}
 }

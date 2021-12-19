@@ -29,8 +29,11 @@
 </head>
 <body>
 <%
-	MemberVO mvo=(MemberVO)session.getAttribute("mvo");
-
+MemberVO mvo = null;
+if (session.getAttribute("mvo")!=null){
+	mvo = (MemberVO)session.getAttribute("mvo");
+	session.setAttribute("mvo", mvo);
+}
 %>
 	<!-- Page Preloder -->
 	<div id="preloder">
