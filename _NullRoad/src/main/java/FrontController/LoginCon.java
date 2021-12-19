@@ -25,6 +25,7 @@ public class LoginCon implements Command{
 		//vo가 null이면 : 로그인 실패
 		//vo가 null이 아니면 : 로그인 성공
 		
+		try {		
 		if(mvo !=null) {
 			// 성공
 			System.out.println("로그인 성공");
@@ -34,17 +35,17 @@ public class LoginCon implements Command{
 			
 			//2. 세션에 Attribute 추가 session.setAttribute("", mvo);
 			session.setAttribute("mvo", mvo);
-			
+			response.sendRedirect(page);
 		}else {
 			// 실패
 			System.out.println("로그인 실패!");
-
+			response.sendRedirect("login.jsp?page="+page);
 
 		}
 		
 		//객체에서는 페이지를 이동할 때, try/catch 써줘야한다. 
-		try {
-			response.sendRedirect(page);
+
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
