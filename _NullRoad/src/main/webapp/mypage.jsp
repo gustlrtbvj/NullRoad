@@ -45,12 +45,12 @@
          </a>
          <%if(mvo==null){%>
          <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-         <a href="login.jsp?page="+<%=selflink%> class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-         <a href="login.jsp?page="+<%=selflink%> class="site-btn">로그인</a>
+         <a href="login.jsp?page="<%=selflink%> class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+         <a href="login.jsp?page="<%=selflink%> class="site-btn">로그인</a>
          <%}else{ %> 
          <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-         <a href="Logout.do?page="+<%=selflink%> class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-         <a href="Logout.do?page="+<%=selflink%> class="site-btn">로그아웃</a>
+         <a href="Logout.do?page="<%=selflink%> class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+         <a href="Logout.do?page="<%=selflink%> class="site-btn">로그아웃</a>
          <%} %>
          <nav class="main-menu">
             <ul class="menu-list">
@@ -73,7 +73,7 @@
                   <div class="dropdown-content">
                     <a href="<%=loginYN%>contact.jsp">공유하기</a>
                     <a href="<%=loginYN%>one.jsp">1:1문의</a>
-                    <a href="<%=loginYN%>Q_Q&A.jsp">Q&A</a>
+                    <a href="<%=loginYN%>Q_QNA.jsp">Q&A</a>
                     <a href="<%=loginYN%>mypage.jsp">마이페이지</a>
                   </div>
                  </div>
@@ -159,7 +159,7 @@
 					<div class="user_wrap bgfff">
 						<div class="user_info">
 							<div class="user_name">
-								 <a href="cor.html">개인정보<br>수정</a>
+								 <a href="cor.jsp">개인정보<br>수정</a>
 							</div>
 						
 						</div>

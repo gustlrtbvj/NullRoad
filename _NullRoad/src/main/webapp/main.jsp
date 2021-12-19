@@ -34,64 +34,60 @@ if (session.getAttribute("mvo")!=null){
 	mvo = (MemberVO)session.getAttribute("mvo");
 	session.setAttribute("mvo", mvo);
 }
+   String loginYN = "login.jsp?page=";
+   if (mvo!=null){loginYN = "";}
+   String selflink = "main.jsp";
 %>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
+   <!-- Page Preloder -->
+   <div id="preloder">
+      <div class="loader"></div>
+   </div>
+   <!-- Header section -->
+   <header class="header-section clearfix">
+      <div class="container-fluid">
+         <a href="main.jsp" class="site-logo" style="font-family : ImcreSoojin; font-size:40px;">
+            nroad
+         </a>
+         <%if(mvo==null){%>
+         <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+         <a href="login.jsp?page=<%=selflink%>" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+         <a href="login.jsp?page=<%=selflink%>"  class="site-btn">로그인</a>
+         <%}else{ %> 
+         <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
+         <a href="Logout.do?page=<%=selflink%>" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+         <a href="Logout.do?page=<%=selflink%>" class="site-btn">로그아웃</a>
+         <%} %>
+         <nav class="main-menu">
+            <ul class="menu-list">
+               <div class="dropdown">
+                  <button class="dropbtn"><b>About us&nbsp;</b></button>
+                  <div class="dropdown-content">
+                    <a href="about.jsp">개발의도</a>
+                    <a href="gide.jsp">사용방법</a>
+                  </div>
+                 </div>
+               <div class="dropdown">
+                  <button class="dropbtn"><b>Community&nbsp;</b></button>
+                  <div class="dropdown-content">
+                    <a href="<%=loginYN%>Bo_Reviewboard.jsp">리뷰게시판</a>
+                    <a href="<%=loginYN%>Bo_Freeboard.jsp">자유게시판</a>
+                  </div>
+                 </div>
+               <div class="dropdown">
+                  <button class="dropbtn"><b>Service</b></button>
+                  <div class="dropdown-content">
+                    <a href="<%=loginYN%>contact.jsp">공유하기</a>
+                    <a href="<%=loginYN%>one.jsp">1:1문의</a>
+                    <a href="<%=loginYN%>Q_QNA.jsp">Q&A</a>
+                    <a href="<%=loginYN%>mypage.jsp">마이페이지</a>
+                  </div>
+                 </div>
 
-	<!-- Header section -->
-	<header class="header-section clearfix">
-		<div class="container-fluid">
-			<a href="main.jsp" class="site-logo" style="font-family : ImcreSoojin; font-size:40px;">
-				nroad
-			</a>
-
-			<%if(mvo==null){ %>
-			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="login.jsp?page=main.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-			<a href="login.jsp?page=main.jsp" class="site-btn">로그인</a>
-			<%}else{ %> 
-			<div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-			<a href="Logout.do?page=main.jsp" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-			<a href="Logout.do?page=main.jsp" class="site-btn">로그아웃</a>
-			<%} %>
-
-			
-			<nav class="main-menu">
-				
-				<ul class="menu-list">
-					<div class="dropdown">
-						<button class="dropbtn"><b>About us&nbsp;</b></button>
-						<div class="dropdown-content">
-						  <a href="about.jsp">개발의도</a>
-						  <a href="gide.jsp">사용방법</a>
-
-						</div>
-					  </div>
-					<div class="dropdown">
-						<button class="dropbtn"><b>Community&nbsp;</b></button>
-						<div class="dropdown-content">
-						  <a href="Bo_Reviewboard.jsp">리뷰게시판</a>
-						  <a href="Bo_Freeboard.jsp">자유게시판</a>
-
-						</div>
-					  </div>
-					<div class="dropdown">
-						<button class="dropbtn"><b>Service</b></button>
-						<div class="dropdown-content">
-						  <a href="contact.jsp">공유하기</a>
-						  <a href="one.jsp">1:1문의</a>
-						  <a href="Q_Q&A.jsp">Q&A</a>
-						  <a href="mypage.jsp">마이페이지</a>
-						</div>
-					  </div>
-
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<!-- Header section end -->
+            </ul>
+         </nav>
+      </div>
+   </header>
+   <!-- Header section end -->
 
 
 	<!-- Hero section -->
@@ -102,7 +98,7 @@ if (session.getAttribute("mvo")!=null){
 					<h2><span>길은 비우고,</span><br>주차장은 채운다!</h2>
 					<h4>Clear the road, Let's fill up the parking lot !</h4>
 					<form class="hero-subscribe-from">
-						<button type="button" class="site-btn sb-gradients" onclick="location.href='MapTest.jsp';">시작하기</button>
+						<button type="button" class="site-btn sb-gradients" onclick="location.href='<%=loginYN%>MapTest.jsp';">시작하기</button>
 						<button type="button" class="site-btn sb-gradients" onclick="location.href='LandLord.jsp';">공유현황</button>
 					</form>
 				</div>
