@@ -5,8 +5,9 @@ $().ready(function () {
             icon: 'success',
             confirmButtonColor: '#7e3bc3',
             title: '문의가 전송되었습니다!',
-
-            
+			closeOnClickOutside : false
+        }).then(function(){
+ 		location.href="main.jsp"
         });
     });
 });
