@@ -284,7 +284,18 @@ background:none;}
 
    
 	<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
-	
+	<%
+    	DAO dao = new DAO();
+		// 나중에 고쳐서 쓸것
+		//ArrayList<BuildingVO> positions = new ArrayList<BuildingVO>();
+		ArrayList<BuildingVO> bldlist=dao.BldSel();
+		ArrayList<ParkingVO> prklist=dao.PrkSel();
+		ArrayList<ReservationVO> reslist=dao.ResSel();
+		ArrayList<BuildingVO> bldhidon=dao.BldHidOn();
+		ArrayList<ParkableVO> prkablelist=dao.Prkable();
+		//임시 데이터
+		
+    %>
     <div class="map_wrap">
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
         <p>
@@ -309,8 +320,13 @@ background:none;}
             <div id="pagination"></div>
         </div>
     </div>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f10bde5d4f1ce8537df658a268a51e2&libraries=services,clusterer"></script>
     <script>
+    
+    Kakao.init('11ee5630664d8eb60e7ce22fbf86ca31');
+    
+    
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = { 
             center: new kakao.maps.LatLng(33.450705, 126.570677), // 지도의 중심좌표
@@ -321,18 +337,7 @@ background:none;}
    
     var markers = [];
     var marker=[];
-    <%
-    	DAO dao = new DAO();
-		// 나중에 고쳐서 쓸것
-		//ArrayList<BuildingVO> positions = new ArrayList<BuildingVO>();
-		ArrayList<BuildingVO> bldlist=dao.BldSel();
-		ArrayList<ParkingVO> prklist=dao.PrkSel();
-		ArrayList<ReservationVO> reslist=dao.ResSel();
-		ArrayList<BuildingVO> bldhidon=dao.BldHidOn();
-		ArrayList<ParkableVO> prkablelist=dao.Prkable();
-		//임시 데이터
-		
-    %>
+    
     var overlay=[];
     var positions = [];
     
@@ -631,10 +636,9 @@ background:none;}
             el.removeChild (el.lastChild);
         }
     }
-    //Kakao.init('11ee5630664d8eb60e7ce22fbf86ca31');
     function myKakaoNavi1() {
         Kakao.Navi.start({
-            name:"목적지명",
+            name:"건물명",
             x:127.026581,
             y:37.49887,
             coordType:'wgs84'
