@@ -359,7 +359,7 @@ box-shadow:1px 1px 5px 0px hsl(232, 36%, 96%)}
 #bo_vc .cmt_contents {line-height:1.8em;padding:0 0 20px}
 #bo_vc p a {text-decoration:underline}
 #bo_vc p a.s_cmt {text-decoration:underline;color:#ed6479}
-#bo_vc_empty {margin:0;padding:80px 0 !important;color:#777;text-align:center}
+#bo_vc_empty {text-align:left;}
 #bo_vc #bo_vc_winfo {float:left}
 #bo_vc .bo_vl_opt {position:absolute;top:0;right:0}
 

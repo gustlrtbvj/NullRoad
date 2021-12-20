@@ -150,12 +150,12 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
          </a>
          <%if(mvo==null){%>
          <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-         <a href="login.jsp?page="<%=selflink%> class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-         <a href="login.jsp?page="<%=selflink%> class="site-btn">로그인</a>
+         <a href="login.jsp?page=<%=selflink%>" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+         <a href="login.jsp?page=<%=selflink%>"  class="site-btn">로그인</a>
          <%}else{ %> 
          <div class="responsive-bar" style="margin-top: 10px;"><i class="fa fa-bars" ></i></div>
-         <a href="Logout.do?page="<%=selflink%> class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
-         <a href="Logout.do?page="<%=selflink%> class="site-btn">로그아웃</a>
+         <a href="Logout.do?page=<%=selflink%>" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
+         <a href="Logout.do?page=<%=selflink%>" class="site-btn">로그아웃</a>
          <%} %>
          <nav class="main-menu">
             <ul class="menu-list">
@@ -381,11 +381,11 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
             
 
  <div class="paginate" style="text-align:center; letter-spacing:10px;">
- <a href="Bo_Freeboard.jsp?pageno=<%=prev_pageno%>"> < </a>
+ <a href="Bo_Reviewboard.jsp?pageno=<%=prev_pageno%>"> < </a>
 	<%
 	for (int i = page_sno; i <= page_eno; i++) {
 	%>
-	<a href="Bo_Freeboard.jsp?pageno=<%=i%>"> <%
+	<a href="Bo_Reviewboard.jsp?pageno=<%=i%>"> <%
  if (pageno == i) {
  %> <strong class="s-active" title="현재위치"><%=i%></strong> <%
  } else {
