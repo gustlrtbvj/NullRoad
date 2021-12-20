@@ -1001,6 +1001,8 @@ public class DAO {
 					System.out.println("예약 영수증 생성 실패");
 
 				}
+			}else {
+				System.out.println("주차장에 빈자리가 없습니다.");
 			}
 		} catch (Exception e) {
 		} finally {

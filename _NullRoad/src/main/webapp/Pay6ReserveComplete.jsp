@@ -1,3 +1,4 @@
+<%@page import="Model.BuildingVO"%>
 <%@page import="Model.MemberVO"%>
 <%@page import="Model.ParkingVO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -23,6 +24,8 @@
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/mypage.css"/>
+	
+	<script src="./js/kakao.js"></script>
 <style>
 	.spad{
 		padding-top: 50px;
@@ -53,6 +56,11 @@ if (session.getAttribute("mvo")!=null){
 	session.setAttribute("mvo", mvo);
 }else{
 	response.sendRedirect("Pay1LoginCheck.jsp");
+}
+BuildingVO bldvo = null;
+if (session.getAttribute("bldvo")!=null){
+	bldvo = (BuildingVO)session.getAttribute("bldvo");
+	session.setAttribute("bldvo", bldvo);
 }
 %>
 
@@ -142,19 +150,20 @@ if (session.getAttribute("mvo")!=null){
 			</div>
 		</div>
 		<div class="widget-area" >
-			<h4 class="widget-title">사용완료</h4>
+			<h4 class="widget-title">예약성공</h4>
 			<div id="myp_section_wrap" class="clear-fix">
 				<div class="section01">
 					<div class="user_wrap bgfff">
 
 						<div class="user_info">
 							<div class="user_name">
-								 주차장 정보 : 
+								 주차장 정보 : <%=bldvo.getBld_name() %>
 							</div>
 							<p>&nbsp;</p>
 							<div class="user_class" style="font-size:18px;">주차장 사용상태 : <%=pvo.getPrk_status()%></div>
 							<p>&nbsp;</p>
 							<div class="user_mail" style="font-size:18px;">주차장 요금 : <%=pvo.getPrk_fee()%></div>
+
 						</div>
 						
 					</div>
@@ -202,7 +211,19 @@ if (session.getAttribute("mvo")!=null){
 
 
 	<!--====== Javascripts & Jquery ======-->
-
+	<script type="text/javascript">
+	Kakao.init('11ee5630664d8eb60e7ce22fbf86ca31');
+	Kakao.isInitialized();
+		function myKakao() {
+			alert("네비 안내를 시작합니다.");
+		    Kakao.Navi.start({
+		       name:<%=bldvo.getBld_name()%>,
+ 		       x:<%=bldvo.getBld_lati()%>,
+ 		       y:<%=bldvo.getBld_longi()%>,
+ 		       coordType:'wgs84'
+ 		   });
+		}
+	</script>
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>

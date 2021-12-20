@@ -112,7 +112,7 @@
 	ArrayList<BuildingVO> bld_list =null;
 	String str = request.getParameter("data");
 	if(str==null){
-		bld_seq = 23 ;
+		bld_seq = 27 ;
 		%>
 		<script type="text/javascript">
 		alert("주차장 선택이 되지 않았습니다.");
@@ -220,7 +220,7 @@
                         <br><br><br>
 					</p>
 					<div class="container-login100-form-btn">
-					<form action="PayReserveService.do"><!-- 예약서비스  -->
+					<form action="PayReserveService.do?booking.jsp"><!-- 예약서비스  -->
 						<input type="text" name ="bld_seq" value="<%=bldvo.getBld_seq()%>" style="display:none">
 						<input type="submit" id="alertStart"class="login100-form-btn" value="예약하기">
 					</form>
