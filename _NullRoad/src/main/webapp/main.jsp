@@ -102,7 +102,7 @@ if (session.getAttribute("mvo")!=null){
 				<%if(session.getAttribute("mvo")!=null){ %>
 					<% if (mvo.getAdmin_yn() == 1) {%>
 					<form class="hero-subscribe-from">
-						<button type="button" class="site-btn sb-gradients" onclick="location.href='<%=loginYN%>MapTest.jsp';">시작하기</button>
+						<button type="button" class="site-btn sb-gradients" onclick="location.href='<%=loginYN%>UserMap.jsp';">시작하기</button>
 						<button type="button" class="site-btn sb-gradients" onclick="location.href='LandLord.jsp';">공유현황</button>
 						<button type="button" class="site-btn sb-gradients" onclick="location.href='oneboard.jsp';">관리자페이지</button>
 						</form>
