@@ -55,7 +55,7 @@ label {
   line-height: 1.5;
   color: #fff;
   text-transform: uppercase;
-  height: 50px;
+  height: 46px;
   border-radius: 5px;
   background: #7e3bc3;
   display: -webkit-box;
@@ -76,7 +76,9 @@ label {
 .login100-form-btn:hover {
   background: #484748;
 }
-
+input{
+ background: none;
+ padding-top : 10px;}
 </style>
 
 </head>
