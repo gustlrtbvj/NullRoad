@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-String lot = "20";
+String lot = "22";
 response.sendRedirect("Pay1LoginCheck.jsp?lot="+lot);
 %>
 </body>
