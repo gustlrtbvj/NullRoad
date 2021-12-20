@@ -3,17 +3,17 @@ package Model;
 public class CustomerCenterVO {
 
 	private int cs_art_seq;
-	private String cs_art_subj;
+	private String cs_art_subject;
 	private String cs_art_content;
 	private String cs_art_reg_date;
 	private int cs_art_cnt;
 	private String m_id;
 	private int cs_art_status;
-	public CustomerCenterVO(int cs_art_seq, String cs_art_subj, String cs_art_content, String cs_art_reg_date,
+	public CustomerCenterVO(int cs_art_seq, String cs_art_subject, String cs_art_content, String cs_art_reg_date,
 			int cs_art_cnt, String m_id, int cs_art_status) {
 		super();
 		this.cs_art_seq = cs_art_seq;
-		this.cs_art_subj = cs_art_subj;
+		this.cs_art_subject = cs_art_subject;
 		this.cs_art_content = cs_art_content;
 		this.cs_art_reg_date = cs_art_reg_date;
 		this.cs_art_cnt = cs_art_cnt;
@@ -26,11 +26,11 @@ public class CustomerCenterVO {
 	public void setCs_art_seq(int cs_art_seq) {
 		this.cs_art_seq = cs_art_seq;
 	}
-	public String getCs_art_subj() {
-		return cs_art_subj;
+	public String getCs_art_subject() {
+		return cs_art_subject;
 	}
-	public void setCs_art_subj(String cs_art_subj) {
-		this.cs_art_subj = cs_art_subj;
+	public void setCs_art_subj(String cs_art_subject) {
+		this.cs_art_subject = cs_art_subject;
 	}
 	public String getCs_art_content() {
 		return cs_art_content;
@@ -67,6 +67,12 @@ public class CustomerCenterVO {
 		this.m_id = m_id;
 		this.cs_art_seq = cs_art_seq;
 		this.cs_art_status = cs_art_status;
+	}
+	public CustomerCenterVO(String cs_art_subject, String cs_art_content, String m_id) {
+		super();
+		this.cs_art_subject = cs_art_subject;
+		this.cs_art_content = cs_art_content;
+		this.m_id = m_id;
 	}
 
 	

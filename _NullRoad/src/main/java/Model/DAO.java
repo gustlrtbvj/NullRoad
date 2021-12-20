@@ -1410,4 +1410,24 @@ public class DAO {
 		}
 		return cnt;
 	}
+
+
+	public int One(String cs_art_subject, String cs_art_content, String m_id) {
+		try {
+			Conn();
+
+			String sql = "INSERT INTO t_customer_center (cs_art_subject, cs_art_content, cs_art_reg_date, cs_art_cnt, m_id, cs_art_status) VALUES (?, ?, sysdate, 0, ?, 0)";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, cs_art_subject);
+			psmt.setString(2, cs_art_content);
+			psmt.setString(3, m_id);
+
+			cnt = psmt.executeUpdate();
+
+		} catch (Exception e) {
+		} finally {
+			close();
+		}
+		return cnt;
+	}
 }

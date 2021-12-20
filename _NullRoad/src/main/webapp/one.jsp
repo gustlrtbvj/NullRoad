@@ -176,31 +176,21 @@
 				      		<div id="form-message-success" class="mb-4">
 				            Your message was sent, thank you!
 				      		</div>
-									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+									<form action ="One.do" method="POST" id="contact" class="contact">
 										<div class="row">
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="text" class="form-control" name="name" id="name" placeholder="이름">
-												</div>
-											</div>
-											<div class="col-md-12"> 
-												<div class="form-group">
-													<input type="email" class="form-control" name="email" id="email" placeholder="이메일">
+													<input type="text" class="form-control" name="cs_art_subject" id="cs_art_subject" placeholder="제목">
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="text" class="form-control" name="subject" id="subject" placeholder="제목">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="내용"></textarea>
+													<textarea name="cs_art_content" class="form-control" id="cs_art_content" cols="30" rows="6" placeholder="내용"></textarea>
 												</div>
 											</div>
 											<div class="col-md-12">
 												<div class="container-login100-form-btn">
-													<button id="alertStart"class="login100-form-btn">
+													<button type="submit" id="alertStart"class="login100-form-btn">
 														<b>전송하기</b>
 													</button>
 												</div>
