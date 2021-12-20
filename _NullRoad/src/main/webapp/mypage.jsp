@@ -113,9 +113,10 @@
 
 						<div class="user_info">
 							<div class="user_name">
-								 <%= mvo.getM_name() %>
+								 <%= mvo.getM_id() %>
 							</div>
-							<div class="user_class"><%if(mvo.getM_type()==1){%>사용자<%}else{%>공유자<%}%></div>
+							<div class="user_class"><%if(mvo.getM_type()==0){%>사용자<%}else{%>공유자<%}%></div>
+						
 							<div class="user_mail"><%=mvo.getM_phone()%></div>
 						</div>
 						

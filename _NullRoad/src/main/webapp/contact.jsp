@@ -239,7 +239,7 @@ input{
 								<div class="col-md-12">
 									<div class="container-login100-form-btn">
 										<a id="alertStart" class="login100-form-btn">
-											<input type="submit" value="공유신청" style="color: #fff;">
+											<input type="button" value="공유신청" style="color: #fff;">
 										</a>
 									</div>
 							</div>

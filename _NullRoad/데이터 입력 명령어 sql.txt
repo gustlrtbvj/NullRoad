@@ -1,2 +1,2 @@
--시퀀스있는 테이블 데이터삽입 명령어
-String sql = "insert into t_member values(t_reservation_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+
+String sql = "insert inyyycdcecto t_member values(t_reservation_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
