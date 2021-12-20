@@ -631,7 +631,7 @@ background:none;}
             el.removeChild (el.lastChild);
         }
     }
-    //Kakao.init('6f10bde5d4f1ce8537df658a268a51e2');
+    //Kakao.init('11ee5630664d8eb60e7ce22fbf86ca31');
     function myKakaoNavi1() {
         Kakao.Navi.start({
             name:"목적지명",
