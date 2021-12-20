@@ -57,7 +57,8 @@ System.out.println("扁府府扁府扁府"+giri);
 
 
 			  for ( int i = 0; i<giri; i++) {
-			      filename.add(URLEncoder.encode(multi.getFilesystemName("imgPath"+(i+1)), "euc-kr" ));
+			      
+				  filename.add(URLEncoder.encode(multi.getFilesystemName("imgPath"+(i+1)), "euc-kr" ));
 			  }
 			  System.out.println("扁府府扁府扁府标?"+filename.size());
 		   String fileSum="";
