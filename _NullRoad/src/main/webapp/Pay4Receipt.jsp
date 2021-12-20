@@ -270,14 +270,14 @@ long price = UseTime*(pvo.getPrk_fee()/60);
             //파라미터 정보 https://docs.iamport.kr/sdk/javascript-sdk?lang=ko#request_pay
             pg: "html5_inicis",
             pay_method: "card",
-            merchant_uid: "ORD20180131-0000016",//고유 주문 번호 중복결제 차단
-            name: "노르웨이 회전 의자",//주문명 결제할 물건 16자 이내 작성
+            merchant_uid: "ORD20180131-0000<%=resvo.getRes_seq()%>",//고유 주문 번호 중복결제 차단
+            name: "NullRoad서비스 충전",//주문명 결제할 물건 16자 이내 작성
             amount: cash,//결제 금액
-            buyer_email: "gildong@gmail.com",//주문자 이메일
-            buyer_name: "홍길동",//주문자 명
-            buyer_tel: "010-4242-4242",//주문자 주소
-            buyer_addr: "서울특별시 강남구 신사동",//주문자 주소
-            buyer_postcode: "01181"//주문자 우편번호
+            buyer_email: "<%=mvo.getM_phone()%>",//주문자 이메일
+            buyer_name: "<%=mvo.getM_name()%>",//주문자 명
+            buyer_tel: "<%=mvo.getM_phone()%>",//주문자 주소
+            buyer_addr: "<%=mvo.getM_account()%>",//주문자 주소
+            buyer_postcode: "<%=mvo.getM_car_num()%>"//주문자 우편번호
         }, function (rsp) { // callback
             if ( rsp.success ) {
             //결제반환 정보 https://docs.iamport.kr/sdk/javascript-sdk?lang=ko#request_pay-rsp 
@@ -295,15 +295,13 @@ long price = UseTime*(pvo.getPrk_fee()/60);
         	  url:'Pay0MoneyBase.jsp', //가져오고자하는 서버페이지 주소를 넣는다.
         	  type:'post', //데이터를 서버로 전송하게 된다.
         	  data:{
-        	         name: 1234,  //에디터박스의 아이디를 넣으면 해당 에디터박스의 데이터를 보내준다.
+        	         name: <%=mvo.getM_id()%>,  //에디터박스의 아이디를 넣으면 해당 에디터박스의 데이터를 보내준다.
         	         money: cash
         	  } ,
         	  success : function(t){ 
-        	                alert('성공!');
         	                location.reload();
         	  } ,
         	  error : function(){
-        	            alert('실패 ㅠㅠ');
         	            location.reload();
         	  }
         	});
