@@ -217,8 +217,9 @@ background:none;}
 <%
    MemberVO mvo=(MemberVO)session.getAttribute("mvo");
    String loginYN = "login.jsp?page=";
-   String selflink = "MapTest.jsp";
+   String selflink = "UserMap.jsp";
    if (mvo!=null){loginYN = "";}
+   
    
 %>
    <!-- Page Preloder -->
@@ -294,6 +295,7 @@ background:none;}
 		ArrayList<BuildingVO> bldhidon=dao.BldHidOn();
 		ArrayList<ParkableVO> prkablelist=dao.Prkable();
 		//임시 데이터
+		dao.PayReserCheck();
 		
     %>
     <div class="map_wrap">
@@ -720,8 +722,13 @@ var test=0;
 			
 
 			//2. 이동
+			<%if(mvo==null){%>
+			alert("로그인 후 사용해주세요");
+			location.href = "login.jsp?page="+<%=selflink%>;
+			<%}else{%>
 			location.href = "booking.jsp?data="+data;
 			sessionStorage.setItem("bldhidon", test);
+			<%}%>
 		
 	}
     

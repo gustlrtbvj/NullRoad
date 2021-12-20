@@ -26,6 +26,10 @@
 	<link rel="stylesheet" href="css/mypage.css"/>
 	
 	<script src="./js/kakao.js"></script>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f10bde5d4f1ce8537df658a268a51e2&libraries=services,clusterer"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script type="text/javascript">Kakao.init('11ee5630664d8eb60e7ce22fbf86ca31');</script>
 <style>
 	.spad{
 		padding-top: 50px;
@@ -162,7 +166,9 @@ if (session.getAttribute("bldvo")!=null){
 							<p>&nbsp;</p>
 							<div class="user_class" style="font-size:18px;">주차장 사용상태 : <%=pvo.getPrk_status()%></div>
 							<p>&nbsp;</p>
-							<div class="user_mail" style="font-size:18px;">주차장 요금 : <%=pvo.getPrk_fee()%></div>
+							<div class="user_mail" style="font-size:18px;">주차장 요금 : <%=pvo.getPrk_fee()%></div><br>
+							<input type="button" value="내비게이션" onclick="Navi()" class="login100-form-btn"><br>
+							
 
 						</div>
 						
@@ -212,9 +218,7 @@ if (session.getAttribute("bldvo")!=null){
 
 	<!--====== Javascripts & Jquery ======-->
 	<script type="text/javascript">
-	Kakao.init('11ee5630664d8eb60e7ce22fbf86ca31');
-	Kakao.isInitialized();
-		function myKakao() {
+    function Navi() {
 			alert("네비 안내를 시작합니다.");
 		    Kakao.Navi.start({
 		       name:<%=bldvo.getBld_name()%>,

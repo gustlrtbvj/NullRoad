@@ -98,7 +98,7 @@ if (session.getAttribute("mvo")!=null){
 					<h2><span>길은 비우고,</span><br>주차장은 채운다!</h2>
 					<h4>Clear the road, Let's fill up the parking lot !</h4>
 					<form class="hero-subscribe-from">
-						<button type="button" class="site-btn sb-gradients" onclick="location.href='<%=loginYN%>MapTest.jsp';">시작하기</button>
+						<button type="button" class="site-btn sb-gradients" onclick="location.href='<%=loginYN%>UserMap.jsp';">시작하기</button>
 						<button type="button" class="site-btn sb-gradients" onclick="location.href='LandLord.jsp';">공유현황</button>
 					</form>
 				</div>
