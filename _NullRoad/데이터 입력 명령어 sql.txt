@@ -1,2 +1,2 @@
 
-String sql = "insert inyyyto t_member values(t_reservation_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
+String sql = "insert inyyycdcecto t_member values(t_reservation_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
