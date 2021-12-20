@@ -973,7 +973,7 @@ public class DAO {
 			psmt = conn.prepareStatement(sql1);
 			psmt.setInt(1, bld_seq);
 			rs = psmt.executeQuery();
-			while (rs.next() == true) {
+			if (rs.next() == true) {
 				System.out.println("주차장 찾기 완료");
 				int prk_seq = rs.getInt(1);
 				int prk_fee = rs.getInt(2);

@@ -131,11 +131,10 @@
 					<h5 style="color:whitesmoke">There's a space behind the pillar.</h5>
 					<p style="color:whitesmoke"> 
 						<br>1. 사용자/공유자를 구분하여 회원가입!<br>
-						<br>2. 카카오페이로 금액을 충전하면 nroad에서 포인트로 사용 가능!<br>
-						<br>3. 지도를 통해 주변 주차장 예약하기!<br>
-						<br>4. 예약된 구역에 주차 완료하기!<br>
-						<br>5. 이용이 끝나면 주차장 내 QR코드 인식하기!<br>
-						<br>6. 주차시간만큼 요금이 정산되어 포인트에서 차감!<br>
+						<br>2. 주차장 공유하기를 통해서 주차장 공유 신청하기!<br>
+						<br>3. 주차장 공유가 승인 되면 수익 창출 가능!<br>
+						<br>4. 공유자 지도를 통해 수익 현황 확인 하기!<br>
+
 					</p>
 				</div>
 			</div>
