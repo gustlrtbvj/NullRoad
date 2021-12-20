@@ -55,7 +55,7 @@ public class PayLoginCon implements Command{
 					response.sendRedirect("Pay2LotUseCon.jsp");
 				}else {
 					System.out.println("주차장이 검색되지 않았습니다.");
-					response.sendRedirect("Pay8UseFalse.jsp");
+					response.sendRedirect("Pay8UesFalse.jsp");
 				}
 			}
 			
