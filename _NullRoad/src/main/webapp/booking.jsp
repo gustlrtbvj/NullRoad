@@ -220,7 +220,7 @@
                         <br><br><br>
 					</p>
 					<div class="container-login100-form-btn">
-					<form action=""><!-- 예약서비스  -->
+					<form action="PayReserveService.do"><!-- 예약서비스  -->
 						<input type="text" name ="bld_seq" value="<%=bldvo.getBld_seq()%>" style="display:none">
 						<input type="submit" id="alertStart"class="login100-form-btn" value="예약하기">
 					</form>
