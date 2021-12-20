@@ -18,7 +18,7 @@ public class DAO {
 	BuildingVO bldvo = null;
 	CommunityRepVO crvo = null;
 	CommunityVO cvo = null;
-	CSReplyVO csvo = null;
+	CustomerCenterVO csvo = null;
 	CustomerCenterVO cscvo = null;
 	FilesVO fvo = null;
 	MemberVO mvo = null;
@@ -794,7 +794,7 @@ public class DAO {
 	public ReservationVO IdResSelect(String m_id) {
 		try {
 			Conn();
-			String sql = "select * from t_reservation where m_id = ? and res_status = 0";
+			String sql = "select * from t_reservation where m_id = ? and res_status = 0 ";
 			psmt = conn.prepareStatement(sql);
 			// 4. 바인드 변수 채우기
 			psmt.setString(1, m_id);
@@ -830,7 +830,7 @@ public class DAO {
 	public ParkingVO ParkSelect(String lot) {
 		try {
 			Conn();
-			String sql = "select * from t_parking where prk_seq = ?";
+			String sql = "select * from t_parking where prk_seq = ? and prk_status = 0 ";
 			psmt = conn.prepareStatement(sql);
 			// 4. 바인드 변수 채우기
 			psmt.setString(1, lot);
@@ -1284,7 +1284,7 @@ public class DAO {
 
 		try {
 			Conn();
-			String sql = "select * from t_custmor_center order by cs_art_seq";
+			String sql = "select * from t_customer_center order by cs_art_seq";
 			psmt = conn.prepareStatement(sql);
 
 			// 5.
@@ -1299,10 +1299,10 @@ public class DAO {
 				String cs_art_reg_date = rs.getString(4);
 				int cs_art_cnt = rs.getInt(5);
 				String m_id = rs.getString(6);
-				int cs_art_art_stauts = rs.getInt(7);
+				int cs_art_art_status = rs.getInt(7);
 
 				CustomerCenterVO cscentervo = new CustomerCenterVO(cs_art_seq, cs_art_subject, cs_art_content,
-						cs_art_reg_date, cs_art_cnt, m_id, cs_art_art_stauts);
+						cs_art_reg_date, cs_art_cnt, m_id, cs_art_art_status);
 
 				cscenterlist.add(cscentervo);
 			}
@@ -1429,5 +1429,69 @@ public class DAO {
 			close();
 		}
 		return cnt;
+	}
+
+	public CustomerCenterVO CsSelectOne(int cs_art_seq) {
+		try {
+			// JDBC
+			// 1. 동적로딩
+			System.out.println("conn확인" + cs_art_seq);
+			Conn();
+			// 3. sql문 준비
+			String sql = "select * from t_customer_center where cs_art_seq =?";
+			psmt = conn.prepareStatement(sql);
+
+			// 4. 바인드 변수 채우기(물음표 없다. -> 바인드변수 노필요)
+			psmt.setInt(1, cs_art_seq);
+
+			// 5. 실행
+			// select -> executeQuery() --> return ResultSet
+			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
+			rs = psmt.executeQuery();
+			System.out.println(rs);
+			System.out.print("DAO" + cs_art_seq);
+			// 로그인 때는, rs에 딱 1행만
+			// 모든 회원정보를 가져옴 > 몇번 반복해야할지 모름
+			if (rs.next() == true) {
+
+				// 글번호, 작성자, 제목, 파일이름, 내용, 날짜
+				int cs_art_seqq = rs.getInt(1);
+				String cs_art_subject = rs.getString(2);
+				String cs_art_content = rs.getString(3);
+				String cs_art_reg_date = rs.getString(4);
+				int cs_art_cnt = rs.getInt(5);
+				String m_id = rs.getString(6);
+				int cs_art_status = rs.getInt(7);	
+
+
+
+				// 한보따리로 묶는다.
+				csvo = new CustomerCenterVO(cs_art_seqq, cs_art_subject, cs_art_content, cs_art_reg_date, cs_art_cnt, m_id, cs_art_status);
+
+			}
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		} finally {
+			// 6. 연결을 닫아주기
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+
+			}
+
+		}
+
+		return csvo;
 	}
 }

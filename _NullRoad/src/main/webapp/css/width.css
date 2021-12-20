@@ -15,7 +15,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: "PT Sans", sans-serif;
+  font-family: "Lato", sans-serif;
   color: #33414a;
   background-color: #fff;
 }
@@ -33,7 +33,7 @@ Main Components
 header {
   position: fixed;
   z-index: 3;
-  height: 50px;
+
   width: 100%;
   top: 0;
   left: 0;

@@ -27,31 +27,37 @@ public class PayLoginCon implements Command{
 		//DAO 객체 생성
 		DAO dao= new DAO();
 		MemberVO mvo = dao.Login(m_id, m_pw);
+		ParkingVO pvo =null;
+		ReservationVO resvo=null;
 
 		try {
 		if(mvo !=null) {
 			System.out.println("로그인 성공");
 			session.setAttribute("mvo", mvo);
-			
-			ParkingVO pvo = dao.ParkSelect(lot);
-			if(pvo !=null) {
-				System.out.println("주차장정보 불러오기");
-				session.setAttribute("pvo", pvo);
-			}
-			
-			
-			ReservationVO resvo = dao.IdResSelect(m_id);
+			resvo = dao.IdResSelect(m_id);
 			if(resvo !=null) {
 				// 성공
 				System.out.println("사용하던 주차장이 있습니다.");
 				session.setAttribute("resvo", resvo);
-				response.sendRedirect("Pay4Receipt.jsp");
+				pvo = dao.ParkSelect(Integer.toString(resvo.getPrk_seq()));
+				if(pvo !=null) {
+					System.out.println("사용한 주차장정보 불러오기");
+					session.setAttribute("pvo", pvo);
+					response.sendRedirect("Pay4Receipt.jsp");
+				}
 			}else {
 				// 실패
 				System.out.println("사용중인 주차장이 없습니다.");
-				response.sendRedirect("Pay2LotUseCon.jsp");
+				pvo = dao.ParkSelect(lot);
+				if(pvo !=null) {
+					System.out.println("사용할 주차장정보 불러오기");
+					session.setAttribute("pvo", pvo);
+					response.sendRedirect("Pay2LotUseCon.jsp");
+				}else {
+					System.out.println("주차장이 검색되지 않았습니다.");
+					response.sendRedirect("Pay8UesFalse.jsp");
+				}
 			}
-
 			
 		}else {
 			// 실패

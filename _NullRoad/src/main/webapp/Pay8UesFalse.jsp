@@ -49,22 +49,10 @@
 <body>
 <%
 session = request.getSession();
-ParkingVO pvo = null;
-if (session.getAttribute("pvo")!=null){
-	pvo = (ParkingVO)session.getAttribute("pvo");
-	session.setAttribute("pvo", pvo);
-}
 MemberVO mvo = null;
 if (session.getAttribute("mvo")!=null){
 	mvo = (MemberVO)session.getAttribute("mvo");
 	session.setAttribute("mvo", mvo);
-}else{
-	response.sendRedirect("Pay1LoginCheck.jsp");
-}
-BuildingVO bldvo = null;
-if (session.getAttribute("bldvo")!=null){
-	bldvo = (BuildingVO)session.getAttribute("bldvo");
-	session.setAttribute("bldvo", bldvo);
 }
 %>
 
@@ -72,7 +60,6 @@ if (session.getAttribute("bldvo")!=null){
    String loginYN = "login.jsp?page=";
    String selflink = "Pay6ReserveComplete.jsp";
    if (mvo!=null){loginYN = "";}
-   
 %>
    <!-- Page Preloder -->
    <div id="preloder">
@@ -154,21 +141,18 @@ if (session.getAttribute("bldvo")!=null){
 			</div>
 		</div>
 		<div class="widget-area" >
-			<h4 class="widget-title">예약성공</h4>
+			<h4 class="widget-title">주차할 수 없습니다.</h4>
 			<div id="myp_section_wrap" class="clear-fix">
 				<div class="section01">
 					<div class="user_wrap bgfff">
 
 						<div class="user_info">
 							<div class="user_name">
-								 주차장 정보 : <%=bldvo.getBld_name() %>
+								 주차장 사용 실패
 							</div>
 							<p>&nbsp;</p>
-							<div class="user_class" style="font-size:18px;">주차장 사용상태 : <%=pvo.getPrk_status()%></div>
+							<div class="user_class" style="font-size:18px;">이미 사용중인 주차장입니다. 다른 주차장을 이용해 주십시요</div>
 							<p>&nbsp;</p>
-							<div class="user_mail" style="font-size:18px;">주차장 요금 : <%=pvo.getPrk_fee()%></div><br>
-							<input type="button" value="내비게이션" onclick="Navi()" class="login100-form-btn">
-							<p>내비게이션은 모바일에서만 지원 됩니다.</p><br>
 							
 
 						</div>
@@ -218,17 +202,7 @@ if (session.getAttribute("bldvo")!=null){
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script type="text/javascript">
-    function Navi() {
-			alert("네비 안내를 시작합니다.");
-            Kakao.Navi.start({
-                name:'',
-                x:<%=String.format("%.6f", bldvo.getBld_longi())%>,
-                y:<%=String.format("%.5f", bldvo.getBld_lati())%>,
-                coordType:'wgs84'
-            });
-		}
-	</script>
+
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>

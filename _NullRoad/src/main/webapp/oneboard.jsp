@@ -203,7 +203,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
 <main class="cd-main-content">
 	<!-- Page info end -->
 	<p>&nbsp;</p>
-	<h3 style="text-align:center; letter-spacing: 5px; font-weight: 700;">자유게시판</h3>
+	<h3 style="text-align:center; letter-spacing: 5px; font-weight: 700;">고객문의</h3>
 	<div id="bo_list" style="width: 95%">
 		<!-- 게시판 페이지 정보 및 버튼 시작 { -->
 		<div id="bo_btn_top">
@@ -237,35 +237,36 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
  for (int i = 0; i < 5; i++) {
  %>
   <div class="bo_reslist">
+  <ul>
   <li>
   <%
  String result = csarr.get(i + (pageno - 1) * 5).getCs_art_reg_date().substring(5, 11);
  %>
 				<div class="s-number">
 					<a class="main_a"
-						href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%></a>
+						href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%></a>
 				</div>
 
 				<div class="s-subject" style="padding-left: 0px">
 					<div class="bo_tit">
 						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>">　<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%></a>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>">　<%=csarr.get(i + (pageno - 1) * 5).getCs_art_subject()%></a>
 					</div>
 				</div>
 
 				<div class="s-right">
 					<div class="s-user">
 						<span class="sv_member"><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>">　　<%=csarr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>">　　<%=csarr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 					</div>
 
 					<div class="s-view">
 						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=result%></a>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=result%></a>
 					</div>
 					<div class="s-day">
 						</i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_cnt()%></a>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_cnt()%></a>
 					</div>
 				</div>
 				</li>
@@ -292,26 +293,26 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
  %>
 				<div class="s-number">
 					<a class="main_a"
-						href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%></a>
+						href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%></a>
 				</div>
 				<div class="s-subject" style="padding-left: 0px">
 					<div class="bo_tit">
 						<a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_subject()%></a>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_subject()%></a>
 					</div>
 				</div>
 				<div class="s-right">
 					<div class="s-user">
 						<span class="sv_member"><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getM_id()%></a></span>
 					</div>
 					<div class="s-view">
 						<i class="fa fa-eye" aria-hidden="true"></i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=result%></a>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=result%></a>
 					</div>
 					<div class="s-day">
 						</i><a class="main_a"
-							href="SelectBoard.do?comm_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_cnt()%></a>
+							href="oneSelect.do?cs_art_seq=<%=csarr.get(i + (pageno - 1) * 5).getCs_art_seq()%>"><%=csarr.get(i + (pageno - 1) * 5).getCs_art_cnt()%></a>
 					</div>
 				</div> <%
  }
