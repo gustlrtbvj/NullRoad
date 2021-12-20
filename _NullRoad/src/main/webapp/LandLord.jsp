@@ -198,6 +198,7 @@ select#select1{
 </div>
 
     
+<a name="bottom"></a>
 <div style="width:100% ;">
     
     <div id="chartBody" style="width:100% ;height:45%">
@@ -290,7 +291,6 @@ select#select1{
     </div>
 
     </div>
-
 
 
 

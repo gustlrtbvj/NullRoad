@@ -222,7 +222,7 @@ if (session.getAttribute("bldvo")!=null){
     function Navi() {
 			alert("네비 안내를 시작합니다.");
             Kakao.Navi.start({
-                name:'',
+                name:'<%=bldvo.getBld_name()%>',
                 x:<%=String.format("%.6f", bldvo.getBld_longi())%>,
                 y:<%=String.format("%.5f", bldvo.getBld_lati())%>,
                 coordType:'wgs84'

@@ -294,6 +294,7 @@ background:none;}
 		ArrayList<ReservationVO> reslist=dao.ResSel();
 		ArrayList<BuildingVO> bldhidon=dao.BldHidOn();
 		ArrayList<ParkableVO> prkablelist=dao.Prkable();
+		
 		//임시 데이터
 		dao.PayReserCheck();
 		
@@ -331,7 +332,7 @@ background:none;}
     
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
         mapOption = { 
-            center: new kakao.maps.LatLng(33.450705, 126.570677), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(35.11105884194377, 126.87739351088938), // 지도의 중심좌표
             level: 4 // 지도의 확대 레벨
         };
     
@@ -404,11 +405,8 @@ background:none;}
 	    '        <li>' +
 	    '            <span class="title"><%=bldhidon.get(i).getSigungu()%> <%=bldhidon.get(i).getEmdong()%> <%=bldhidon.get(i).getDetail_addr()%></span>' +
 	    '        </li>' +
-	    '        <li>' +
-	    				
-	    '            <span class="title">시간당 <%=dao.PrkFeeSelect(bldhidon.get(i).getBld_seq())%> 원</span>' +
-	    
-
+	    '        <li>' +    				
+	    '            <span class="title">시간당 1000 원</span>' +	    
 	    '        </li>' +
 	    '        <li class = "sj">' +
 	    			

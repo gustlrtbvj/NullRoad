@@ -1135,7 +1135,7 @@ public class DAO {
 		return chvo;
 	}
 
-	public ParkingVO PrkFeeSelect(int bld_num) {
+	public int PrkFeeSelect(int bld_num) {
 		try {
 			Conn();
 			String sql = "select prk_fee from t_parking where bld_seq=?";
@@ -1149,22 +1149,14 @@ public class DAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next() == true) {
-				int prk_seq = rs.getInt(1);
-				String prk_time = rs.getString(2);
-				String prk_day = rs.getString(3);
-				int prk_fee = rs.getInt(4);
-				int prk_status = rs.getInt(5);
-				String prk_memo = rs.getString(6);
-				int bld_seq = rs.getInt(7);
-
-				pvo = new ParkingVO(prk_seq, prk_time, prk_day, prk_fee, prk_status, prk_memo, bld_seq);
+				cnt = rs.getInt(1);
 			}
 		} catch (Exception e) {
 
 		} finally {
 			close();
 		}
-		return pvo;
+		return cnt;
 
 	}
 
