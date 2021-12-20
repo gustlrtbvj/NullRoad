@@ -830,7 +830,7 @@ public class DAO {
 	public ParkingVO ParkSelect(String lot) {
 		try {
 			Conn();
-			String sql = "select * from t_parking where prk_seq = ? and prk_status = 0 ";
+			String sql = "select * from t_parking where prk_seq = ? ";
 			psmt = conn.prepareStatement(sql);
 			// 4. 바인드 변수 채우기
 			psmt.setString(1, lot);
