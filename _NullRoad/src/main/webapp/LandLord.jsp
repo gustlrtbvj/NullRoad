@@ -114,7 +114,11 @@
 .content-table tbody tr:last-of-type{
     border-bottom: 2px solid #7e3bc3;
 }
+.chartTab{
+text-align: center;}
 
+select#select1{
+    padding-right:50px;}
 </style>
 </head>
 <body>
@@ -203,13 +207,14 @@
     	</div>	
     	
         <div class="chartTab">      
-            <div>    
+            <div>
                 <a href="#none"><button class="login100-form-btn" style="margin-right:40px" onclick="p()">주간 이용자수</button></a>
                 <a href="#none"><button class="login100-form-btn" onclick="fee()">주간 수익</button></a>
+                <div id="select2">
                 <select name="1" id="select1" style="float:right;">
                     <option id = "selectdong" selected>동 선택</option>
-                    
                 </select>
+                </div>
             </div>
           
         </div>

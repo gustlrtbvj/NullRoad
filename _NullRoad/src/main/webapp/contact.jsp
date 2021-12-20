@@ -238,7 +238,7 @@ input{
 								
 								<div class="col-md-12">
 									<div class="container-login100-form-btn">
-										<a id="asd" class="login100-form-btn">
+										<a id="alertStart" class="login100-form-btn">
 											<input type="submit" value="공유신청" style="color: #fff;">
 										</a>
 									</div>
@@ -282,7 +282,7 @@ input{
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
-    <script src= "js/alert4.js"></script>
+    <script src= "js/alert4.js" charset=UTF-8></script>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
