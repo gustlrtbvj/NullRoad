@@ -7,7 +7,7 @@
 <%@page import="Model.CommunityVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.DAO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <title>게시판</title>
@@ -145,9 +145,12 @@ ul{
    System.out.println("음?>>"+b);
    ArrayList<CommunityRepVO> reply = dao.CommRepSel(b);
    FilesVO files =null;
-   if (dao.FilesSel(b) != null) {
+   if (dao.FilesSel(b) != null) { 
       files = dao.FilesSel(b);
-      files1 = files.getF_1().split("/");
+		if(files.getF_1() !=null){
+			System.out.println("여기로 들어오니?");
+     		 files1 = files.getF_1().split("/");
+		}
    }
 
    %>
@@ -260,15 +263,18 @@ ul{
         <h2 id="bo_v_atc_title">본문</h2>
  
       <div id="bo_v_con">
-<% if (files1 !=null) {%>
+			<% if (files !=null) {
+			if(files1 != null){%>
+				
                <%  for (int i=0; i<files1.length; i++) { %>
                <% if (files1[i]!=null) { %>
                <img src="img/<%= files1[i]%>">
                <br>
                <% } %>
                <%    } %>
-                  <% }%>
-                  
+                  <% }} else{%>
+                  <p>사진이 없습니다</p>
+                  <%} %>
                 <%=bvo.getComm_content()%></p>
        </div>
 
@@ -305,18 +311,19 @@ ul{
                     
                     <form action = "CommRepCon.do?comm_seq=<%=bvo.getComm_seq()%>">
                     <span class="sound_only">내용</span>
-                    <textarea id="wr_content" name="wr_content" maxlength="10000" required="" class="required" title="내용" placeholder="댓글내용을 입력해주세요"></textarea>
+                    <textarea id="wr_content" name="message" maxlength="10000" required="" class="required" title="내용" placeholder="댓글내용을 입력해주세요"></textarea>
                     <input value="<%=bvo.getComm_seq()%>" name="num" style = "display:none">
                <input value="<%=mvo.getM_id()%>" name="m_id" style = "display:none">
   					
                 
                 
                     <div class="container-login100-form-btn">
-                        <a id="alertStart" class="login100-form-btn">
+                        <button id="alertStart" class="login100-form-btn" type = "submit">
                           <b style="color: #fff;">등록</b>
-                        </a>
+                        </button>
                       </div>
                 </form></aside>
+                
                 <ul class="bo_v_nb">
 
                     <li class="prev">
@@ -341,7 +348,14 @@ ul{
                       </li></ul>
     
 
-<script>
+
+   <script src="js/jquery-3.2.1.min.js"></script>
+   <script src="js/owl.carousel.min.js"></script>
+   <script src="js/main.js"></script>
+    <script src= "js/alert3.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
       $().ready(function() {
          $("#alertStart").click(function() {
             Swal.fire({
@@ -356,12 +370,6 @@ ul{
          });
       });
    </script>
-   <script src="js/jquery-3.2.1.min.js"></script>
-   <script src="js/owl.carousel.min.js"></script>
-   <script src="js/main.js"></script>
-    <script src= "js/alert3.js"></script>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 

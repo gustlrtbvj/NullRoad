@@ -15,9 +15,6 @@ public class Bo_CommRepCon implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setCharacterEncoding("EUC-KR");
-			System.out.println("실행?");
-			
-			System.out.println("쏘이~~~~~~");
 			//2. 최대파일 크기(단위 : byte) : 5MB			
 			//3. 인코딩 타입
 			//4. request를 대신 해서 받아온 데이터를 정제해줄 MultipartRequest 객체

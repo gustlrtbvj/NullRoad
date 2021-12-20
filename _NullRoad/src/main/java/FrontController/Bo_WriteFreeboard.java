@@ -31,6 +31,7 @@ public class Bo_WriteFreeboard extends HttpServlet {
 		//request.getServletContext();
 		//work spaece > 아파치톰캣 업로드(폴더의 위치들이 바뀜)
 		//저장할 경로
+		int cnt2 =0;
 		String savePath = request.getServletContext().getRealPath("img");
 		//2. 최대파일 크기(단위 : byte) : 5MB
 		int maxSize = 5*1024*1024;
@@ -74,9 +75,9 @@ System.out.println("기리리기리기리"+giri);
 		BoardDAO dao=new BoardDAO();
 
 		int cnt = dao.CommunityCon(comm_subj, comm_content, m_id);
-		
-		int cnt2 = dao.FilesCon(fileSum);
-
+		if (filename != null) {
+		cnt2 = dao.FilesCon(fileSum);
+		} 
 		
 		
 		System.out.println(cnt);
