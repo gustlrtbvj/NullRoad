@@ -190,9 +190,9 @@
 											</div>
 											<div class="col-md-12">
 												<div class="container-login100-form-btn">
-													<button type="submit" id="alertStart"class="login100-form-btn">
-														<b>전송하기</b>
-													</button>
+												<button type="submit" id="alertStart"class="login100-form-btn">
+                                          			<b>전송하기</b>
+                                       			</button>
 												</div>
 											</div>
 										</div>
