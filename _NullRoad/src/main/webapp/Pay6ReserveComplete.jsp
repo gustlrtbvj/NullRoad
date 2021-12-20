@@ -167,7 +167,8 @@ if (session.getAttribute("bldvo")!=null){
 							<div class="user_class" style="font-size:18px;">주차장 사용상태 : <%=pvo.getPrk_status()%></div>
 							<p>&nbsp;</p>
 							<div class="user_mail" style="font-size:18px;">주차장 요금 : <%=pvo.getPrk_fee()%></div><br>
-							<input type="button" value="내비게이션" onclick="Navi()" class="login100-form-btn"><br>
+							<input type="button" value="내비게이션" onclick="Navi()" class="login100-form-btn">
+							<p>내비게이션은 모바일에서만 지원 됩니다.</p><br>
 							
 
 						</div>
@@ -220,12 +221,12 @@ if (session.getAttribute("bldvo")!=null){
 	<script type="text/javascript">
     function Navi() {
 			alert("네비 안내를 시작합니다.");
-		    Kakao.Navi.start({
-		       name:<%=bldvo.getBld_name()%>,
- 		       x:<%=bldvo.getBld_lati()%>,
- 		       y:<%=bldvo.getBld_longi()%>,
- 		       coordType:'wgs84'
- 		   });
+            Kakao.Navi.start({
+                name:'',
+                x:<%=String.format("%.6f", bldvo.getBld_longi())%>,
+                y:<%=String.format("%.5f", bldvo.getBld_lati())%>,
+                coordType:'wgs84'
+            });
 		}
 	</script>
 	<script src="js/jquery-3.2.1.min.js"></script>
