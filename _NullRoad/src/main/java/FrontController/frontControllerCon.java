@@ -88,6 +88,8 @@ public class frontControllerCon extends HttpServlet {
 		    exe = new CorUpdCon();
 		} else if (command.equals("/One.do")) {
 		    exe = new OneCon();
+		} else if (command.equals("/oneSelect.do")) {
+		    exe = new oneSelectBordCon();
 		}
 
 		exe.execute(request, response);
