@@ -112,6 +112,10 @@ if (session.getAttribute("mvo")!=null){
 						<button type="button" class="site-btn sb-gradients" onclick="location.href='LandLord.jsp';">공유현황</button>
 						</form>
 					<%} %>
+				<%} else{%>
+				<form class="hero-subscribe-from">
+					<button type="button" class="site-btn sb-gradients" onclick="location.href='LandLord.jsp';">공유현황</button>
+					</form>
 				<%} %>
 				</div>
 				<div class="col-md-6">
