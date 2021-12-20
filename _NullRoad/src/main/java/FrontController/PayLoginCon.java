@@ -39,7 +39,9 @@ public class PayLoginCon implements Command{
 				// 성공
 				System.out.println("사용하던 주차장이 있습니다.");
 				session.setAttribute("resvo", resvo);
-				pvo = dao.ParkSelect(Integer.toString(resvo.getPrk_seq()));
+				lot=Integer.toString(resvo.getPrk_seq());
+				System.out.println("주차장 번호"+lot);
+				pvo = dao.ParkSelect(lot);
 				if(pvo !=null) {
 					System.out.println("사용한 주차장정보 불러오기");
 					session.setAttribute("pvo", pvo);
