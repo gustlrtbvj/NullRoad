@@ -295,7 +295,7 @@ long price = UseTime*(pvo.getPrk_fee()/60);
         	  url:'Pay0MoneyBase.jsp', //가져오고자하는 서버페이지 주소를 넣는다.
         	  type:'post', //데이터를 서버로 전송하게 된다.
         	  data:{
-        	         name: <%=mvo.getM_id()%>,  //에디터박스의 아이디를 넣으면 해당 에디터박스의 데이터를 보내준다.
+        	         name: '<%=mvo.getM_id()%>',  //에디터박스의 아이디를 넣으면 해당 에디터박스의 데이터를 보내준다.
         	         money: cash
         	  } ,
         	  success : function(t){ 

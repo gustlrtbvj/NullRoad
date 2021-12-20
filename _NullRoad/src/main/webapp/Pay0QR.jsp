@@ -13,3 +13,4 @@ response.sendRedirect("Pay1LoginCheck.jsp?lot="+lot);
 %>
 </body>
 </html>
+
