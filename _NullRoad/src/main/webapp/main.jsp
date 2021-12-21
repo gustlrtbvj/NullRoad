@@ -209,7 +209,6 @@ if (session.getAttribute("mvo")!=null){
 
 
 <!-- Footer -->
-
 <!-- Footer section -->
 <footer class="footer-section">
 	<div class="container">

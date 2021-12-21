@@ -282,14 +282,25 @@ long price = UseTime*(pvo.getPrk_fee()/60);
             if ( rsp.success ) {
             //결제반환 정보 https://docs.iamport.kr/sdk/javascript-sdk?lang=ko#request_pay-rsp 
         var msg = '결제가 완료되었습니다.';
-        msg += '고유ID : ' + rsp.imp_uid;
-        msg += '상점 거래ID : ' + rsp.merchant_uid;
-        msg += '결제 금액 : ' + rsp.paid_amount;
-        msg += '카드 승인번호 : ' + rsp.apply_num;
         alert(msg);
+        $.ajax({
+      	  url:'Pay0MoneyBase.jsp', //가져오고자하는 서버페이지 주소를 넣는다.
+      	  type:'post', //데이터를 서버로 전송하게 된다.
+      	  data:{
+      	         name: '<%=mvo.getM_id()%>',  //에디터박스의 아이디를 넣으면 해당 에디터박스의 데이터를 보내준다.
+      	         money: cash
+      	  } ,
+      	  success : function(t){ 
+      	                location.reload();
+      	  } ,
+      	  error : function(){
+      	            location.reload();
+      	  }
+      	});
+      }
+      });
         } else {
         var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
         alert(msg);
         $.ajax({
         	  url:'Pay0MoneyBase.jsp', //가져오고자하는 서버페이지 주소를 넣는다.
