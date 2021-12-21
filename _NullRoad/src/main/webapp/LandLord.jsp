@@ -669,12 +669,10 @@ let myChart = new Chart(ctx, config);
 					for(let j=0 ; j < data.length ; j++){
 						data[j] = p_chart[j];
 					}
-					dataset = config.data.datasets;
-					data = dataset[0].data;
-					config.data.labels = date_chart.reverse();
-						for(let j=0 ; j < data.length ; j++){
-							data[j] = fee_chart[j];
-						}
+				config.data.labels = date_chart.reverse();
+					for(let j=0 ; j < data.length ; j++){
+						data[j] = p_chart[j];
+					}
 				myChart.update();
 			}
 			if (chart_select == 3){
@@ -687,7 +685,7 @@ let myChart = new Chart(ctx, config);
 					data = dataset[0].data;
 					config.data.labels = date_chart.reverse();
 						for(let j=0 ; j < data.length ; j++){
-							data[j] = fee_chart[j];
+							data[j] = s_chart[j];
 						}
 				myChart.update();
 			}
