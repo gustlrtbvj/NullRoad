@@ -1107,15 +1107,19 @@ public class DAO {
 		try {
 			Conn();
 
-			String sql = "select b.emdong , sum(s.user_prk_fee),AVG(s.user_prk_fee),count(s.user_prk_fee),TO_CHAR(s.chk_out_time, 'YY-MM-DD')from(select r.prk_seq, r.user_prk_fee, r.chk_out_time , p.bld_seq from t_reservation r , t_parking p  where r.prk_seq = p.prk_seq and r.user_prk_fee > 0) s, t_building b  where s.bld_seq = b.bld_seq group by b.emdong, TO_CHAR(s.chk_out_time, 'YY-MM-DD') "
-					+ "order by TO_CHAR(s.chk_out_time, 'YY-MM-DD') " + "desc";
+			String sql = "select b.emdong , sum(s.user_prk_fee),AVG(s.user_prk_fee),count(s.user_prk_fee),TO_CHAR(s.chk_out_time, 'YY-MM-DD')"
+					+ "from(select r.prk_seq, r.user_prk_fee, r.chk_out_time , p.bld_seq "
+					+ "from t_reservation r , t_parking p  "
+					+ "where r.prk_seq = p.prk_seq and r.res_status = 1) s, t_building b  "
+					+ "where s.bld_seq = b.bld_seq and TO_CHAR(s.chk_out_time, 'YY-MM-DD') > sysdate-7"
+					+ "group by b.emdong, TO_CHAR(s.chk_out_time, 'YY-MM-DD')"
+					+ "order by TO_CHAR(s.chk_out_time, 'YY-MM-DD') desc";
 			psmt = conn.prepareStatement(sql);
 
 			// 5.
 			// select -> executeQuery() --> return ResultSet
 			// insert, delete, update -> executeUpdate() --> return int(몇 행이 성공했는지)
 			rs = psmt.executeQuery();
-			System.out.println(rs.next());
 
 			while (rs.next()) {
 				String emdong = rs.getString(1);

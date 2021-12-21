@@ -590,7 +590,7 @@ let myChart = new Chart(ctx, config);
 	<!-- 최초의 데이터 테이블 생성 -->
 	<script>
 
-	
+	let count = 0 ;
 	let p_chart = [];
 	let fee_chart = [];
 	let date_chart = [];
@@ -598,14 +598,15 @@ let myChart = new Chart(ctx, config);
 	let td_length = $('#data_table td').length;
 	let tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
 		$("#data_table tbody>tr td").empty();					
-		for (let i = 0; i < tr_length-1; i++) {
-			if(static_data['t_dong'][i] == emdong){
-			$("#data_table tr:eq("+(i+1)+") td:eq(0)").html(static_data['t_fee'][i]);
+		for (let i = 0; i < t_time.length; i++) {
+			if(static_data['t_dong'][i]==emdong){
+			count+=1;
+			$("#data_table tr:eq("+(count)+") td:eq(0)").html(static_data['t_fee'][i]);
 			fee_chart.push(static_data['t_fee'][i]);
-			$("#data_table tr:eq("+(i+1)+") td:eq(1)").html(static_data['t_avg'][i]);
-			$("#data_table tr:eq("+(i+1)+") td:eq(2)").html(static_data['t_cnt'][i]);
+			$("#data_table tr:eq("+(count)+") td:eq(1)").html(static_data['t_avg'][i]);
+			$("#data_table tr:eq("+(count)+") td:eq(2)").html(static_data['t_cnt'][i]);
 			p_chart.push(static_data['t_cnt'][i]);
-			$("#data_table tr:eq("+(i+1)+") td:eq(4)").html(static_data['t_time'][i]);
+			$("#data_table tr:eq("+(count)+") td:eq(4)").html(static_data['t_time'][i]);
 			date_chart.push(static_data['t_time'][i]);
 			}
 		}
@@ -627,28 +628,36 @@ let myChart = new Chart(ctx, config);
 	
 	//동을 클릭했을 때 동작하는 기능
     function callFunction(emdong_select) {
+    	count = 0 ;
     	emdong = emdong_select
-    	let p_chart = [];
-    	let fee_chart = [];
-    	let date_chart = [];
-		let tr_length = $('#data_table tr').length;
-		let td_length = $('#data_table td').length;
-		let tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
+    	p_chart = [];
+    	fee_chart = [];
+    	date_chart = [];
+		tr_length = $('#data_table tr').length;
+		td_length = $('#data_table td').length;
+		tab_td = $('#data_table td');//tb 테이블의 td들 불러오기
 		$("#data_table tbody>tr td").empty();					
-		for (let i = 0; i < tr_length-1; i++) {
+		for (let i = 0; i < t_time.length; i++) {
 			if(static_data['t_dong'][i] == emdong){
-			$("#data_table tr:eq("+(i+1)+") td:eq(0)").html(static_data['t_fee'][i]);
+			count+=1
+			$("#data_table tr:eq("+(count)+") td:eq(0)").html(static_data['t_fee'][i]);
 			fee_chart.push(static_data['t_fee'][i]);
-    		$("#data_table tr:eq("+(i+1)+") td:eq(1)").html(static_data['t_avg'][i]);
-    		$("#data_table tr:eq("+(i+1)+") td:eq(2)").html(static_data['t_cnt'][i]);
+    		$("#data_table tr:eq("+(count)+") td:eq(1)").html(static_data['t_avg'][i]);
+    		$("#data_table tr:eq("+(count)+") td:eq(2)").html(static_data['t_cnt'][i]);
     		p_chart.push(static_data['t_cnt'][i]);
-    		$("#data_table tr:eq("+(i+1)+") td:eq(4)").html(static_data['t_time'][i]);
+    		$("#data_table tr:eq("+(count)+") td:eq(4)").html(static_data['t_time'][i]);
     		date_chart.push(static_data['t_time'][i]);
 			}
 		}
 			if (chart_select == 1){
 		    let dataset = config.data.datasets;
 			let data = dataset[0].data;
+				for(let j=0 ; j < data.length ; j++){
+					data[j] = fee_chart[j];
+				}
+			dataset = config.data.datasets;
+			data = dataset[0].data;
+			config.data.labels = date_chart.reverse();
 				for(let j=0 ; j < data.length ; j++){
 					data[j] = fee_chart[j];
 				}
@@ -660,6 +669,12 @@ let myChart = new Chart(ctx, config);
 					for(let j=0 ; j < data.length ; j++){
 						data[j] = p_chart[j];
 					}
+					dataset = config.data.datasets;
+					data = dataset[0].data;
+					config.data.labels = date_chart.reverse();
+						for(let j=0 ; j < data.length ; j++){
+							data[j] = fee_chart[j];
+						}
 				myChart.update();
 			}
 			if (chart_select == 3){
@@ -668,6 +683,12 @@ let myChart = new Chart(ctx, config);
 					for(let j=0 ; j < data.length ; j++){
 						data[j] = s_chart[j];
 					}
+					dataset = config.data.datasets;
+					data = dataset[0].data;
+					config.data.labels = date_chart.reverse();
+						for(let j=0 ; j < data.length ; j++){
+							data[j] = fee_chart[j];
+						}
 				myChart.update();
 			}
 		};
