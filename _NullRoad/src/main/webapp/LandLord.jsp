@@ -533,13 +533,12 @@ select#select1{
 		title: {
 		
 		},
-		scales: {
-			yAxes: [{
-				scaleLabel: {
-				
-				}
-			}]
-		},
+		 scales: {
+		      y: {
+		        min: 0,
+		        
+		      }
+		    }
 	}
 };
  
@@ -619,7 +618,7 @@ let myChart = new Chart(ctx, config);
 	<script>
 	    let dataset = config.data.datasets;
 		let data = dataset[0].data;
-		config.data.labels = date_chart.reverse();
+		config.data.labels = date_chart;
 			for(let j=0 ; j < data.length ; j++){
 				data[j] = fee_chart[j];
 			}
@@ -657,7 +656,7 @@ let myChart = new Chart(ctx, config);
 				}
 			dataset = config.data.datasets;
 			data = dataset[0].data;
-			config.data.labels = date_chart.reverse();
+			config.data.labels = date_chart;
 				for(let j=0 ; j < data.length ; j++){
 					data[j] = fee_chart[j];
 				}
@@ -669,7 +668,7 @@ let myChart = new Chart(ctx, config);
 					for(let j=0 ; j < data.length ; j++){
 						data[j] = p_chart[j];
 					}
-				config.data.labels = date_chart.reverse();
+				config.data.labels = date_chart;
 					for(let j=0 ; j < data.length ; j++){
 						data[j] = p_chart[j];
 					}
@@ -683,7 +682,7 @@ let myChart = new Chart(ctx, config);
 					}
 					dataset = config.data.datasets;
 					data = dataset[0].data;
-					config.data.labels = date_chart.reverse();
+					config.data.labels = date_chart;
 						for(let j=0 ; j < data.length ; j++){
 							data[j] = s_chart[j];
 						}
