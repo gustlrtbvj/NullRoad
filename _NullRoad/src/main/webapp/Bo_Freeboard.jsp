@@ -186,8 +186,7 @@ if(confirm("로그인이 필요한 서비스입니다.")) {
                     <a href="<%=loginYN%>Q_QNA.jsp">Q&A</a>
                     <a href="<%=loginYN%>mypage.jsp">마이페이지</a>
                   </div>
-                 </div>
-
+                </div>
             </ul>
          </nav>
       </div>

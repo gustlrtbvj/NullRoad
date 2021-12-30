@@ -57,7 +57,6 @@ if (session.getAttribute("mvo")!=null){
          <a href="Logout.do?page=<%=selflink%>" class="user" style="margin-top: 10px;"><i class="fa fa-user"></i></a>
          <a href="Logout.do?page=<%=selflink%>" class="site-btn">로그아웃</a>
          <%} %>
-
          <nav class="main-menu">
             <ul class="menu-list">
                <div class="dropdown">
@@ -83,8 +82,7 @@ if (session.getAttribute("mvo")!=null){
                     <a href="<%=loginYN%>mypage.jsp">마이페이지</a>
                   </div>
                </div>
-                
-                 </div>
+              </div>
             </ul>
          </nav>
       </div>
